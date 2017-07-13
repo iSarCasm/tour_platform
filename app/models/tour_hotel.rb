@@ -1,4 +1,5 @@
 class TourHotel < ApplicationRecord
+  has_many :hotel_rooms
   belongs_to :hotel
   belongs_to :active_tour
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170712202338) do
+ActiveRecord::Schema.define(version: 20170713204652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20170712202338) do
   end
 
   create_table "coach_bookings", force: :cascade do |t|
-    t.bigint "coach_id"
+    t.bigint "tour_coach_id"
     t.bigint "tour_booking_id"
     t.integer "seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coach_id"], name: "index_coach_bookings_on_coach_id"
     t.index ["tour_booking_id"], name: "index_coach_bookings_on_tour_booking_id"
+    t.index ["tour_coach_id"], name: "index_coach_bookings_on_tour_coach_id"
   end
 
   create_table "coaches", force: :cascade do |t|
@@ -51,13 +51,13 @@ ActiveRecord::Schema.define(version: 20170712202338) do
   end
 
   create_table "hotel_rooms", force: :cascade do |t|
-    t.bigint "hotel_id"
+    t.bigint "tour_hotel_id"
     t.integer "room_type"
     t.integer "number"
     t.integer "places"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hotel_id"], name: "index_hotel_rooms_on_hotel_id"
+    t.index ["tour_hotel_id"], name: "index_hotel_rooms_on_tour_hotel_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -113,11 +113,11 @@ ActiveRecord::Schema.define(version: 20170712202338) do
   end
 
   add_foreign_key "active_tours", "tours"
-  add_foreign_key "coach_bookings", "coaches"
   add_foreign_key "coach_bookings", "tour_bookings"
+  add_foreign_key "coach_bookings", "tour_coaches"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
-  add_foreign_key "hotel_rooms", "hotels"
+  add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
   add_foreign_key "tour_coaches", "active_tours"

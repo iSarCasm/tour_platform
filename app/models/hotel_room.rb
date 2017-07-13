@@ -1,7 +1,9 @@
 class HotelRoom < ApplicationRecord
+  has_many :hotel_bookings
+
   enum room_type: [ :Single, :Double ]
 
-  belongs_to :hotel
+  belongs_to :tour_hotel
 
-  validates :hotel, :room_type, :number, :places, presence: true
+  validates :tour_hotel, :room_type, :number, :places, presence: true
 end

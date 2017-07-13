@@ -1,4 +1,6 @@
 class TourBooking < ApplicationRecord
+  has_many :hotel_bookings
+  has_one :coach_booking
   belongs_to :active_tour
   belongs_to :user
 
