@@ -1,7 +1,7 @@
 class TourCoach < ApplicationRecord
-  has_many :coach_bookings, dependent: :destroy
-  belongs_to :coach
-  belongs_to :active_tour
+  has_many :coach_bookings, dependent: :destroy, inverse_of: :tour_coach
+  belongs_to :coach, inverse_of: :tour_coaches
+  belongs_to :active_tour, inverse_of: :tour_coaches
 
   validates :coach, :active_tour, :departure_date, :arrival_date, presence: true
 

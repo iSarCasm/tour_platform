@@ -1,6 +1,6 @@
 class HotelBooking < ApplicationRecord
-  belongs_to :hotel_room
-  belongs_to :tour_booking
+  belongs_to :hotel_room, inverse_of: :hotel_bookings
+  belongs_to :tour_booking, inverse_of: :hotel_bookings
 
   validates :hotel_room, :tour_booking, presence: true
 

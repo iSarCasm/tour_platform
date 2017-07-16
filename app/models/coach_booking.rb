@@ -1,6 +1,6 @@
 class CoachBooking < ApplicationRecord
-  belongs_to :tour_coach
-  belongs_to :tour_booking
+  belongs_to :tour_coach, inverse_of: :coach_bookings
+  belongs_to :tour_booking, inverse_of: :coach_booking
 
   validates :tour_coach, :tour_booking, :seats, presence: true
 

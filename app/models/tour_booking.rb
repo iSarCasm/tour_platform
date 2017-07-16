@@ -1,8 +1,8 @@
 class TourBooking < ApplicationRecord
-  has_many :hotel_bookings, dependent: :destroy
-  has_one :coach_booking, dependent: :destroy
-  belongs_to :active_tour
-  belongs_to :user
+  has_many :hotel_bookings, dependent: :destroy, inverse_of: :tour_booking
+  has_one :coach_booking, dependent: :destroy, inverse_of: :tour_booking
+  belongs_to :active_tour, inverse_of: :tour_bookings
+  belongs_to :user, inverse_of: :tour_bookings
 
   validates :active_tour, :user, presence: true
 

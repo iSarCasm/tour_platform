@@ -1,9 +1,9 @@
 class HotelRoom < ApplicationRecord
-  has_many :hotel_bookings, dependent: :destroy
+  has_many :hotel_bookings, dependent: :destroy, inverse_of: :hotel_room
+
+  belongs_to :tour_hotel, inverse_of: :hotel_rooms
 
   enum room_type: [ :Single, :Double ]
-
-  belongs_to :tour_hotel
 
   validates :tour_hotel, :room_type, :number, :places, presence: true
 
