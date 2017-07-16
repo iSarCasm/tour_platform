@@ -5,6 +5,10 @@ class TourHotel < ApplicationRecord
 
   validates :hotel, :active_tour, presence: true
 
+  rails_admin do
+    parent Hotel
+  end
+
   def title
     "#{hotel.title} #{booking_period}"
   rescue

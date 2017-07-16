@@ -7,6 +7,10 @@ class HotelRoom < ApplicationRecord
 
   validates :tour_hotel, :room_type, :number, :places, presence: true
 
+  rails_admin do
+    parent TourHotel
+  end
+
   def title
     "#{short_title} (#{room_type}, for #{places} people)"
   rescue

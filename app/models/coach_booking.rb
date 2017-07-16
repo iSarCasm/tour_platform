@@ -4,6 +4,10 @@ class CoachBooking < ApplicationRecord
 
   validates :tour_coach, :tour_booking, :seats, presence: true
 
+  rails_admin do
+    parent TourBooking
+  end
+
   def title
     "#{tour_booking.username} -> #{tour_coach.title}"
   rescue

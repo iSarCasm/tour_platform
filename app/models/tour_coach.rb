@@ -5,6 +5,10 @@ class TourCoach < ApplicationRecord
 
   validates :coach, :active_tour, :departure_date, :arrival_date, presence: true
 
+  rails_admin do
+    parent Coach
+  end
+
   def title
     "#{coach.title} " +
     "[#{departure_date.to_date.to_formatted_s(:rfc822)} - " +
