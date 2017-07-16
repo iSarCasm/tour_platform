@@ -6,6 +6,7 @@ class TourBooking < ApplicationRecord
 
   accepts_nested_attributes_for :hotel_bookings, allow_destroy: true
   accepts_nested_attributes_for :coach_bookings, allow_destroy: true
+  # accepts_nested_attributes_for :user
 
   validates :active_tour, :user, presence: true
 
