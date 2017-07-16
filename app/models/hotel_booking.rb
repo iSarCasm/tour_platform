@@ -3,4 +3,8 @@ class HotelBooking < ApplicationRecord
   belongs_to :tour_booking
 
   validates :hotel_room, :tour_booking, presence: true
+
+  def title
+    "#{tour_booking.username} -> #{hotel_room.short_title} #{hotel_room.booking_period}"
+  end
 end

@@ -1,0 +1,27 @@
+require 'rails_helper'
+
+describe TourBooking do
+  describe '#title' do
+    it 'shows readable represenation' do
+      user = build :user, name: 'Jason'
+      tour = build :tour, title: 'New tour'
+      active_tour = build(:active_tour,
+        tour: tour,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      tour_booking = build :tour_booking, active_tour: active_tour, user: user
+
+      expect(tour_booking.title).to eq 'Jason -> New tour [14 Jul 2017 - 28 Jul 2017]'
+    end
+  end
+
+  describe '#username' do
+    it 'returns User name' do
+      user = build :user, name: 'Jason'
+      tour_booking = build :tour_booking, user: user
+
+      expect(tour_booking.username).to eq 'Jason'
+    end
+  end
+end
