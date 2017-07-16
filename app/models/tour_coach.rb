@@ -9,5 +9,7 @@ class TourCoach < ApplicationRecord
     "#{coach.title} " +
     "[#{departure_date.to_date.to_formatted_s(:rfc822)} - " +
     "#{arrival_date.to_date.to_formatted_s(:rfc822)}]"
+  rescue
+    'New Tour Coach'
   end
 end

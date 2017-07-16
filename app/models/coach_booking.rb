@@ -6,5 +6,7 @@ class CoachBooking < ApplicationRecord
 
   def title
     "#{tour_booking.username} -> #{tour_coach.title}"
+  rescue
+    'New Coach Booking'
   end
 end

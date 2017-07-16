@@ -9,6 +9,8 @@ class HotelRoom < ApplicationRecord
 
   def title
     "#{short_title} (#{room_type}, for #{places} people)"
+  rescue
+    'New Hotel Room'
   end
 
   def short_title

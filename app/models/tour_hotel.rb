@@ -7,6 +7,8 @@ class TourHotel < ApplicationRecord
 
   def title
     "#{hotel.title} #{booking_period}"
+  rescue
+    'New Tour Hotel'
   end
 
   def booking_period

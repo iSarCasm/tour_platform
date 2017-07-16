@@ -8,6 +8,8 @@ class TourBooking < ApplicationRecord
 
   def title
     "#{user.name} -> #{active_tour.title}"
+  rescue
+    'New Tour Booking'
   end
 
   def username
