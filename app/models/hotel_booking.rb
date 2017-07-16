@@ -6,6 +6,9 @@ class HotelBooking < ApplicationRecord
 
   rails_admin do
     parent TourBooking
+    list do
+      exclude_fields :created_at, :updated_at
+    end
   end
 
   def title

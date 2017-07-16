@@ -7,6 +7,9 @@ class TourCoach < ApplicationRecord
 
   rails_admin do
     parent Coach
+    list do
+      exclude_fields :created_at, :updated_at
+    end
     edit do
       exclude_fields :coach_bookings
     end
