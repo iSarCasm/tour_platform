@@ -1,5 +1,5 @@
 class HotelRoom < ApplicationRecord
-  has_many :hotel_bookings
+  has_many :hotel_bookings, dependent: :destroy
 
   enum room_type: [ :Single, :Double ]
 

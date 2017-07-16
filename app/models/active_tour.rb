@@ -1,5 +1,5 @@
 class ActiveTour < ApplicationRecord
-  has_many :tour_bookings
+  has_many :tour_bookings, dependent: :destroy
   belongs_to :tour
 
   validates :tour, :start_date, :end_date, presence: true

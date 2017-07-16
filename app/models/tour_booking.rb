@@ -1,6 +1,6 @@
 class TourBooking < ApplicationRecord
-  has_many :hotel_bookings
-  has_one :coach_booking
+  has_many :hotel_bookings, dependent: :destroy
+  has_one :coach_booking, dependent: :destroy
   belongs_to :active_tour
   belongs_to :user
 

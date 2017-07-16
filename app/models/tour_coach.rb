@@ -1,5 +1,5 @@
 class TourCoach < ApplicationRecord
-  has_many :coach_bookings
+  has_many :coach_bookings, dependent: :destroy
   belongs_to :coach
   belongs_to :active_tour
 

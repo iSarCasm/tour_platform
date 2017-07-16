@@ -1,5 +1,5 @@
 class TourHotel < ApplicationRecord
-  has_many :hotel_rooms
+  has_many :hotel_rooms, dependent: :destroy
   belongs_to :hotel
   belongs_to :active_tour
 

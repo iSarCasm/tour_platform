@@ -32,9 +32,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Debug
-  # gem 'better_errors'
-  # gem 'web-console', '>= 3.3.0'
-  # gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'web-console', '>= 3.3.0'
+  gem 'binding_of_caller'
   # Security
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false
