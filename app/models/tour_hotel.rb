@@ -5,6 +5,8 @@ class TourHotel < ApplicationRecord
 
   validates :hotel, :active_tour, presence: true
 
+  accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
+
   rails_admin do
     parent Hotel
   end

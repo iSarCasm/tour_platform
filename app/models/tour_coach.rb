@@ -3,10 +3,13 @@ class TourCoach < ApplicationRecord
   belongs_to :coach, inverse_of: :tour_coaches
   belongs_to :active_tour, inverse_of: :tour_coaches
 
-  validates :coach, :active_tour, :departure_date, :arrival_date, presence: true
+  validates :coach, :active_tour, :departure_date, :arrival_date, :seats, presence: true
 
   rails_admin do
     parent Coach
+    edit do
+      exclude_fields :coach_bookings
+    end
   end
 
   def title
