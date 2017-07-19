@@ -23,6 +23,9 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 # Dashboard
 gem 'rails_admin', '~> 1.2'
 
+# User
+gem 'devise'
+
 group :development, :test do
   # Debug
   gem 'pry-byebug'
@@ -44,6 +47,8 @@ group :development do
   gem 'rails_best_practices', require: false
   # Guard
   gem 'guard-rspec', require: false
+  # Rake
+  gem "erb2haml"
 end
 
 group :test do
