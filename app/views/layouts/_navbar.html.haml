@@ -1,0 +1,19 @@
+%nav.navbar.navbar-light.navbar-toggleable-md{:style => "background-color: #e3f2fd;"}
+  %a.navbar-brand{:href => root_path}
+    %img.d-inline-block.align-top{:alt => "", :height => "30", :src => "https://cdn2.iconfinder.com/data/icons/maps-navigation-glyph-black/614/3684_-_Marker_II-256.png", :width => "30"}/
+    Tour Platform
+  .collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto.mt-2.mt-md-0
+      %li.nav-item
+        = link_to 'Tours', root_path, class: 'nav-link'
+    %ul.navbar-nav.mt-2.mt-md-0
+      - if current_user
+        %li.nav-item
+          = link_to 'My account', edit_user_registration_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        %li.nav-item
+          = link_to 'Sign In', new_user_session_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'Sign Up', new_user_registration_path, class: 'nav-link'

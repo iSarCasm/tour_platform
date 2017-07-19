@@ -21,6 +21,8 @@
                 Coach booking
             = f.fields_for :coach_bookings do |coach|
               = coach.hidden_field :tour_coach_id, value: @tour_coach.id
+              .text-error
+                = errors_for 'coach_bookings.seats'
               .form-group
                 = coach.text_field :seats, type: 'number', class: 'form-control', min: '1', placeholder: 'Seats'
             %p

@@ -17,6 +17,15 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+}
+
+.text-error {
+  color: red;
+  font-weight: 600;
+}
+
 .tour-jumbotron {
   height: 700px;
   background-size: cover;

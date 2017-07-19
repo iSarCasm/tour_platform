@@ -18,13 +18,18 @@ class ActiveToursController < ApplicationController
   end
 
   def book
-    @booking = TourBooking.new(booking_params)
+    if current_user
+      @booking = current_user.tour_bookings.new(booking_params)
 
-    if @booking.save
-      redirect_to root_url
+      if @booking.save
+        flash[:notice] = 'Successfuly ordered a tour!'
+        redirect_to root_url
+      else
+        flash[:error] = @booking.errors
+        redirect_back
+      end
     else
-      flash[:notice] = @booking.errors.messages
-      redirect_to root_url
+      redirect_to new_user_session_path
     end
   end
 

@@ -24,4 +24,8 @@ class TourBooking < ApplicationRecord
   def username
     user.name
   end
+
+  def tour
+    active_tour.tour
+  end
 end

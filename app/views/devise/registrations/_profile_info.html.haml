@@ -1,0 +1,12 @@
+.pb-3
+  %h2= current_user.name
+  - if current_user.tour_bookings.empty?
+    %strong
+      No tour bookings yet!
+      = link_to 'Go get them', root_path
+  - else
+    %strong Bookings list:
+    %ol
+      - current_user.tour_bookings.each do |booking|
+        %li
+          = link_to booking.title, booking.tour
