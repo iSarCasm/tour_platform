@@ -1,4 +1,4 @@
-%h1.mt-5 Hi, we are the Tour Platform
+%h1 Hi, we are the Tour Platform
 %p Check out the list of out most relevant new tours:
 .container
   .row
@@ -9,7 +9,7 @@
           .card-body
             %h4.card-title= tour.title
             %p.card-text= tour.description
-            %a.btn.btn-primary{:href => "#"} Start the Adventure
+            = link_to 'Start The Adventure', tour, class: 'btn btn-primary'
 
       - if index % 3 == 2
         .w-100.mt-4

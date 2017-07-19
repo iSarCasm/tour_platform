@@ -1,0 +1,2 @@
+module ActiveToursHelper
+end
