@@ -22,4 +22,12 @@ class TourCoach < ApplicationRecord
   rescue
     'New Tour Coach'
   end
+
+  def seats_left
+    seats - coach_bookings.count
+  end
+
+  def available?
+    seats_left > 0
+  end
 end

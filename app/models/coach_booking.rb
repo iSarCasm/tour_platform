@@ -4,6 +4,8 @@ class CoachBooking < ApplicationRecord
 
   validates :tour_coach, :tour_booking, :seats, presence: true
 
+  validate :ensure_has_seats, on: :create
+
   rails_admin do
     parent TourBooking
     list do
@@ -15,5 +17,12 @@ class CoachBooking < ApplicationRecord
     "#{tour_booking.username} -> #{tour_coach.title}"
   rescue
     'New Coach Booking'
+  end
+
+  def ensure_has_seats
+    return unless seats
+    if tour_coach.seats_left < seats
+      errors.add :seats, 'Seats for this coach sold out!'
+    end
   end
 end

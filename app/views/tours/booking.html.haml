@@ -2,9 +2,9 @@
   %h2 Booking
   %h3= @tour.title
   %p Choose one of available tour dates:
-  - @active_tours.each do |tour|
+  - binding.pry
     .row.mb-2
-      %a.card{href: active_tour_path(tour), style: 'width: 100%'}
+      %a.card{href: active_tour_path(tour), style: 'width: 100%', class: ("disabled" unless tour.available?) }
         .card-body
           %p
             = tour.title

@@ -22,25 +22,14 @@ describe ActiveTour do
     end
   end
 
-  describe '#nights' do
-    it 'returns number of nights beetween two dates' do
-      active_tour = build(:active_tour,
-        start_date: Date.new(2017, 7, 14),
-        end_date: Date.new(2017, 7, 28)
-      )
-      expect(active_tour.nights).to eq 14
-      expect(active_tour.nights.class).to eq Fixnum
-    end
-  end
+  describe '#availabe?' do
+    it 'avaialbe if all coaches and hotels are available' do
+      active_tour = create :active_tour
+      tour_coach = create :tour_coach, active_tour: active_tour, seats: 0
+      tour_hotel = create :tour_hotel, active_tour: active_tour
+      room_1 = create :hotel_room, tour_hotel: tour_hotel, amount: 0
 
-  describe '#days' do
-    it 'returns number of days beetween two dates' do
-      active_tour = build(:active_tour,
-        start_date: Date.new(2017, 7, 14),
-        end_date: Date.new(2017, 7, 28)
-      )
-      expect(active_tour.days).to eq 15
-      expect(active_tour.days.class).to eq Fixnum
+      expect(active_tour.available?).to eq false
     end
   end
 end

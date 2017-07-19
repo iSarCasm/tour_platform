@@ -11,8 +11,9 @@ class ActiveToursController < ApplicationController
       hotel_booking = @booking.hotel_bookings.build(tour_booking: @booking)
       hotel_booking.define_singleton_method(:hotel_title) { hotel.hotel_title.to_s }
       hotel_booking.define_singleton_method(:booking_period_fancy) { hotel.booking_period_fancy.to_s }
+      available_rooms = hotel.hotel_rooms.available.to_a
       hotel_booking.define_singleton_method(:rooms) do
-        hotel.hotel_rooms.collect { |p| [ p.title, p.id ] }
+        (available_rooms.empty? ? [ 'No rooms available' ] : available_rooms.collect { |p| [ p.title, p.id ] })
       end
     end
   end

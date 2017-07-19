@@ -31,6 +31,8 @@
                 Hotel booking
               %ul.hotel-list
                 = f.fields_for :hotel_bookings do |hotel|
+                  .text-error
+                    = errors_for 'hotel_bookings.hotel_room'
                   %li
                     %strong
                       %i.fa.fa-home

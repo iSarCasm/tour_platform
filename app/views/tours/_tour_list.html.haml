@@ -1,6 +1,6 @@
 - active_tours.each do |tour|
   .row.mb-2
-    %a.card{href: active_tour_path(tour), style: 'width: 100%'}
+    %a.card{href: "#{(tour.available? ? active_tour_path(tour) : '#')}", style: 'width: 100%', class: ("disabled" unless tour.available?)}
       .card-block
         %p.mb-0
           = tour.tour_title

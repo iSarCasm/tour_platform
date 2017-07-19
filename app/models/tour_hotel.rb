@@ -35,4 +35,8 @@ class TourHotel < ApplicationRecord
   def hotel_title
     hotel.title
   end
+
+  def available?
+    hotel_rooms.any? { |r| r.available? }
+  end
 end

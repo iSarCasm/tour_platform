@@ -4,6 +4,8 @@ class HotelBooking < ApplicationRecord
 
   validates :hotel_room, :tour_booking, presence: true
 
+  validate :ensure_has_rooms, on: :create
+
   rails_admin do
     parent TourBooking
     list do
@@ -12,8 +14,15 @@ class HotelBooking < ApplicationRecord
   end
 
   def title
-    "#{tour_booking.username} -> #{hotel_room.short_title} #{hotel_room.booking_period}"
+    "#{tour_booking.username} -> #{hotel_room.short_title} [#{hotel_room.booking_period}]"
   rescue
     'New Hotel Booking'
+  end
+
+  def ensure_has_rooms
+    return unless hotel_room
+    if hotel_room.amount_left < 1
+      errors.add :hotel_room, 'Rooms of this type sold out!'
+    end
   end
 end

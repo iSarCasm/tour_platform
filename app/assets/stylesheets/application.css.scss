@@ -21,6 +21,15 @@ body {
   color: black;
 }
 
+a.card.disabled {
+  cursor: not-allowed;
+  color: #7f7f7f;
+  background-color: rgba(0,0,0,0.1);
+  &:hover {
+    box-shadow: none;
+  }
+}
+
 .text-error {
   color: red;
   font-weight: 600;

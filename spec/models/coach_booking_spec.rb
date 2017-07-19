@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 describe CoachBooking do
+  describe 'create validations' do
+    it 'validates available seats' do
+      tour_coach = create :tour_coach, seats: 1
+      booking = build :coach_booking, tour_coach: tour_coach, seats: 2
+      expect(booking.save).to eq false
+    end
+  end
+
   describe '#title' do
     it 'shows readable represenation' do
       user = build :user, name: 'Jason'

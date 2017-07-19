@@ -20,4 +20,15 @@ describe TourHotel do
       expect(tour_hotel.hotel_title).to eq 'Grand Plaza'
     end
   end
+
+  describe '#available?' do
+    it 'is available if any room is still available' do
+      tour_hotel = create :tour_hotel
+      create :hotel_room, tour_hotel: tour_hotel, amount: 0
+      expect(tour_hotel.available?).to eq false
+      create :hotel_room, tour_hotel: tour_hotel, amount: 1
+      tour_hotel.reload
+      expect(tour_hotel.available?).to eq true
+    end
+  end
 end
