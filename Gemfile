@@ -36,7 +36,6 @@ group :development do
   # Debug
   gem 'better_errors'
   gem 'web-console', '>= 3.3.0'
-  gem 'binding_of_caller'
   # Security
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false

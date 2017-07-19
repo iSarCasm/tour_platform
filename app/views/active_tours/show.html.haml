@@ -1,0 +1,44 @@
+.container
+  .row.pt-5
+    .col-md-6.push-md-3
+      .card
+        = image_tag 'tour_preview_1.jpg', class: 'card-img-top img-fluid'
+        .card-block
+          %h4.card-title Booking your tour
+          %p.card-text
+            %i.fa.fa-plane
+            %strong Tour:
+            = @tour.title
+            %br
+            %i.fa.fa-calendar-o
+            %strong Dates:
+            = @active_tour.date_period_fancy
+          = form_for @booking, url: {action: 'book'} do |f|
+            = f.hidden_field :active_tour_id, value: @active_tour.id
+            %p
+              %strong
+                %i.fa.fa-bus
+                Coach booking
+            = f.fields_for :coach_bookings do |coach|
+              = coach.hidden_field :tour_coach_id, value: @tour_coach.id
+              .form-group
+                = coach.text_field :seats, type: 'number', class: 'form-control', min: '1', placeholder: 'Seats'
+            %p
+              %strong
+                %i.fa.fa-bed
+                Hotel booking
+              %ul.hotel-list
+                = f.fields_for :hotel_bookings do |hotel|
+                  %li
+                    %strong
+                      %i.fa.fa-home
+                      Hotel:
+                    = hotel.object.hotel_title
+                    %br
+                    %strong
+                      %i.fa.fa-clock-o
+                      Living period:
+                    = hotel.object.booking_period_fancy
+                    .form-group
+                      = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control'
+            = f.submit 'Order Now', class: 'btn btn-primary'

@@ -20,8 +20,28 @@ class ActiveTour < ApplicationRecord
   end
 
   def title
-    "#{tour.title} [#{start_date.to_formatted_s(:rfc822)} - #{end_date.to_formatted_s(:rfc822)}]"
+    "#{tour_title} [#{date_period}]"
   rescue
     'New Active Tour'
+  end
+
+  def tour_title
+    tour.title
+  end
+
+  def date_period
+    "#{start_date.to_formatted_s(:rfc822)} - #{end_date.to_formatted_s(:rfc822)}"
+  end
+
+  def date_period_fancy
+    "#{start_date.strftime("%d %B")} - #{end_date.strftime("%d %B")}"
+  end
+
+  def nights
+    (end_date - start_date).to_i
+  end
+
+  def days
+    nights + 1
   end
 end

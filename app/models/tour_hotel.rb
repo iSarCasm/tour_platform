@@ -15,13 +15,21 @@ class TourHotel < ApplicationRecord
   end
 
   def title
-    "#{hotel.title} #{booking_period}"
+    "#{hotel_title} [#{booking_period}]"
   rescue
     'New Tour Hotel'
   end
 
+  def hotel_title
+    hotel.title
+  end
+
   def booking_period
-    "[#{start_date.to_formatted_s(:rfc822)} - #{end_date.to_formatted_s(:rfc822)}]"
+    "#{start_date.to_formatted_s(:rfc822)} - #{end_date.to_formatted_s(:rfc822)}"
+  end
+
+  def booking_period_fancy
+    "#{start_date.strftime("%d %B")} - #{end_date.strftime("%d %B")}"
   end
 
   def hotel_title

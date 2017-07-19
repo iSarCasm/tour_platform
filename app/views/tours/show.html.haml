@@ -1,7 +1,13 @@
-.container
-  %h2= @tour.title
-  .preview
-    = image_tag 'tour_preview_1.jpg', class: 'preview-img', style: 'margin-top: -200px'
-  .pt-3
-    %p= @tour.description
-    = link_to 'Book Now', booking_tour_path(@tour), class: 'btn btn-success'
+.tour-jumbotron{style: "background-image: url('#{asset_path 'background.jpg'}'"}
+  %h2.title= @tour.title
+  %p.phrase
+    Travel with us!
+.container.pt-5
+  %p= @tour.description
+  .row.text-center.pt-3.pb-5
+    .col-md-6.push-md-3
+      .card.p-2
+        .card-block
+          %p
+            %strong Book your tour now!
+          = render 'tour_list', active_tours: @active_tours

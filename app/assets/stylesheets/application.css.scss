@@ -13,4 +13,42 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.tour-jumbotron {
+  height: 700px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding-top: 300px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.title {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 500;
+  text-shadow: 0 3px 5px rgba(0,0,0,0.7);
+  font-size: 78px;
+}
+
+.phrase {
+  color: white;
+  font-size: 21px;
+  text-shadow: 0 3px 5px rgba(0,0,0,0.7);
+}
+
+a.card {
+  &:hover {
+    text-decoration: none;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  }
+}
+
+.hotel-list {
+  list-style: none;
+  padding-left: 25px;
+}
