@@ -29,6 +29,9 @@ gem 'devise'
 # User Roles
 gem 'cancancan', '~> 2.0'
 
+# Human links
+gem 'friendly_id', '~> 5.1.0'
+
 group :development, :test do
   # Debug
   gem 'pry-byebug'

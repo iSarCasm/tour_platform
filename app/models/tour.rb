@@ -10,4 +10,7 @@ class Tour < ApplicationRecord
       exclude_fields :created_at, :updated_at
     end
   end
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 end

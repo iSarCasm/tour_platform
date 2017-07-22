@@ -19,6 +19,9 @@ class ActiveTour < ApplicationRecord
     end
   end
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   def title
     "#{tour_title} [#{date_period}]"
   rescue
