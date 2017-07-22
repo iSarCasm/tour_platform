@@ -26,7 +26,7 @@ class ActiveToursController < ApplicationController
         flash[:notice] = 'Successfuly ordered a tour!'
         redirect_to root_url
       else
-        flash[:error] = @booking.errors
+        flash[:alert] = @booking.errors
         redirect_back
       end
     else

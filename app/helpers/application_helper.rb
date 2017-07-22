@@ -1,6 +1,6 @@
 module ApplicationHelper
   def errors_for(obj)
-    return unless flash[:error]
-    flash[:error][obj]&.join(', ')
+    return unless flash[:alert]
+    flash[:alert][obj]&.join(', ')
   end
 end
