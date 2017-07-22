@@ -19,6 +19,15 @@ class HotelBooking < ApplicationRecord
     'New Hotel Booking'
   end
 
+  def configure_for_form(hotel)
+    define_singleton_method(:hotel_title) { hotel.hotel_title.to_s }
+    define_singleton_method(:booking_period_fancy) { hotel.booking_period_fancy.to_s }
+    available_rooms = hotel.hotel_rooms.available.to_a
+    define_singleton_method(:rooms) do
+      (available_rooms.empty? ? [ 'No rooms available' ] : available_rooms.collect { |p| [ p.title, p.id ] })
+    end
+  end
+
   def ensure_has_rooms
     return unless hotel_room
     if hotel_room.amount_left < 1

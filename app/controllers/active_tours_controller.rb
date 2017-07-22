@@ -1,27 +1,21 @@
 class ActiveToursController < ApplicationController
+  load_and_authorize_resource
+
   def show
-    @active_tour = ActiveTour.find(params[:id])
-    @tour = @active_tour.tour
     @booking = TourBooking.new
 
+    @tour = @active_tour.tour
     @tour_coach = @active_tour.tour_coaches.first
     @booking.coach_bookings.build
 
     @active_tour.tour_hotels.each do |hotel|
       hotel_booking = @booking.hotel_bookings.build(tour_booking: @booking)
-      hotel_booking.define_singleton_method(:hotel_title) { hotel.hotel_title.to_s }
-      hotel_booking.define_singleton_method(:booking_period_fancy) { hotel.booking_period_fancy.to_s }
-      available_rooms = hotel.hotel_rooms.available.to_a
-      hotel_booking.define_singleton_method(:rooms) do
-        (available_rooms.empty? ? [ 'No rooms available' ] : available_rooms.collect { |p| [ p.title, p.id ] })
-      end
+      hotel_booking.configure_for_form(hotel)
     end
   end
 
   def book
-    authorize! :book, ActiveTour, message: 'Please sign in first.'
     @booking = current_user.tour_bookings.new(booking_params)
-
     if @booking.save
       flash[:notice] = 'Successfuly ordered a tour!'
       redirect_to root_url
