@@ -7,16 +7,4 @@
       %li.nav-item
         = link_to 'Tours', root_path, class: 'nav-link'
     %ul.navbar-nav.mt-2.mt-md-0
-      - if current_user
-        - if can? :access, :rails_admin
-          %li.nav-item
-            = link_to 'Admin dashboard', rails_admin_path, class: 'nav-link'
-        %li.nav-item
-          = link_to 'My account', edit_user_registration_path, class: 'nav-link'
-        %li.nav-item
-          = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link'
-      - else
-        %li.nav-item
-          = link_to 'Sign In', new_user_session_path, class: 'nav-link'
-        %li.nav-item
-          = link_to 'Sign Up', new_user_registration_path, class: 'nav-link'
+      = render "layouts/navbar/#{current_user.role}_nav"

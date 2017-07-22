@@ -1,0 +1,7 @@
+.row.mb-2
+  %a.card{href: "#{(active_tour.available? ? active_tour_path(active_tour) : '#')}", style: 'width: 100%', class: ("disabled" unless active_tour.available?)}
+    .card-block
+      %p.mb-0
+        = active_tour.tour_title
+        %br
+        = active_tour.date_period_fancy

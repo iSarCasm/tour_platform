@@ -3,13 +3,4 @@
   %p Check out the list of out most relevant new tours:
   .container
     .row
-      - @tours.each_with_index do |tour, index|
-        .col
-          .card.text-center
-            = image_tag('tour_preview_1.jpg', class: 'card-img-top  img-fluid', alt: 'Tour Preview')
-            .card-img-overlay.pt-5.mt-5
-              %h4.card-title.mb-5= tour.title
-              = link_to 'Start The Adventure', tour, class: 'btn btn-primary'
-
-        - if index % 3 == 2
-          .w-100.mt-4
+      = render 'tours/list', tours: @tours
