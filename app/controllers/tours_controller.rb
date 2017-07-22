@@ -1,11 +1,13 @@
 class ToursController < ApplicationController
+  before_action :get_tour
+
   def show
-    @tour = Tour.find(params[:id])
     @active_tours = @tour.active_tours
   end
 
-  def booking
+  private
+
+  def get_tour
     @tour = Tour.find(params[:id])
-    @active_tours = @tour.active_tours
   end
 end
