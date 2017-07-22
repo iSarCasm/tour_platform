@@ -26,6 +26,9 @@ gem 'rails_admin', '~> 1.2'
 # User
 gem 'devise'
 
+# User Roles
+gem 'cancancan', '~> 2.0'
+
 group :development, :test do
   # Debug
   gem 'pry-byebug'

@@ -17,4 +17,7 @@
     - if flash[:notice]
       .container.mt-4
         .alert.alert-info= flash[:notice]
+    - if flash[:alert]
+      .container.mt-4
+        .alert.alert-danger= flash[:alert]
     = yield

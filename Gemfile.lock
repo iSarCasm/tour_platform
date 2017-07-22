@@ -69,6 +69,7 @@ GEM
       bundler (~> 1.2)
       thor (~> 0.18)
     byebug (9.0.6)
+    cancancan (2.0.0)
     code_analyzer (0.4.7)
       sexp_processor
     codeclimate-engine-rb (0.4.0)
@@ -370,6 +371,7 @@ DEPENDENCIES
   bootstrap!
   brakeman
   bundler-audit
+  cancancan (~> 2.0)
   codeclimate-test-reporter (~> 1.0.0)
   coffee-rails (~> 4.2)
   database_cleaner

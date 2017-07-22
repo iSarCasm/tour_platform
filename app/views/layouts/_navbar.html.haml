@@ -8,6 +8,9 @@
         = link_to 'Tours', root_path, class: 'nav-link'
     %ul.navbar-nav.mt-2.mt-md-0
       - if current_user
+        - if can? :access, :rails_admin
+          %li.nav-item
+            = link_to 'Admin dashboard', rails_admin_path, class: 'nav-link'
         %li.nav-item
           = link_to 'My account', edit_user_registration_path, class: 'nav-link'
         %li.nav-item
