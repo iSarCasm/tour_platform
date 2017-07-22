@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     guest_ability
-    if user
+    unless user.kind_of? Guest
       customer_ability
       admin_ability if user.admin?
     end

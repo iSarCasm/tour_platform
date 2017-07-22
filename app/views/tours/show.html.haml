@@ -3,12 +3,11 @@
   %p.phrase
     Travel with us!
 .container.pt-5
-  %p= @tour.description
+  %p= @tour.description.html_safe
   .row.text-center.pt-3.pb-5
     .col-md-6.push-md-3
       .card.p-2
         .card-block
           %p
             %strong Book your tour now!
-          .row.mb-2
-            = render @active_tours
+          = render @active_tours
