@@ -118,10 +118,10 @@ admin = User.new(email: 'admin@etours.com', name: 'admin', password: 'admin')
 admin.role = :admin
 admin.save!(validate: false)
 users = User.create [
-  { name: 'Jack', email: 'jack014@gmail.com', '12341234' },
-  { name: 'Lisa', email: 'lisalol@mail.ru', '12341234' },
-  { name: 'Anna', email: 'annathebest@gmail.com', '12341234' },
-  { name: 'Felix', email: 'felix@pewdiepie.com', '12341234' }
+  { name: 'Jack', email: 'jack014@gmail.com', password: '12341234' },
+  { name: 'Lisa', email: 'lisalol@mail.ru', password: '12341234' },
+  { name: 'Anna', email: 'annathebest@gmail.com', password: '12341234' },
+  { name: 'Felix', email: 'felix@pewdiepie.com', password: '12341234' }
 ]
 
 active_tours = ActiveTour.create [
