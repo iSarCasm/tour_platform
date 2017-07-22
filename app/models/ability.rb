@@ -2,11 +2,26 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :all
-    if user && user.admin?
-      can :access, :rails_admin
-      can :dashboard
-      can :manage, :all
+    guest_ability
+    if user
+      customer_ability
+      admin_ability if user.admin?
     end
+  end
+
+  private
+
+  def guest_ability
+    can :read, :all
+  end
+
+  def customer_ability
+    can :book
+  end
+
+  def admin_ability
+    can :access, :rails_admin
+    can :dashboard
+    can :manage, :all
   end
 end

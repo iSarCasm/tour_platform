@@ -24,7 +24,7 @@ class TourCoach < ApplicationRecord
   end
 
   def seats_left
-    seats - coach_bookings.count
+    seats - coach_bookings.sum(:seats)
   end
 
   def available?

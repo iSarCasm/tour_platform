@@ -19,18 +19,15 @@ class ActiveToursController < ApplicationController
   end
 
   def book
-    if current_user
-      @booking = current_user.tour_bookings.new(booking_params)
+    authorize! :book, ActiveTour, message: 'Please sign in first.'
+    @booking = current_user.tour_bookings.new(booking_params)
 
-      if @booking.save
-        flash[:notice] = 'Successfuly ordered a tour!'
-        redirect_to root_url
-      else
-        flash[:alert] = @booking.errors
-        redirect_back
-      end
+    if @booking.save
+      flash[:notice] = 'Successfuly ordered a tour!'
+      redirect_to root_url
     else
-      redirect_to new_user_session_path
+      flash[:error] = @booking.errors
+      redirect_back
     end
   end
 

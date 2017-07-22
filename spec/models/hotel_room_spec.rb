@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe HotelRoom do
+  describe 'scope .available' do
+    it 'returns rooms with amont_left > 0' do
+      r = create :hotel_room, amount: 10
+      expect(HotelRoom.available.length).to eq 1
+      r.update(amount: 0)
+      expect(HotelRoom.available.length).to eq 0
+    end
+  end
+
   describe '#title' do
     it 'shows readable represenation' do
       hotel = build :hotel, title: 'Big Pen'
