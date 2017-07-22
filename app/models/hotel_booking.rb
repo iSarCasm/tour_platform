@@ -24,7 +24,7 @@ class HotelBooking < ApplicationRecord
     define_singleton_method(:booking_period_fancy) { hotel.booking_period_fancy.to_s }
     available_rooms = hotel.hotel_rooms.available.to_a
     define_singleton_method(:rooms) do
-      (available_rooms.empty? ? [ 'No rooms available' ] : available_rooms.collect { |p| [ p.title, p.id ] })
+      (available_rooms.empty? ? [ 'No rooms available' ] : available_rooms.collect { |p| [ p.customer_title, p.id ] })
     end
   end
 
