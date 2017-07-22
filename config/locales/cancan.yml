@@ -1,0 +1,4 @@
+en:
+  unauthorized:
+    book:
+      active_tour: 'You have to sign in first.'

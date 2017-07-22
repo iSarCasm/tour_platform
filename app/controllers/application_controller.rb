@@ -5,9 +5,6 @@ class ApplicationController < ActionController::Base
   include DeviseParameterSanitizer
   include DeviseSignInRedirect
   include DeviseSignOutRedirect
+  include GuestUser
   include RedirectBack
-
-  def current_user
-    super || Guest.new
-  end
 end

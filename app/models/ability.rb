@@ -16,7 +16,7 @@ class Ability
   end
 
   def customer_ability
-    can :book
+    can :book, ActiveTour
   end
 
   def admin_ability
