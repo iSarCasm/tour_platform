@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802160230) do
+ActiveRecord::Schema.define(version: 20170802160807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,12 @@ ActiveRecord::Schema.define(version: 20170802160230) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "facilities", force: :cascade do |t|
+    t.string "facility"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -62,6 +68,15 @@ ActiveRecord::Schema.define(version: 20170802160230) do
     t.datetime "updated_at", null: false
     t.index ["hotel_room_id"], name: "index_hotel_bookings_on_hotel_room_id"
     t.index ["tour_booking_id"], name: "index_hotel_bookings_on_tour_booking_id"
+  end
+
+  create_table "hotel_facilities", force: :cascade do |t|
+    t.bigint "hotel_id"
+    t.bigint "facility_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_hotel_facilities_on_facility_id"
+    t.index ["hotel_id"], name: "index_hotel_facilities_on_hotel_id"
   end
 
   create_table "hotel_rooms", force: :cascade do |t|
@@ -183,6 +198,8 @@ ActiveRecord::Schema.define(version: 20170802160230) do
   add_foreign_key "coach_bookings", "tour_coaches"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
+  add_foreign_key "hotel_facilities", "facilities"
+  add_foreign_key "hotel_facilities", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
