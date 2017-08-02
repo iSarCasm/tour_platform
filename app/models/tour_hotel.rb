@@ -2,6 +2,7 @@ class TourHotel < ApplicationRecord
   has_many :hotel_rooms, dependent: :destroy, inverse_of: :tour_hotel
   belongs_to :hotel, inverse_of: :tour_hotels
   belongs_to :active_tour, inverse_of: :tour_hotels
+  belongs_to :board_basis, inverse_of: :tour_hotels
 
   validates :hotel, :active_tour, presence: true
 
