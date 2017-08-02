@@ -12,8 +12,9 @@ class HotelRoom < ApplicationRecord
     parent TourHotel
     list do
       field :tour_hotel
-      field :amount
+      field :room_type
       field :pax
+      field :amount
       field :hotel_bookings
     end
     edit do
