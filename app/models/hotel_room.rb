@@ -16,6 +16,14 @@ class HotelRoom < ApplicationRecord
       field :pax
       field :amount
       field :hotel_bookings
+      field :adult
+      field :adult_supp
+      field :child
+      field :child_supp
+      field :infant
+      field :infant_supp
+      field :senior
+      field :senior_supp
     end
     edit do
       exclude_fields :hotel_bookings
