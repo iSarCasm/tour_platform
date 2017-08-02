@@ -1,18 +1,20 @@
 class HotelRoom < ApplicationRecord
   has_many :hotel_bookings, dependent: :destroy, inverse_of: :hotel_room
 
+  belongs_to :room_type, inverse_of: :hotel_rooms
   belongs_to :tour_hotel, inverse_of: :hotel_rooms
 
-  enum room_type: [ :Single, :Double ]
-
-  validates :tour_hotel, :room_type, :amount, :places, presence: true
+  validates :tour_hotel, :room_type, :amount, presence: true
 
   scope :available, -> { left_outer_joins(:hotel_bookings).group('hotel_rooms.id').having('count(hotel_room_id) < amount') }
 
   rails_admin do
     parent TourHotel
     list do
-      exclude_fields :created_at, :updated_at
+      field :tour_hotel
+      field :amount
+      field :pax
+      field :hotel_bookings
     end
     edit do
       exclude_fields :hotel_bookings
@@ -26,11 +28,11 @@ class HotelRoom < ApplicationRecord
   end
 
   def customer_title
-    "#{room_type}, for #{places} people"
+    "#{room_type_name}, for #{pax} people"
   end
 
   def short_title
-    "#{tour_hotel.hotel_title}: #{room_type}"
+    "#{tour_hotel.hotel_title}: #{room_type_name}"
   end
 
   def booking_period
@@ -43,5 +45,13 @@ class HotelRoom < ApplicationRecord
 
   def available?
     amount_left > 0
+  end
+
+  def pax
+    room_type.pax
+  end
+
+  def room_type_name
+    room_type.room_type
   end
 end

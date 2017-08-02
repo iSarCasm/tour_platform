@@ -28,7 +28,7 @@ describe TourBooking do
   describe '#tour' do
     it 'returns orignal Tour' do
       tour = build :tour
-      active_tour = build:active_tour, tour: tour
+      active_tour = build :active_tour, tour: tour
       tour_booking = build :tour_booking, active_tour: active_tour
 
       expect(tour_booking.tour).to eq tour

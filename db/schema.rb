@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722202756) do
+ActiveRecord::Schema.define(version: 20170802124638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(version: 20170722202756) do
 
   create_table "hotel_rooms", force: :cascade do |t|
     t.bigint "tour_hotel_id"
-    t.integer "room_type"
-    t.integer "places"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "amount"
+    t.bigint "room_type_id"
+    t.index ["room_type_id"], name: "index_hotel_rooms_on_room_type_id"
     t.index ["tour_hotel_id"], name: "index_hotel_rooms_on_tour_hotel_id"
   end
 
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 20170722202756) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "room_types", force: :cascade do |t|
+    t.string "room_type"
+    t.integer "pax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "description"
   end
 
   create_table "tour_bookings", force: :cascade do |t|

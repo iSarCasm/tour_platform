@@ -152,58 +152,63 @@ tour_hotels = TourHotel.create [
   { hotel: hotels[3], active_tour: active_tours[3], start_date: 23.days.from_now + 6.days, end_date: 23.days.from_now + 8.days }
 ]
 
-tour_hotels[0].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 10 },
-  { room_type: :Single, places: 2, amount: 15 },
-  { room_type: :Single, places: 3, amount: 15 },
-  { room_type: :Double, places: 3, amount: 5 },
-  { room_type: :Double, places: 4, amount: 10 },
-  { room_type: :Double, places: 5, amount: 20 }
+room_types = RoomType.create [
+  { room_type: 'Single', pax: 1, description: 'Single bed' },
+  { room_type: 'Double', pax: 2, description: 'Double bed'},
+  { room_type: 'Twin', pax: 2, description: 'Twin Room' },
+  { room_type: 'Triple', pax: 3, description: 'Triple Room' }
 ]
 
+tour_hotels[0].hotel_rooms.create [
+  { room_type: room_types[0], amount: 10 },
+  { room_type: room_types[1], amount: 15 },
+  { room_type: room_types[2], amount: 15 },
+  { room_type: room_types[3], amount: 5 },
+]
+
+binding.pry
+
 tour_hotels[1].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 10 },
-  { room_type: :Single, places: 2, amount: 15 },
-  { room_type: :Single, places: 3, amount: 15 },
-  { room_type: :Double, places: 3, amount: 5 },
-  { room_type: :Double, places: 4, amount: 10 },
-  { room_type: :Double, places: 5, amount: 20 }
+  { room_type: room_types[0], amount: 10 },
+  { room_type: room_types[1], amount: 15 },
+  { room_type: room_types[2], amount: 15 },
+  { room_type: room_types[3], amount: 5 },
 ]
 
 tour_hotels[2].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 55 },
-  { room_type: :Single, places: 2, amount: 10 },
-  { room_type: :Double, places: 4, amount: 25 }
+  { room_type: room_types[0], amount: 55 },
+  { room_type: room_types[1], amount: 10 },
+  { room_type: room_types[3], amount: 25 }
 ]
 
 tour_hotels[3].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 10 },
-  { room_type: :Single, places: 2, amount: 30 },
-  { room_type: :Double, places: 4, amount: 20 }
+  { room_type: room_types[0], amount: 10 },
+  { room_type: room_types[1], amount: 30 },
+  { room_type: room_types[3], amount: 20 }
 ]
 
 tour_hotels[4].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 10 },
-  { room_type: :Single, places: 2, amount: 10 },
-  { room_type: :Double, places: 4, amount: 10 }
+  { room_type: room_types[0], amount: 10 },
+  { room_type: room_types[1], amount: 10 },
+  { room_type: room_types[3], amount: 10 }
 ]
 
 tour_hotels[5].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 55 },
-  { room_type: :Single, places: 2, amount: 10 },
-  { room_type: :Double, places: 4, amount: 25 }
+  { room_type: room_types[0], amount: 55 },
+  { room_type: room_types[1], amount: 10 },
+  { room_type: room_types[3], amount: 25 }
 ]
 
 tour_hotels[6].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 10 },
-  { room_type: :Single, places: 2, amount: 30 },
-  { room_type: :Double, places: 4, amount: 20 }
+  { room_type: room_types[0], amount: 10 },
+  { room_type: room_types[1], amount: 30 },
+  { room_type: room_types[3], amount: 20 }
 ]
 
 tour_hotels[7].hotel_rooms.create [
-  { room_type: :Single, places: 1, amount: 10 },
-  { room_type: :Single, places: 2, amount: 10 },
-  { room_type: :Double, places: 4, amount: 10 }
+  { room_type: room_types[0], amount: 10 },
+  { room_type: room_types[1], amount: 10 },
+  { room_type: room_types[2], amount: 10 }
 ]
 
 b1 = users[0].tour_bookings.create(active_tour: active_tours[0])

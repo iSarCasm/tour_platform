@@ -17,8 +17,7 @@ describe HotelRoom do
       hotel_room = build(:hotel_room,
         tour_hotel: tour_hotel,
         amount: 134,
-        places: 4,
-        room_type: :Double
+        room_type: build(:room_type, pax: 4, room_type: 'Double')
       )
       expect(hotel_room.title).to eq 'Big Pen (Double, for 4 people)'
     end
