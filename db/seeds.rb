@@ -138,18 +138,24 @@ tour_coaches = TourCoach.create [
   { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days, seats: 60 }
 ]
 
+board_bases = BoardBasis.create [
+  {title: 'All Inclusive'}, {title: 'Full Board'}, {title: 'Full Board Plus'},
+  {title: 'Half Board'}, {title: 'Bed and Breakfast'}, {title: 'Self Catering'},
+  {title: 'Room Only'}
+]
+
 tour_hotels = TourHotel.create [
-  { hotel: hotels[0], active_tour: active_tours[0], start_date: Time.now, end_date: Time.now + 15.days },
+  { hotel: hotels[0], active_tour: active_tours[0], board_basis: board_bases[0], start_date: Time.now, end_date: Time.now + 15.days },
 
-  { hotel: hotels[0], active_tour: active_tours[2], start_date: 17.days.from_now, end_date: 17.days.from_now + 15.days },
+  { hotel: hotels[0], active_tour: active_tours[2], board_basis: board_bases[0], start_date: 17.days.from_now, end_date: 17.days.from_now + 15.days },
 
-  { hotel: hotels[1], active_tour: active_tours[1], start_date: Time.now, end_date: Time.now + 3.days },
-  { hotel: hotels[2], active_tour: active_tours[1], start_date: Time.now + 4.days, end_date: Time.now + 5.days },
-  { hotel: hotels[3], active_tour: active_tours[1], start_date: Time.now + 6.days, end_date: Time.now + 8.days },
+  { hotel: hotels[1], active_tour: active_tours[1], board_basis: board_bases[0], start_date: Time.now, end_date: Time.now + 3.days },
+  { hotel: hotels[2], active_tour: active_tours[1], board_basis: board_bases[0], start_date: Time.now + 4.days, end_date: Time.now + 5.days },
+  { hotel: hotels[3], active_tour: active_tours[1], board_basis: board_bases[0], start_date: Time.now + 6.days, end_date: Time.now + 8.days },
 
-  { hotel: hotels[1], active_tour: active_tours[3], start_date: 23.days.from_now, end_date: 23.days.from_now + 3.days },
-  { hotel: hotels[2], active_tour: active_tours[3], start_date: 23.days.from_now + 4.days, end_date: 23.days.from_now + 5.days },
-  { hotel: hotels[3], active_tour: active_tours[3], start_date: 23.days.from_now + 6.days, end_date: 23.days.from_now + 8.days }
+  { hotel: hotels[1], active_tour: active_tours[3], board_basis: board_bases[0], start_date: 23.days.from_now, end_date: 23.days.from_now + 3.days },
+  { hotel: hotels[2], active_tour: active_tours[3], board_basis: board_bases[0], start_date: 23.days.from_now + 4.days, end_date: 23.days.from_now + 5.days },
+  { hotel: hotels[3], active_tour: active_tours[3], board_basis: board_bases[0], start_date: 23.days.from_now + 6.days, end_date: 23.days.from_now + 8.days }
 ]
 
 room_types = RoomType.create [
@@ -165,8 +171,6 @@ tour_hotels[0].hotel_rooms.create [
   { room_type: room_types[2], amount: 15 },
   { room_type: room_types[3], amount: 5 },
 ]
-
-binding.pry
 
 tour_hotels[1].hotel_rooms.create [
   { room_type: room_types[0], amount: 10 },
