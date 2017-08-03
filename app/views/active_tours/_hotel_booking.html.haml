@@ -1,0 +1,43 @@
+.text-error
+  = errors_for 'hotel_bookings.hotel_room'
+%li
+  %strong
+    %i.fa.fa-home
+    Hotel:
+  = hotel.object.hotel_title
+  %br
+  %strong
+    %i.fa.fa-clock-o
+    Living period:
+  = hotel.object.booking_period_fancy
+  %br
+  %strong
+    %i.fa.fa-sun-o
+    Days:
+  = hotel.object.days
+  %br
+  %strong
+    %i.fa.fa-moon-o
+    Nights:
+  = hotel.object.nights
+  .mb-3
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Adult
+        %th Child
+        %th Infant
+        %th Senior
+    %tbody
+      - hotel.object.hotel_rooms.each do |room|
+        %tr
+          %th= room.room_type.room_type
+          %td= "#{number_to_currency(room.adult)} + #{number_to_currency(room.adult_supp)}"
+          %td= "#{number_to_currency(room.child)} + #{number_to_currency(room.child_supp)}"
+          %td= "#{number_to_currency(room.infant)} + #{number_to_currency(room.infant_supp)}"
+          %td= "#{number_to_currency(room.senior)} + #{number_to_currency(room.senior_supp)}"
+
+  .form-group
+    = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control'
+  .mb-5

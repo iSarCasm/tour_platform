@@ -249,53 +249,53 @@ room_types = RoomType.create [
 ]
 
 tour_hotels[0].hotel_rooms.create [
-  { room_type: room_types[0], amount: 10 },
-  { room_type: room_types[1], amount: 15 },
-  { room_type: room_types[2], amount: 15 },
+  { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[1], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
+  { room_type: room_types[2], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
   { room_type: room_types[3], amount: 5 },
 ]
 
 tour_hotels[1].hotel_rooms.create [
-  { room_type: room_types[0], amount: 10 },
-  { room_type: room_types[1], amount: 15 },
-  { room_type: room_types[2], amount: 15 },
-  { room_type: room_types[3], amount: 5 },
+  { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[1], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
+  { room_type: room_types[2], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
+  { room_type: room_types[3], amount: 5, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
 ]
 
 tour_hotels[2].hotel_rooms.create [
-  { room_type: room_types[0], amount: 55 },
-  { room_type: room_types[1], amount: 10 },
-  { room_type: room_types[3], amount: 25 }
+  { room_type: room_types[0], amount: 55, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
+  { room_type: room_types[1], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[3], amount: 25, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
 ]
 
 tour_hotels[3].hotel_rooms.create [
-  { room_type: room_types[0], amount: 10 },
-  { room_type: room_types[1], amount: 30 },
-  { room_type: room_types[3], amount: 20 }
+  { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[1], amount: 30, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
+  { room_type: room_types[3], amount: 20, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
 ]
 
 tour_hotels[4].hotel_rooms.create [
-  { room_type: room_types[0], amount: 10 },
-  { room_type: room_types[1], amount: 10 },
-  { room_type: room_types[3], amount: 10 }
+  { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[1], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[3], amount: 10, adult: 200, child: 170, adult_supp: 10 }
 ]
 
 tour_hotels[5].hotel_rooms.create [
-  { room_type: room_types[0], amount: 55 },
-  { room_type: room_types[1], amount: 10 },
-  { room_type: room_types[3], amount: 25 }
+  { room_type: room_types[0], amount: 55, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
+  { room_type: room_types[1], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[3], amount: 25, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
 ]
 
 tour_hotels[6].hotel_rooms.create [
-  { room_type: room_types[0], amount: 10 },
-  { room_type: room_types[1], amount: 30 },
-  { room_type: room_types[3], amount: 20 }
+  { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[1], amount: 30, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
+  { room_type: room_types[3], amount: 20, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
 ]
 
 tour_hotels[7].hotel_rooms.create [
-  { room_type: room_types[0], amount: 10 },
-  { room_type: room_types[1], amount: 10 },
-  { room_type: room_types[2], amount: 10 }
+  { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
+  { room_type: room_types[1], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
+  { room_type: room_types[2], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
 ]
 
 b1 = users[0].tour_bookings.create(active_tour: active_tours[0])

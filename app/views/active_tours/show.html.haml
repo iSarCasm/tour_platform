@@ -31,28 +31,5 @@
                 Hotel booking
               %ul.hotel-list
                 = f.fields_for :hotel_bookings do |hotel|
-                  .text-error
-                    = errors_for 'hotel_bookings.hotel_room'
-                  %li
-                    %strong
-                      %i.fa.fa-home
-                      Hotel:
-                    = hotel.object.hotel_title
-                    %br
-                    %strong
-                      %i.fa.fa-clock-o
-                      Living period:
-                    = hotel.object.booking_period_fancy
-                    %br
-                    %strong
-                      %i.fa.fa-sun-o
-                      Days:
-                    = hotel.object.days
-                    %br
-                    %strong
-                      %i.fa.fa-moon-o
-                      Nights:
-                    = hotel.object.nights
-                    .form-group
-                      = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control'
+                  = render 'active_tours/hotel_booking', hotel: hotel
             = f.submit 'Order Now', class: 'btn btn-primary'
