@@ -2,7 +2,8 @@ class TourHotel < ApplicationRecord
   has_many :hotel_rooms, dependent: :destroy, inverse_of: :tour_hotel
   belongs_to :hotel, inverse_of: :tour_hotels
   belongs_to :active_tour, inverse_of: :tour_hotels
-  belongs_to :board_basis, inverse_of: :tour_hotels
+  belongs_to :board_basis, inverse_of: :tour_hotels, optional: true
+  belongs_to :payment_type, inverse_of: :tour_hotels, optional: true
 
   validates :hotel, :active_tour, presence: true
 
@@ -39,5 +40,13 @@ class TourHotel < ApplicationRecord
 
   def available?
     hotel_rooms.any? { |r| r.available? }
+  end
+
+  def days
+    nights + 1
+  end
+
+  def nights
+    (end_date - start_date).to_i
   end
 end

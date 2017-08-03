@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802172556) do
+ActiveRecord::Schema.define(version: 20170802181551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,12 @@ ActiveRecord::Schema.define(version: 20170802172556) do
     t.decimal "rating"
   end
 
+  create_table "payment_types", force: :cascade do |t|
+    t.string "payment_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "room_types", force: :cascade do |t|
     t.string "room_type"
     t.integer "pax"
@@ -155,9 +161,11 @@ ActiveRecord::Schema.define(version: 20170802172556) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "board_basis_id"
+    t.bigint "payment_type_id"
     t.index ["active_tour_id"], name: "index_tour_hotels_on_active_tour_id"
     t.index ["board_basis_id"], name: "index_tour_hotels_on_board_basis_id"
     t.index ["hotel_id"], name: "index_tour_hotels_on_hotel_id"
+    t.index ["payment_type_id"], name: "index_tour_hotels_on_payment_type_id"
   end
 
   create_table "tours", force: :cascade do |t|
@@ -224,4 +232,5 @@ ActiveRecord::Schema.define(version: 20170802172556) do
   add_foreign_key "tour_hotels", "active_tours"
   add_foreign_key "tour_hotels", "board_bases"
   add_foreign_key "tour_hotels", "hotels"
+  add_foreign_key "tour_hotels", "payment_types"
 end

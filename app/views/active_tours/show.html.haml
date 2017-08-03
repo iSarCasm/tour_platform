@@ -43,6 +43,16 @@
                       %i.fa.fa-clock-o
                       Living period:
                     = hotel.object.booking_period_fancy
+                    %br
+                    %strong
+                      %i.fa.fa-sun-o
+                      Days:
+                    = hotel.object.days
+                    %br
+                    %strong
+                      %i.fa.fa-moon-o
+                      Nights:
+                    = hotel.object.nights
                     .form-group
                       = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control'
             = f.submit 'Order Now', class: 'btn btn-primary'
