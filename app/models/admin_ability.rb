@@ -6,7 +6,6 @@ class AdminAbility
       admin_ability
       role_ability(user)
     end
-    # can :manage, :all
   end
 
   private
@@ -21,7 +20,11 @@ class AdminAbility
     if user.role
       user.role.permissions.each do |permission|
         if permission.subject_id.nil?
-          can permission.action_symbol, permission.subject_class.constantize
+          if permission.subject_class == 'all'
+            can permission.action_symbol, :all
+          else
+            can permission.action_symbol, permission.subject_class.constantize
+          end
         else
           can permission.action_symbol, permission.subject_class.constantize, :id => permission.subject_id
         end

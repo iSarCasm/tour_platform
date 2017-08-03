@@ -1,3 +1,102 @@
+begin
+  puts "Creating Permissions!"
+  def setup_actions_controllers_db
+    write_permission("all", "manage")
+
+    Rails.application.eager_load!
+    ActiveRecord::Base.descendants
+    models = ApplicationRecord.descendants
+    ignored_models = [Guest, RolePermission, HotelFacility]
+    models.each do |model|
+      next if ignored_models.include? model
+      write_permission(model.to_s, "manage")
+      write_permission(model.to_s, "add")
+      write_permission(model.to_s, "read")
+      write_permission(model.to_s, "edit")
+      write_permission(model.to_s, "remove")
+      write_permission(model.to_s, "export")
+    end
+  end
+
+  def write_permission(class_name, cancan_action)
+    cancan_action = Permission.actions[cancan_action]
+    permission  = Permission.find_by("subject_class = ? and action = ?", class_name, cancan_action)
+    unless permission
+      permission = Permission.new
+      permission.subject_class =  class_name
+      permission.action = cancan_action
+      permission.save
+    end
+  end
+
+  setup_actions_controllers_db
+rescue Exception => exception
+  puts exception
+  puts exception.backtrace
+ensure
+  puts "Permissions: #{Permission.count}"
+end
+
+begin
+  puts 'Creating Roles!'
+  superadmin = Role.create(name: "Superadmin")
+  superadmin.permissions << Permission.find_by(subject_class: "all", action: Permission.actions['manage'])
+
+  admin = Role.create(name: "Admin")
+  [Tour, Hotel, Coach, User, ActiveTour].each do |klass|
+    admin.permissions << Permission.find_by(subject_class: klass.to_s, action: Permission.actions['manage'])
+  end
+rescue Exception => exception
+  puts exception
+  puts exception.backtrace
+ensure
+  puts "Roles: #{Role.count}"
+end
+
+begin
+  puts 'Creating Users!'
+  admin_1 = User.new(email: 'superadmin@etours.com', name: 'admin', password: 'admin')
+  admin_1.base_role = :admin
+  admin_1.role = superadmin
+  admin_1.save!(validate: false)
+
+  admin_2 = User.new(email: 'admin@etours.com', name: 'admin', password: 'admin')
+  admin_2.base_role = :admin
+  admin_2.role = admin
+  admin_2.save!(validate: false)
+
+  users = User.create [
+    { name: 'Jack', email: 'jack014@gmail.com', password: '12341234' },
+    { name: 'Lisa', email: 'lisalol@mail.ru', password: '12341234' },
+    { name: 'Anna', email: 'annathebest@gmail.com', password: '12341234' },
+    { name: 'Felix', email: 'felix@pewdiepie.com', password: '12341234' }
+  ]
+rescue Exception => exception
+  puts exception
+  puts exception.backtrace
+ensure
+  puts "Users: #{User.count}"
+end
+
+begin
+  puts 'Creating Board Bases!'
+  board_bases = BoardBasis.create [
+    {title: 'All Inclusive'},
+    {title: 'Full Board'},
+    {title: 'Full Board Plus'},
+    {title: 'Half Board'},
+    {title: 'Bed and Breakfast'},
+    {title: 'Self Catering'},
+    {title: 'Room Only'}
+  ]
+rescue Exception => exception
+  puts exception
+  puts exception.backtrace
+ensure
+  puts "Board Bases: #{BoardBasis.count}"
+end
+
+
 coaches = Coach.create [
   {
     title: 'The Aerocoope',
@@ -114,16 +213,6 @@ Start and end in Reykjavik! With the in-depth cultural tour Iceland Discovery, y
   }
 ]
 
-admin = User.new(email: 'admin@etours.com', name: 'admin', password: 'admin')
-admin.role = :admin
-admin.save!(validate: false)
-users = User.create [
-  { name: 'Jack', email: 'jack014@gmail.com', password: '12341234' },
-  { name: 'Lisa', email: 'lisalol@mail.ru', password: '12341234' },
-  { name: 'Anna', email: 'annathebest@gmail.com', password: '12341234' },
-  { name: 'Felix', email: 'felix@pewdiepie.com', password: '12341234' }
-]
-
 active_tours = ActiveTour.create [
   { tour: tours[0], start_date: Time.now, end_date: Time.now + 15.days },
   { tour: tours[1], start_date: Time.now, end_date: Time.now + 9.days },
@@ -136,12 +225,6 @@ tour_coaches = TourCoach.create [
   { coach: coaches[1], active_tour: active_tours[1], departure_date: Time.now, arrival_date: Time.now + 9.days, seats: 40 },
   { coach: coaches[2], active_tour: active_tours[2], departure_date: 17.days.from_now, arrival_date: 17.days.from_now + 15.days, seats: 30 },
   { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days, seats: 60 }
-]
-
-board_bases = BoardBasis.create [
-  {title: 'All Inclusive'}, {title: 'Full Board'}, {title: 'Full Board Plus'},
-  {title: 'Half Board'}, {title: 'Bed and Breakfast'}, {title: 'Self Catering'},
-  {title: 'Room Only'}
 ]
 
 tour_hotels = TourHotel.create [

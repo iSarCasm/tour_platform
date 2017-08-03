@@ -8,7 +8,10 @@ class Permission < ApplicationRecord
     navigation_label 'Settings'
     weight 999
     list do
-      exclude_fields :role_permissions, :created_at, :updated_at, :id
+      field :subject_class
+      field :action
+      field :subject_id
+      field :roles
     end
     edit do
       exclude_fields :role_permissions
@@ -25,5 +28,9 @@ class Permission < ApplicationRecord
     return :destroy if remove?
     # rails admin exclusive
     return :export if export?
+  end
+
+  def title
+    "#{action} - #{subject_id ? subject_id : subject_class}"
   end
 end

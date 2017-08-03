@@ -3,6 +3,8 @@ class Role < ApplicationRecord
   has_many :permissions, through: :role_permissions
   has_many :users, inverse_of: :role
 
+  validates :name, presence: true
+
   rails_admin do
     navigation_label 'Settings'
     weight 999
