@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802181551) do
+ActiveRecord::Schema.define(version: 20170803215245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,32 @@ ActiveRecord::Schema.define(version: 20170802181551) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.string "name"
+    t.string "subject_class"
+    t.integer "subject_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "action"
+  end
+
+  create_table "role_permissions", force: :cascade do |t|
+    t.bigint "role_id"
+    t.bigint "permission_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["permission_id"], name: "index_role_permissions_on_permission_id"
+    t.index ["role_id"], name: "index_role_permissions_on_role_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "room_types", force: :cascade do |t|
     t.string "room_type"
     t.integer "pax"
@@ -191,9 +217,11 @@ ActiveRecord::Schema.define(version: 20170802181551) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.integer "role", default: 0
+    t.integer "base_role", default: 0
+    t.bigint "role_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   create_table "version_associations", force: :cascade do |t|
@@ -225,6 +253,8 @@ ActiveRecord::Schema.define(version: 20170802181551) do
   add_foreign_key "hotel_facilities", "facilities"
   add_foreign_key "hotel_facilities", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
+  add_foreign_key "role_permissions", "permissions"
+  add_foreign_key "role_permissions", "roles"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
   add_foreign_key "tour_coaches", "active_tours"
@@ -233,4 +263,5 @@ ActiveRecord::Schema.define(version: 20170802181551) do
   add_foreign_key "tour_hotels", "board_bases"
   add_foreign_key "tour_hotels", "hotels"
   add_foreign_key "tour_hotels", "payment_types"
+  add_foreign_key "users", "roles"
 end

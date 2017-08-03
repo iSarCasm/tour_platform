@@ -4,10 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tour_bookings, dependent: :destroy, inverse_of: :user
+  belongs_to :role, inverse_of: :users, optional: true
 
   validates :name, presence: true
 
-  enum role: [:customer, :admin]
+  enum base_role: [:customer, :admin]
 
   rails_admin do
     list do

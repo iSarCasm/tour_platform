@@ -3,10 +3,7 @@ class Ability
 
   def initialize(user)
     guest_ability
-    unless user.kind_of? Guest
-      customer_ability
-      admin_ability if user.admin?
-    end
+    customer_ability unless user.kind_of? Guest
   end
 
   private
@@ -17,11 +14,5 @@ class Ability
 
   def customer_ability
     can :book, ActiveTour
-  end
-
-  def admin_ability
-    can :access, :rails_admin
-    can :dashboard
-    can :manage, :all
   end
 end

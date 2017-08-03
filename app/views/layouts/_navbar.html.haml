@@ -7,4 +7,4 @@
       %li.nav-item
         = link_to 'Tours', root_path, class: 'nav-link'
     %ul.navbar-nav.mt-2.mt-md-0
-      = render "layouts/navbar/#{current_user.role}_nav"
+      = render "layouts/navbar/#{current_user.base_role}_nav"
