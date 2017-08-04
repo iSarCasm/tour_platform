@@ -1,26 +1,30 @@
 .text-error
   = errors_for 'hotel_bookings.hotel_room'
 %li
-  %strong
-    %i.fa.fa-home
-    Hotel:
-  = hotel.object.hotel_title
-  %br
-  %strong
-    %i.fa.fa-clock-o
-    Living period:
-  = hotel.object.booking_period_fancy
-  %br
-  %strong
-    %i.fa.fa-sun-o
-    Days:
-  = hotel.object.days
-  %br
-  %strong
-    %i.fa.fa-moon-o
-    Nights:
-  = hotel.object.nights
-  .mb-3
+  .photos.mb-2
+    - hotel.object.photos.each do |photo|
+      = image_tag(photo.photo.small.url)
+  %p.mb-3
+    %strong
+      %i.fa.fa-home
+      Hotel:
+    = hotel.object.hotel_title
+    %br
+    %strong
+      %i.fa.fa-clock-o
+      Living period:
+    = hotel.object.booking_period_fancy
+    %br
+    %strong
+      %i.fa.fa-sun-o
+      Days:
+    = hotel.object.days
+    %br
+    %strong
+      %i.fa.fa-moon-o
+      Nights:
+    = hotel.object.nights
+
   %table.table
     %thead
       %tr

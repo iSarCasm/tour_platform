@@ -26,6 +26,10 @@ class TourHotel < ApplicationRecord
     hotel.title
   end
 
+  def photos
+    hotel.photos
+  end
+
   def booking_period
     "#{start_date.to_formatted_s(:rfc822)} - #{end_date.to_formatted_s(:rfc822)}"
   end

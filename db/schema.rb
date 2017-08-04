@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803234450) do
+ActiveRecord::Schema.define(version: 20170804002341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,15 @@ ActiveRecord::Schema.define(version: 20170803234450) do
     t.datetime "updated_at", null: false
     t.integer "action"
     t.integer "subject_class"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "photo"
+    t.integer "photoable_id"
+    t.string "photoable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photoable_type", "photoable_id"], name: "index_photos_on_photoable_type_and_photoable_id"
   end
 
   create_table "role_permissions", force: :cascade do |t|

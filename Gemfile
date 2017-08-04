@@ -32,6 +32,10 @@ gem 'cancancan', '~> 2.0'
 # Human links
 gem 'friendly_id', '~> 5.1.0'
 
+# Images
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+
 group :development, :test do
   # Debug
   gem 'pry-byebug'
