@@ -20,13 +20,13 @@ class AdminAbility
     if user.role
       user.role.permissions.each do |permission|
         if permission.subject_id.nil?
-          if permission.subject_class == 'all'
+          if permission.subject_class_string == 'all'
             can permission.action_symbol, :all
           else
-            can permission.action_symbol, permission.subject_class.constantize
+            can permission.action_symbol, permission.subject_class_string.constantize
           end
         else
-          can permission.action_symbol, permission.subject_class.constantize, :id => permission.subject_id
+          can permission.action_symbol, permission.subject_class_string.constantize, :id => permission.subject_id
         end
       end
     end

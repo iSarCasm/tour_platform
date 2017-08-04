@@ -1,7 +1,7 @@
 begin
   puts "Creating Permissions!"
   def setup_actions_controllers_db
-    write_permission("all", "manage")
+    write_permission('everything', 'manage')
 
     Rails.application.eager_load!
     ActiveRecord::Base.descendants
@@ -9,21 +9,22 @@ begin
     ignored_models = [Guest, RolePermission, HotelFacility]
     models.each do |model|
       next if ignored_models.include? model
-      write_permission(model.to_s, "manage")
-      write_permission(model.to_s, "add")
-      write_permission(model.to_s, "read")
-      write_permission(model.to_s, "edit")
-      write_permission(model.to_s, "remove")
-      write_permission(model.to_s, "export")
+      write_permission(model.to_s, 'manage')
+      write_permission(model.to_s, 'add')
+      write_permission(model.to_s, 'read')
+      write_permission(model.to_s, 'edit')
+      write_permission(model.to_s, 'remove')
+      write_permission(model.to_s, 'export')
     end
   end
 
   def write_permission(class_name, cancan_action)
+    class_name = Permission.subject_classes[class_name]
     cancan_action = Permission.actions[cancan_action]
     permission  = Permission.find_by("subject_class = ? and action = ?", class_name, cancan_action)
     unless permission
       permission = Permission.new
-      permission.subject_class =  class_name
+      permission.subject_class = class_name
       permission.action = cancan_action
       permission.save
     end
@@ -40,11 +41,11 @@ end
 begin
   puts 'Creating Roles!'
   superadmin = Role.create(name: "Superadmin")
-  superadmin.permissions << Permission.find_by(subject_class: "all", action: Permission.actions['manage'])
+  superadmin.permissions << Permission.find_by(subject_class: Permission.subject_classes['everything'], action: Permission.actions['manage'])
 
   admin = Role.create(name: "Admin")
   [Tour, Hotel, Coach, User, ActiveTour].each do |klass|
-    admin.permissions << Permission.find_by(subject_class: klass.to_s, action: Permission.actions['manage'])
+    admin.permissions << Permission.find_by(subject_class: Permission.subject_classes[klass.to_s], action: Permission.actions['manage'])
   end
 rescue Exception => exception
   puts exception

@@ -1,5 +1,5 @@
 class Guest < User
-  def role
+  def base_role
     'guest'
   end
 

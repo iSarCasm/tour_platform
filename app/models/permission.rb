@@ -4,6 +4,18 @@ class Permission < ApplicationRecord
 
   enum action: [:manage, :add, :read, :edit, :remove, :export]
 
+  Rails.application.eager_load!
+  ActiveRecord::Base.descendants
+  ignored_models = [Guest, RolePermission, HotelFacility]
+  models = ApplicationRecord.descendants
+                            .reject{ |m| ignored_models.include? m }
+                            .map { |m| m.to_s.to_sym }
+                            .unshift(:everything)
+  enum subject_class: models
+
+  validates :action, presence: true
+  validates :subject_class, presence: true
+
   rails_admin do
     navigation_label 'Settings'
     weight 999
@@ -14,7 +26,10 @@ class Permission < ApplicationRecord
       field :roles
     end
     edit do
-      exclude_fields :role_permissions
+      field :subject_class
+      field :action
+      field :subject_id
+      field :roles
     end
   end
 
@@ -28,6 +43,11 @@ class Permission < ApplicationRecord
     return :destroy if remove?
     # rails admin exclusive
     return :export if export?
+  end
+
+  def subject_class_string
+    return 'all' if everything?
+    subject_class.to_s
   end
 
   def title
