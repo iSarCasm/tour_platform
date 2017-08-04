@@ -23,6 +23,9 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 # Dashboard
 gem 'rails_admin', '~> 1.2'
 
+# Notifications
+gem 'toastr-rails'
+
 # User
 gem 'devise'
 
