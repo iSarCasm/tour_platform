@@ -1,3 +1,6 @@
+- content_for :javascript_body do
+  = javascript_include_tag 'active_tours'
+
 .container
   .row.pt-5
     .col-md-8.push-md-2
@@ -31,23 +34,34 @@
             = f.hidden_field :active_tour_id, value: @active_tour.id
             %p
               %strong
-                %i.fa.fa-bus
-                Coach booking
+                %h3
+                  %i.fa.fa-bus
+                  Coach booking
             = f.fields_for :coach_bookings do |coach|
               = coach.hidden_field :tour_coach_id, value: @tour_coach.id
+              .row
+                .col-md-5
+                  %div#seat-map
+                .col-md-7
+                  #legend
+              %ul#selected-seats
               .text-error
                 = errors_for 'coach_bookings.seats'
               .form-group
                 = coach.label :seats, 'Seats:'
                 = coach.text_field :seats, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
+              %p
+                %strong Subtotal:
+                %span#coach-subtotal $0
             %p
               %strong
-                %i.fa.fa-bed
-                Hotel booking
+                %h3
+                  %i.fa.fa-bed
+                  Hotel booking
               %ul.hotel-list
                 = f.fields_for :hotel_bookings do |hotel|
                   = render 'active_tours/hotel_booking', hotel: hotel
             %p
               %strong Total price:
-              %span.js-total-price $0.00
+              %span#js-total-price $0.00
             = f.submit 'Order Now', class: 'btn btn-primary'
