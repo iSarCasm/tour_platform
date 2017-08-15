@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815193039) do
+ActiveRecord::Schema.define(version: 20170815194905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,9 @@ ActiveRecord::Schema.define(version: 20170815193039) do
     t.integer "seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "driver_name"
+    t.string "driver_number"
+    t.text "notes"
     t.index ["active_tour_id"], name: "index_tour_coaches_on_active_tour_id"
     t.index ["coach_id"], name: "index_tour_coaches_on_coach_id"
   end
