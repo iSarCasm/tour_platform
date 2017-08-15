@@ -48,10 +48,13 @@
               .text-error
                 = errors_for 'coach_bookings.seats'
               .form-group
+                %i.fa.fa-ticket
                 = coach.label :seats, 'Seats:'
                 = coach.text_field :seats, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
               %p
-                %strong Subtotal:
+                %strong
+                  %i.fa.fa-money
+                  Subtotal:
                 %span#coach-subtotal $0
             %p
               %strong
@@ -62,6 +65,8 @@
                 = f.fields_for :hotel_bookings do |hotel|
                   = render 'active_tours/hotel_booking', hotel: hotel
             %p
-              %strong Total price:
+              %strong
+                %i.fa.fa-money
+                Total price:
               %span#js-total-price $0.00
             = f.submit 'Order Now', class: 'btn btn-primary'

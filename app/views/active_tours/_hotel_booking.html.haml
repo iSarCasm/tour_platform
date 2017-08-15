@@ -1,6 +1,6 @@
 .text-error
   = errors_for 'hotel_bookings.hotel_room'
-%li
+%li.js-hotel-booking
   .photos.mb-2
     - hotel.object.photos.each do |photo|
       = link_to photo.photo.url, target: :blank do
@@ -45,4 +45,9 @@
 
   .form-group
     = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control js-hotel-room'
+  %p
+    %strong
+      %i.fa.fa-money
+      Subtotal:
+    %span.js-subtotal 100
   .mb-5
