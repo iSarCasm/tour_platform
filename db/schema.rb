@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815191100) do
+ActiveRecord::Schema.define(version: 20170815193039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20170815191100) do
 
   create_table "board_bases", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coach_amenities", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -185,6 +191,15 @@ ActiveRecord::Schema.define(version: 20170815191100) do
     t.index ["user_id"], name: "index_tour_bookings_on_user_id"
   end
 
+  create_table "tour_coach_amenities", force: :cascade do |t|
+    t.bigint "tour_coach_id"
+    t.bigint "coach_amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coach_amenity_id"], name: "index_tour_coach_amenities_on_coach_amenity_id"
+    t.index ["tour_coach_id"], name: "index_tour_coach_amenities_on_tour_coach_id"
+  end
+
   create_table "tour_coaches", force: :cascade do |t|
     t.bigint "coach_id"
     t.bigint "active_tour_id"
@@ -276,6 +291,8 @@ ActiveRecord::Schema.define(version: 20170815191100) do
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
+  add_foreign_key "tour_coach_amenities", "coach_amenities"
+  add_foreign_key "tour_coach_amenities", "tour_coaches"
   add_foreign_key "tour_coaches", "active_tours"
   add_foreign_key "tour_coaches", "coaches"
   add_foreign_key "tour_hotels", "active_tours"
