@@ -1,6 +1,6 @@
 .container
   .row.pt-5
-    .col-md-6.push-md-3
+    .col-md-8.push-md-2
       .card
         = image_tag 'tour_preview_1.jpg', class: 'card-img-top img-fluid'
         .card-block
@@ -14,6 +14,20 @@
             %strong Dates:
             = @active_tour.date_period_fancy
           = form_for @booking, url: {action: 'book'} do |f|
+            .row.mb-1
+              .col-md-6
+                = f.label :adult, 'Adults:'
+                = f.text_field :adult, type: :number, class: 'form-control js-adult', min: 0, value: '2'
+              .col-md-6
+                = f.label :adult, 'Child:'
+                = f.text_field :child, type: :number, class: 'form-control js-child', min: 0, value: '0'
+            .row.mb-4
+              .col-md-6
+                = f.label :adult, 'Infant:'
+                = f.text_field :infant, type: :number, class: 'form-control js-infant', min: 0, value: '0'
+              .col-md-6
+                = f.label :adult, 'Senior:'
+                = f.text_field :senior, type: :number, class: 'form-control js-senior', min: 0, value: '0'
             = f.hidden_field :active_tour_id, value: @active_tour.id
             %p
               %strong
@@ -24,7 +38,8 @@
               .text-error
                 = errors_for 'coach_bookings.seats'
               .form-group
-                = coach.text_field :seats, type: 'number', class: 'form-control', min: '1', placeholder: 'Seats'
+                = coach.label :seats, 'Seats:'
+                = coach.text_field :seats, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
             %p
               %strong
                 %i.fa.fa-bed
@@ -32,4 +47,7 @@
               %ul.hotel-list
                 = f.fields_for :hotel_bookings do |hotel|
                   = render 'active_tours/hotel_booking', hotel: hotel
+            %p
+              %strong Total price:
+              %span.js-total-price $0.00
             = f.submit 'Order Now', class: 'btn btn-primary'

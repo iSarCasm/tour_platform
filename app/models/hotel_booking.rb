@@ -27,7 +27,20 @@ class HotelBooking < ApplicationRecord
     define_singleton_method(:photos) { hotel.photos.to_a }
     define_singleton_method(:hotel_rooms) { hotel.hotel_rooms.available.to_a }
     define_singleton_method(:rooms) do
-      (hotel_rooms.empty? ? [ 'No rooms available' ] : hotel_rooms.collect { |p| [ p.customer_title, p.id ] })
+      if hotel_rooms.empty?
+        [ 'No rooms available' ]
+      else
+        hotel_rooms.collect do |p|
+          [ p.customer_title, p.id,
+            {
+              'data-price-adult' => p.adult + p.adult_supp,
+              'data-price-child' => p.child + p.child_supp,
+              'data-price-infant' => p.infant + p.infant_supp,
+              'data-price-senior' => p.senior + p.senior_supp
+            }
+          ]
+        end
+      end
     end
   end
 

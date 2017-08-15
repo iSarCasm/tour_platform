@@ -44,5 +44,5 @@
           %td= render 'active_tours/room_price', price: room.senior, supp_price: room.senior_supp
 
   .form-group
-    = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control'
+    = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control js-hotel-room'
   .mb-5
