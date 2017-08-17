@@ -2,10 +2,11 @@ class TourCoach < ApplicationRecord
   has_many :coach_bookings, dependent: :destroy, inverse_of: :tour_coach
   belongs_to :coach, inverse_of: :tour_coaches
   belongs_to :active_tour, inverse_of: :tour_coaches
+  belongs_to :seatplan, inverse_of: :tour_coaches
   has_many :tour_coach_amenities, dependent: :destroy
   has_many :coach_amenities, through: :tour_coach_amenities
 
-  validates :coach, :active_tour, :departure_date, :arrival_date, :seats, presence: true
+  validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
 
   rails_admin do
     parent Coach
@@ -14,6 +15,9 @@ class TourCoach < ApplicationRecord
     end
     edit do
       exclude_fields :coach_bookings, :tour_coach_amenities
+    end
+    show do
+      exclude_fields :tour_coach_amenities
     end
   end
 
@@ -25,8 +29,12 @@ class TourCoach < ApplicationRecord
     'New Tour Coach'
   end
 
+  def seats
+    seatplan.total_seats
+  end
+
   def seats_left
-    seats - coach_bookings.sum(:seats)
+    seats - coach_bookings.map(&:seats_amount).reduce(0, &:+)
   end
 
   def available?

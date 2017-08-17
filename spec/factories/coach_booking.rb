@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :coach_booking do
     tour_coach
     tour_booking
-    seats         { Faker::Number.between(1,6) }
+    seats         { "[\"#{1 + rand(10)}_#{1 + rand(999_999_999)}\"]" }
   end
 end

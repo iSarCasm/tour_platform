@@ -25,11 +25,22 @@ describe ActiveTour do
   describe '#availabe?' do
     it 'avaialbe if all coaches and hotels are available' do
       active_tour = create :active_tour
-      tour_coach = create :tour_coach, active_tour: active_tour, seats: 0
+      tour_coach = create :tour_coach, active_tour: active_tour
+      allow(tour_coach).to receive(:seats).and_return(0)        # coach wo seats
+
       tour_hotel = create :tour_hotel, active_tour: active_tour
-      room_1 = create :hotel_room, tour_hotel: tour_hotel, amount: 0
+      room_1 = create :hotel_room, tour_hotel: tour_hotel, amount: 0  # no rooms
 
       expect(active_tour.available?).to eq false
+
+      room_1.update(amount: 10)
+      active_tour.reload
+
+      expect(active_tour.available?).to eq false
+
+      allow(active_tour.tour_coaches.last).to receive(:seats).and_return(10)
+
+      expect(active_tour.available?).to eq true
     end
   end
 end

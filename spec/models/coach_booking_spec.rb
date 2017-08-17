@@ -3,8 +3,11 @@ require 'rails_helper'
 describe CoachBooking do
   describe 'create validations' do
     it 'validates available seats' do
-      tour_coach = create :tour_coach, seats: 1
-      booking = build :coach_booking, tour_coach: tour_coach, seats: 2
+      tour_coach = create :tour_coach
+      allow(tour_coach).to receive(:seats_left).and_return(1) # coach has only 1 seat
+      booking = build :coach_booking, tour_coach: tour_coach
+      allow(booking).to receive(:seats_amount).and_return(2)  # we try to book 2 seats
+
       expect(booking.save).to eq false
     end
   end
@@ -26,4 +29,10 @@ describe CoachBooking do
     end
   end
 
+  describe '#seats_amount' do
+    it 'returns amount of seats booked' do
+      booking = build :coach_booking, seats: ['7_1', '7_2', '7_3'].to_json
+      expect(booking.seats_amount).to eq 3
+    end
+  end
 end

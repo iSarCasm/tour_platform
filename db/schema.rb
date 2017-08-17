@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815200653) do
+ActiveRecord::Schema.define(version: 20170816224352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20170815200653) do
   create_table "coach_bookings", force: :cascade do |t|
     t.bigint "tour_coach_id"
     t.bigint "tour_booking_id"
-    t.integer "seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "seats"
     t.index ["tour_booking_id"], name: "index_coach_bookings_on_tour_booking_id"
     t.index ["tour_coach_id"], name: "index_coach_bookings_on_tour_coach_id"
   end
@@ -189,6 +189,14 @@ ActiveRecord::Schema.define(version: 20170815200653) do
     t.index ["name"], name: "index_seat_types_on_name", unique: true
   end
 
+  create_table "seatplans", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "plan"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tour_bookings", force: :cascade do |t|
     t.bigint "active_tour_id"
     t.bigint "user_id"
@@ -216,14 +224,15 @@ ActiveRecord::Schema.define(version: 20170815200653) do
     t.bigint "active_tour_id"
     t.datetime "departure_date"
     t.datetime "arrival_date"
-    t.integer "seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "driver_name"
     t.string "driver_number"
     t.text "notes"
+    t.bigint "seatplan_id"
     t.index ["active_tour_id"], name: "index_tour_coaches_on_active_tour_id"
     t.index ["coach_id"], name: "index_tour_coaches_on_coach_id"
+    t.index ["seatplan_id"], name: "index_tour_coaches_on_seatplan_id"
   end
 
   create_table "tour_hotels", force: :cascade do |t|
@@ -309,6 +318,7 @@ ActiveRecord::Schema.define(version: 20170815200653) do
   add_foreign_key "tour_coach_amenities", "tour_coaches"
   add_foreign_key "tour_coaches", "active_tours"
   add_foreign_key "tour_coaches", "coaches"
+  add_foreign_key "tour_coaches", "seatplans"
   add_foreign_key "tour_hotels", "active_tours"
   add_foreign_key "tour_hotels", "board_bases"
   add_foreign_key "tour_hotels", "hotels"
