@@ -16,6 +16,7 @@ class ActiveToursController < ApplicationController
 
   def book
     @booking = current_user.tour_bookings.new(booking_params)
+    binding.pry
     if @booking.save
       flash[:notice] = 'Successfuly ordered a tour!'
       redirect_to root_url

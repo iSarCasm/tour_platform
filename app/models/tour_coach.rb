@@ -30,7 +30,7 @@ class TourCoach < ApplicationRecord
   end
 
   def seats
-    seatplan.total_seats
+    seatplan&.total_seats || 0  # TODO remove later (only appeared with invalid models)
   end
 
   def seats_left

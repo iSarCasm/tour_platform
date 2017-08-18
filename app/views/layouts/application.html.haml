@@ -12,7 +12,11 @@
     %link{:crossorigin => "anonymous", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css", :integrity => "sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ", :rel => "stylesheet"}/
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = yield :javascript_body
+    - if content_for? :javascript_body
+      = yield :javascript_body
+    - if content_for? :dynamic_js
+      %script
+        = yield :dynamic_js
   %body
     = render 'layouts/navbar'
     = render 'layouts/notice_block'

@@ -1,5 +1,7 @@
 - content_for :javascript_body do
-  = javascript_include_tag 'active_tours'
+  = javascript_include_tag 'booking_page_prices'
+- content_for :dynamic_js do
+  = render 'booking_page_seatplan.js.erb'
 
 .container
   .row.pt-5
@@ -49,8 +51,9 @@
                 = errors_for 'coach_bookings.seats'
               .form-group
                 %i.fa.fa-ticket
-                = coach.label :seats, 'Seats:'
-                = coach.text_field :seats, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
+                = label :seats_preview, 'Seats:'
+                = text_field_tag :seats_preview, 0, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
+                = coach.hidden_field :seats, value: '["13", "14"]'
               %p
                 %strong
                   %i.fa.fa-money
