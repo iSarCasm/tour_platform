@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title TourPlatform
     = csrf_meta_tags
+    = Gon::Base.render_data # Gets variables for JS from controller
 
     %link{:href => "https://fonts.googleapis.com/css?family=Roboto", :rel => "stylesheet"}/
 

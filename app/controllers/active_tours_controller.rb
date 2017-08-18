@@ -12,6 +12,7 @@ class ActiveToursController < ApplicationController
       hotel_booking = @booking.hotel_bookings.build(tour_booking: @booking)
       hotel_booking.configure_for_form(hotel)
     end
+    gon.seatplan = @tour_coach.seatplan.plan
   end
 
   def book

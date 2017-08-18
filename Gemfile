@@ -36,6 +36,9 @@ gem 'cancancan', '~> 2.0'
 # Human links
 gem 'friendly_id', '~> 5.1.0'
 
+# Accessing Controller varaibles in JS (with AJAX calls)
+gem 'gon'
+
 # Images
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
