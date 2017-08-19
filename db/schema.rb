@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816224352) do
+ActiveRecord::Schema.define(version: 20170818132655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20170816224352) do
     t.datetime "updated_at", null: false
     t.string "char"
     t.boolean "is_seat"
+    t.string "color"
     t.index ["char"], name: "index_seat_types_on_char", unique: true
     t.index ["name"], name: "index_seat_types_on_name", unique: true
   end

@@ -406,7 +406,7 @@
 						seats[id] = new seat({
 							id        : id,
 							label     : overrideLabel ?
-								overrideLabel : naming.getLabel(character, naming.rows[row], naming.columns[column]),
+								overrideLabel : naming.getLabel(character, naming.rows[row], naming.columns[column], settings),
 							row       : row,
 							column    : column,
 							character : character

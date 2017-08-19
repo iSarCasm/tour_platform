@@ -1,0 +1,7 @@
+
+
+<% SeatType.all.each do |seat| %>
+  div.seatCharts-seat.available.<%= seat.classes %> {
+    background-color: #<%= seat.color %>;
+  }
+<% end %>

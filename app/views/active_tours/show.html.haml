@@ -1,8 +1,8 @@
 - content_for :javascript_body do
   = javascript_include_tag 'booking_page_prices'
   = javascript_include_tag 'booking_page_seatplan'
--# - content_for :dynamic_js do
--#   = render 'booking_page_seatplan.js.erb'
+- content_for :dynamic_css do
+  = render 'seatplan_custom_styles.css.erb'
 
 .container
   .row.pt-5
