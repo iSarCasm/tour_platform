@@ -168,6 +168,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     heapy (0.1.2)
+    hodel_3000_compliant_logger (0.1.1)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
@@ -225,6 +226,9 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oink (0.10.1)
+      activerecord
+      hodel_3000_compliant_logger
     orm_adapter (0.5.0)
     parallel (1.12.0)
     parser (2.4.0.0)
@@ -438,6 +442,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mini_magick
+  oink
   pg (~> 0.18)
   pry-byebug
   puma (~> 3.7)

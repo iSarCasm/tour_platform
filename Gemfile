@@ -73,6 +73,7 @@ group :development do
   # N+1
   gem 'bullet'
   # Memory leaks and benchmarks
+  gem 'oink'
   gem 'derailed_benchmarks'
   gem 'stackprof'
   gem "skylight"
