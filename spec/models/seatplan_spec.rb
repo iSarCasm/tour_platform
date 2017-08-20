@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: seatplans
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :text
+#  plan        :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'rails_helper'
 
 describe Seatplan do

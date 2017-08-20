@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: tour_coaches
+#
+#  id             :integer          not null, primary key
+#  coach_id       :integer
+#  active_tour_id :integer
+#  departure_date :datetime
+#  arrival_date   :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  driver_name    :string
+#  driver_number  :string
+#  notes          :text
+#  seatplan_id    :integer
+#
+
 require 'rails_helper'
 
 describe TourCoach do

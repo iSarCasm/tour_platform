@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: tours
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  slug        :string
+#
+
 class Tour < ApplicationRecord
   has_many :active_tours, dependent: :destroy, inverse_of: :tour
 

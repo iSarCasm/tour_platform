@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: hotel_rooms
+#
+#  id            :integer          not null, primary key
+#  tour_hotel_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  amount        :integer
+#  room_type_id  :integer
+#  adult         :decimal(, )      default(0.0)
+#  adult_supp    :decimal(, )      default(0.0)
+#  child         :decimal(, )      default(0.0)
+#  child_supp    :decimal(, )      default(0.0)
+#  infant        :decimal(, )      default(0.0)
+#  infant_supp   :decimal(, )      default(0.0)
+#  senior        :decimal(, )      default(0.0)
+#  senior_supp   :decimal(, )      default(0.0)
+#
+
 class HotelRoom < ApplicationRecord
   has_many :hotel_bookings, dependent: :destroy, inverse_of: :hotel_room
 

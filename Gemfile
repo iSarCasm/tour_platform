@@ -72,6 +72,12 @@ group :development do
   gem "erb2haml"
   # N+1
   gem 'bullet'
+  # Memory leaks and benchmarks
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
+  gem "skylight"
+  # Schame model annotations
+  gem 'annotate', require: false
 end
 
 group :test do

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: hotel_bookings
+#
+#  id              :integer          not null, primary key
+#  hotel_room_id   :integer
+#  tour_booking_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class HotelBooking < ApplicationRecord
   belongs_to :hotel_room, inverse_of: :hotel_bookings
   belongs_to :tour_booking, inverse_of: :hotel_bookings

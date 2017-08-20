@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: coach_bookings
+#
+#  id              :integer          not null, primary key
+#  tour_coach_id   :integer
+#  tour_booking_id :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  seats           :json
+#
+
 class CoachBooking < ApplicationRecord
   belongs_to :tour_coach, inverse_of: :coach_bookings
   belongs_to :tour_booking, inverse_of: :coach_bookings

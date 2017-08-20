@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: tour_hotels
+#
+#  id                :integer          not null, primary key
+#  hotel_id          :integer
+#  active_tour_id    :integer
+#  start_date        :date
+#  end_date          :date
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  board_basis_id    :integer
+#  payment_type_id   :integer
+#  finalisation_date :datetime
+#
+
 require 'rails_helper'
 
 describe TourHotel do

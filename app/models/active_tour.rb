@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: active_tours
+#
+#  id         :integer          not null, primary key
+#  tour_id    :integer
+#  start_date :date
+#  end_date   :date
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  slug       :string
+#
+
 class ActiveTour < ApplicationRecord
   has_many :tour_bookings, dependent: :destroy, inverse_of: :active_tour
   has_many :tour_hotels, dependent: :destroy, inverse_of: :active_tour

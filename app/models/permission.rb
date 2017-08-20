@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: permissions
+#
+#  id            :integer          not null, primary key
+#  subject_id    :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  action        :integer
+#  subject_class :integer
+#
+
 class Permission < ApplicationRecord
   has_many :role_permissions
   has_many :roles, through: :role_permissions

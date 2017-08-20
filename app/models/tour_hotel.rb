@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: tour_hotels
+#
+#  id                :integer          not null, primary key
+#  hotel_id          :integer
+#  active_tour_id    :integer
+#  start_date        :date
+#  end_date          :date
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  board_basis_id    :integer
+#  payment_type_id   :integer
+#  finalisation_date :datetime
+#
+
 class TourHotel < ApplicationRecord
   has_many :hotel_rooms, dependent: :destroy, inverse_of: :tour_hotel
   belongs_to :hotel, inverse_of: :tour_hotels
