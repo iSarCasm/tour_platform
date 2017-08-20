@@ -26,7 +26,11 @@ class HotelRoom < ApplicationRecord
 
   validates :tour_hotel, :room_type, :amount, presence: true
 
-  scope :available, -> { left_outer_joins(:hotel_bookings).group('hotel_rooms.id').having('count(hotel_room_id) < amount') }
+  scope :available, lambda {
+    left_outer_joins(:hotel_bookings)
+      .group('hotel_rooms.id')
+      .having('count(hotel_room_id) < amount')
+  }
 
   rails_admin do
     parent TourHotel

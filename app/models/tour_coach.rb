@@ -39,15 +39,15 @@ class TourCoach < ApplicationRecord
   end
 
   def title
-    "#{coach.title} " +
-    "[#{departure_date.to_date.to_formatted_s(:rfc822)} - " +
-    "#{arrival_date.to_date.to_formatted_s(:rfc822)}]"
+    "#{coach.title} " \
+      "[#{departure_date.to_date.to_formatted_s(:rfc822)} - " \
+      "#{arrival_date.to_date.to_formatted_s(:rfc822)}]"
   rescue
     'New Tour Coach'
   end
 
   def seats
-    seatplan&.total_seats || 0  # TODO remove later (only appeared with invalid models)
+    seatplan&.total_seats || 0 # TODO: remove later (only appeared with invalid models)
   end
 
   def seats_left
