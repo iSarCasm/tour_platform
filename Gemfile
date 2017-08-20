@@ -46,6 +46,9 @@ gem 'rollbar'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
+# Data migrations
+gem 'data_migrate'
+
 group :development, :test do
   # Debug
   gem 'pry-byebug'
