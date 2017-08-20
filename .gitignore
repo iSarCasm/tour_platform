@@ -19,3 +19,6 @@
 .byebug_history
 /coverage/*
 /public/uploads/*
+/config/database.yml
+/config/skylight.yml
+/config/secrets.yml
