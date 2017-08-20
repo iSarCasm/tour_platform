@@ -39,6 +39,9 @@ gem 'friendly_id', '~> 5.1.0'
 # Accessing Controller varaibles in JS (with AJAX calls)
 gem 'gon'
 
+# Error Logging and Notifications
+gem 'rollbar'
+
 # Images
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
@@ -67,6 +70,8 @@ group :development do
   gem 'guard-rspec', require: false
   # Rake
   gem "erb2haml"
+  # N+1
+  gem 'bullet'
 end
 
 group :test do

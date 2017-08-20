@@ -10,7 +10,7 @@ class ActiveToursController < ApplicationController
     @tour_coach = @active_tour.tour_coaches.first
     @booking.coach_bookings.build
 
-    @active_tour.tour_hotels.each do |hotel|
+    @active_tour.tour_hotels.includes(hotel: :photos).each do |hotel|
       hotel_booking = @booking.hotel_bookings.build(tour_booking: @booking)
       hotel_booking.configure_for_form(hotel)
     end

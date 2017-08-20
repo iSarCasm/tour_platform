@@ -25,7 +25,7 @@ class HotelBooking < ApplicationRecord
     define_singleton_method(:days) { hotel.days.to_s }
     define_singleton_method(:nights) { hotel.nights.to_s }
     define_singleton_method(:photos) { hotel.photos.to_a }
-    define_singleton_method(:hotel_rooms) { hotel.hotel_rooms.available.to_a }
+    define_singleton_method(:hotel_rooms) { hotel.hotel_rooms.available.includes(:room_type).to_a }
     define_singleton_method(:rooms) do
       if hotel_rooms.empty?
         [ 'No rooms available' ]
