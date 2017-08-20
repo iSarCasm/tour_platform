@@ -22,6 +22,16 @@ describe ActiveTour do
     end
   end
 
+  describe '#date_period_fancy' do
+    it 'returns pretty date period of tour' do
+      active_tour = build(:active_tour,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      expect(active_tour.date_period_fancy).to eq '14 July - 28 July'
+    end
+  end
+
   describe '#availabe?' do
     it 'avaialbe if all coaches and hotels are available' do
       active_tour = create :active_tour

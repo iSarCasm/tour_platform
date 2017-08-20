@@ -13,6 +13,16 @@ describe TourHotel do
     end
   end
 
+  describe '#booking_period_fancy' do
+    it 'retuns pretty booking period' do
+      tour_hotel = build(:tour_hotel,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      expect(tour_hotel.booking_period_fancy).to eq '14 July - 28 July'
+    end
+  end
+
   describe '#hotel_title' do
     it 'return title of the Hotel' do
       hotel = build :hotel, title: 'Grand Plaza'
@@ -29,6 +39,39 @@ describe TourHotel do
       create :hotel_room, tour_hotel: tour_hotel, amount: 1
       tour_hotel.reload
       expect(tour_hotel.available?).to eq true
+    end
+  end
+
+  describe '#hotel_title' do
+    it 'returns title of associated hotel' do
+      h = build :hotel
+      hotel = build :tour_hotel, hotel: h
+      expect(hotel.hotel_title).to eq h.title
+    end
+  end
+
+  describe '#photos' do
+    xit 'returns associated hotels photos' do
+    end
+  end
+
+  describe '#days' do
+    it 'returns amount of days in a tour' do
+      tour_hotel = build(:tour_hotel,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      expect(tour_hotel.days).to eq 15
+    end
+  end
+
+  describe '#nights' do
+    it 'returns amount of nights in a tour' do
+      tour_hotel = build(:tour_hotel,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      expect(tour_hotel.nights).to eq 14
     end
   end
 end
