@@ -47,4 +47,12 @@ class Seatplan < ApplicationRecord
   def total_cells
     plan.gsub("\n", '').length
   end
+
+  def uniq_chars
+    plan.gsub("\n", '').chars.to_a.uniq
+  end
+
+  def seat_types
+    SeatType.where(char: uniq_chars)
+  end
 end

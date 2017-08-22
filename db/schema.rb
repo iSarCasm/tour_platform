@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818132655) do
+ActiveRecord::Schema.define(version: 20170822155020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,15 @@ ActiveRecord::Schema.define(version: 20170818132655) do
     t.text "description"
   end
 
+  create_table "seat_prices", force: :cascade do |t|
+    t.string "char"
+    t.decimal "price"
+    t.bigint "tour_coach_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_coach_id"], name: "index_seat_prices_on_tour_coach_id"
+  end
+
   create_table "seat_types", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -313,6 +322,7 @@ ActiveRecord::Schema.define(version: 20170818132655) do
   add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
+  add_foreign_key "seat_prices", "tour_coaches"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
   add_foreign_key "tour_coach_amenities", "coach_amenities"

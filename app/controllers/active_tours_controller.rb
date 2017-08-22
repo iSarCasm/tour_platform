@@ -16,7 +16,7 @@ class ActiveToursController < ApplicationController
     end
 
     gon.seatplan = @tour_coach.seatplan.plan
-    gon.seat_types = SeatType.json
+    gon.seat_types = @tour_coach.json_seat_types
     gon.reserved_seats = @tour_coach.coach_bookings.pluck(:seats).flatten
   end
 

@@ -36,4 +36,27 @@ describe Seatplan do
       expect(@plan.total_rows).to eq 2
     end
   end
+
+  describe '#uniq_chars' do
+    it 'returns all unique characters used in plan' do
+      seatplan = build :seatplan, plan: "abbbbaaacbbbx"
+      expect(seatplan.uniq_chars).to contain_exactly('a', 'b', 'c', 'x')
+    end
+
+    it 'doesnt include \n' do
+      seatplan = build :seatplan, plan: "abbbbaaacb\nbb\nx"
+      expect(seatplan.uniq_chars).not_to include("\n")
+    end
+  end
+
+  describe '#seat_types' do
+    it 'returns all seat_types used in this seatplan' do
+      p = create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
+      b = create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
+      l = create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
+      seatplan = create :seatplan, plan: "pp\rLL"
+
+      expect(seatplan.seat_types).to contain_exactly(p, l)
+    end
+  end
 end

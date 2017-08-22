@@ -60,4 +60,66 @@ describe TourCoach do
       expect(tour_coach.available?).to eq false
     end
   end
+
+  describe '#seat_types' do
+    it 'returns all associated' do
+      p = create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
+      b = create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
+      l = create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
+      seatplan = create :seatplan, plan: "pp_pp\rbb_bb"
+      coach = create :tour_coach, seatplan: seatplan
+
+      expect(coach.seat_types).to contain_exactly(p, b)
+    end
+  end
+
+  describe '#json_seat_types' do
+    before do
+      create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
+      create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
+      create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
+      @seatplan = create :seatplan, plan: "pp_pp\nbb_bb"
+      @coach = create :tour_coach, seatplan: @seatplan
+    end
+
+    it 'returns all seat types used in tour coach' do
+      json = { p: {
+          category: "Premium",
+          classes: "premium",
+          price: "10.0",
+          is_seat: true,
+          character: 'p'
+        },
+        b: {
+            category: "Business",
+            classes: "business",
+            price: "5.0",
+            is_seat: true,
+            character: 'b'
+          }
+      }.to_json
+      expect(@coach.json_seat_types.to_json).to eq json
+    end
+
+    it 'returns tour coach seat types with modified prices with associated SeatPrices' do
+      create :seat_price, char: 'p', price: 300, tour_coach: @coach
+
+      json = { p: {
+          category: "Premium",
+          classes: "premium",
+          price: "300.0",
+          is_seat: true,
+          character: 'p'
+        },
+        b: {
+            category: "Business",
+            classes: "business",
+            price: "5.0",
+            is_seat: true,
+            character: 'b'
+          }
+      }.to_json
+      expect(@coach.json_seat_types.to_json).to eq json
+    end
+  end
 end
