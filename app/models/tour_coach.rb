@@ -34,9 +34,24 @@ class TourCoach < ApplicationRecord
       exclude_fields :created_at, :updated_at
     end
     edit do
-      exclude_fields :coach_bookings, :tour_coach_amenities
+      field :coach
+      field :active_tour
+      field :departure_date
+      field :arrival_date
+      field :driver_name
+      field :driver_number
+      field :notes
+      field :seatplan
     end
     show do
+      field :id
+      field :coach
+      field :active_tour
+      field :departure_date
+      field :arrival_date
+      field :driver_name
+      field :driver_number
+      field :notes
       field :seatplan do
         pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
           bindings[:view].render(
@@ -45,6 +60,8 @@ class TourCoach < ApplicationRecord
           )
         end
       end
+      field :created_at
+      field :updated_at
       exclude_fields :tour_coach_amenities
     end
   end

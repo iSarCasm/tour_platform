@@ -60,8 +60,8 @@
 				blur   : function() {
 					return this.status();
 				},
-				seats   : {}
-
+				seats   : {},
+				showCharInLegend: false
 			},
 			//seat will be basically a seat object which we'll when generating the map
 			seat = (function(seatCharts, seatChartsSettings) {
@@ -444,7 +444,7 @@
 								.addClass(['seatCharts-seat', 'seatCharts-cell', item[1]].concat(
 									settings.classes,
 									typeof settings.seats[item[0]] == "undefined" ? [] : settings.seats[item[0]].classes).join(' ')
-								)
+								).text((settings.showCharInLegend ? item[0] : ''))
 						)
 						.append(
 							$('<span></span>')

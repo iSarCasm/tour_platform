@@ -14,6 +14,8 @@ class Seatplan < ApplicationRecord
   has_many :tour_coaches, inverse_of: :seatplan
 
   validates :title, :plan, presence: true
+  validate :all_rows_equal_length
+  validate :only_existing_seat_types_used
 
   rails_admin do
     navigation_label 'Settings'
@@ -25,7 +27,28 @@ class Seatplan < ApplicationRecord
       field :total_rows
     end
     edit do
-      exclude_fields :tour_coaches
+      field :title
+      field :description
+      field :plan do
+        partial "seatplan_plan_edit"
+      end
+    end
+    show do
+      field :id
+      field :title
+      field :description
+      field :total_seats
+      field :total_rows
+      field :plan do
+        pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
+          bindings[:view].render(
+            partial: "rails_admin/seatplan_plan_show",
+            locals: { seatplan: bindings[:object] }
+          )
+        end
+      end
+      field :created_at
+      field :updated_at
     end
   end
 
@@ -40,16 +63,16 @@ class Seatplan < ApplicationRecord
 
   def total_rows
     plan.split('').reduce(1) do |sum, c|
-      c == "\n" ? sum + 1 : sum
+      (c == "\n" || c == "\r") ? sum + 1 : sum
     end
   end
 
   def total_cells
-    plan.gsub("\n", '').length
+    plan.gsub(/\r\n|\r|\n/, '').length
   end
 
   def uniq_chars
-    plan.gsub("\n", '').chars.to_a.uniq
+    plan.gsub(/\r\n|\r|\n/, '').chars.to_a.uniq
   end
 
   def seat_types
@@ -61,4 +84,26 @@ class Seatplan < ApplicationRecord
       h.merge! seat.json
     end
   end
+
+  def all_rows_equal_length
+    rows = plan.split(/\r\n|\r|\n/)
+    error = rows.any? do |row|
+      row.size != rows[0].size
+    end
+    if error
+      errors.add :plan, 'All plan rows has to have same amount of characters.'
+    end
+  end
+
+  def only_existing_seat_types_used
+    incorrect = []
+    error = uniq_chars.each do |char|
+      type = SeatType.find_by(char: char)
+      incorrect << char unless type
+    end
+    unless incorrect.empty?
+      errors.add :plan, "Incorrect seat types used: #{incorrect.to_s}."
+    end
+  end
+
 end

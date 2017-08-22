@@ -19,3 +19,22 @@
 #toast-container>div{
   opacity: 1;
 }
+
+.font-monospace {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2rem;
+}
+
+
+body {
+  .rails_admin {
+    &.big-text {
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+#legend.overflowed {
+  max-height: 300px;
+  overflow-y: scroll;
+}

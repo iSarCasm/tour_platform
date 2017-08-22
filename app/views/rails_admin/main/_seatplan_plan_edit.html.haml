@@ -1,14 +1,10 @@
 :javascript
-  var firstSeatLabel = 1;
-
   function plan() {
-    return "#{escape_javascript seatplan.plan}"
+    return "#{escape_javascript form.object.to_s}"
   }
-
   function seatTypes() {
-    return JSON.parse('#{raw seatplan.seat_types_json.to_json}')
+    return JSON.parse('#{raw SeatType.json.to_json}')
   }
-
   function fetchedSeatplan() {
     var map = [""]
     var i = 0
@@ -49,22 +45,30 @@
       naming : {
         top : false,
         getLabel : function (character, row, column, settings) {
-          return (settings.seats[character].is_seat ? firstSeatLabel++ : '');
+          return character;
         },
       },
       legend : {
         node : $('#legend'),
           items : legendItems()
-      }
+      },
+      showCharInLegend: true
     });
   });
 
 %style
   = render "seatplan_custom_styles.css.erb"
 
-
 .row
-  .col-md-5
-    %div#seat-map
-  .col-md-7.clearfix
-    #legend
+  .col-md-4
+    = form.text_area :plan, class: 'form-control font-monospace', cols: 12, rows: 24
+  .col-md-8
+    %p.rails_admin.big-text
+      %strong Note:
+    %ol.rails_admin.big-text
+      %li Each row has to have same amount of characters.
+      %li
+        Only
+        %em "_"
+        is showed as empty space.
+    #legend.overflowed

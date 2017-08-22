@@ -19,6 +19,53 @@ describe Seatplan do
     @plan = build :seatplan, plan: "aa_aa\naa_aa"
   end
 
+  context 'validations' do
+    describe 'validates all rows in plan are equal length' do
+      it 'different length rows' do
+        plan = build :seatplan, plan: "aa_aa\naa_aaaaa"
+        plan.valid?
+        expect(plan.errors[:plan]).to eq ['All plan rows has to have same amount of characters.']
+      end
+
+      it 'only one row' do
+        plan = build :seatplan, plan: "aa_aa"
+        plan.valid?
+        expect(plan.errors[:plan]).to eq []
+      end
+
+      it 'same length rows with \r devider' do
+        plan = build :seatplan, plan: "aa_aa\raa_aa"
+        plan.valid?
+        expect(plan.errors[:plan]).to eq []
+      end
+
+      it 'same length rows witn \n devider' do
+        plan = build :seatplan, plan: "aa_aa\naa_aa"
+        plan.valid?
+        expect(plan.errors[:plan]).to eq []
+      end
+
+      it 'same length rows witn \r\n devider' do
+        plan = build :seatplan, plan: "aa_aa\r\naa_aa"
+        plan.valid?
+        expect(plan.errors[:plan]).to eq []
+      end
+    end
+
+    describe 'validates only existing seat types used' do
+      it 'all types exist' do
+        @plan.valid?
+        expect(@plan.errors[:plan]).to eq []
+      end
+
+      it 'one type made up' do
+        plan = build :seatplan, plan: "aa_ax"
+        plan.valid?
+        expect(plan.errors[:plan]).to eq ['Incorrect seat types used: ["x"].']
+      end
+    end
+  end
+
   describe '#total_seats' do
     it 'returns amount of seats for customers' do
       expect(@plan.total_seats).to eq 8
@@ -54,7 +101,7 @@ describe Seatplan do
       p = create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
       b = create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
       l = create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
-      seatplan = create :seatplan, plan: "pp\rLL"
+      seatplan = create :seatplan, plan: "pp\nLL"
 
       expect(seatplan.seat_types).to contain_exactly(p, l)
     end
