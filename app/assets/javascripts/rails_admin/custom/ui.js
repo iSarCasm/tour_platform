@@ -1,4 +1,5 @@
 //= require toastr
+//= require jquery-seat-plan
 
 $(document).ready(function() {
   toastr.options = {

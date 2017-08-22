@@ -55,4 +55,10 @@ class Seatplan < ApplicationRecord
   def seat_types
     SeatType.where(char: uniq_chars)
   end
+
+  def seat_types_json
+    seat_types.each.with_object({}) do |seat, h|
+      h.merge! seat.json
+    end
+  end
 end

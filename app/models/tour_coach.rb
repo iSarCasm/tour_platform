@@ -37,6 +37,14 @@ class TourCoach < ApplicationRecord
       exclude_fields :coach_bookings, :tour_coach_amenities
     end
     show do
+      field :seatplan do
+        pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
+          bindings[:view].render(
+            partial: "rails_admin/seatplan_show",
+            locals: { seatplan: bindings[:object].seatplan }
+          )
+        end
+      end
       exclude_fields :tour_coach_amenities
     end
   end

@@ -31,7 +31,6 @@ function updateSelectedSeatsField(ids) {
 }
 
 $(document).ready(function() {
-  console.log(gon.seat_types)
   var $cart = $('#selected-seats'),
     $counter = $('.js-seats').first(),
     $total = $('#coach-subtotal'),
