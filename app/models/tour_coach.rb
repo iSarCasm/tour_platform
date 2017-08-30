@@ -23,8 +23,10 @@ class TourCoach < ApplicationRecord
   has_many :tour_coach_amenities, dependent: :destroy
   has_many :coach_amenities, through: :tour_coach_amenities
   has_many :seat_prices, inverse_of: :tour_coach
+  has_one :pickup_list, inverse_of: :tour_coach
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
+  accepts_nested_attributes_for :pickup_list, allow_destroy: true
 
   validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
 
@@ -42,6 +44,7 @@ class TourCoach < ApplicationRecord
       field :driver_number
       field :notes
       field :seatplan
+      field :pickup_list
     end
     show do
       field :id
@@ -60,6 +63,7 @@ class TourCoach < ApplicationRecord
           )
         end
       end
+      field :pickup_list
       field :created_at
       field :updated_at
       exclude_fields :tour_coach_amenities

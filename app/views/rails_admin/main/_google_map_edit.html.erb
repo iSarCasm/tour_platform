@@ -1,0 +1,99 @@
+<%= form.text_field field.name, class: 'form-control', style: 'width: 100%; border-radius: 0;', value: '' %>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key %>&libraries=places&callback=initMap">
+</script>
+<div class="ra-google-map-container" id="google_map" style="width:100%; min-height:350px"></div>
+<br>
+<a href="#" onclick="populateLocation()" class="btn btn-primary">Populate location</a>
+
+<script type="text/javascript">
+  var field_id = '<%= form.object_name.to_s + '_' + field.name.to_s %>'
+  var map = {};
+  var marker;
+  var map_data;
+  var latitude, longitude;
+  var autocomplete;
+  function initMap() {
+    latitude = document.getElementById('<%= form.object_name %>' + '_latitude')
+    longitude = document.getElementById('<%= form.object_name %>' + '_longitude')
+    var myOptions = {
+      zoom: <%= default_zoom_level rescue 14 %>,
+      center: new google.maps.LatLng(<%= default_latitude rescue 51.5 %>, <%= default_longitude rescue -0.126 %>),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: true
+    };
+    map = new google.maps.Map(document.getElementById("google_map"), myOptions);
+    document.getElementById(field_id).value = '';
+    initializeAutocomplete(field_id);
+    function initializeAutocomplete(id) {
+      var element = document.getElementById(id);
+      if (element) {
+        autocomplete = new google.maps.places.Autocomplete(element, {types: ['geocode']});
+        // google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        google.maps.event.addListener(map, 'click', markerSet);
+      }
+    }
+  }
+
+  function markerSet(event) {
+    latitude.value = event.latLng.lat();
+    longitude.value = event.latLng.lng();
+    if (marker) {
+      marker.setPosition(event.latLng);
+    } else {
+      createMarker(event.latLng.lat(), event.latLng.lng())
+    }
+  }
+
+  function onPlaceChanged() {
+    cleanAllMarkers();
+    var final_datas = {}
+    var place = autocomplete.getPlace();
+
+    if (place.length == 0) {
+      return;
+    }
+
+    var location = place.geometry.location;
+    final_datas.location = {
+      latitude: location.lat(),
+      longitude: location.lng()
+    };
+    final_datas.formatted_address = place.formatted_address;
+    for (var i in place.address_components) {
+      var component = place.address_components[i];
+      for (var j in component.types) {
+        final_datas[component.types[j]] = component.long_name;
+      }
+    }
+    map_data = final_datas;
+
+    if (map_data.location) {
+      createMarker(map_data.location.latitude, map_data.location.longitude)
+      map.setCenter(new google.maps.LatLng(map_data.location.latitude, map_data.location.longitude));
+    }
+  }
+
+  function cleanAllMarkers() {
+    if (marker)
+      marker.setMap(null);
+  }
+
+  function populateLocation() {
+    onPlaceChanged()
+    latitude.value = map_data.location.latitude
+    longitude.value = map_data.location.longitude
+  }
+
+  function createMarker(lat, lng) {
+    marker = new google.maps.Marker({
+      draggable: true,
+      position: new google.maps.LatLng(lat, lng),
+      map: map
+    });
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+      latitude.value = event.latLng.lat();
+      longitude.value = event.latLng.lng();
+    });
+  }
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822155020) do
+ActiveRecord::Schema.define(version: 20170830190834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,25 @@ ActiveRecord::Schema.define(version: 20170822155020) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["photoable_type", "photoable_id"], name: "index_photos_on_photoable_type_and_photoable_id"
+  end
+
+  create_table "pickup_lists", force: :cascade do |t|
+    t.bigint "tour_coach_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tour_coach_id"], name: "index_pickup_lists_on_tour_coach_id"
+  end
+
+  create_table "pickup_points", force: :cascade do |t|
+    t.bigint "pickup_list_id"
+    t.string "address"
+    t.decimal "longitude"
+    t.decimal "latitude"
+    t.string "time_to_hub"
+    t.string "time_from_hub"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pickup_list_id"], name: "index_pickup_points_on_pickup_list_id"
   end
 
   create_table "role_permissions", force: :cascade do |t|
@@ -320,6 +339,8 @@ ActiveRecord::Schema.define(version: 20170822155020) do
   add_foreign_key "hotel_facilities", "facilities"
   add_foreign_key "hotel_facilities", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
+  add_foreign_key "pickup_lists", "tour_coaches"
+  add_foreign_key "pickup_points", "pickup_lists"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "seat_prices", "tour_coaches"
