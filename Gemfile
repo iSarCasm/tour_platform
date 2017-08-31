@@ -79,7 +79,6 @@ group :development do
   gem 'oink'
   gem 'derailed_benchmarks'
   gem 'stackprof'
-  gem "skylight"
   # Schame model annotations
   gem 'annotate', require: false
   # Code style
@@ -99,7 +98,10 @@ group :test do
 end
 
 group :production do
+  # Asset Pipeline
   gem 'rails_12factor'
+  # Request speed
+  gem "skylight"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
