@@ -26,7 +26,6 @@ class TourCoach < ApplicationRecord
   has_one :pickup_list, inverse_of: :tour_coach
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
-  accepts_nested_attributes_for :pickup_list, allow_destroy: true
 
   validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
 
