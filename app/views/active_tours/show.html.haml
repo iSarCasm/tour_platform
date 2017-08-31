@@ -20,7 +20,7 @@
             %i.fa.fa-calendar-o
             %strong Dates:
             = @active_tour.date_period_fancy
-          = form_for @booking, url: {action: 'book'} do |f|
+          = form_for @booking, url: {controller: 'tour_bookings', action: 'create'} do |f|
             .row.mb-1
               .col-md-6
                 = f.label :adult, 'Adults:'

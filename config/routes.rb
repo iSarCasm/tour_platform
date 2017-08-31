@@ -10,9 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :active_tours, only: [:show] do
-    member do
-      post 'book'
-    end
-  end
+  resources :active_tours, only: [:show]
+
+  resources :tour_bookings, only: [:create, :show, :index, :destroy]
 end
