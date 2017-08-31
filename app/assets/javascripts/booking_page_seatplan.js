@@ -62,7 +62,7 @@ $(document).ready(function() {
          * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
          */
         $counter.val(sc.find('selected').length+1);
-        var newPrice = recalculateTotal(sc)+this.data().price;
+        var newPrice = recalculateTotal(sc)+parseInt(this.data().price);
         $total.text("$" + parseInt(newPrice).toFixed(2));
 
         setTimeout(function() {
@@ -74,7 +74,7 @@ $(document).ready(function() {
         //update the counter
         $counter.text(sc.find('selected').length-1);
         //and total
-        $total.text(recalculateTotal(sc)-this.data().price);
+        $total.text(recalculateTotal(sc)-parseInt(this.data().price));
 
         //remove the item from our cart
         $('#cart-item-'+this.settings.id).remove();
@@ -105,7 +105,8 @@ function recalculateTotal(sc) {
   var total = 0;
   //basically find every selected seat and sum its price
   sc.find('selected').each(function () {
-    total += this.data().price;
+    total += parseInt(this.data().price);
   });
+  console.log(total)
   return total;
 }

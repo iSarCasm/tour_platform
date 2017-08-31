@@ -43,7 +43,9 @@ class TourCoach < ApplicationRecord
       field :driver_name
       field :driver_number
       field :notes
+      field :coach_amenities
       field :seatplan
+      field :seat_prices
       field :pickup_list
     end
     show do
@@ -55,6 +57,7 @@ class TourCoach < ApplicationRecord
       field :driver_name
       field :driver_number
       field :notes
+      field :coach_amenities
       field :seatplan do
         pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
           bindings[:view].render(
@@ -63,6 +66,7 @@ class TourCoach < ApplicationRecord
           )
         end
       end
+      field :seat_prices
       field :pickup_list
       field :created_at
       field :updated_at
@@ -76,6 +80,10 @@ class TourCoach < ApplicationRecord
       "#{arrival_date.to_date.to_formatted_s(:rfc822)}]"
   rescue
     'New Tour Coach'
+  end
+
+  def coach_title
+    coach.title
   end
 
   def seats
@@ -99,6 +107,10 @@ class TourCoach < ApplicationRecord
       seat = modify_seat_type_price(seat)
       h.merge! seat.json
     end
+  end
+
+  def pickup_points
+    pickup_list.pickup_points
   end
 
   private

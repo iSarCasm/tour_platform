@@ -31,7 +31,7 @@
       if (char !== '_')
         items.push([char, 'available', seat["category"]])
     })
-    items.push([ 'f', 'unavailable', 'Already Booked'])
+    // items.push([ 'f', 'unavailable', 'Already Booked'])
     return items
   }
 
@@ -58,6 +58,7 @@
       }
     });
   });
+
 
 %style
   = render "seatplan_custom_styles.css.erb"

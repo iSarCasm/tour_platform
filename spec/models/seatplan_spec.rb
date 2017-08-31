@@ -15,7 +15,6 @@ require 'rails_helper'
 describe Seatplan do
   before :each do
     create :seat_type, char: 'a', is_seat: true
-    create :seat_type, char: '_', is_seat: false
     @plan = build :seatplan, plan: "aa_aa\naa_aa"
   end
 

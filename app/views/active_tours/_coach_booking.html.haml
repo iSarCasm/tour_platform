@@ -1,0 +1,46 @@
+- content_for :javascript_body do
+  %script{async: true,
+          defer: true,
+          src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places&callback=initMap"}
+
+.pl-4
+  = coach.hidden_field :tour_coach_id, value: @tour_coach.id
+  %p.mb-0
+    %strong Coach:
+    = @tour_coach.coach_title
+  %ul
+    - @tour_coach.coach_amenities.each do |feature|
+      %li= feature.name
+
+  %h4 Choose Your pickup point:
+  .pl-2
+    .row#pickup-list
+      .col-md-6#google-map
+      .col-md-6
+        .list-group#pickup-list-controls
+          - @tour_coach.pickup_points.each do |point|
+            %a.list-group-item.list-group-item-action.js-pickup-point{href: '#',
+                                                      data: {lat: point.latitude, lng: point.longitude}}
+              = point.address
+
+  %h4.mt-2 Choose Your seats:
+  .pl-2
+    .row
+      .col-md-5
+        %div#seat-map
+      .col-md-7
+        #legend
+    %ul#selected-seats
+    .text-error
+      = errors_for 'coach_bookings.seats'
+    .form-group
+      %i.fa.fa-ticket
+      = label :seats_preview, 'Seats:'
+      = text_field_tag :seats_preview, 0, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
+      = coach.hidden_field :seats, value: '["13", "14"]'
+
+  %p
+    %strong
+      %i.fa.fa-money
+      Subtotal:
+    %span#coach-subtotal $0

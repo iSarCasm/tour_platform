@@ -66,7 +66,7 @@ describe TourCoach do
       p = create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
       b = create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
       l = create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
-      seatplan = create :seatplan, plan: "pp_pp\rbb_bb"
+      seatplan = create :seatplan, plan: "pppp\rbbbb"
       coach = create :tour_coach, seatplan: seatplan
 
       expect(coach.seat_types).to contain_exactly(p, b)
@@ -78,7 +78,7 @@ describe TourCoach do
       create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
       create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
       create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
-      @seatplan = create :seatplan, plan: "pp_pp\nbb_bb"
+      @seatplan = create :seatplan, plan: "pppp\nbbbb"
       @coach = create :tour_coach, seatplan: @seatplan
     end
 
@@ -120,6 +120,26 @@ describe TourCoach do
           }
       }.to_json
       expect(@coach.json_seat_types.to_json).to eq json
+    end
+  end
+
+  describe '#coach_title' do
+    it "returns the coach's #title" do
+      coach = build :coach
+      tour_coach = build :tour_coach, coach: coach
+      allow(coach).to receive(:title).and_return('What a unique title')
+      expect(tour_coach.coach_title).to eq coach.title
+    end
+  end
+
+  describe '#pickup_points' do
+    it 'returns all pickup points for this tour coach' do
+      tour_coach = create :tour_coach
+      list = create :pickup_list, tour_coach: tour_coach
+      a = create :pickup_point, pickup_list: list
+      b = create :pickup_point, pickup_list: list
+      c = create :pickup_point, pickup_list: list
+      expect(tour_coach.pickup_points).to contain_exactly(a, b, c)
     end
   end
 end
