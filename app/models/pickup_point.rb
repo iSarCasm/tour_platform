@@ -25,14 +25,14 @@ class PickupPoint < ApplicationRecord
       field :pickup_list
       field :address do
         render do
-          bindings[:view].render({
+          bindings[:view].render(
             partial: 'google_map_edit',
             locals: {
               field: self,
               form: bindings[:form],
               google_api_key: Rails.application.secrets.google_api_key
             }
-          })
+          )
         end
       end
       field :latitude
@@ -48,7 +48,7 @@ class PickupPoint < ApplicationRecord
       field :longitude do
         pretty_value do
           bindings[:view].render(
-            partial: "rails_admin/google_map_show",
+            partial: 'rails_admin/google_map_show',
             locals: {
               object: bindings[:object],
               value: bindings[:object].longitude,

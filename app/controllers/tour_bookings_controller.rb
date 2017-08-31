@@ -14,17 +14,11 @@ class TourBookingsController < ApplicationController
     end
   end
 
-  def show
+  def show; end
 
-  end
+  def index; end
 
-  def index
-
-  end
-
-  def destroy
-
-  end
+  def destroy; end
 
   private
 
@@ -37,7 +31,7 @@ class TourBookingsController < ApplicationController
   end
 
   def make_seats_array
-    seats = tour_booking_params["coach_bookings_attributes"]["0"]["seats"]
-    tour_booking_params["coach_bookings_attributes"]["0"]["seats"] = JSON.parse(seats) unless seats.kind_of? Array
+    seats = tour_booking_params['coach_bookings_attributes']['0']['seats']
+    tour_booking_params['coach_bookings_attributes']['0']['seats'] = JSON.parse(seats) unless seats.ia_an? Array
   end
 end

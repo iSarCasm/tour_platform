@@ -27,7 +27,7 @@ describe Seatplan do
       end
 
       it 'only one row' do
-        plan = build :seatplan, plan: "aa_aa"
+        plan = build :seatplan, plan: 'aa_aa'
         plan.valid?
         expect(plan.errors[:plan]).to eq []
       end
@@ -58,7 +58,7 @@ describe Seatplan do
       end
 
       it 'one type made up' do
-        plan = build :seatplan, plan: "aa_ax"
+        plan = build :seatplan, plan: 'aa_ax'
         plan.valid?
         expect(plan.errors[:plan]).to eq ['Incorrect seat types used: ["x"].']
       end
@@ -85,7 +85,7 @@ describe Seatplan do
 
   describe '#uniq_chars' do
     it 'returns all unique characters used in plan' do
-      seatplan = build :seatplan, plan: "abbbbaaacbbbx"
+      seatplan = build :seatplan, plan: 'abbbbaaacbbbx'
       expect(seatplan.uniq_chars).to contain_exactly('a', 'b', 'c', 'x')
     end
 
@@ -97,8 +97,8 @@ describe Seatplan do
 
   describe '#seat_types' do
     it 'returns all seat_types used in this seatplan' do
+      create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
       p = create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
-      b = create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
       l = create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
       seatplan = create :seatplan, plan: "pp\nLL"
 

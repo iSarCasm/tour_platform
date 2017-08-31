@@ -30,7 +30,7 @@ class Seatplan < ApplicationRecord
       field :title
       field :description
       field :plan do
-        partial "seatplan_plan_edit"
+        partial
       end
     end
     show do
@@ -40,9 +40,9 @@ class Seatplan < ApplicationRecord
       field :total_seats
       field :total_rows
       field :plan do
-        pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
+        pretty_value do
           bindings[:view].render(
-            partial: "rails_admin/seatplan_plan_show",
+            partial: 'rails_admin/seatplan_plan_show',
             locals: { seatplan: bindings[:object] }
           )
         end
@@ -63,7 +63,7 @@ class Seatplan < ApplicationRecord
 
   def total_rows
     plan.split('').reduce(1) do |sum, c|
-      (c == "\n" || c == "\r") ? sum + 1 : sum
+      ["\n", "\r"].include?(c) ? sum + 1 : sum
     end
   end
 
@@ -90,20 +90,15 @@ class Seatplan < ApplicationRecord
     error = rows.any? do |row|
       row.size != rows[0].size
     end
-    if error
-      errors.add :plan, 'All plan rows has to have same amount of characters.'
-    end
+    errors.add :plan, 'All plan rows has to have same amount of characters.' if error
   end
 
   def only_existing_seat_types_used
     incorrect = []
-    error = uniq_chars.each do |char|
+    uniq_chars.each do |char|
       type = SeatType.find_by(char: char)
       incorrect << char unless type
     end
-    unless incorrect.empty?
-      errors.add :plan, "Incorrect seat types used: #{incorrect.to_s}."
-    end
+    errors.add :plan, "Incorrect seat types used: #{incorrect}." unless incorrect.empty?
   end
-
 end

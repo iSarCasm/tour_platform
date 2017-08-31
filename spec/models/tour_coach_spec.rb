@@ -63,9 +63,9 @@ describe TourCoach do
 
   describe '#seat_types' do
     it 'returns all associated' do
+      create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
       p = create :seat_type, name: 'Premium', char: 'p', price: 10, color: '000', is_seat: true
       b = create :seat_type, name: 'Business', char: 'b', price: 5, color: '111', is_seat: true
-      l = create :seat_type, name: 'Lux', char: 'L', price: 2000, color: '000', is_seat: true
       seatplan = create :seatplan, plan: "pppp\rbbbb"
       coach = create :tour_coach, seatplan: seatplan
 
@@ -83,20 +83,21 @@ describe TourCoach do
     end
 
     it 'returns all seat types used in tour coach' do
-      json = { p: {
-          category: "Premium",
-          classes: "premium",
-          price: "10.0",
+      json = {
+        p: {
+          category: 'Premium',
+          classes: 'premium',
+          price: '10.0',
           is_seat: true,
           character: 'p'
         },
         b: {
-            category: "Business",
-            classes: "business",
-            price: "5.0",
-            is_seat: true,
-            character: 'b'
-          }
+          category: 'Business',
+          classes: 'business',
+          price: '5.0',
+          is_seat: true,
+          character: 'b'
+        }
       }.to_json
       expect(@coach.json_seat_types.to_json).to eq json
     end
@@ -104,20 +105,21 @@ describe TourCoach do
     it 'returns tour coach seat types with modified prices with associated SeatPrices' do
       create :seat_price, char: 'p', price: 300, tour_coach: @coach
 
-      json = { p: {
-          category: "Premium",
-          classes: "premium",
-          price: "300.0",
+      json = {
+        p: {
+          category: 'Premium',
+          classes: 'premium',
+          price: '300.0',
           is_seat: true,
           character: 'p'
         },
         b: {
-            category: "Business",
-            classes: "business",
-            price: "5.0",
-            is_seat: true,
-            character: 'b'
-          }
+          category: 'Business',
+          classes: 'business',
+          price: '5.0',
+          is_seat: true,
+          character: 'b'
+        }
       }.to_json
       expect(@coach.json_seat_types.to_json).to eq json
     end

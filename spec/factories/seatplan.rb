@@ -4,11 +4,11 @@ FactoryGirl.define do
     description "Seat Plan Description"
     plan        "_"
 
-    after(:build) do |seatplan, evaluator|
+    after(:build) do
       create :seat_type, char: '_', is_seat: false unless SeatType.find_by(char: '_')
     end
 
-    before(:create) do |seatplan, evaluator|
+    before(:create) do
       create :seat_type, char: '_', is_seat: false unless SeatType.find_by(char: '_')
     end
   end

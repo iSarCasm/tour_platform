@@ -59,9 +59,9 @@ class TourCoach < ApplicationRecord
       field :notes
       field :coach_amenities
       field :seatplan do
-        pretty_value do # used in list view columns and show views, defaults to formatted_value for non-association fields
+        pretty_value do
           bindings[:view].render(
-            partial: "rails_admin/seatplan_show",
+            partial: 'rails_admin/seatplan_show',
             locals: { seatplan: bindings[:object].seatplan }
           )
         end
@@ -117,9 +117,7 @@ class TourCoach < ApplicationRecord
 
   def modify_seat_type_price(seat_type)
     seat_price = seat_prices.where(char: seat_type.char).take
-    if seat_price
-      seat_type.price = seat_price.price
-    end
+    seat_type.price = seat_price.price if seat_price
     seat_type
   end
 end
