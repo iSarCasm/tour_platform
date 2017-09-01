@@ -9,7 +9,8 @@ class Ability
   private
 
   def guest_ability
-    can :read, :all
+    can :read, Tour
+    can :read, ActiveTour
   end
 
   def customer_ability(user)
