@@ -11,6 +11,7 @@ Rails.application.config.assets.precompile += %w( booking_page_prices.js )
 Rails.application.config.assets.precompile += %w( booking_page_seatplan.js )
 Rails.application.config.assets.precompile += %w( pickup_point_select.js )
 Rails.application.config.assets.precompile += %w( show_seatplan.js )
+Rails.application.config.assets.precompile += %w( pickup_point_preview.js )
 
 
 # Precompile additional assets.

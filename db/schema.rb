@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830190834) do
+ActiveRecord::Schema.define(version: 20170901225720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20170830190834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "seats"
+    t.bigint "pickup_point_id"
+    t.index ["pickup_point_id"], name: "index_coach_bookings_on_pickup_point_id"
     t.index ["tour_booking_id"], name: "index_coach_bookings_on_tour_booking_id"
     t.index ["tour_coach_id"], name: "index_coach_bookings_on_tour_coach_id"
   end
@@ -332,6 +334,7 @@ ActiveRecord::Schema.define(version: 20170830190834) do
   end
 
   add_foreign_key "active_tours", "tours"
+  add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
   add_foreign_key "hotel_bookings", "hotel_rooms"

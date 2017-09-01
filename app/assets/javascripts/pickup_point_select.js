@@ -17,10 +17,14 @@ function initMap() {
   });
 
   points = document.getElementsByClassName('js-pickup-point')
-  selectPoint(points[0])
+  setTimeout(function() {
+    selectPoint(points[0])
+  }, 300);
 }
 
 function selectPoint(point) {
+  document.getElementById('tour_booking_coach_bookings_attributes_0_pickup_point_id').value = $(point).data('id')
+
   if (activePoint)
     activePoint.removeClass('active')
 

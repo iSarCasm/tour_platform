@@ -15,8 +15,9 @@
         .list-group#pickup-list-controls
           - @tour_coach.pickup_points.each do |point|
             %a.list-group-item.list-group-item-action.js-pickup-point{href: '#',
-                                                      data: {lat: point.latitude, lng: point.longitude}}
+                                                      data: {lat: point.latitude, lng: point.longitude, id: point.id}}
               = point.address
+          = coach.hidden_field :pickup_point_id
 
   %h4.mt-2 Choose Your seats:
   .pl-2
@@ -32,7 +33,7 @@
       %i.fa.fa-ticket
       = label :seats_preview, 'Seats:'
       = text_field_tag :seats_preview, 0, type: 'number', class: 'form-control js-seats', min: '1', placeholder: 'Seats', disabled: true
-      = coach.hidden_field :seats, value: '["13", "14"]'
+      = coach.hidden_field :seats
 
   %p
     %strong

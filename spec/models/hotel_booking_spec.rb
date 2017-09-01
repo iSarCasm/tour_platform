@@ -41,4 +41,13 @@ describe HotelBooking do
       expect(hotel_booking.title).to eq 'Jason -> Big Pen: Single [14 Jul 2017 - 28 Jul 2017]'
     end
   end
+
+  describe '#tour_hotel' do
+    it 'returns TourHotel of given HotelBooking' do
+      th = create :tour_hotel
+      hr = create :hotel_room, tour_hotel: th
+      hb = create :hotel_booking, hotel_room: hr
+      expect(hb.tour_hotel).to eq th
+    end
+  end
 end

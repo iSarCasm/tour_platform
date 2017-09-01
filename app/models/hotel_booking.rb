@@ -30,6 +30,10 @@ class HotelBooking < ApplicationRecord
     'New Hotel Booking'
   end
 
+  def tour_hotel
+    hotel_room.tour_hotel
+  end
+
   def configure_for_form(hotel)
     define_singleton_method(:hotel_title) { hotel.hotel_title.to_s }
     define_singleton_method(:booking_period_fancy) { hotel.booking_period_fancy.to_s }

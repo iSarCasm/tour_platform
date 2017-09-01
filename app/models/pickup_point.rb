@@ -15,6 +15,7 @@
 
 class PickupPoint < ApplicationRecord
   belongs_to :pickup_list, inverse_of: :pickup_points
+  has_many :coach_bookings, inverse_of: :pickup_point
 
   validates :address, :latitude, :longitude, presence: true
 

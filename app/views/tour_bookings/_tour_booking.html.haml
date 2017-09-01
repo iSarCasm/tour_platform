@@ -1,0 +1,92 @@
+.tour_booking.alert.alert-warning
+  %h3= tour_booking.active_tour.title
+  %p
+    %i.fa.fa-plane
+    %strong Tour:
+    = link_to(tour_booking.tour_title, tour_booking.tour)
+    %br
+    %i.fa.fa-calendar-o
+    %strong Dates:
+    = tour_booking.active_tour.date_period_fancy
+  %p
+    - if tour_booking.adult&.nonzero?
+      %strong= tour_booking.adult
+      = 'Adult'.pluralize(tour_booking.adult)
+    - if tour_booking.child&.nonzero?
+      %strong= tour_booking.child
+      = 'Child'.pluralize(tour_booking.adult)
+    - if tour_booking.infant&.nonzero?
+      %strong= tour_booking.infant
+      = 'Infant'.pluralize(tour_booking.adult)
+    - if tour_booking.senior&.nonzero?
+      %strong= tour_booking.senior
+      = 'Senior'.pluralize(tour_booking.adult)
+  %h4 Coach booking:
+  - tour_booking.coach_bookings.each do |coach|
+    .row
+      .col-md-5
+        .row
+          .col-md-6
+            %div#seat-map
+          .col-md-6
+            #legend
+        - tour_booking.coach_booking.seat_objects.each do |seat|
+          \-
+          %strong= "#{seat.seat_type} ##{seat.number}: #{number_to_currency(seat.seat_type.price)}"
+          %br
+      .col-md-7
+        %strong= tour_booking.coach_booking.pickup_point.address
+        .pickup-point-preview#google-map{data: {lat: tour_booking.coach_booking.pickup_point.latitude, lng: tour_booking.coach_booking.pickup_point.longitude}}
+
+  %h4.mt-5 Hotel bookings:
+  - tour_booking.hotel_bookings.each do |hotel|
+    %div.mb-4
+      %h5
+        %i.fa.fa-home
+        Hotel:
+        = hotel.tour_hotel.hotel_title
+      %p.mb-0
+        %strong
+          %i.fa.fa-clock-o
+          Living period:
+        = hotel.tour_hotel.booking_period_fancy
+        %br
+        %strong
+          %i.fa.fa-sun-o
+          Days:
+        = hotel.tour_hotel.days
+        %br
+        %strong
+          %i.fa.fa-moon-o
+          Nights:
+        = hotel.tour_hotel.nights
+      .photos
+        - hotel.tour_hotel.photos.each do |photo|
+          = link_to photo.photo.url, target: :blank do
+            = image_tag(photo.photo.small.url)
+
+      %p
+        %strong Booked:
+        = hotel.hotel_room.room_type.room_type + ':'
+        - if tour_booking.adult&.nonzero?
+          = pluralize(tour_booking.adult, 'adult') + ' * '
+          (
+          = render 'active_tours/room_price', price: hotel.hotel_room.adult, supp_price: hotel.hotel_room.adult_supp
+          ),
+        - if tour_booking.child&.nonzero?
+          = pluralize(tour_booking.child, 'child') + ' * '
+          (
+          = render 'active_tours/room_price', price: hotel.hotel_room.child, supp_price: hotel.hotel_room.child_supp
+          ),
+        - if tour_booking.infant&.nonzero?
+          = pluralize(tour_booking.infant, 'infant') + ' * '
+          (
+          = render 'active_tours/room_price', price: hotel.hotel_room.infant, supp_price: hotel.hotel_room.infant_supp
+          ),
+        - if tour_booking.senior&.nonzero?
+          = pluralize(tour_booking.senior, 'senior') + ' * '
+          (
+          = render 'active_tours/room_price', price: hotel.hotel_room.senior, supp_price: hotel.hotel_room.senior_supp
+          )
+
+  = button_to "Decline this booking", tour_booking, method: :delete, class: 'btn btn-danger'

@@ -8,11 +8,13 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  seats           :json
+#  pickup_point_id :integer
 #
 
 class CoachBooking < ApplicationRecord
   belongs_to :tour_coach, inverse_of: :coach_bookings
   belongs_to :tour_booking, inverse_of: :coach_bookings
+  belongs_to :pickup_point, inverse_of: :coach_bookings
 
   validates :tour_coach, :tour_booking, :seats, presence: true
 

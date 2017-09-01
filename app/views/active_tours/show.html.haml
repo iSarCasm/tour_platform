@@ -7,7 +7,7 @@
           src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places&callback=initMap"}
 - content_for :dynamic_css do
   = render 'seatplan_custom_styles.css.erb'
-
+= flash[:error]
 .container
   .row.pt-5
     .col-md-8.push-md-2

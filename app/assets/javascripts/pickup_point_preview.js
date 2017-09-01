@@ -2,22 +2,20 @@ var map = {};
 var marker;
 var activePoint;
 function initMap() {
-  var lat = 10
-  var lng = 10
+  var mapAnchor = document.getElementById("google-map");
+  var lat = $(mapAnchor).data('lat');
+  var lng = $(mapAnchor).data('lng');
   var myOptions = {
     zoom: 18,
     center: new google.maps.LatLng(lat, lng),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     scrollwheel: false
   };
-  map = new google.maps.Map(document.getElementById("google-map"), myOptions);
+  map = new google.maps.Map(mapAnchor, myOptions);
   marker = new google.maps.Marker({
     position: new google.maps.LatLng(lat, lng),
     map: map
   });
-
-  points = document.getElementsByClassName('js-pickup-point')
-  selectPoint(points[0])
 }
 
 function selectPoint(point) {
