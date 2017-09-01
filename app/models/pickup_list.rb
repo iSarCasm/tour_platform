@@ -21,5 +21,7 @@ class PickupList < ApplicationRecord
 
   def title
     "Pickup list: #{tour_coach.title}"
+  rescue
+    "New Pickup List"
   end
 end

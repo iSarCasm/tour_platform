@@ -1,99 +1,162 @@
 <%= form.text_field field.name, class: 'form-control', style: 'width: 100%; border-radius: 0;', value: '' %>
+
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key %>&libraries=places&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key %>&libraries=places&language=en&region=US">
 </script>
-<div class="ra-google-map-container" id="google_map" style="width:100%; min-height:350px"></div>
+
+<div class="ra-google-map-container" id="google_map<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>" style="width:100%; min-height:350px"></div>
 <br>
-<a href="#" onclick="populateLocation()" class="btn btn-primary">Populate location</a>
+<a href="#" id="populate_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>" class="btn btn-primary">Populate location</a>
+<a href="#" id="reverse_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>" class="btn btn-primary">Reverse geocode</a>
+<a href="#" id="fix_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>" class="btn btn-primary">Fix map</a>
 
 <script type="text/javascript">
-  var field_id = '<%= form.object_name.to_s + '_' + field.name.to_s %>'
-  var map = {};
-  var marker;
-  var map_data;
-  var latitude, longitude;
-  var autocomplete;
-  function initMap() {
-    latitude = document.getElementById('<%= form.object_name %>' + '_latitude')
-    longitude = document.getElementById('<%= form.object_name %>' + '_longitude')
-    var myOptions = {
-      zoom: <%= default_zoom_level rescue 14 %>,
-      center: new google.maps.LatLng(<%= default_latitude rescue 51.5 %>, <%= default_longitude rescue -0.126 %>),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: true
-    };
-    map = new google.maps.Map(document.getElementById("google_map"), myOptions);
-    document.getElementById(field_id).value = '';
-    initializeAutocomplete(field_id);
-    function initializeAutocomplete(id) {
-      var element = document.getElementById(id);
-      if (element) {
-        autocomplete = new google.maps.places.Autocomplete(element, {types: ['geocode']});
-        // google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-        google.maps.event.addListener(map, 'click', markerSet);
-      }
-    }
-  }
+  (function() {
+    var field_name;
+    var field_id;
+    var map = {};
+    var geocoder;
+    var marker;
+    var map_data;
+    var latitude, longitude;
+    var autocomplete;
+    var reversePlace;
+    var places;
 
-  function markerSet(event) {
-    latitude.value = event.latLng.lat();
-    longitude.value = event.latLng.lng();
-    if (marker) {
-      marker.setPosition(event.latLng);
-    } else {
-      createMarker(event.latLng.lat(), event.latLng.lng())
-    }
-  }
+    setTimeout(initMap, 1000);
 
-  function onPlaceChanged() {
-    cleanAllMarkers();
-    var final_datas = {}
-    var place = autocomplete.getPlace();
-
-    if (place.length == 0) {
-      return;
-    }
-
-    var location = place.geometry.location;
-    final_datas.location = {
-      latitude: location.lat(),
-      longitude: location.lng()
-    };
-    final_datas.formatted_address = place.formatted_address;
-    for (var i in place.address_components) {
-      var component = place.address_components[i];
-      for (var j in component.types) {
-        final_datas[component.types[j]] = component.long_name;
-      }
-    }
-    map_data = final_datas;
-
-    if (map_data.location) {
-      createMarker(map_data.location.latitude, map_data.location.longitude)
-      map.setCenter(new google.maps.LatLng(map_data.location.latitude, map_data.location.longitude));
-    }
-  }
-
-  function cleanAllMarkers() {
-    if (marker)
-      marker.setMap(null);
-  }
-
-  function populateLocation() {
-    onPlaceChanged()
-    latitude.value = map_data.location.latitude
-    longitude.value = map_data.location.longitude
-  }
-
-  function createMarker(lat, lng) {
-    marker = new google.maps.Marker({
-      draggable: true,
-      position: new google.maps.LatLng(lat, lng),
-      map: map
+    $('#populate_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>').on('click', function(event) {
+      populateLocation(event);
     });
-    google.maps.event.addListener(marker, 'dragend', function(event) {
+
+    $('#reverse_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>').on('click', function(event) {
+      reverseLocation(event);
+    });
+
+    $('#fix_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>').on('click', function(event) {
+      fixMap(event);
+    });
+
+    function initMap() {
+      field_name = "<%= form.object_name.to_s + '[' + field.name.to_s + ']'%>"
+      field_id = document.getElementsByName(field_name)[0].id
+      latitude = document.getElementsByName('<%= form.object_name %>' + '[latitude]')[0]
+      longitude = document.getElementsByName('<%= form.object_name %>' + '[longitude]')[0]
+      var myOptions = {
+        zoom: <%= default_zoom_level rescue 14 %>,
+        center: new google.maps.LatLng(<%= default_latitude rescue 51.5 %>, <%= default_longitude rescue -0.126 %>),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: true
+      };
+      geocoder = new google.maps.Geocoder;
+      map = new google.maps.Map(document.getElementById("google_map<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>"), myOptions);
+      places = new google.maps.places.PlacesService(map);
+      document.getElementById(field_id).value = '';
+      initializeAutocomplete(field_id);
+      function initializeAutocomplete(id) {
+        var element = document.getElementById(id);
+        if (element) {
+          autocomplete = new google.maps.places.Autocomplete(element, {types: ['geocode']});
+          console.log(autocomplete);
+          // google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+          google.maps.event.addListener(map, 'click', markerSet);
+        }
+      }
+      // Rails admin triggers animation which resizes DIV when nested attributes
+      setTimeout(function() {
+        google.maps.event.trigger(map, "resize");
+      }, 1000);
+    }
+
+    function markerSet(event) {
       latitude.value = event.latLng.lat();
       longitude.value = event.latLng.lng();
-    });
-  }
+      if (marker) {
+        marker.setPosition(event.latLng);
+      } else {
+        createMarker(event.latLng.lat(), event.latLng.lng())
+      }
+    }
+
+    function onPlaceChanged() {
+      cleanAllMarkers();
+      var final_datas = {}
+      var place = autocomplete.getPlace() || reversePlace;
+      console.log(place);
+      if (!place || place.length == 0) {
+        return;
+      }
+
+      var location = place.geometry.location;
+      final_datas.location = {
+        latitude: location.lat(),
+        longitude: location.lng()
+      };
+      final_datas.formatted_address = place.formatted_address;
+      for (var i in place.address_components) {
+        var component = place.address_components[i];
+        for (var j in component.types) {
+          final_datas[component.types[j]] = component.long_name;
+        }
+      }
+      map_data = final_datas;
+
+      if (map_data.location) {
+        createMarker(map_data.location.latitude, map_data.location.longitude)
+        map.setCenter(new google.maps.LatLng(map_data.location.latitude, map_data.location.longitude));
+      }
+    }
+
+    function cleanAllMarkers() {
+      if (marker)
+        marker.setMap(null);
+    }
+
+    function populateLocation(event) {
+      event.preventDefault()
+      onPlaceChanged()
+      latitude.value = map_data.location.latitude
+      longitude.value = map_data.location.longitude
+    }
+
+    function reverseLocation(event) {
+      event.preventDefault();
+      var latlng = {lat: parseFloat(latitude.value), lng: parseFloat(longitude.value)};
+      console.log(latlng);
+      geocoder.geocode({'location': latlng}, function(results, status) {
+        if (status === 'OK') {
+          if (results[1]) {
+            document.getElementById(field_id).value = results[1].formatted_address;
+            map_data = {location: {latitude: latlng.lat, longitude: latlng.lng}};
+            places.getDetails({placeId: results[1].place_id}, function(place, status) {
+              reversePlace = place;
+            })
+          } else {
+            document.getElementById(field_id).value = 'Unknown localtion';
+          }
+        } else {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      });
+    }
+
+    function fixMap(event) {
+      event.preventDefault();
+      google.maps.event.trigger(map, "resize");
+    }
+
+    function createMarker(lat, lng) {
+      console.log("lat "+ lat + "; lng " + lng);
+      console.log(map);
+      marker = new google.maps.Marker({
+        draggable: true,
+        position: new google.maps.LatLng(lat, lng),
+        map: map
+      });
+      google.maps.event.addListener(marker, 'dragend', function(event) {
+        latitude.value = event.latLng.lat();
+        longitude.value = event.latLng.lng();
+      });
+    }
+  })();
 </script>
