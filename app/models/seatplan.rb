@@ -52,6 +52,11 @@ class Seatplan < ApplicationRecord
     end
   end
 
+  def get_seat(row, col)
+    char = rows[row-1][col-1]
+    SeatType.find_by(char: char)
+  end
+
   def total_seats
     total = 0
     plan.each_char do |c|
@@ -59,6 +64,10 @@ class Seatplan < ApplicationRecord
       total += 1 if seat_type && seat_type.is_seat
     end
     total
+  end
+
+  def total_cols
+    total_cells / total_rows
   end
 
   def total_rows
@@ -85,8 +94,16 @@ class Seatplan < ApplicationRecord
     end
   end
 
+  def rows
+    plan.split(/\r\n|\r|\n/)
+  end
+
+  def only_seat_rows
+    non_seats = SeatType.nonseat_chars
+    rows.map { |r| r.gsub(/#{non_seats.join('|')}/, '')}
+  end
+
   def all_rows_equal_length
-    rows = plan.split(/\r\n|\r|\n/)
     error = rows.any? do |row|
       row.size != rows[0].size
     end

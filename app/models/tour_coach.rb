@@ -27,7 +27,7 @@ class TourCoach < ApplicationRecord
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
 
-  validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
+  validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, :pickup_list, presence: true
 
   rails_admin do
     parent Coach
@@ -94,7 +94,7 @@ class TourCoach < ApplicationRecord
   end
 
   def available?
-    seats_left > 0
+    seats_left > 0 && !!pickup_list # TODO: remove later (only appeared with invalid models)
   end
 
   def seat_types

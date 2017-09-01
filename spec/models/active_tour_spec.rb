@@ -48,8 +48,7 @@ describe ActiveTour do
   describe '#availabe?' do
     it 'avaialbe if all coaches and hotels are available' do
       active_tour = create :active_tour
-      tour_coach = create :tour_coach, active_tour: active_tour
-      allow(tour_coach).to receive(:seats).and_return(0)        # coach wo seats
+      tour_coach = create :tour_coach_without_seats, active_tour: active_tour
 
       tour_hotel = create :tour_hotel, active_tour: active_tour
       room_1 = create :hotel_room, tour_hotel: tour_hotel, amount: 0  # no rooms

@@ -1,8 +1,3 @@
-- content_for :javascript_body do
-  %script{async: true,
-          defer: true,
-          src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places&callback=initMap"}
-
 .pl-4
   = coach.hidden_field :tour_coach_id, value: @tour_coach.id
   %p.mb-0

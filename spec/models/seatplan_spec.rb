@@ -14,7 +14,7 @@ require 'rails_helper'
 
 describe Seatplan do
   before :each do
-    create :seat_type, char: 'a', is_seat: true
+    @a = create :seat_type, char: 'a', is_seat: true
     @plan = build :seatplan, plan: "aa_aa\naa_aa"
   end
 
@@ -65,6 +65,14 @@ describe Seatplan do
     end
   end
 
+  describe '#get_seat' do
+    context 'returns seat_type in a given location' do
+      it do
+        expect(@plan.get_seat(1, 2)).to eq @a
+      end
+    end
+  end
+
   describe '#total_seats' do
     it 'returns amount of seats for customers' do
       expect(@plan.total_seats).to eq 8
@@ -80,6 +88,12 @@ describe Seatplan do
   describe '#total_rows' do
     it 'returns amount of rows for seatplan' do
       expect(@plan.total_rows).to eq 2
+    end
+  end
+
+  describe '#total_cols' do
+    it 'returns amount of cells in each row' do
+      expect(@plan.total_cols).to eq 5
     end
   end
 
@@ -103,6 +117,18 @@ describe Seatplan do
       seatplan = create :seatplan, plan: "pp\nLL"
 
       expect(seatplan.seat_types).to contain_exactly(p, l)
+    end
+  end
+
+  describe '#rows' do
+    it 'returns array of char rows' do
+      expect(@plan.rows).to match_array ['aa_aa', 'aa_aa']
+    end
+  end
+
+  describe '#only_seat_rows' do
+    it 'returns arrays of char rows ignoring non-seats' do
+      expect(@plan.only_seat_rows).to match_array ['aaaa', 'aaaa']
     end
   end
 end

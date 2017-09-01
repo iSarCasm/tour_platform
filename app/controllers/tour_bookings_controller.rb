@@ -14,7 +14,12 @@ class TourBookingsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @tour_coach = @tour_booking.coach_bookings.first.tour_coach
+    gon.seatplan = @tour_coach.seatplan.plan
+    gon.seat_types = @tour_coach.json_seat_types
+    gon.reserved_seats = @tour_booking.coach_bookings.first.seats
+  end
 
   def index; end
 
@@ -24,7 +29,7 @@ class TourBookingsController < ApplicationController
 
   def tour_booking_params
     @tour_booking_params ||= params.require(:tour_booking).permit(
-      :active_tour_id,
+      :active_tour_id, :adult, :child, :infant, :senior,
       coach_bookings_attributes: [:tour_coach_id, :seats],
       hotel_bookings_attributes: [:hotel_room_id]
     )

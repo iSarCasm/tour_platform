@@ -47,4 +47,32 @@ describe CoachBooking do
       expect(booking.seats_amount).to eq 3
     end
   end
+
+  describe '#seatplan' do
+    it 'return TourCoach Seatplan' do
+      splan = build :seatplan
+      t_coach = build :tour_coach, seatplan: splan
+      booking = build :coach_booking, tour_coach: t_coach
+      expect(booking.seatplan).to eq splan
+    end
+  end
+
+  describe '#seat_objects' do
+    it 'retuns an array of Seats' do
+      a = create :seat_type, char: 'a'
+      b = create :seat_type, char: 'b'
+      splan = build :seatplan, plan: "aa_aa\nbb_bb"
+      t_coach = build :tour_coach, seatplan: splan
+      booking = build :coach_booking, tour_coach: t_coach, seats: ['1_2', '2_4']
+
+      seat_1 = Seat.new
+      seat_1.number = 2
+      seat_1.seat_type = a
+      seat_2 = Seat.new
+      seat_2.number = 7
+      seat_2.seat_type = b
+      expect(booking.seat_objects).to include(seat_1)
+      expect(booking.seat_objects).to include(seat_2)
+    end
+  end
 end

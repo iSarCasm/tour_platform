@@ -49,4 +49,30 @@ describe TourBooking do
       expect(tour_booking.tour).to eq tour
     end
   end
+
+  describe '#tour_title' do
+    it 'returns name of the Tour' do
+      tour = build :tour, title: 'Super Tour'
+      active_tour = build :active_tour, tour: tour
+      tour_booking = build :tour_booking, active_tour: active_tour
+      expect(tour_booking.tour_title).to eq 'Super Tour'
+    end
+  end
+
+  describe '#active_tour_title' do
+    it 'returns title of an ActiveTour' do
+      active_tour = build :active_tour
+      allow(active_tour).to receive(:title).and_return('Super Tour')
+      tour_booking = build :tour_booking, active_tour: active_tour
+      expect(tour_booking.active_tour_title).to eq 'Super Tour'
+    end
+  end
+
+  describe '#coach_booking' do
+    it 'returns first CoachBooking' do
+      tb = create :tour_booking
+      cb = create :coach_booking, tour_booking: tb
+      expect(tb.coach_booking).to eq cb
+    end
+  end
 end

@@ -21,7 +21,6 @@ function initMap() {
 }
 
 function selectPoint(point) {
-  console.log(point)
   if (activePoint)
     activePoint.removeClass('active')
 

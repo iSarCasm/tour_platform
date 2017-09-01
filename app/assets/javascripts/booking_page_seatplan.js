@@ -50,20 +50,14 @@ $(document).ready(function() {
     click: function () {
       if (this.status() == 'available' && this.data().is_seat) {
         //let's create a new <li> which we'll add to the cart items
-        $('<li>'+this.data().category+' Seat # '+this.settings.label+': <b>$'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+        $('<li>'+this.data().category+' Seat # '+this.settings.label+': <b>$'+parseFloat(this.data().price).toFixed(2)+'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
           .attr('id', 'cart-item-'+this.settings.id)
           .data('seatId', this.settings.id)
           .appendTo($cart);
 
-        /*
-         * Lets update the counter and total
-         *
-         * .find function will not find the current seat, because it will change its stauts only after return
-         * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
-         */
         $counter.val(sc.find('selected').length+1);
-        var newPrice = recalculateTotal(sc)+parseInt(this.data().price);
-        $total.text("$" + parseInt(newPrice).toFixed(2));
+        var newPrice = recalculateTotal(sc)+parseFloat(this.data().price);
+        $total.text("$" + parseFloat(newPrice).toFixed(2));
 
         setTimeout(function() {
           updateSelectedSeatsField(sc.find('selected').seatIds)

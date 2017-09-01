@@ -39,6 +39,10 @@ class SeatType < ApplicationRecord
     end
   end
 
+  def self.nonseat_chars
+    where(is_seat: false).pluck(:char)
+  end
+
   def json
     {
       char => {
@@ -53,6 +57,10 @@ class SeatType < ApplicationRecord
 
   def classes
     name.downcase.gsub(/\W/,'_')
+  end
+
+  def to_s
+    "#{name} Seat"
   end
 
   private

@@ -32,12 +32,22 @@ class CoachBooking < ApplicationRecord
     'New Coach Booking'
   end
 
+  def seat_objects
+    seats_array.map do |row_col|
+      Seat.new(seatplan: seatplan, row_col: row_col)
+    end
+  end
+
   def seats_array
     (seats.is_a?(String) ? JSON.parse(seats) : seats) || []
   end
 
   def seats_amount
     seats_array.size
+  end
+
+  def seatplan
+    tour_coach.seatplan
   end
 
   def ensure_has_seats

@@ -1,1 +1,44 @@
-= @tour_booking.title
+- content_for :javascript_body do
+  = javascript_include_tag 'show_seatplan'
+  %script{async: true,
+          defer: true,
+          src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places&callback=initMap"}
+- content_for :dynamic_css do
+  = render 'seatplan_custom_styles.css.erb'
+
+.container.mt-5
+  .tour_booking.alert.alert-warning
+    %h3= @tour_booking.active_tour.title
+    %p
+      %i.fa.fa-plane
+      %strong Tour:
+      = link_to(@tour_booking.tour_title, @tour_booking.tour)
+      %br
+      %i.fa.fa-calendar-o
+      %strong Dates:
+      = @tour_booking.active_tour.date_period_fancy
+    %p
+      - if @tour_booking.adult&.nonzero?
+        %strong= @tour_booking.adult
+        = 'Adult'.pluralize(@tour_booking.adult)
+      - if @tour_booking.child&.nonzero?
+        %strong= @tour_booking.child
+        = 'Child'.pluralize(@tour_booking.adult)
+      - if @tour_booking.infant&.nonzero?
+        %strong= @tour_booking.infant
+        = 'Infant'.pluralize(@tour_booking.adult)
+      - if @tour_booking.senior&.nonzero?
+        %strong= @tour_booking.senior
+        = 'Senior'.pluralize(@tour_booking.adult)
+    %h4 Coach booking:
+    - @tour_booking.coach_bookings.each do |coach|
+      .row
+        .col-md-6
+          .row
+            .col-md-6
+              %div#seat-map
+              - @tour_booking.coach_booking.seat_objects.each do |seat|
+                \-
+                %strong= "#{seat.seat_type} ##{seat.number}: #{number_to_currency(seat.seat_type.price)}"
+            .col-md-6
+              #legend

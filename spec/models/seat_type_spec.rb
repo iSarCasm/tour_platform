@@ -52,4 +52,22 @@ describe SeatType do
       expect(SeatType.json.to_json).to eq json
     end
   end
+
+  describe '.nonseat_chars' do
+    it 'retusn array of characters which are Non-Seats' do
+      create :seat_type, char: 'c', is_seat: true
+      create :seat_type, char: 'b', is_seat: true
+      create :seat_type, char: 'x', is_seat: false
+      create :seat_type, char: 'd', is_seat: false
+
+      expect(SeatType.nonseat_chars).to contain_exactly('x', 'd')
+    end
+  end
+
+  describe '#to_s' do
+    it 'returns readable string' do
+      st = build :seat_type, char: 'c', is_seat: true, name: 'Premier Class', price: 120.50
+      expect(st.to_s).to eq 'Premier Class Seat'
+    end
+  end
 end

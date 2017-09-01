@@ -36,11 +36,23 @@ class TourBooking < ApplicationRecord
     'New Tour Booking'
   end
 
+  def coach_booking
+    coach_bookings.first
+  end
+
   def username
     user.name
   end
 
   def tour
     active_tour.tour
+  end
+
+  def tour_title
+    active_tour.tour_title
+  end
+
+  def active_tour_title
+    active_tour.title
   end
 end
