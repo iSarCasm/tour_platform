@@ -1,7 +1,7 @@
 var map = {};
 var marker;
 var activePoint;
-function initMap() {
+(function initMap() {
   var lat = 10
   var lng = 10
   var myOptions = {
@@ -20,7 +20,7 @@ function initMap() {
   setTimeout(function() {
     selectPoint(points[0])
   }, 300);
-}
+})();
 
 function selectPoint(point) {
   document.getElementById('tour_booking_coach_bookings_attributes_0_pickup_point_id').value = $(point).data('id')
