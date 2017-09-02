@@ -3,5 +3,6 @@ FactoryGirl.define do
     tour_coach
     tour_booking
     seats         { "[\"#{1 + rand(10)}_#{1 + rand(999_999_999)}\"]" }
+    pickup_point
   end
 end

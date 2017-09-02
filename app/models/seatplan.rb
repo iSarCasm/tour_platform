@@ -30,7 +30,7 @@ class Seatplan < ApplicationRecord
       field :title
       field :description
       field :plan do
-        partial
+        partial 'seatplan_plan_edit'
       end
     end
     show do

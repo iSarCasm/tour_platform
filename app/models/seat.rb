@@ -8,8 +8,8 @@ class Seat
     col = row_col.last.to_i
 
     @number = seats_in_previous_rows(seatplan, row) + seats_in_current_row(seatplan, row, col)
-    @seat_type = tour_coach.modify_seat_type_price seatplan.get_seat(row, col)
-    @price = @seat_type.price
+    @seat_type = seatplan.get_seat(row, col)
+    @price = (tour_coach ? tour_coach.modify_seat_type_price(@seat_type).price : @seat_type.price)
   end
 
   def ==(other)
