@@ -1,18 +1,19 @@
 class Seat
-  attr_accessor :number, :seat_type
+  attr_accessor :number, :seat_type, :price
 
-  def initialize(seatplan: nil, row_col: nil)
+  def initialize(seatplan: nil, row_col: nil, tour_coach: nil)
     return unless seatplan && row_col
     row_col = row_col.split '_'
     row = row_col.first.to_i
     col = row_col.last.to_i
 
     @number = seats_in_previous_rows(seatplan, row) + seats_in_current_row(seatplan, row, col)
-    @seat_type = seatplan.get_seat(row, col)
+    @seat_type = tour_coach.modify_seat_type_price seatplan.get_seat(row, col)
+    @price = @seat_type.price
   end
 
   def ==(other)
-    number == other.number && seat_type == other.seat_type
+    number == other.number && seat_type == other.seat_type && price == other.price
   end
 
   private

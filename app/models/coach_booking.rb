@@ -36,7 +36,7 @@ class CoachBooking < ApplicationRecord
 
   def seat_objects
     seats_array.map do |row_col|
-      Seat.new(seatplan: seatplan, row_col: row_col)
+      Seat.new(seatplan: seatplan, row_col: row_col, tour_coach: tour_coach)
     end
   end
 

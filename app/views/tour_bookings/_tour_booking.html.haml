@@ -32,7 +32,7 @@
             #legend
         - tour_booking.coach_booking.seat_objects.each do |seat|
           \-
-          %strong= "#{seat.seat_type} ##{seat.number}: #{number_to_currency(seat.seat_type.price)}"
+          %strong= "#{seat.seat_type} ##{seat.number}: #{number_to_currency(seat.price)}"
           %br
       .col-md-7
         %strong= tour_booking.coach_booking.pickup_point.address

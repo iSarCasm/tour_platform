@@ -114,8 +114,6 @@ class TourCoach < ApplicationRecord
     pickup_list.pickup_points
   end
 
-  private
-
   def modify_seat_type_price(seat_type)
     seat_price = seat_prices.where(char: seat_type.char).take
     seat_type.price = seat_price.price if seat_price
