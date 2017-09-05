@@ -8,6 +8,7 @@
 // layout file, like app/views/layouts/application.html.erb
 
 require("../sass/application.scss");
+
 require("jquery-seat-plan.css");
 
 import 'images/background.jpg'
