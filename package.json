@@ -2,7 +2,8 @@
   "name": "tour_platform",
   "private": true,
   "engines": {
-    "yarn": "0.25.x"
+    "node": "6.10.3",
+    "yarn": "0.27.5"
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
