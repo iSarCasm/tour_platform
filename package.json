@@ -1,6 +1,9 @@
 {
   "name": "tour_platform",
   "private": true,
+  "engines": {
+    "yarn": "0.25.x"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
     "babel-core": "^6.26.0",
@@ -14,8 +17,5 @@
   },
   "devDependencies": {
     "webpack-dev-server": "^2.7.1"
-  },
-  "engines": {
-    "yarn": "0.27.5"
   }
 }
