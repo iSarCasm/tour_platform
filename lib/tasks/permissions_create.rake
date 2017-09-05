@@ -24,7 +24,7 @@ namespace :permissions do
       def write_permission(class_name, cancan_action)
         class_name = Permission.subject_classes[class_name]
         cancan_action = Permission.actions[cancan_action]
-        permission  = Permission.find_by("subject_class = ? and action = ?", class_name, cancan_action)
+        permission = Permission.find_by('subject_class = ? and action = ?', class_name, cancan_action)
         unless permission
           permission = Permission.new
           permission.subject_class = class_name
@@ -34,7 +34,7 @@ namespace :permissions do
       end
 
       setup_actions_controllers_db
-    rescue Exception => exception
+    rescue StandardError => exception
       puts exception
       puts exception.backtrace
     ensure

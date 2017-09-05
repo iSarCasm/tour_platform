@@ -20,8 +20,8 @@ class Seat
 
   def seats_in_previous_rows(seatplan, row)
     seat_rows = seatplan.only_seat_rows
-    seat_rows[0...row - 1].reduce(0) do |sum, row|
-      sum + row.size
+    seat_rows[0...row - 1].reduce(0) do |sum, r|
+      sum + r.size
     end
   end
 

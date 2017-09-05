@@ -64,11 +64,11 @@ $(document).ready(function() {
         }, 100)
 
         return 'selected';
-      } else if (this.status() == 'selected') {
+      } else if (this.status() === 'selected') {
         //update the counter
         $counter.text(sc.find('selected').length-1);
         //and total
-        $total.text(recalculateTotal(sc)-parseInt(this.data().price));
+        $total.text(recalculateTotal(sc)-parseInt(this.data().price, 10));
 
         //remove the item from our cart
         $('#cart-item-'+this.settings.id).remove();
