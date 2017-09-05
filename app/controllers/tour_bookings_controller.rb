@@ -9,7 +9,6 @@ class TourBookingsController < ApplicationController
       flash[:notice] = 'Successfuly ordered a tour!'
       redirect_to @tour_booking
     else
-      binding.pry
       flash[:error] = @tour_booking.errors
       redirect_back
     end
