@@ -41,14 +41,14 @@ $(document).ready(function() {
       top : false,
       getLabel : function (character, row, column, settings) {
         return (settings.seats[character].is_seat ? firstSeatLabel++ : '');
-      },
+      }
     },
     legend : {
       node : $('#legend'),
         items : legendItems()
     },
     click: function () {
-      if (this.status() == 'available' && this.data().is_seat) {
+      if (this.status() === 'available' && this.data().is_seat) {
         //let's create a new <li> which we'll add to the cart items
         $('<li>'+this.data().category+' Seat # '+this.settings.label+': <b>$'+parseFloat(this.data().price).toFixed(2)+'</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
           .attr('id', 'cart-item-'+this.settings.id)
@@ -74,7 +74,7 @@ $(document).ready(function() {
         $('#cart-item-'+this.settings.id).remove();
         //seat has been vacated
         return 'available';
-      } else if (this.status() == 'unavailable') {
+      } else if (this.status() === 'unavailable') {
         //seat has been already booked
         return 'unavailable';
       } else {
@@ -99,7 +99,7 @@ function recalculateTotal(sc) {
   var total = 0;
   //basically find every selected seat and sum its price
   sc.find('selected').each(function () {
-    total += parseInt(this.data().price);
+    total += parseInt(this.data().price, 10);
   });
   console.log(total)
   return total;

@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   var updateSeats = function() {
     $('.js-seats').first().val(
-      parseInt(adult.value) + parseInt(child.value) + parseInt(infant.value) + parseInt(senior.value)
+      parseInt(adult.value, 10) + parseInt(child.value, 10) + parseInt(infant.value, 10) + parseInt(senior.value, 10)
     );
   }
 
@@ -14,10 +14,10 @@ $(document).ready(function() {
     var totalPrice = 0.00;
     $('.js-hotel-room option:selected').each(function() {
       var room_price = 0;
-      room_price += adult.value * parseInt($(this).data('price-adult'));
-      room_price += child.value * parseInt($(this).data('price-child'));
-      room_price += infant.value * parseInt($(this).data('price-infant'));
-      room_price += senior.value * parseInt($(this).data('price-senior'));
+      room_price += adult.value * parseInt($(this).data('price-adult'), 10);
+      room_price += child.value * parseInt($(this).data('price-child'), 10);
+      room_price += infant.value * parseInt($(this).data('price-infant'), 10);
+      room_price += senior.value * parseInt($(this).data('price-senior'), 10);
       $(this).closest('.js-hotel-booking').find('.js-subtotal').text(
         '$' + room_price.toFixed(2)
       )

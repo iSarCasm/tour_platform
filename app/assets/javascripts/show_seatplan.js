@@ -37,7 +37,7 @@ $(document).ready(function() {
       top : false,
       getLabel : function (character, row, column, settings) {
         return (settings.seats[character].is_seat ? firstSeatLabel++ : '');
-      },
+      }
     },
     legend : {
       node : $('#legend'),
