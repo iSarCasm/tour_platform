@@ -20,13 +20,13 @@ class Seat
 
   def seats_in_previous_rows(seatplan, row)
     seat_rows = seatplan.only_seat_rows
-    seats_in_previous_rows = seat_rows[0...row-1].reduce(0) do |sum, row|
+    seat_rows[0...row - 1].reduce(0) do |sum, row|
       sum + row.size
     end
   end
 
   def seats_in_current_row(seatplan, row, col)
     only_seats_regex = /#{SeatType.nonseat_chars.join('|')}/
-    seatplan.rows[row-1][0...col].gsub(only_seats_regex, '').size
+    seatplan.rows[row - 1][0...col].gsub(only_seats_regex, '').size
   end
 end

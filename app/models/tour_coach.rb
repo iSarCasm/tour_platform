@@ -96,7 +96,7 @@ class TourCoach < ApplicationRecord
   end
 
   def available?
-    seats_left > 0 && !!pickup_list # TODO: remove later (only appeared with invalid models)
+    seats_left > 0 && !pickup_list.nil? # TODO: remove later (only appeared with invalid models)
   end
 
   def seat_types

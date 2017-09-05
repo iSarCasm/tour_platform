@@ -53,7 +53,7 @@ class Seatplan < ApplicationRecord
   end
 
   def get_seat(row, col)
-    char = rows[row-1][col-1]
+    char = rows[row - 1][col - 1]
     SeatType.find_by(char: char)
   end
 
@@ -100,7 +100,7 @@ class Seatplan < ApplicationRecord
 
   def only_seat_rows
     non_seats = SeatType.nonseat_chars
-    rows.map { |r| r.gsub(/#{non_seats.join('|')}/, '')}
+    rows.map { |r| r.gsub(/#{non_seats.join('|')}/, '') }
   end
 
   def all_rows_equal_length
