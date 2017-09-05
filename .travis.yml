@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+  - 2.3.1
+addons:
+  postgresql: "9.4"
+before_install: gem install bundler -v 1.10.6
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+  - "bundle exec rake db:drop RAILS_ENV=test"
+  - "bundle exec rake db:setup RAILS_ENV=test"
+
+after_success:
+- bundle exec codeclimate-test-reporter
