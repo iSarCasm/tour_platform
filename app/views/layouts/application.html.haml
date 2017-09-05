@@ -16,8 +16,8 @@
             defer: true,
             src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places"}
 
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag    'application', 'data-turbolinks-track': 'reload'
 
     - if content_for? :javascript_body
       = yield :javascript_body

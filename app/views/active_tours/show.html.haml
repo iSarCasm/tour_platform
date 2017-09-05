@@ -1,7 +1,7 @@
 - content_for :javascript_body do
-  = javascript_include_tag 'booking_page_prices'
-  = javascript_include_tag 'booking_page_seatplan'
-  = javascript_include_tag 'pickup_point_select'
+  = javascript_pack_tag 'booking_page_prices'
+  = javascript_pack_tag 'booking_page_seatplan'
+  = javascript_pack_tag 'pickup_point_select'
 - content_for :dynamic_css do
   = render 'seatplan_custom_styles.css.erb'
 = flash[:error]
@@ -9,7 +9,7 @@
   .row.pt-5
     .col-md-8.push-md-2
       .card
-        = image_tag 'tour_preview_1.jpg', class: 'card-img-top img-fluid'
+        %img.card-img-top.img-fluid{src: asset_pack_path('images/tour_preview_1.jpg'), alt: 'Tour Preview'}
         .card-block
           %h4.card-title Booking your tour
           %p.card-text

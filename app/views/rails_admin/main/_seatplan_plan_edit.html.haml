@@ -36,6 +36,7 @@
   }
 
   $(document).on('rails_admin.dom_ready', function() {
+    $('#legend').empty(); // Remove previous elements (deplicates)
     var $cart = $('#selected-seats'),
       $counter = $('.js-seats').first(),
       $total = $('#coach-subtotal'),
