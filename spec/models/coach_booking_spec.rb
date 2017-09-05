@@ -69,9 +69,11 @@ describe CoachBooking do
       seat_1 = Seat.new
       seat_1.number = 2
       seat_1.seat_type = a
+      seat_1.price = a.price
       seat_2 = Seat.new
       seat_2.number = 7
       seat_2.seat_type = b
+      seat_2.price = b.price
       expect(booking.seat_objects).to include(seat_1)
       expect(booking.seat_objects).to include(seat_2)
     end
