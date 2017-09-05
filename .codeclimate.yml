@@ -1,5 +1,5 @@
 exclude_paths:
-- "public/"
-- "tmp/"
-- "vendor/"
-- "log/"
+- public/
+- tmp/
+- vendor/
+- log/
