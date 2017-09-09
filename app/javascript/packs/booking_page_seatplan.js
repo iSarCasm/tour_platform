@@ -1,4 +1,4 @@
-import 'jquery-seat-plan'
+import 'javascript/jquery-seat-plan'
 
 var firstSeatLabel = 1;
 

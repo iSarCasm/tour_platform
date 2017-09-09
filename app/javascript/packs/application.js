@@ -7,11 +7,13 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-require("../sass/application.scss");
 
-require("jquery-seat-plan.css");
+import 'stylesheets/jquery-seat-plan'
+import '../sass/application'
 
-import 'images/background.jpg'
-import 'images/tour_preview_1.jpg'
+function importAll (r) {
+  r.keys().forEach(r);
+}
+importAll(require.context('../images/', true, /\.(jpg|png)$/));
 
 import 'jquery-ujs'
