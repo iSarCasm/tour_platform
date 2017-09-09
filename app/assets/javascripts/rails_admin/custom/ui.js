@@ -1,24 +1,34 @@
 //= require toastr
 //= require jquery-seat-plan
 
+//= require jquery.livestamp
+//= require jquery.timer
+//= require jquery.notificationcenter
+
 $(document).ready(function() {
   toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "10000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "10000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+  // toastr.info('Welcome to the Admin Dashboard')
 
-  toastr.info('Welcome to the Admin Dashboard')
+  $('body').notificationcenter({
+  	center_element: "#notificationcenterpanel",
+  	body_element: "#rails-admin-wrapper",
+  	toggle_button: "#js-alerts-toggle",
+  	add_panel: true
+  });
 });
