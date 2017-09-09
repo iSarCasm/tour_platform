@@ -7,6 +7,3 @@ function importAll (r) {
   r.keys().forEach(r);
 }
 importAll(require.context('../images/', true, /\.(jpg|png)$/));
-
-// js
-import 'jquery-ujs'
