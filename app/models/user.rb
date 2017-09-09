@@ -26,6 +26,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tour_bookings, dependent: :destroy, inverse_of: :user
+  has_many :admin_alerts, dependent: :destroy, inverse_of: :user
   belongs_to :role, inverse_of: :users, optional: true
 
   validates :name, presence: true

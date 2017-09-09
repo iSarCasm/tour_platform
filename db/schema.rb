@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901225720) do
+ActiveRecord::Schema.define(version: 20170909193709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20170901225720) do
     t.string "slug"
     t.index ["slug"], name: "index_active_tours_on_slug", unique: true
     t.index ["tour_id"], name: "index_active_tours_on_tour_id"
+  end
+
+  create_table "admin_alerts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.text "content"
+    t.boolean "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_admin_alerts_on_user_id"
   end
 
   create_table "board_bases", force: :cascade do |t|
@@ -334,6 +344,7 @@ ActiveRecord::Schema.define(version: 20170901225720) do
   end
 
   add_foreign_key "active_tours", "tours"
+  add_foreign_key "admin_alerts", "users"
   add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
