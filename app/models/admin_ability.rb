@@ -5,16 +5,15 @@ class AdminAbility
 
   def initialize(user)
     @user = user
-    if user.admin?
-      admin_ability
-      role_ability
-    end
+    return unless user.admin?
+    admin_ability
+    role_ability
+    grant_access_to_presonal_alerts
   end
 
   private
 
   def admin_ability
-    can :manage, AdminAlert, user_id: user.id
     can :access, :rails_admin
     can :dashboard
     can :dashboard, :all # wtf
@@ -33,6 +32,12 @@ class AdminAbility
           can permission.action_symbol, permission.subject_class_string.constantize, :id => permission.subject_id
         end
       end
+    end
+  end
+
+  def grant_access_to_presonal_alerts
+    unless can? :manage, AdminAlert
+      can :manage, AdminAlert, user_id: user.id
     end
   end
 end
