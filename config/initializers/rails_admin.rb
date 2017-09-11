@@ -1,4 +1,6 @@
 RailsAdmin.config do |config|
+  config.default_associated_collection_limit = 500
+
   ### Popular gems integration
 
   ## == Devise ==
