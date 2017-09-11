@@ -46,6 +46,8 @@
 				toggle_button       : '#notificationcentericon',
 				add_panel           : true,
 				notification_offset : 0,
+				offset_top 					: 100,
+				remove_animation		: false,
 				display_time        : 5000,
 				types: [{
 					type: 'system',
@@ -145,6 +147,14 @@
 				nc.options.title = title;
 				updatetitle();
 			};
+
+			nc.notifCount = function() {
+				var counter = 0;
+				$.each(nc.notifs, function(k, notif) {
+					counter++;
+				});
+				return counter;
+			}
 
 			nc.slide = function(callback, notif) {
 				var $centerElm = $(nc.options.center_element),
@@ -453,7 +463,7 @@
 				}
 			};
 
-			nc.newAlert = function(text, type, showNotification, callback, time, newnotif) {
+			nc.newAlert = function(text, type, showNotification, callback, time, newnotif, id) {
 				var notiftype, notifnumber;
 				if (typeof showNotification === 'undefined') {
 					showNotification = true;
@@ -490,7 +500,7 @@
 					return;
 				}
 
-				notifnumber = getNotifNum();
+				notifnumber = id || getNotifNum();
 
 				if (jQuery().livestamp && time === false) {
 					time = Math.round( ( new Date() ).getTime() / 1000);
@@ -600,7 +610,7 @@
 				// Line it up with body_element
 				bposition = $bodyElm.position();
 				$(nc.options.center_element).css({
-					top: bposition.top
+					top: nc.options.offset_top || bposition.top
 				});
 
 				// Make sure body element has position: absolute or relative
@@ -647,7 +657,8 @@
 						var type = item.type;
 
 						$(item.values).each(function(i, notif) {
-							nc.newAlert(notif.text, type, false, notif.callback, notif.time, notif['new']);
+							var id = notif.id || getNotifNum();
+							nc.newAlert(notif.text, type, false, notif.callback, notif.time, notif['new'], id);
 						});
 					});
 				}
@@ -878,6 +889,8 @@
 				if (time) {
 					str += '<div class="' + nc.css.panelNotifTime + '">' +
 						'<span ' + nc.options.center_time_attr + '="' + time + '"></span></div>';
+					// str += '<div class="' + nc.css.panelNotifTime + '">' +
+					// 	'<span">' + time + '</span></div>';
 				}
 
 				str += '</div></li>';
@@ -1030,10 +1043,15 @@
 
 					delete nc.notifs[notifnumber];
 
-					$(notif).fadeOut('slow', function() {
-						$(this).remove();
+					if (nc.options.remove_animation) {
+						$(notif).remove();
 						hideNotifs(type);
-					});
+					} else {
+						$(notif).fadeOut('slow', function() {
+							$(this).remove();
+							hideNotifs(type);
+						});
+					}
 
 					if (nc.options.counter) {
 						notifcount();

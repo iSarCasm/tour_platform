@@ -25,10 +25,4 @@ $(document).ready(function() {
   }
   // toastr.info('Welcome to the Admin Dashboard')
 
-  $('body').notificationcenter({
-  	center_element: "#notificationcenterpanel",
-  	body_element: "#rails-admin-wrapper",
-  	toggle_button: "#js-alerts-toggle",
-  	add_panel: true
-  });
 });

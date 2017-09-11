@@ -8,6 +8,12 @@
     = csrf_meta_tag
     = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
     = javascript_include_tag "rails_admin/rails_admin.js"
+
+    %script
+      = render 'rails_admin/alert_system.js'
+    - if content_for? :javascript_body
+      %script
+        = yield :javascript_body
   %body.rails_admin
     #rails-admin-wrapper{style: 'background-color: #fff'}
       #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}

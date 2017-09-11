@@ -1,0 +1,86 @@
+$(document).ready(function() {
+  $.get("admin_alert.json", function(data, status){
+    alerts = filterAlerts(data);
+    notifs = []
+
+    // console.log(alerts);
+
+    alerts.forEach(function(alert) {
+      var notif = {
+        type: 'system',
+        values:[{
+          text: {
+            text: alert.content,
+            title: alert.title
+          },
+          id: alert.id,
+          time: moment(alert.created_at).valueOf() / 1000,
+          callback: function(notif) {
+            setTimeout(function() {
+              updateNotifCounter();
+            }, 100);
+            markAlertAsRead(notif.id);
+          },
+          new: true
+        }]
+      };
+      notifs.push(notif);
+    });
+
+    // console.log(notifs);
+
+    $('body').notificationcenter({
+      center_element: "#notificationcenterpanel",
+      body_element: "#rails-admin-wrapper",
+      toggle_button: "#js-alerts-toggle",
+      offset_top: 60,
+      remove_animation: true,
+      counter: 0,
+      add_panel: true,
+      default_notifs: notifs
+    });
+
+    updateNotifCounter();
+  });
+});
+
+function markAlertAsRead(id) {
+  $.ajax({
+    url: 'admin_alert/'+ id + '/edit.js', // your api url
+    method: 'PUT', // method is any HTTP method
+    format: 'js',
+    data: {admin_alert: {read: true}}, // data as js object
+    success: function(data) {
+      console.log(data);
+    }
+  });
+}
+
+function updateNotifCounter() {
+  $('#notif-counter').text($.notificationcenter.notifCount());
+}
+
+function getAlerts() {
+  $.get("admin_alert.json", function(data, status){
+    alerts = filterAlerts(data);
+    addAlertsToAlertSystem(alerts);
+    updateNotifCounter();
+  });
+}
+
+function filterAlerts(alerts) {
+  var new_alerts = [];
+  for(var i = 0; i < alerts.length; i++) {
+    if (alerts[i].user_id == currentUserID() && !alerts[i].read)
+      new_alerts.push(alerts[i]);
+  }
+  return new_alerts;
+}
+
+function currentUserID() {
+  return <%= current_user.id %>;
+}
+
+function addAlertsToAlertSystem(alerts) {
+  // $.notificationcenter.newAlert({'text':'New alert by button click.', 'title':$(this).attr('data-type')}, $(this).attr('data-type'));
+}
