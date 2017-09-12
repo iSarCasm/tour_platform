@@ -1,4 +1,4 @@
-<%= form.text_field field.name, class: 'form-control', style: 'width: 100%; border-radius: 0;', value: '' %>
+<%= form.text_field field.name, class: 'form-control', style: 'width: 100%; border-radius: 0;', value: form.object.address %>
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key %>&libraries=places&language=en&region=US">
@@ -51,7 +51,7 @@
       geocoder = new google.maps.Geocoder;
       map = new google.maps.Map(document.getElementById("google_map<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>"), myOptions);
       places = new google.maps.places.PlacesService(map);
-      document.getElementById(field_id).value = '';
+      // document.getElementById(field_id).value = '';
       initializeAutocomplete(field_id);
       function initializeAutocomplete(id) {
         var element = document.getElementById(id);
