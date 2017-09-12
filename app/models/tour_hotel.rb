@@ -27,6 +27,27 @@ class TourHotel < ApplicationRecord
 
   rails_admin do
     parent Hotel
+    edit do
+      field :hotel
+      field :active_tour
+      field :start_date
+      field :end_date
+      field :board_basis
+      field :payment_type
+      field :finalisation_date
+      field :hotel_rooms do
+        render do
+          bindings[:view].render(
+            partial: 'table_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              google_api_key: Rails.application.secrets.google_api_key
+            }
+          )
+        end
+      end
+    end
     list do
       exclude_fields :created_at, :updated_at
     end
