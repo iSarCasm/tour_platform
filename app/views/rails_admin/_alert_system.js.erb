@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $.get("admin_alert.json", function(data, status){
+  $.get("/admin/admin_alert.json", function(data, status){
     alerts = filterAlerts(data);
     notifs = []
 
