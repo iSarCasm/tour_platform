@@ -76,14 +76,16 @@ $(document).on('rails_admin.dom_ready', function(){
   var $headerTr = $trs.first();
   var $headerTds = $headerTr.children('th,td');
   var i, $td, pos;
-  var offsets = [];
-  var widths = [];
-  for (i = 0; i < 3; i++) {
+  var offsets = [13, 38, 121];
+  var widths = [23, 83];
+  for (i = 2; i < 3; i++) {
     $td = $($headerTds[i]);
     pos = $td.position();
-    offsets.push(pos.left);
-    widths.push($td.outerWidth());
+    // offsets.push(pos.left);
+    widths.push($td.outerWidth(true));
   }
+  console.log(offsets)
+  console.log(widths)
   $trs.each(function(index, tr){
     for (i = 0; i < 3; i++) {
       tr.children[i].style.position = 'absolute';
