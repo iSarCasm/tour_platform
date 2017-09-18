@@ -42,7 +42,7 @@ class TourHotel < ApplicationRecord
             locals: {
               field: self,
               form: bindings[:form],
-              table_headers: ['Amount', 'Room Type', 'Adult', 'Adult supp', 'Child', 'Child supp', 'Infant', 'Infant supp', 'Senior', 'Senior supp'] 
+              table_headers: ['Amount', 'Room Type', 'Adult', 'Adult supp', 'Child', 'Child supp', 'Infant', 'Infant supp', 'Senior', 'Senior supp']
             }
           )
         end
@@ -73,10 +73,6 @@ class TourHotel < ApplicationRecord
 
   def booking_period_fancy
     "#{start_date.strftime("%d %B")} - #{end_date.strftime("%d %B")}"
-  end
-
-  def hotel_title
-    hotel.title
   end
 
   def available?
