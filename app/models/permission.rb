@@ -33,8 +33,9 @@ class Permission < ApplicationRecord
     weight 999
 
     list do
-      field :subject_class
+      field :id
       field :action
+      field :subject_class
       field :subject_id
       field :roles do
         eager_load true
