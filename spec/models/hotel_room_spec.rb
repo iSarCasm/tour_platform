@@ -51,6 +51,15 @@ describe HotelRoom do
     end
   end
 
+  describe '#hotel_bookings_count' do
+    it 'returns amount of associated hotel_bookings' do
+      hotel_room = create :hotel_room
+      create_list :hotel_booking, 3, hotel_room: hotel_room
+
+      expect(hotel_room.hotel_bookings_count).to eq 3
+    end
+  end
+
   describe '#available?' do
     it 'says if this rooms are still available for booking' do
       hotel_room = create :hotel_room, amount: 10

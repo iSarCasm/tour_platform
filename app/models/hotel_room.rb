@@ -39,7 +39,6 @@ class HotelRoom < ApplicationRecord
       field :room_type
       field :pax
       field :amount
-      field :hotel_bookings
       field :adult
       field :adult_supp
       field :child
@@ -48,7 +47,9 @@ class HotelRoom < ApplicationRecord
       field :infant_supp
       field :senior
       field :senior_supp
+      field :hotel_bookings_count
     end
+
     edit do
       exclude_fields :hotel_bookings
     end
@@ -70,6 +71,10 @@ class HotelRoom < ApplicationRecord
 
   def booking_period
     tour_hotel.booking_period
+  end
+
+  def hotel_bookings_count
+    hotel_bookings.count
   end
 
   def amount_left
