@@ -19,8 +19,12 @@ class RoomType < ApplicationRecord
   rails_admin do
     navigation_label 'Settings'
     weight 999
+
     list do
-      exclude_fields :created_at, :updated_at, :id
+      field :id
+      field :pax
+      field :description
+      field :hotel_rooms
     end
   end
 
