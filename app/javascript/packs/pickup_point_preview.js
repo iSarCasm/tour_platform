@@ -31,6 +31,7 @@ function selectPoint(point) {
 }
 
 $(document).ready(function() {
+  initMap();
   $('.js-pickup-point').on('click', function(e) {
     e.preventDefault()
     selectPoint(this)

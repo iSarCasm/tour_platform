@@ -1,3 +1,5 @@
+import 'javascript/jquery-seat-plan'
+
 var firstSeatLabel = 1;
 
 function fetchedSeatplan() {

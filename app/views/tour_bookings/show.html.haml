@@ -1,9 +1,6 @@
 - content_for :javascript_body do
-  = javascript_include_tag 'show_seatplan'
-  = javascript_include_tag 'pickup_point_preview'
-  %script{async: true,
-          defer: true,
-          src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places&callback=initMap"}
+  = javascript_pack_tag 'show_seatplan'
+  = javascript_pack_tag 'pickup_point_preview'
 - content_for :dynamic_css do
   = render 'seatplan_custom_styles.css.erb'
 
