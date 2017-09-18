@@ -47,7 +47,9 @@ class HotelRoom < ApplicationRecord
       field :infant_supp
       field :senior
       field :senior_supp
-      field :hotel_bookings_count
+      field :hotel_bookings_count do
+        label 'Orders'
+      end
     end
 
     edit do

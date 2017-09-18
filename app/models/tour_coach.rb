@@ -47,7 +47,7 @@ class TourCoach < ApplicationRecord
       field :notes
       field :seatplan
       field :coach_bookings_count do
-        label 'Coach Bookings'
+        label 'Orders'
       end
       field :pickup_list do
         eager_load true
