@@ -8,24 +8,24 @@ $(document).ready ->
 
 $(document).on 'nested:fieldAdded', 'form', (content) ->
   console.log(content)
-  # field = content.field.addClass('tab-pane').attr('id', 'unique-id-' + (new Date().getTime()))
-  # new_tab = $('<li><a data-toggle="tab" href="#' + field.attr('id') + '">' + field.children('.object-infos').data('object-label') + '</a></li>')
-  # parent_group = field.closest('.control-group')
-  # controls = parent_group.children('.controls')
-  # one_to_one = controls.data('nestedone') != undefined
-  # nav = controls.children('.nav')
-  # content = parent_group.children('.tab-content')
-  # toggler = controls.find('.toggler')
-  # nav.append(new_tab)
-  # $(window.document).trigger('rails_admin.dom_ready', [field, parent_group]) # fire dom_ready for new player in town
-  # new_tab.children('a').tab('show') # activate added tab
-  # nav.select(':hidden').show('slow') unless one_to_one # show nav if hidden
-  # content.select(':hidden').show('slow') # show tabs content if hidden
-  # # toggler 'on' if inactive
-  # toggler.addClass('active').removeClass('disabled').children('i').addClass('icon-chevron-down').removeClass('icon-chevron-right')
-  #
-  # # Convert the "add nested field" button to just showing the title of the new model
-  # controls.find('.add_nested_fields').removeClass('add_nested_fields').html(field.children('.object-infos').data('object-label')) if one_to_one
+  field = content.field.addClass('tab-pane').attr('id', 'unique-id-' + (new Date().getTime()))
+  new_tab = $('<li><a data-toggle="tab" href="#' + field.attr('id') + '">' + field.children('.object-infos').data('object-label') + '</a></li>')
+  parent_group = field.closest('.control-group')
+  controls = parent_group.children('.controls')
+  one_to_one = controls.data('nestedone') != undefined
+  nav = controls.children('.nav')
+  content = parent_group.children('.tab-content')
+  toggler = controls.find('.toggler')
+  nav.append(new_tab)
+  $(window.document).trigger('rails_admin.dom_ready', [field, parent_group]) # fire dom_ready for new player in town
+  new_tab.children('a').tab('show') # activate added tab
+  nav.select(':hidden').show('slow') unless one_to_one # show nav if hidden
+  content.select(':hidden').show('slow') # show tabs content if hidden
+  # toggler 'on' if inactive
+  toggler.addClass('active').removeClass('disabled').children('i').addClass('icon-chevron-down').removeClass('icon-chevron-right')
+
+  # Convert the "add nested field" button to just showing the title of the new model
+  controls.find('.add_nested_fields').removeClass('add_nested_fields').html(field.children('.object-infos').data('object-label')) if one_to_one
 
 $(document).on 'nested:fieldRemoved', 'form', (content) ->
   field = content.field

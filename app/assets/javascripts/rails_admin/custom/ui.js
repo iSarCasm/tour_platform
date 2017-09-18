@@ -25,17 +25,16 @@ $(document).ready(function() {
   }
   // toastr.info('Welcome to the Admin Dashboard')
 
+  // Table view ADD button hack
+  var oldNestedFormEvents = window.nestedFormEvents.insertFields
+  window.nestedFormEvents.insertFields = function (content, assoc, link) {
+    console.log(content);
+    var insertable = $(link).siblings('table').find('.js-insertable');
+    if (insertable.length > 0) {
+      insertable.first().append(content);
+      return insertable.first().children().last();
+    } else {
+      return oldNestedFormEvents(content, assoc, link);
+    }
+  }
 });
-
-
-// Table view ADD button hack
-// var oldNestedFormEvents = window.nestedFormEvents.insertFields
-// console.log(oldNestedFormEvents);
-// window.nestedFormEvents.insertFields = function (content, assoc, link) {
-//   console.log($(link).closest('.no_tabs'));
-//   if ($(link).closest('.no_tabs').length > 0) {
-//     return $(content).insertBefore(link);
-//   } else {
-//     return oldNestedFormEvents(content, assoc, link);
-//   }
-// }
