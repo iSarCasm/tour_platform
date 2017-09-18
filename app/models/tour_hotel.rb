@@ -42,7 +42,7 @@ class TourHotel < ApplicationRecord
             locals: {
               field: self,
               form: bindings[:form],
-              google_api_key: Rails.application.secrets.google_api_key
+              table_headers: ['Amount', 'Room Type', 'Adult', 'Adult supp', 'Child', 'Child supp', 'Infant', 'Infant supp', 'Senior', 'Senior supp'] 
             }
           )
         end

@@ -26,3 +26,16 @@ $(document).ready(function() {
   // toastr.info('Welcome to the Admin Dashboard')
 
 });
+
+
+// Table view ADD button hack
+// var oldNestedFormEvents = window.nestedFormEvents.insertFields
+// console.log(oldNestedFormEvents);
+// window.nestedFormEvents.insertFields = function (content, assoc, link) {
+//   console.log($(link).closest('.no_tabs'));
+//   if ($(link).closest('.no_tabs').length > 0) {
+//     return $(content).insertBefore(link);
+//   } else {
+//     return oldNestedFormEvents(content, assoc, link);
+//   }
+// }

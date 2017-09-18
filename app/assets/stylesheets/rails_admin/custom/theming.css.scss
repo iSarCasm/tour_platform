@@ -21,13 +21,13 @@
 #toast-container>div{
   opacity: 1;
 }
-
+///////////////// SEATPLAN FONT
 .font-monospace {
   font-family: "Courier New", Courier, monospace;
   font-size: 2rem;
 }
 
-
+//////////////// SEATPLAN TEXT
 body {
   .rails_admin {
     &.big-text {
@@ -35,12 +35,12 @@ body {
     }
   }
 }
-
+//////////////// SEATPLAN LEGEND
 #legend.overflowed {
   max-height: 300px;
   overflow-y: scroll;
 }
-
+/////////////// ALERTS
 .glyphicon-big {
   font-size: 24px;
 }
@@ -53,4 +53,36 @@ body {
 }
 .badge-shifted {
   transform: translate(-50%, 0);
+}
+//////////////// TABLE EDIT
+body.rails_admin .table td.no-max-width {
+  max-width: none;
+}
+
+body.rails_admin .table-wrapper-narrow {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+body.rails_admin table.table-small-text {
+  font-size: 12px;
+}
+
+.form-control-small-children .form-control {
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 0px;
+}
+
+body.rails_admin .width100 input {
+  width: 100%;
+}
+
+.btn.btn-table {
+  padding: 6px 3px;
+  border-radius: 0px;
+}
+
+.margin-top-3 {
+  margin-top: 35px;
 }
