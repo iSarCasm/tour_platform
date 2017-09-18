@@ -23,10 +23,25 @@ class Coach < ApplicationRecord
 
   rails_admin do
     list do
-      exclude_fields :created_at, :updated_at
+      field :id
+      field :title
+      field :description
+      field :address
+      field :phone
+      field :fax
+      field :website
+      field :email
+      field :contact_name
+      field :mobile_number
+      field :tour_coaches_count
     end
+
     edit do
       exclude_fields :tour_coaches
     end
+  end
+
+  def tour_coaches_count
+    tour_coaches.count
   end
 end

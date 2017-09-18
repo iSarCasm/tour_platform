@@ -34,8 +34,26 @@ class TourCoach < ApplicationRecord
   rails_admin do
     parent Coach
     list do
-      exclude_fields :created_at, :updated_at
+      field :id
+      field :coach do
+        eager_load true
+      end
+      field :active_tour do
+        eager_load true
+      end
+      field :departure_date
+      field :arrival_date
+      field :driver_name
+      field :notes
+      field :seatplan
+      field :coach_bookings_count do
+        label 'Coach Bookings'
+      end
+      field :pickup_list do
+        eager_load true
+      end
     end
+
     edit do
       field :coach
       field :active_tour
@@ -49,6 +67,7 @@ class TourCoach < ApplicationRecord
       field :seat_prices
       field :pickup_list
     end
+
     show do
       field :id
       field :coach
@@ -85,6 +104,10 @@ class TourCoach < ApplicationRecord
 
   def coach_title
     coach.title
+  end
+
+  def coach_bookings_count
+    coach_bookings.count
   end
 
   def seats

@@ -29,8 +29,22 @@ class Hotel < ApplicationRecord
 
   rails_admin do
     list do
-      exclude_fields :created_at, :updated_at
+      field :id
+      field :title
+      field :description
+      field :address
+      field :phone_number
+      field :fax_number
+      field :email
+      field :website
+      field :contact_name
+      field :emergency_number
+      field :rating
+      field :facilities do
+        eager_load true
+      end
     end
+
     edit do
       exclude_fields :tour_hotels, :hotel_facilities
     end

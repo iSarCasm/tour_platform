@@ -31,6 +31,15 @@ describe TourCoach do
     end
   end
 
+  describe '#coach_bookings_count' do
+    it 'returns count of associated coach_bookings' do
+      tour_coach = create :tour_coach
+      create_list :coach_booking, 3, tour_coach: tour_coach
+
+      expect(tour_coach.coach_bookings_count).to eq 3
+    end
+  end
+
   describe '#seats_left' do
     it 'returns number of seats left for booking' do
       tour_coach = create :tour_coach
