@@ -48,6 +48,29 @@ class TourHotel < ApplicationRecord
         end
       end
     end
+
+    show do
+      field :hotel
+      field :active_tour
+      field :start_date
+      field :end_date
+      field :board_basis
+      field :payment_type
+      field :finalisation_date
+      field :hotel_rooms do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/table_show',
+            locals: {
+              objects: bindings[:object].hotel_rooms,
+              table_headers: ['Amount', 'Room Type', 'Adult', 'Adult supp', 'Child', 'Child supp', 'Infant', 'Infant supp', 'Senior', 'Senior supp'],
+              methods: [:amount, :room_type, :adult, :adult_supp, :child, :child_supp, :infant, :infant_supp, :senior, :senior_supp]
+            }
+          )
+        end
+      end
+    end
+
     list do
       exclude_fields :created_at, :updated_at
     end

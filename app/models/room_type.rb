@@ -27,4 +27,8 @@ class RoomType < ApplicationRecord
   def name
     room_type
   end
+
+  def to_s
+    name
+  end
 end
