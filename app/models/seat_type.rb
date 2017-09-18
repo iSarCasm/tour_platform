@@ -21,6 +21,7 @@ class SeatType < ApplicationRecord
   rails_admin do
     navigation_label 'Settings'
     weight 999
+
     edit do
       field :name
       field :price
@@ -28,8 +29,13 @@ class SeatType < ApplicationRecord
       field :is_seat
       field :color, :color
     end
+
     list do
-      exclude_fields :id, :created_at, :updated_at
+      field :char
+      field :name
+      field :is_seat
+      field :color
+      field :price
     end
   end
 
