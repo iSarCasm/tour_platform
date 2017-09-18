@@ -74,7 +74,17 @@ class TourHotel < ApplicationRecord
     end
 
     list do
-      exclude_fields :created_at, :updated_at
+      field :id
+      field :hotel
+      field :active_tour
+      field :start_date
+      field :end_date
+      field :board_basis
+      field :payment_type
+      field :finalisation_date
+      field :hotel_rooms_count do
+        label "Hotel room types"
+      end
     end
   end
 
@@ -90,6 +100,10 @@ class TourHotel < ApplicationRecord
 
   def photos
     hotel.photos
+  end
+
+  def hotel_rooms_count
+    hotel_rooms.count
   end
 
   def booking_period

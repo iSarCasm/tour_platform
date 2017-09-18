@@ -47,6 +47,15 @@ describe TourHotel do
     end
   end
 
+  describe '#hotel_rooms_count' do
+    it 'returns count of associated hotel rooms' do
+      tour_hotel = create :tour_hotel
+      create_list :hotel_room, 3, tour_hotel: tour_hotel
+
+      expect(tour_hotel.hotel_rooms_count).to eq 3
+    end
+  end
+
   describe '#available?' do
     it 'is available if any room is still available' do
       tour_hotel = create :tour_hotel
