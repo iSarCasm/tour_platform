@@ -26,6 +26,7 @@ describe HotelRoom do
       r = create :hotel_room, amount: 10
       expect(HotelRoom.available.length).to eq 1
       r.update(amount: 0)
+
       expect(HotelRoom.available.length).to eq 0
     end
   end
@@ -39,6 +40,7 @@ describe HotelRoom do
         amount: 134,
         room_type: build(:room_type, pax: 4, room_type: 'Double')
       )
+
       expect(hotel_room.title).to eq 'Big Pen (Double, for 4 people)'
     end
   end
@@ -47,6 +49,7 @@ describe HotelRoom do
     it 'returns number of rooms left for this type' do
       hotel_room = create :hotel_room, amount: 10
       create_list :hotel_booking, 7, hotel_room: hotel_room
+
       expect(hotel_room.amount_left).to eq 3
     end
   end
@@ -65,6 +68,7 @@ describe HotelRoom do
       hotel_room = create :hotel_room, amount: 10
       create_list :hotel_booking, 7, hotel_room: hotel_room
       expect(hotel_room.available?).to eq true
+
       create_list :hotel_booking, 3, hotel_room: hotel_room
       expect(hotel_room.available?).to eq false
     end
