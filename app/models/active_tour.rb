@@ -25,7 +25,19 @@ class ActiveTour < ApplicationRecord
   rails_admin do
     parent Tour
     list do
-      exclude_fields :created_at, :updated_at
+      field :id
+      field :tour
+      field :start_date
+      field :end_date
+      field :tour_bookings do
+        eager_load true
+      end
+      field :tour_hotels do
+        eager_load true
+      end
+      field :tour_coaches do
+        eager_load true
+      end
     end
 
     edit do
