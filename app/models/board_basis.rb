@@ -16,7 +16,10 @@ class BoardBasis < ApplicationRecord
     navigation_label 'Settings'
     weight 999
     list do
-      exclude_fields :created_at, :updated_at, :id
+      field :title
+      field :tour_hotels do
+        eager_load true
+      end
     end
     edit do
       field :title

@@ -18,8 +18,21 @@ class Tour < ApplicationRecord
   validates :title, presence: true
 
   rails_admin do
+    edit do
+      field :title
+      field :description
+      field :active_tours do
+        eager_load true
+      end
+    end
+
     list do
-      exclude_fields :created_at, :updated_at
+      field :id
+      field :title
+      field :description
+      field :active_tours do
+        eager_load true
+      end
     end
   end
 

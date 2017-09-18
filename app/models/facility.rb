@@ -19,7 +19,9 @@ class Facility < ApplicationRecord
     weight 999
     list do
       field :facility
-      field :hotels
+      field :hotels do
+        eager_load true
+      end
     end
     edit do
       field :facility

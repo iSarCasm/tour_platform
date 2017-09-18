@@ -28,7 +28,9 @@ class TourHotel < ApplicationRecord
   rails_admin do
     parent Hotel
     edit do
-      field :hotel
+      field :hotel do
+        eager_load true
+      end
       field :active_tour
       field :start_date
       field :end_date

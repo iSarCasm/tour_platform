@@ -41,3 +41,9 @@ RailsAdmin.config do |config|
     # history_show
   end
 end
+
+# RailsAdmin.config Tour do
+#   field :players do
+#     eager_load true
+#   end
+# end

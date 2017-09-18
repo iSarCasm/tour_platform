@@ -19,7 +19,9 @@ class CoachAmenity < ApplicationRecord
     weight 999
     list do
       field :name
-      field :tour_coaches
+      field :tour_coaches do
+        eager_load true
+      end
     end
     edit do
       field :name

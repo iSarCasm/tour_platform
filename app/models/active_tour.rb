@@ -27,8 +27,17 @@ class ActiveTour < ApplicationRecord
     list do
       exclude_fields :created_at, :updated_at
     end
+
     edit do
-      exclude_fields :tour_bookings
+      field :tour
+      field :start_date
+      field :end_date
+      field :tour_hotels do
+        eager_load true
+      end
+      field :tour_coaches do
+        eager_load true
+      end
     end
   end
 

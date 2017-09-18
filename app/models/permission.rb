@@ -31,12 +31,16 @@ class Permission < ApplicationRecord
   rails_admin do
     navigation_label 'Settings'
     weight 999
+
     list do
       field :subject_class
       field :action
       field :subject_id
-      field :roles
+      field :roles do
+        eager_load true
+      end
     end
+
     edit do
       field :subject_class
       field :action

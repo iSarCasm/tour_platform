@@ -10,14 +10,17 @@
 
 class PaymentType < ApplicationRecord
   has_many :tour_hotels, inverse_of: :payment_type
-  
+
   validates :payment_type, presence: true
 
   rails_admin do
     navigation_label 'Settings'
     weight 999
     list do
-      exclude_fields :created_at, :updated_at, :id
+      field :payment_type
+      field :tour_hotels do
+        eager_load true
+      end
     end
     edit do
       field :payment_type
