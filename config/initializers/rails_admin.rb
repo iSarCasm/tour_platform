@@ -1,4 +1,7 @@
 RailsAdmin.config do |config|
+  # Horizontaly scrolling table
+  config.total_columns_width = 9999999 #
+
   config.default_associated_collection_limit = 500
 
   ### Popular gems integration
