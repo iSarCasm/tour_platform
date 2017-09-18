@@ -19,9 +19,15 @@ class Role < ApplicationRecord
   rails_admin do
     navigation_label 'Settings'
     weight 999
+
     list do
-      exclude_fields :role_permissions, :created_at, :updated_at, :id
+      field :id
+      field :name
+      field :description
+      field :permissions
+      field :users
     end
+
     edit do
       exclude_fields :role_permissions
     end
