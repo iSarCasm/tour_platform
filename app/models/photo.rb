@@ -20,6 +20,7 @@ class Photo < ApplicationRecord
   rails_admin do
     weight 100
     list do
+      field :id
       field :thumb, :carrierwave
       field :file_size
       field :updated_at
