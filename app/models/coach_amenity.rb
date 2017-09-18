@@ -17,12 +17,15 @@ class CoachAmenity < ApplicationRecord
   rails_admin do
     navigation_label 'Settings'
     weight 999
+
     list do
+      field :id
       field :name
       field :tour_coaches do
         eager_load true
       end
     end
+
     edit do
       field :name
     end
