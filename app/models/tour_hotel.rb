@@ -12,6 +12,8 @@
 #  board_basis_id    :integer
 #  payment_type_id   :integer
 #  finalisation_date :datetime
+#  hotel_theme       :string
+#  notes             :text
 #
 
 class TourHotel < ApplicationRecord
@@ -37,6 +39,7 @@ class TourHotel < ApplicationRecord
       field :board_basis
       field :payment_type
       field :finalisation_date
+      field :hotel_theme
       field :hotel_rooms do
         render do
           bindings[:view].render(
@@ -49,6 +52,7 @@ class TourHotel < ApplicationRecord
           )
         end
       end
+      field :notes
     end
 
     show do
@@ -59,6 +63,7 @@ class TourHotel < ApplicationRecord
       field :board_basis
       field :payment_type
       field :finalisation_date
+      field :hotel_theme
       field :hotel_rooms do
         pretty_value do
           bindings[:view].render(
@@ -71,6 +76,7 @@ class TourHotel < ApplicationRecord
           )
         end
       end
+      field :notes
     end
 
     list do
