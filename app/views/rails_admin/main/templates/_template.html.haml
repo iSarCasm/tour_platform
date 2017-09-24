@@ -1,0 +1,26 @@
+:ruby
+  def _dom_id(field, options)
+    (@dom_id ||= {})[field.name] ||=
+        [
+          @object_name.to_s.gsub(/\]\[|[^-a-zA-Z0-9:.]/, '_').sub(/_$/, ''),
+          options[:index],
+          field.method_name,
+        ].reject(&:blank?).join('_')
+  end
+
+  def _errors_for(field)
+    field.errors.present? ? content_tag(:span, field.errors.to_sentence, class: 'help-inline text-danger') : ''.html_safe
+  end
+
+  def _help_for(field)
+    field.help.present? ? content_tag(:span, field.help, class: 'help-block') : ''.html_safe
+  end
+
+  def _field_for(field)
+    field.read_only? ? content_tag(:div, field.pretty_value, class: 'form-control-static') : field.render_compact
+  end
+
+- fields.each do |f|
+  .div{class: "form-group control-group #{f.type_css_class} #{f.css_class} #{'error' if f.errors.present?}", id: "#{_dom_id(f, options)}_field"}
+    = label(f.method_name, capitalize_first_letter(f.label), class: 'col-sm-2 control-label')
+    = _field_for f
