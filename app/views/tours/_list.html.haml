@@ -1,7 +1,7 @@
 - tours.each_with_index do |tour, index|
   .col
     .card.text-center
-      %img.card-img-top.img-fluid{src: asset_pack_path('images/tour_preview_1.jpg'), alt: 'Tour Preview'}
+      %img.card-img-top.img-fluid{src: image_path('tour_preview_1.jpg'), alt: 'Tour Preview'}
       .card-img-overlay.pt-5.mt-5
         %h4.card-title.mb-5= tour.title
         = link_to 'Start The Adventure', tour, class: 'btn btn-primary'
