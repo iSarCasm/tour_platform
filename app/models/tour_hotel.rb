@@ -29,6 +29,11 @@ class TourHotel < ApplicationRecord
 
   rails_admin do
     parent Hotel
+
+    update do
+      set_template 'tour_hotels'
+    end
+
     edit do
       field :hotel do
         eager_load true
