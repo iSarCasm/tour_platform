@@ -86,6 +86,7 @@ end
 group :test do
   # Tests
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'faker'

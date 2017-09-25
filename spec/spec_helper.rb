@@ -1,5 +1,8 @@
+require 'capybara/rspec'
 require 'simplecov'
 SimpleCov.start
+
+Capybara.server = :puma
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
