@@ -46,7 +46,29 @@ class Hotel < ApplicationRecord
     end
 
     edit do
-      exclude_fields :tour_hotels, :hotel_facilities
+      field :title
+      field :description
+      field :address do
+        render do
+          bindings[:view].render(
+            partial: 'google_map_address_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              google_api_key: Rails.application.secrets.google_api_key
+            }
+          )
+        end
+      end
+      field :phone_number
+      field :fax_number
+      field :email
+      field :website
+      field :contact_name
+      field :emergency_number
+      field :rating
+      field :facilities
+      field :photos
     end
   end
 end
