@@ -26,7 +26,7 @@
     setTimeout(initMap, 1000);
 
     $('#populate_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>').on('click', function(event) {
-      populateLocation(event);
+      setMarkerToAddress(field_id);
     });
 
     $('#reverse_<%= form.object_name.to_s.gsub(/\[|\]/, '_') %>').on('click', function(event) {
@@ -53,6 +53,7 @@
       places = new google.maps.places.PlacesService(map);
       // document.getElementById(field_id).value = '';
       initializeAutocomplete(field_id);
+      setMarkerToAddress(field_id);
       function initializeAutocomplete(id) {
         var element = document.getElementById(id);
         if (element) {
@@ -66,6 +67,25 @@
       setTimeout(function() {
         google.maps.event.trigger(map, "resize");
       }, 1000);
+    }
+
+    function setMarkerToAddress(id) {
+       var address = document.getElementById(id).value;
+       geocoder.geocode( { 'address': address}, function(results, status) {
+         if (status == google.maps.GeocoderStatus.OK) {
+           map.setCenter(results[0].geometry.location);
+           if (marker) {
+             marker.setPosition(results[0].geometry.location);
+           } else {
+             marker = new google.maps.Marker({
+                 map: map,
+                 position: results[0].geometry.location
+             });
+           }
+         } else {
+           console.log('Geocode was not successful for the following reason: ' + status);
+         }
+       });
     }
 
     function markerSet(event) {
@@ -110,13 +130,6 @@
     function cleanAllMarkers() {
       if (marker)
         marker.setMap(null);
-    }
-
-    function populateLocation(event) {
-      event.preventDefault()
-      onPlaceChanged()
-      latitude.value = map_data.location.latitude
-      longitude.value = map_data.location.longitude
     }
 
     function reverseLocation(event) {
