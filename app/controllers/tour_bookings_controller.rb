@@ -40,6 +40,7 @@ class TourBookingsController < ApplicationController
 
   def make_seats_array
     seats = tour_booking_params['coach_bookings_attributes']['0']['seats']
+    seats = '[]' if seats.empty?
     tour_booking_params['coach_bookings_attributes']['0']['seats'] = JSON.parse(seats) unless seats.is_a? Array
   end
 end
