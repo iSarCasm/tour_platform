@@ -1,8 +1,10 @@
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'simplecov'
 SimpleCov.start
 
 Capybara.server = :puma
+Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

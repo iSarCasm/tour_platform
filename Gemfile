@@ -87,6 +87,8 @@ group :test do
   # Tests
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'selenium-webdriver', '<= 2.53'
+  gem 'poltergeist'
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'faker'
