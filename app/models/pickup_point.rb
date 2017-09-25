@@ -27,7 +27,7 @@ class PickupPoint < ApplicationRecord
       field :address do
         render do
           bindings[:view].render(
-            partial: 'google_map_edit',
+            partial: 'google_map_location_edit',
             locals: {
               field: self,
               form: bindings[:form],
@@ -49,7 +49,7 @@ class PickupPoint < ApplicationRecord
       field :longitude do
         pretty_value do
           bindings[:view].render(
-            partial: 'rails_admin/google_map_show',
+            partial: 'rails_admin/google_map_location_show',
             locals: {
               object: bindings[:object],
               value: bindings[:object].longitude,
