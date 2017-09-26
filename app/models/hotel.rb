@@ -70,5 +70,30 @@ class Hotel < ApplicationRecord
       field :facilities
       field :photos
     end
+
+    show do
+      field :title
+      field :description
+      field :address do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/google_map_address_show',
+            locals: {
+              value: bindings[:object].address,
+              google_api_key: Rails.application.secrets.google_api_key
+            }
+          )
+        end
+      end
+      field :phone_number
+      field :fax_number
+      field :email
+      field :website
+      field :contact_name
+      field :emergency_number
+      field :rating
+      field :facilities
+      field :photos
+    end
   end
 end

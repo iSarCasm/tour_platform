@@ -1,0 +1,40 @@
+<%= value %>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key %>&libraries=places&callback=initMap">
+</script>
+<div class="ra-google-map-container" id="google_map" style="width:100%; min-height:350px"></div>
+
+<script type="text/javascript">
+  var map = {};
+  var geocoder;
+  var marker;
+  function initMap() {
+    var myOptions = {
+      zoom: 14,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scrollwheel: true
+    };
+    geocoder = new google.maps.Geocoder;
+    map = new google.maps.Map(document.getElementById("google_map"), myOptions);
+    setMarkerToAddress("<%= value %>")
+  }
+
+  function setMarkerToAddress(address) {
+     geocoder.geocode( { 'address': address}, function(results, status) {
+       if (status == google.maps.GeocoderStatus.OK) {
+         map.setCenter(results[0].geometry.location);
+         if (marker) {
+           marker.setPosition(results[0].geometry.location);
+         } else {
+           marker = new google.maps.Marker({
+               map: map,
+               position: results[0].geometry.location
+           });
+         }
+       } else {
+         console.log('Geocode was not successful for the following reason: ' + status);
+       }
+     });
+  }
+</script>

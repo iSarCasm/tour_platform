@@ -59,6 +59,29 @@ class Coach < ApplicationRecord
       field :contact_name
       field :mobile_number
     end
+
+    show do
+      field :id
+      field :title
+      field :description
+      field :address do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/google_map_address_show',
+            locals: {
+              value: bindings[:object].address,
+              google_api_key: Rails.application.secrets.google_api_key
+            }
+          )
+        end
+      end
+      field :phone
+      field :fax
+      field :website
+      field :email
+      field :contact_name
+      field :mobile_number
+    end
   end
 
   def tour_coaches_count
