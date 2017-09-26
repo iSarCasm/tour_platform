@@ -37,7 +37,27 @@ class Coach < ApplicationRecord
     end
 
     edit do
-      exclude_fields :tour_coaches
+      field :id
+      field :title
+      field :description
+      field :address do
+        render do
+          bindings[:view].render(
+            partial: 'google_map_address_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              google_api_key: Rails.application.secrets.google_api_key
+            }
+          )
+        end
+      end
+      field :phone
+      field :fax
+      field :website
+      field :email
+      field :contact_name
+      field :mobile_number
     end
   end
 
