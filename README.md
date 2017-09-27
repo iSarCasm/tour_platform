@@ -9,8 +9,11 @@ Install gem dependencies
 ```
 bundle install
 ```
-
-Install frontend dependencies
+Create Database
+```
+rails db:setup
+```
+Install frontend dependencies (install yarn: https://yarnpkg.com/en/docs/install, node 6+: https://nodejs.org/en/)
 ```
 yarn
 ```
@@ -24,3 +27,4 @@ Test with
 ```
 rspec
 ```
+**Note:** Requires `PhantomJS` installed

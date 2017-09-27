@@ -81,6 +81,8 @@ group :development do
   gem 'rubocop', '~> 0.49.1', require: false
   # Dump dev DB to seed
   gem 'seed_dump'
+  # Start Server in development
+  gem 'foreman', require: false
 end
 
 group :test do
