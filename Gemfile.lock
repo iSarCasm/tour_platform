@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/iSarCasm/rails_admin_table_field
-  revision: 63025ce2dbbe2ceb4d0d69408eb2d8ff5e9ced1b
+  revision: f8ed578b269f7b2d90cde177abf6c6e69f92fd18
   specs:
     rails_admin_table_field (0.1.1)
       rails (~> 5.1.2)
