@@ -13,15 +13,14 @@
 #
 
 class SeatType < ApplicationRecord
+  include DashboardSettingsSection
+
   validates :name, :price, :char, presence: true
 
   validates :char, length: { maximum: 1 }
   validates :char, :name, uniqueness: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
-
     edit do
       field :name
       field :price
