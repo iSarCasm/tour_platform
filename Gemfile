@@ -17,9 +17,6 @@ gem "turbolinks", "~> 5.0.0", require: false
 
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 
-# Dashboard
-gem 'rails_admin', '~> 1.2'
-
 # Notifications
 gem 'toastr-rails'
 
@@ -44,6 +41,10 @@ gem 'mini_magick'
 
 # Data migrations
 gem 'data_migrate'
+
+# Dashboard
+gem 'rails_admin', '~> 1.2'
+gem 'rails_admin_table_field', git: 'https://github.com/iSarCasm/rails_admin_table_field'
 
 group :development, :test do
   # Debug
