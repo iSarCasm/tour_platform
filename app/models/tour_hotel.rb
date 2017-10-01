@@ -52,7 +52,11 @@ class TourHotel < ApplicationRecord
             locals: {
               field: self,
               form: bindings[:form],
-              table_headers: ['Amount', 'Room Type', 'Adult', 'Adult supp', 'Child', 'Child supp', 'Infant', 'Infant supp', 'Senior', 'Senior supp']
+              table_headers: [
+                'Amount', 'Room Type', 'Adult', 'Adult supp',
+                'Child', 'Child supp', 'Infant', 'Infant supp',
+                'Senior', 'Senior supp'
+              ]
             }
           )
         end
@@ -75,8 +79,16 @@ class TourHotel < ApplicationRecord
             partial: 'rails_admin/table_show',
             locals: {
               objects: bindings[:object].hotel_rooms,
-              table_headers: ['Amount', 'Room Type', 'Adult', 'Adult supp', 'Child', 'Child supp', 'Infant', 'Infant supp', 'Senior', 'Senior supp'],
-              methods: [:amount, :room_type, :adult, :adult_supp, :child, :child_supp, :infant, :infant_supp, :senior, :senior_supp]
+              table_headers: [
+                'Amount', 'Room Type', 'Adult', 'Adult supp',
+                'Child', 'Child supp', 'Infant', 'Infant supp',
+                'Senior', 'Senior supp'
+              ],
+              methods: [
+                :amount, :room_type, :adult, :adult_supp,
+                :child, :child_supp, :infant, :infant_supp,
+                :senior, :senior_supp
+              ]
             }
           )
         end
@@ -94,7 +106,7 @@ class TourHotel < ApplicationRecord
       field :payment_type
       field :finalisation_date
       field :hotel_rooms_count do
-        label "Hotel room types"
+        label 'Hotel room types'
       end
     end
   end

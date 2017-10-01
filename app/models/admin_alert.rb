@@ -13,7 +13,7 @@
 
 class AdminAlert < ApplicationRecord
   include DashboardSettingsSection
-  
+
   belongs_to :user, inverse_of: :admin_alerts
   validates :title, :user, presence: true
 end

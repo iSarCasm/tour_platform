@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Accessing Admin Dashboard Page", :type => :feature do
+describe 'Accessing Admin Dashboard Page', type: :feature do
   include Devise::Test::IntegrationHelpers
 
   context 'when logged in as Admin' do
@@ -9,7 +9,7 @@ describe "Accessing Admin Dashboard Page", :type => :feature do
       sign_in user
     end
 
-    it "loads Dashboard page" do
+    it 'loads Dashboard page' do
       visit '/admin'
       expect(page).to have_content 'Tour Platform'
       expect(page).to have_content 'Site Administration'

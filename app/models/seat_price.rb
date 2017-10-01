@@ -12,6 +12,6 @@
 
 class SeatPrice < ApplicationRecord
   include DashboardSettingsSection
-  
+
   belongs_to :tour_coach, inverse_of: :seat_prices
 end

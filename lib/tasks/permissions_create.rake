@@ -1,8 +1,8 @@
 namespace :permissions do
   desc 'Create ALL possbile permissions for each Model'
-  task :create => :environment do
+  task create: :environment do
     begin
-      puts "Creating Permissions..."
+      puts 'Creating Permissions...'
       def setup_actions_controllers_db
         write_permission('everything', 'manage')
 

@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-describe "Ordering new Tour", type: :feature, js: true do
+describe 'Ordering new Tour', type: :feature, js: true do
   include Devise::Test::IntegrationHelpers
 
   before do
     tour = create :tour, title: 'UK Super Tour', description: 'Great Tour description'
-    active_tour = create(:active_tour,
+    active_tour = create(
+      :active_tour,
       tour: tour,
       start_date: Date.new(2017, 7, 14),
       end_date: Date.new(2017, 7, 28)
@@ -15,7 +16,8 @@ describe "Ordering new Tour", type: :feature, js: true do
     create(:seat_type, char: 'l', price: 20, is_seat: true)
     create(:seat_type, char: 'w', is_seat: false)
     seatplan = create(:seatplan, plan: "bb_bb\nll_ll\nww_ll\nbbbbb")
-    tcoach = create(:tour_coach,
+    tcoach = create(
+      :tour_coach,
       active_tour: active_tour,
       seatplan: seatplan
     )
@@ -25,7 +27,8 @@ describe "Ordering new Tour", type: :feature, js: true do
     create(:pickup_point, pickup_list: plist, address: 'London UK 107')
 
     tour_hotel = create(:tour_hotel, active_tour: active_tour)
-    create(:hotel_room,
+    create(
+      :hotel_room,
       tour_hotel: tour_hotel,
       room_type: create(:room_type, room_type: 'Ultra-Big', pax: 6)
     )
@@ -34,7 +37,7 @@ describe "Ordering new Tour", type: :feature, js: true do
     sign_in user
   end
 
-  it "can order a new tour" do
+  it 'can order a new tour' do
     visit '/'
     expect(page).to have_content 'UK SUPER TOUR'
     click_link 'Start The Adventure'
@@ -55,12 +58,12 @@ describe "Ordering new Tour", type: :feature, js: true do
     click_link 'London UK 107'
     # Select Seats
     within('#seat-map') do
-      page.find(:xpath,"//div[@role='checkbox'][text()='1']").click
-      page.find(:xpath,"//div[@role='checkbox'][text()='2']").click
-      page.find(:xpath,"//div[@role='checkbox'][text()='3']").click
-      page.find(:xpath,"//div[@role='checkbox'][text()='7']").click
-      page.find(:xpath,"//div[@role='checkbox'][text()='8']").click
-      page.find(:xpath,"//div[@role='checkbox'][text()='11']").click
+      page.find(:xpath, "//div[@role='checkbox'][text()='1']").click
+      page.find(:xpath, "//div[@role='checkbox'][text()='2']").click
+      page.find(:xpath, "//div[@role='checkbox'][text()='3']").click
+      page.find(:xpath, "//div[@role='checkbox'][text()='7']").click
+      page.find(:xpath, "//div[@role='checkbox'][text()='8']").click
+      page.find(:xpath, "//div[@role='checkbox'][text()='11']").click
     end
     # Select Hotel Rooms
     select 'Ultra-Big, for 6 people'

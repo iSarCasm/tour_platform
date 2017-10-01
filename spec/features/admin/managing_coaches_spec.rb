@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Managing Coaches", :type => :feature do
+describe 'Managing Coaches', type: :feature do
   include Devise::Test::IntegrationHelpers
 
   context 'when logged in as Admin' do
@@ -19,7 +19,7 @@ describe "Managing Coaches", :type => :feature do
         create :coach, title: 'Train coach wtf?'
       end
 
-      it "can List all coaches" do
+      it 'can List all coaches' do
         visit '/admin/coach'
         expect(page).to have_content 'Sample coach 1'
         expect(page).to have_content 'Very fast coach'
@@ -35,7 +35,7 @@ describe "Managing Coaches", :type => :feature do
 
       it 'can View the coach' do
         visit "/admin/coach/#{@coach.id}"
-        
+
         expect(page).to have_content 'Title'
         expect(page).to have_content 'Sample coach 1'
       end

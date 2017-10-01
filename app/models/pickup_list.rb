@@ -10,7 +10,7 @@
 
 class PickupList < ApplicationRecord
   include DashboardSettingsSection
-  
+
   belongs_to :tour_coach, inverse_of: :pickup_list
   has_many :pickup_points, inverse_of: :pickup_list, dependent: :destroy
 
