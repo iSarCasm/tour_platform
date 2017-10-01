@@ -9,12 +9,12 @@
 #
 
 class BoardBasis < ApplicationRecord
+  include DashboardSettingsSection
+
   has_many :tour_hotels, inverse_of: :board_basis
   validates :title, presence: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
     list do
       field :id
       field :title
@@ -22,7 +22,7 @@ class BoardBasis < ApplicationRecord
         eager_load true
       end
     end
-    
+
     edit do
       field :title
     end

@@ -11,6 +11,8 @@
 #
 
 class Seatplan < ApplicationRecord
+  include DashboardSettingsSection
+
   has_many :tour_coaches, inverse_of: :seatplan
 
   validates :title, :plan, presence: true
@@ -18,8 +20,6 @@ class Seatplan < ApplicationRecord
   validate :only_existing_seat_types_used
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
     list do
       field :title
       field :description

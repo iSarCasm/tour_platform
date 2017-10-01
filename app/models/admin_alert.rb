@@ -12,11 +12,8 @@
 #
 
 class AdminAlert < ApplicationRecord
+  include DashboardSettingsSection
+  
   belongs_to :user, inverse_of: :admin_alerts
   validates :title, :user, presence: true
-
-  rails_admin do
-    navigation_label 'Settings'
-    weight 999
-  end
 end

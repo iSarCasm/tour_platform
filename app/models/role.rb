@@ -10,6 +10,8 @@
 #
 
 class Role < ApplicationRecord
+  include DashboardSettingsSection
+
   has_many :role_permissions
   has_many :permissions, through: :role_permissions
   has_many :users, inverse_of: :role
@@ -17,9 +19,6 @@ class Role < ApplicationRecord
   validates :name, presence: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
-
     list do
       field :id
       field :name

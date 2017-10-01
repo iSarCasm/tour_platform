@@ -9,15 +9,14 @@
 #
 
 class PickupList < ApplicationRecord
+  include DashboardSettingsSection
+  
   belongs_to :tour_coach, inverse_of: :pickup_list
   has_many :pickup_points, inverse_of: :pickup_list, dependent: :destroy
 
   accepts_nested_attributes_for :pickup_points, allow_destroy: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
-
     list do
       field :id
       field :tour_coach

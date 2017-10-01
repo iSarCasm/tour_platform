@@ -11,6 +11,8 @@
 #
 
 class Permission < ApplicationRecord
+  include DashboardSettingsSection
+
   has_many :role_permissions
   has_many :roles, through: :role_permissions
 
@@ -29,9 +31,6 @@ class Permission < ApplicationRecord
   validates :subject_class, presence: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
-
     list do
       field :id
       field :action

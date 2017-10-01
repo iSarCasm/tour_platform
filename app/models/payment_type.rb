@@ -9,14 +9,13 @@
 #
 
 class PaymentType < ApplicationRecord
+  include DashboardSettingsSection
+  
   has_many :tour_hotels, inverse_of: :payment_type
 
   validates :payment_type, presence: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
-
     list do
       field :id
       field :payment_type

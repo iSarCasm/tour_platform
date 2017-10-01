@@ -14,14 +14,14 @@
 #
 
 class PickupPoint < ApplicationRecord
+  include DashboardSettingsSection
+
   belongs_to :pickup_list, inverse_of: :pickup_points
   has_many :coach_bookings, inverse_of: :pickup_point
 
   validates :address, :latitude, :longitude, presence: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
     edit do
       field :pickup_list
       field :address do

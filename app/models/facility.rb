@@ -9,15 +9,14 @@
 #
 
 class Facility < ApplicationRecord
+  include DashboardSettingsSection
+  
   has_many :hotel_facilities, dependent: :destroy
   has_many :hotels, through: :hotel_facilities
 
   validates :facility, presence: true
 
   rails_admin do
-    navigation_label 'Settings'
-    weight 999
-
     list do
       field :id
       field :facility
