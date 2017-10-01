@@ -17,9 +17,6 @@ gem "turbolinks", "~> 5.0.0", require: false
 
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 
-# Notifications
-gem 'toastr-rails'
-
 # User
 gem 'devise'
 
