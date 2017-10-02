@@ -1,91 +1,68 @@
-:ruby
-  def _dom_id(field, options)
-    (@dom_id ||= {})[field.name] ||=
-        [
-          @object_name.to_s.gsub(/\]\[|[^-a-zA-Z0-9:.]/, '_').sub(/_$/, ''),
-          options[:index],
-          field.method_name,
-        ].reject(&:blank?).join('_')
-  end
+-# DO NOT REMOVE THAT LINE
+- config_template(fields, options)
 
-  def _errors_for(field)
-    field.errors.present? ? content_tag(:span, field.errors.to_sentence, class: 'help-inline text-danger') : ''.html_safe
-  end
+-# For field render you can use compact_render_field(field) or field.render
+.clearfix
+  - for_field :hotel_id do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
 
-  def _help_for(field)
-    field.help.present? ? content_tag(:span, field.help, class: 'help-block') : ''.html_safe
-  end
-
-  def _field_for(field)
-    field.read_only? ? content_tag(:div, field.pretty_value, class: 'form-control-static') : field.render_compact
-  end
-
-  def _css(field)
-    "form-group control-group #{field.type_css_class} #{field.css_class} #{'error' if field.errors.present?}"
-  end
-
-  def f(fields, name)
-    fields.select {|f| f.method_name == name }.first
-  end
-
-  hotel_id          = f(fields, :hotel_id)
-  active_tour_id    = f(fields, :active_tour_id)
-  start_date        = f(fields, :start_date)
-  end_date          = f(fields, :end_date)
-  board_basis_id    = f(fields, :board_basis_id)
-  payment_type_id   = f(fields, :payment_type_id)
-  finalisation_date = f(fields, :finalisation_date)
-  hotel_theme       = f(fields, :hotel_theme)
-  hotel_rooms       = f(fields, :hotel_rooms_attributes)
-  notes             = f(fields, :notes)
+  - for_field :active_tour_id do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
 
 .clearfix
-  %div{class: "col-md-3 #{_css(hotel_id)}", id: "#{_dom_id(hotel_id, options)}_field"}
-    %p
-      = label(:hotel_id, capitalize_first_letter(hotel_id.label), class: 'control-label')
-    = _field_for hotel_id
-  %div{class: "col-md-3 #{_css(active_tour_id)}", id: "#{_dom_id(active_tour_id, options)}_field"}
-    %p
-      = label(:active_tour_id, capitalize_first_letter(active_tour_id.label), class: 'control-label')
-    = _field_for active_tour_id
+  - for_field :start_date do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
+
+  - for_field :end_date do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
 
 .clearfix
-  %div{class: "col-md-3 #{_css(start_date)}", id: "#{_dom_id(start_date, options)}_field"}
-    %p
-      = label(:start_date, capitalize_first_letter(start_date.label), class: 'control-label')
-    = _field_for start_date
-  %div{class: "col-md-3 #{_css(end_date)}", id: "#{_dom_id(end_date, options)}_field"}
-    %p
-      = label(:end_date, capitalize_first_letter(end_date.label), class: 'control-label')
-    = _field_for end_date
+  - for_field :board_basis_id do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
+
+  - for_field :payment_type_id do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
 
 .clearfix
-  %div{class: "col-md-3 #{_css(board_basis_id)}", id: "#{_dom_id(board_basis_id, options)}_field"}
-    %p
-      = label(:board_basis_id, capitalize_first_letter(board_basis_id.label), class: 'control-label')
-    = _field_for board_basis_id
-  %div{class: "col-md-3 #{_css(payment_type_id)}", id: "#{_dom_id(payment_type_id, options)}_field"}
-    %p
-      = label(:payment_type_id, capitalize_first_letter(payment_type_id.label), class: 'control-label')
-    = _field_for payment_type_id
+  - for_field :finalisation_date do |field, css, id, label|
+    %div{class: "col-md-4 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
+
+  - for_field :hotel_theme do |field, css, id, label|
+    %div{class: "col-md-5 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
 
 .clearfix
-  %div{class: "col-md-4 #{_css(finalisation_date)}", id: "#{_dom_id(finalisation_date, options)}_field"}
+  - for_field :hotel_rooms_attributes do |field, css, id, label|
     %p
-      = label(:finalisation_date, capitalize_first_letter(finalisation_date.label), class: 'control-label')
-    = _field_for finalisation_date
-  %div{class: "col-md-5 #{_css(hotel_theme)}", id: "#{_dom_id(hotel_theme, options)}_field"}
-    %p
-      = label(:hotel_theme, capitalize_first_letter(hotel_theme.label), class: 'control-label')
-    = _field_for hotel_theme
+      = label
+    = compact_render_field field
 
 .clearfix
-  %p
-    = label(:finalisation_date, capitalize_first_letter(hotel_rooms.label), class: 'control-label')
-  = _field_for hotel_rooms
-
-.clearfix
-  %div{class: "col-md-3 #{_css(notes)}", id: "#{_dom_id(notes, options)}_field"}
-    %p
-      = label(:notes, capitalize_first_letter(notes.label), class: 'control-label')
-    = _field_for notes
+  - for_field :notes do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        = label
+      = compact_render_field field
