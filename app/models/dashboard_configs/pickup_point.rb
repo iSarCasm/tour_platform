@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
   config.model PickupPoint do
     navigation_label 'Settings'
     weight 999
-    
+
     edit do
       field :pickup_list
       field :address do

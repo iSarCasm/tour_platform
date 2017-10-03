@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
   config.model PaymentType do
     navigation_label 'Settings'
     weight 999
-    
+
     list do
       field :id
       field :payment_type

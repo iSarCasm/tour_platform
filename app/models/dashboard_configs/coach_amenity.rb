@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
   config.model CoachAmenity do
     navigation_label 'Settings'
     weight 999
-    
+
     list do
       field :id
       field :name
