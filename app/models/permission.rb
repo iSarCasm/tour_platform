@@ -30,25 +30,6 @@ class Permission < ApplicationRecord
   validates :action, presence: true
   validates :subject_class, presence: true
 
-  rails_admin do
-    list do
-      field :id
-      field :action
-      field :subject_class
-      field :subject_id
-      field :roles do
-        eager_load true
-      end
-    end
-
-    edit do
-      field :subject_class
-      field :action
-      field :subject_id
-      field :roles
-    end
-  end
-
   def action_symbol
     # All
     return :manage if manage?

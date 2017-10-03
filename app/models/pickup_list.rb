@@ -15,17 +15,7 @@ class PickupList < ApplicationRecord
   has_many :pickup_points, inverse_of: :pickup_list, dependent: :destroy
 
   accepts_nested_attributes_for :pickup_points, allow_destroy: true
-
-  rails_admin do
-    list do
-      field :id
-      field :tour_coach
-      field :pickup_points do
-        eager_load true
-      end
-    end
-  end
-
+  
   def title
     "Pickup list: #{tour_coach.title}"
   rescue

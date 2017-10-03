@@ -24,12 +24,6 @@ class TourBooking < ApplicationRecord
 
   validates :active_tour, :user, presence: true
 
-  rails_admin do
-    list do
-      exclude_fields :created_at, :updated_at
-    end
-  end
-
   def title
     "#{user.name} -> #{active_tour.title}"
   rescue

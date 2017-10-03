@@ -16,20 +16,6 @@ class Facility < ApplicationRecord
 
   validates :facility, presence: true
 
-  rails_admin do
-    list do
-      field :id
-      field :facility
-      field :hotels do
-        eager_load true
-      end
-    end
-
-    edit do
-      field :facility
-    end
-  end
-
   def title
     facility
   end

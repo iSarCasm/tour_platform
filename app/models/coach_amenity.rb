@@ -15,18 +15,4 @@ class CoachAmenity < ApplicationRecord
   has_many :tour_coaches, through: :tour_coach_amenities
 
   validates :name, presence: true
-
-  rails_admin do
-    list do
-      field :id
-      field :name
-      field :tour_coaches do
-        eager_load true
-      end
-    end
-
-    edit do
-      field :name
-    end
-  end
 end

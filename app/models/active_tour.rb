@@ -22,37 +22,6 @@ class ActiveTour < ApplicationRecord
 
   validates :tour, :start_date, :end_date, presence: true
 
-  rails_admin do
-    parent Tour
-    list do
-      field :id
-      field :tour
-      field :start_date
-      field :end_date
-      field :tour_bookings do
-        eager_load true
-      end
-      field :tour_hotels do
-        eager_load true
-      end
-      field :tour_coaches do
-        eager_load true
-      end
-    end
-
-    edit do
-      field :tour
-      field :start_date
-      field :end_date
-      field :tour_hotels do
-        eager_load true
-      end
-      field :tour_coaches do
-        eager_load true
-      end
-    end
-  end
-
   extend FriendlyId
   friendly_id :title, use: :slugged
 

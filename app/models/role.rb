@@ -17,18 +17,4 @@ class Role < ApplicationRecord
   has_many :users, inverse_of: :role
 
   validates :name, presence: true
-
-  rails_admin do
-    list do
-      field :id
-      field :name
-      field :description
-      field :permissions
-      field :users
-    end
-
-    edit do
-      exclude_fields :role_permissions
-    end
-  end
 end

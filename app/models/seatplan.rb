@@ -19,39 +19,6 @@ class Seatplan < ApplicationRecord
   validate :all_rows_equal_length
   validate :only_existing_seat_types_used
 
-  rails_admin do
-    list do
-      field :title
-      field :description
-      field :total_seats
-      field :total_rows
-    end
-    edit do
-      field :title
-      field :description
-      field :plan do
-        partial 'seatplan_plan_edit'
-      end
-    end
-    show do
-      field :id
-      field :title
-      field :description
-      field :total_seats
-      field :total_rows
-      field :plan do
-        pretty_value do
-          bindings[:view].render(
-            partial: 'rails_admin/seatplan_plan_show',
-            locals: { seatplan: bindings[:object] }
-          )
-        end
-      end
-      field :created_at
-      field :updated_at
-    end
-  end
-
   def get_seat(row, col)
     char = rows[row - 1][col - 1]
     SeatType.find_by(char: char)

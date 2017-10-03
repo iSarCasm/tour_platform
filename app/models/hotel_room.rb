@@ -32,31 +32,6 @@ class HotelRoom < ApplicationRecord
       .having('count(hotel_room_id) < amount')
   }
 
-  rails_admin do
-    parent TourHotel
-    list do
-      field :tour_hotel
-      field :room_type
-      field :pax
-      field :amount
-      field :adult
-      field :adult_supp
-      field :child
-      field :child_supp
-      field :infant
-      field :infant_supp
-      field :senior
-      field :senior_supp
-      field :hotel_bookings_count do
-        label 'Orders'
-      end
-    end
-
-    edit do
-      exclude_fields :hotel_bookings
-    end
-  end
-
   def title
     "#{tour_hotel.hotel_title} (#{customer_title})"
   rescue

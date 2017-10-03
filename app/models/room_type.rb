@@ -18,15 +18,6 @@ class RoomType < ApplicationRecord
   validates :room_type, presence: true
   validates :pax, presence: true, numericality: { greater_than: 0 }
 
-  rails_admin do
-    list do
-      field :id
-      field :pax
-      field :description
-      field :hotel_rooms
-    end
-  end
-
   def name
     room_type
   end

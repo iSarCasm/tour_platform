@@ -21,69 +21,6 @@ class Coach < ApplicationRecord
 
   validates :title, presence: true
 
-  rails_admin do
-    list do
-      field :id
-      field :title
-      field :description
-      field :address
-      field :phone
-      field :fax
-      field :website
-      field :email
-      field :contact_name
-      field :mobile_number
-      field :tour_coaches_count
-    end
-
-    edit do
-      field :id
-      field :title
-      field :description
-      field :address do
-        render do
-          bindings[:view].render(
-            partial: 'google_map_address_edit',
-            locals: {
-              field: self,
-              form: bindings[:form],
-              google_api_key: Rails.application.secrets.google_api_key
-            }
-          )
-        end
-      end
-      field :phone
-      field :fax
-      field :website
-      field :email
-      field :contact_name
-      field :mobile_number
-    end
-
-    show do
-      field :id
-      field :title
-      field :description
-      field :address do
-        pretty_value do
-          bindings[:view].render(
-            partial: 'rails_admin/google_map_address_show',
-            locals: {
-              value: bindings[:object].address,
-              google_api_key: Rails.application.secrets.google_api_key
-            }
-          )
-        end
-      end
-      field :phone
-      field :fax
-      field :website
-      field :email
-      field :contact_name
-      field :mobile_number
-    end
-  end
-
   def tour_coaches_count
     tour_coaches.count
   end
