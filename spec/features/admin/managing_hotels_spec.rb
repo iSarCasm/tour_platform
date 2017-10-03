@@ -5,11 +5,7 @@ describe 'Managing Hotels', type: :feature do
 
   context 'when logged in as Admin' do
     before do
-      permission = create :permission
-      role = create :role
-      create :role_permission, role: role, permission: permission
-      user = create :user, base_role: :admin, role: role
-      sign_in user
+      sign_in create(:superadmin)
     end
 
     context 'with some Hotels' do

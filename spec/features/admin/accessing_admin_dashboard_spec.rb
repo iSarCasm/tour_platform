@@ -5,8 +5,7 @@ describe 'Accessing Admin Dashboard Page', type: :feature do
 
   context 'when logged in as Admin' do
     before do
-      user = create :user, base_role: :admin
-      sign_in user
+      sign_in create(:admin)
     end
 
     it 'loads Dashboard page' do
