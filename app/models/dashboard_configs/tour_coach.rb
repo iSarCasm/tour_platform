@@ -1,7 +1,7 @@
 RailsAdmin.config do |config|
   config.model TourCoach do
     parent Coach
-    
+
     list do
       field :id
       field :coach do
