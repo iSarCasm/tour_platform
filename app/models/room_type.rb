@@ -11,8 +11,6 @@
 #
 
 class RoomType < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :hotel_rooms, inverse_of: :room_type
 
   validates :room_type, presence: true

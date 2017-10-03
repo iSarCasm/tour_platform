@@ -14,8 +14,6 @@
 #
 
 class PickupPoint < ApplicationRecord
-  include DashboardSettingsSection
-
   belongs_to :pickup_list, inverse_of: :pickup_points
   has_many :coach_bookings, inverse_of: :pickup_point
 

@@ -11,8 +11,6 @@
 #
 
 class Seatplan < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :tour_coaches, inverse_of: :seatplan
 
   validates :title, :plan, presence: true

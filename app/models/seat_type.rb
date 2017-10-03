@@ -13,8 +13,6 @@
 #
 
 class SeatType < ApplicationRecord
-  include DashboardSettingsSection
-
   validates :name, :price, :char, presence: true
 
   validates :char, length: { maximum: 1 }

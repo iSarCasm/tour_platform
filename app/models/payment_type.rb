@@ -9,8 +9,6 @@
 #
 
 class PaymentType < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :tour_hotels, inverse_of: :payment_type
 
   validates :payment_type, presence: true

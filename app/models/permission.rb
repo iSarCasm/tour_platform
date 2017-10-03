@@ -11,8 +11,6 @@
 #
 
 class Permission < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :role_permissions
   has_many :roles, through: :role_permissions
 

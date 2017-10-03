@@ -1,5 +1,8 @@
 RailsAdmin.config do |config|
   config.model Seatplan do
+    navigation_label 'Settings'
+    weight 999
+
     list do
       field :title
       field :description

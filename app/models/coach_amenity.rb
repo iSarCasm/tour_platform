@@ -9,8 +9,6 @@
 #
 
 class CoachAmenity < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :tour_coach_amenities, dependent: :destroy
   has_many :tour_coaches, through: :tour_coach_amenities
 

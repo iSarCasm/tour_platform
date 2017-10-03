@@ -1,5 +1,8 @@
 RailsAdmin.config do |config|
   config.model BoardBasis do
+    navigation_label 'Settings'
+    weight 999
+    
     list do
       field :id
       field :title

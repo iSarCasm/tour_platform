@@ -9,8 +9,6 @@
 #
 
 class BoardBasis < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :tour_hotels, inverse_of: :board_basis
   validates :title, presence: true
 end

@@ -9,8 +9,6 @@
 #
 
 class Facility < ApplicationRecord
-  include DashboardSettingsSection
-
   has_many :hotel_facilities, dependent: :destroy
   has_many :hotels, through: :hotel_facilities
 
