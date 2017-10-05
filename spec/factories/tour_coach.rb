@@ -7,10 +7,6 @@ FactoryGirl.define do
     active_tour
     coach
 
-    before(:create) do |tour_coach|
-      create :pickup_list, tour_coach: tour_coach
-    end
-
     factory :tour_coach_without_seats do
       after(:build) do |tc|
         tc.seatplan = build :seatplan, plan: '_'
@@ -18,6 +14,12 @@ FactoryGirl.define do
 
       after(:create) do |tc|
         tc.seatplan = create :seatplan, plan: '_'
+      end
+    end
+
+    factory :tour_coach_with_pickup_list do
+      before(:create) do |tour_coach|
+        create :pickup_list, tour_coach: tour_coach
       end
     end
   end

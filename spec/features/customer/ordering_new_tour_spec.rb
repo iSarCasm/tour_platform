@@ -17,7 +17,7 @@ describe 'Ordering new Tour', type: :feature, js: true do
     create(:seat_type, char: 'w', is_seat: false)
     seatplan = create(:seatplan, plan: "bb_bb\nll_ll\nww_ll\nbbbbb")
     tcoach = create(
-      :tour_coach,
+      :tour_coach_with_pickup_list,
       active_tour: active_tour,
       seatplan: seatplan
     )

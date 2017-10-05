@@ -55,6 +55,7 @@ describe TourCoach do
   describe 'available?' do
     it 'returns if has any seats for booking' do
       tour_coach = create :tour_coach
+      create :pickup_list, tour_coach: tour_coach
       allow(tour_coach).to receive(:seats).and_return(40)
       bookings = create_list :coach_booking, 15, tour_coach: tour_coach
       bookings.each { |b| allow(b).to receive(:seats_amount).and_return(1) }

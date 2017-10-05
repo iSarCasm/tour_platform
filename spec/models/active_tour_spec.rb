@@ -49,6 +49,7 @@ describe ActiveTour do
     it 'avaialbe if all coaches and hotels are available' do
       active_tour = create :active_tour
       tour_coach = create :tour_coach_without_seats, active_tour: active_tour
+      create :pickup_list, tour_coach: tour_coach
 
       tour_hotel = create :tour_hotel, active_tour: active_tour
       room_1 = create :hotel_room, tour_hotel: tour_hotel, amount: 0  # no rooms

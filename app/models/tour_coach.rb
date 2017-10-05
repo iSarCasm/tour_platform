@@ -29,7 +29,7 @@ class TourCoach < ApplicationRecord
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
   accepts_nested_attributes_for :pickup_list, allow_destroy: true
 
-  validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, :pickup_list, presence: true
+  validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
 
   def title
     "#{coach.title} " \
