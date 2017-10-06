@@ -3,10 +3,10 @@
     {
       "warning_type": "Denial of Service",
       "warning_code": 76,
-      "fingerprint": "c49d4e751d4cca3ef4004066709d297eb1b7ca9f382c8fac4ce2761065faba0e",
+      "fingerprint": "3a8a3c41acaa8144b1a439fbf8b544a250be52c1aa6098712df2c2e88a67a322",
       "check_name": "RegexDoS",
       "message": "Model attribute used in regex",
-      "file": "app/models/seat.rb",
+      "file": "lib/seat.rb",
       "line": 29,
       "link": "http://brakemanscanner.org/docs/warning_types/denial_of_service/",
       "code": "/#{SeatType.nonseat_chars.join(\"|\")}/",
@@ -18,7 +18,7 @@
       },
       "user_input": "SeatType.nonseat_chars.join(\"|\")",
       "confidence": "Medium",
-      "note": "Controlled by admins and moderators"
+      "note": ""
     },
     {
       "warning_type": "Denial of Service",
@@ -27,7 +27,7 @@
       "check_name": "RegexDoS",
       "message": "Model attribute used in regex",
       "file": "app/models/seatplan.rb",
-      "line": 103,
+      "line": 68,
       "link": "http://brakemanscanner.org/docs/warning_types/denial_of_service/",
       "code": "/#{SeatType.nonseat_chars.join(\"|\")}/",
       "render_path": null,
@@ -41,6 +41,6 @@
       "note": "Controlled by admins and moderators"
     }
   ],
-  "updated": "2017-09-05 19:44:34 +0300",
+  "updated": "2017-10-06 17:24:09 +0300",
   "brakeman_version": "3.7.0"
 }
