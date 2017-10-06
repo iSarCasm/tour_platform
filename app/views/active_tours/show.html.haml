@@ -42,7 +42,7 @@
                   %i.fa.fa-bus
                   Coach booking
             = f.fields_for :coach_bookings do |coach|
-              = render 'active_tours/coach_booking', coach: coach
+              = render 'active_tours/coach_booking', coach: coach, tour_coach: @tour_coach
             %p
               %strong
                 %h3
