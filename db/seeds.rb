@@ -9,7 +9,7 @@ begin
   [Tour, Hotel, Coach, User, ActiveTour].each do |klass|
     admin.permissions << Permission.find_by(subject_class: Permission.subject_classes[klass.to_s], action: Permission.actions['manage'])
   end
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -34,7 +34,7 @@ begin
     { name: 'Anna', email: 'annathebest@gmail.com', password: '12341234' },
     { name: 'Felix', email: 'felix@pewdiepie.com', password: '12341234' }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -52,7 +52,7 @@ begin
     {title: 'Self Catering'},
     {title: 'Room Only'}
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -65,7 +65,7 @@ begin
     {payment_type: 'Credit invoice'},
     {payment_type: 'Pre-Pay'},
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -80,7 +80,7 @@ begin
     { room_type: 'Twin', pax: 2, description: 'Twin Room' },
     { room_type: 'Triple', pax: 3, description: 'Triple Room' }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -94,7 +94,7 @@ begin
     {facility: 'Lift'},
     {facility: 'Balcony Rooms'}
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -116,7 +116,7 @@ begin
       title: 'FIRSTCLASS'
     }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -141,7 +141,7 @@ begin
       description: 'Offering modern, comfortable accommodation, BLOC Hotel is located within the South Terminal of London’s Gatwick Airport. Free Wi-Fi is accessible throughout. Dependent on the provider, travellers can check-in their bags with their airline the night before their flight, arrive at BLOC Hotel Gatwick, and relax and enjoy the bespoke facilities. In the morning, it is a short walk from the hotel to Gatwick’s departure gates'
     }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -236,7 +236,7 @@ begin
   Start and end in Reykjavik! With the in-depth cultural tour Iceland Discovery, you have a 10 day tour package taking you through Reykjavik, Iceland and 7 other destinations in Iceland. Iceland Discovery is a small group tour that includes accommodation in a hotel as well as an expert guide, meals, transport.'
     }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -251,7 +251,7 @@ begin
     { tour: tours[0], start_date: 17.days.from_now, end_date: 17.days.from_now + 15.days },
     { tour: tours[1], start_date: 23.days.from_now, end_date: 23.days.from_now + 9.days }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -266,7 +266,7 @@ begin
     { coach: coaches[2], active_tour: active_tours[2], departure_date: 17.days.from_now, arrival_date: 17.days.from_now + 15.days, seats: 30 },
     { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days, seats: 60 }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -289,7 +289,7 @@ begin
     { hotel: hotels[2], active_tour: active_tours[3], board_basis: board_bases[0], start_date: 23.days.from_now + 4.days, end_date: 23.days.from_now + 5.days },
     { hotel: hotels[3], active_tour: active_tours[3], board_basis: board_bases[0], start_date: 23.days.from_now + 6.days, end_date: 23.days.from_now + 8.days }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -347,7 +347,7 @@ begin
     { room_type: room_types[1], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
     { room_type: room_types[2], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
   ]
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
@@ -379,7 +379,7 @@ begin
   b5.hotel_bookings.create(hotel_room: tour_hotels[5].hotel_rooms[2])
   b5.hotel_bookings.create(hotel_room: tour_hotels[6].hotel_rooms[2])
   b5.hotel_bookings.create(hotel_room: tour_hotels[7].hotel_rooms[2])
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure

@@ -31,7 +31,7 @@ begin
   end
 
   setup_actions_controllers_db
-rescue Exception => exception
+rescue StandardError => exception
   puts exception
   puts exception.backtrace
 ensure
