@@ -5,6 +5,7 @@ RailsAdmin.config do |config|
 
     list do
       field :id
+      field :room_type
       field :pax
       field :description
       field :hotel_rooms
