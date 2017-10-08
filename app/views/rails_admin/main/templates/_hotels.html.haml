@@ -3,63 +3,63 @@
 
 -# For field render you can use compact_render_field(field) or field.render
 .clearfix
-  - for_field :hotel_id do |field, css, id, label|
+  - for_field :title do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
-  - for_field :active_tour_id do |field, css, id, label|
+  - for_field :rating do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
-  - for_field :start_date do |field, css, id, label|
+  - for_field :phone_number do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
-  - for_field :end_date do |field, css, id, label|
+  - for_field :fax_number do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
 .clearfix
-  - for_field :board_basis_id do |field, css, id, label|
+  - for_field :website do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
-  - for_field :payment_type_id do |field, css, id, label|
+  - for_field :email do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
-  - for_field :finalisation_date do |field, css, id, label|
+  - for_field :contact_name do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
-  - for_field :hotel_theme do |field, css, id, label|
-    %div{class: "col-md-3 width100 #{css}", id: id}
+  - for_field :emergency_number do |field, css, id, label|
+    %div{class: "col-md-3 #{css}", id: id}
       %p
         = label
       = compact_render_field field
 
 .clearfix
-  - for_field :hotel_rooms_attributes do |field, css, id, label|
+  - for_field :description do |field, css, id, label|
     %p
       = label
     = compact_render_field field
 
 .clearfix
-  - for_field :notes do |field, css, id, label|
+  - for_field :address do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
       %p
         = label

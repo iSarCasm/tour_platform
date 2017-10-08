@@ -82,6 +82,7 @@ group :development do
   gem 'seed_dump'
   # Start Server in development
   gem 'foreman', require: false
+  gem "wysiwyg-rails"
 end
 
 group :test do

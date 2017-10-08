@@ -16,6 +16,9 @@
 @import 'jquery-seat-plan';
 @import 'notifcenter';
 @import 'rails_admin/bootstrap/glyphicons';
+@import "froala_editor.min";
+@import "froala_style.min";
+@import "font-awesome";
 
 #toast-container>div{
   opacity: 1;
