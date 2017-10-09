@@ -70,6 +70,7 @@ class TourHotel < ApplicationRecord
   private
 
   def copy_default_hotel_rooms
+    return unless hotel
     rooms = hotel.hotel_rooms.map(&:model_attributes)
     hotel_rooms.create rooms unless rooms.empty?
   end
