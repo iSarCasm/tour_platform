@@ -22,10 +22,10 @@ class HotelRoom < ApplicationRecord
   has_many :hotel_bookings, dependent: :destroy, inverse_of: :hotel_room
 
   belongs_to :room_type, inverse_of: :hotel_rooms
-  belongs_to :tour_hotel, inverse_of: :hotel_rooms
-  belongs_to :hotel, inverse_of: :hotel_rooms
+  belongs_to :tour_hotel, inverse_of: :hotel_rooms, optional: true
+  belongs_to :hotel, inverse_of: :hotel_rooms, optional: true
 
-  validates :tour_hotel, :room_type, :amount, presence: true
+  validates :room_type, :amount, presence: true
 
   scope :available, lambda {
     left_outer_joins(:hotel_bookings)
@@ -69,5 +69,12 @@ class HotelRoom < ApplicationRecord
 
   def room_type_name
     room_type.room_type
+  end
+
+  def model_attributes
+    filtered = ['id', 'created_at', 'updated_at', 'hotel_id', 'tour_hotel_id']
+    filtered.each.with_object(attributes) do |f, attrs|
+       attrs.delete f
+    end
   end
 end
