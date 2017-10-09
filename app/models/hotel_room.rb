@@ -23,6 +23,7 @@ class HotelRoom < ApplicationRecord
 
   belongs_to :room_type, inverse_of: :hotel_rooms
   belongs_to :tour_hotel, inverse_of: :hotel_rooms
+  belongs_to :hotel, inverse_of: :hotel_rooms
 
   validates :tour_hotel, :room_type, :amount, presence: true
 

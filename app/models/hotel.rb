@@ -23,6 +23,11 @@ class Hotel < ApplicationRecord
   has_many :facilities, through: :hotel_facilities
   has_many :photos, as: :photoable, class_name: 'Photo'
 
+  # Defaults
+  has_many :hotel_rooms, dependent: :destroy, inverse_of: :hotel
+  accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
+
+
   accepts_nested_attributes_for :photos, allow_destroy: true
 
   validates :title, presence: true
