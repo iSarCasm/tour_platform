@@ -20,7 +20,21 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      exclude_fields :hotel_bookings
+      field :tour_hotel
+      field :room_type
+      field :amount
+      field :adult
+      field :adult_supp
+      field :child
+      field :child_supp
+      field :infant
+      field :infant_supp
+      field :senior
+      field :senior_supp
+    end
+
+    nested do
+      exclude_fields :hotel, :tour_hotel
     end
   end
 end

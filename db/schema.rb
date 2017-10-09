@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920135015) do
+ActiveRecord::Schema.define(version: 20171009173002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.decimal "infant_supp", default: "0.0"
     t.decimal "senior", default: "0.0"
     t.decimal "senior_supp", default: "0.0"
+    t.bigint "hotel_id"
+    t.index ["hotel_id"], name: "index_hotel_rooms_on_hotel_id"
     t.index ["room_type_id"], name: "index_hotel_rooms_on_room_type_id"
     t.index ["tour_hotel_id"], name: "index_hotel_rooms_on_tour_hotel_id"
   end
@@ -324,6 +326,27 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+    t.index ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key"
+    t.index ["version_id"], name: "index_version_associations_on_version_id"
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.text "object_changes"
+    t.integer "transaction_id"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["transaction_id"], name: "index_versions_on_transaction_id"
+  end
+
   add_foreign_key "active_tours", "tours"
   add_foreign_key "admin_alerts", "users"
   add_foreign_key "coach_bookings", "pickup_points"
@@ -333,6 +356,7 @@ ActiveRecord::Schema.define(version: 20170920135015) do
   add_foreign_key "hotel_bookings", "tour_bookings"
   add_foreign_key "hotel_facilities", "facilities"
   add_foreign_key "hotel_facilities", "hotels"
+  add_foreign_key "hotel_rooms", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "pickup_lists", "tour_coaches"
   add_foreign_key "pickup_points", "pickup_lists"

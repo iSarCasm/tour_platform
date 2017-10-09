@@ -40,6 +40,22 @@ RailsAdmin.config do |config|
       field :emergency_number
       field :rating
       field :facilities
+      field :hotel_rooms do
+        render do
+          bindings[:view].render(
+            partial: 'table_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              table_headers: [
+                'Amount', 'Room Type', 'Adult', 'Adult supp',
+                'Child', 'Child supp', 'Infant', 'Infant supp',
+                'Senior', 'Senior supp'
+              ]
+            }
+          )
+        end
+      end
       field :photos
     end
 
