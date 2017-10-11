@@ -33,7 +33,6 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :id
       field :title
       field :description
       field :address do
