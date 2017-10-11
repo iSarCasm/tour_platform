@@ -99,8 +99,14 @@ RailsAdmin.config do |config|
       field :email
       field :contact_name
       field :mobile_number
-      field :seatplan do
+      field :seatplan  do
         label 'Default Seatplan'
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/seatplan_show',
+            locals: { seatplan: bindings[:object].seatplan }
+          )
+        end
       end
       field :seat_prices do
         label 'Default Seat Prices'
