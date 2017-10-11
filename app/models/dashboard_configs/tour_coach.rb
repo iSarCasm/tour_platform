@@ -50,7 +50,18 @@ RailsAdmin.config do |config|
       field :notes
       field :coach_amenities
       field :seatplan
-      field :seat_prices
+      field :seat_prices do
+        render do
+          bindings[:view].render(
+            partial: 'table_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              table_headers: ['char', 'price']
+            }
+          )
+        end
+      end
       field :pickup_list
     end
 
@@ -72,7 +83,18 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :seat_prices
+      field :seat_prices do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/table_show',
+            locals: {
+              objects: bindings[:object].seat_prices,
+              table_headers: ['char', 'price'],
+              methods: [:char, :price]
+            }
+          )
+        end
+      end
       field :pickup_list
       field :created_at
       field :updated_at
