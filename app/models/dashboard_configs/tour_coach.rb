@@ -57,7 +57,9 @@ RailsAdmin.config do |config|
             locals: {
               field: self,
               form: bindings[:form],
-              table_headers: ['char', 'price']
+              table_headers: ['char', 'price'],
+              style: 'width: auto;',
+              links_css: 'col-sm-offset-2'
             }
           )
         end
