@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009173002) do
+ActiveRecord::Schema.define(version: 20171011155213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,11 @@ ActiveRecord::Schema.define(version: 20171009173002) do
     t.string "contact_name"
     t.string "emergency_number"
     t.decimal "rating"
+    t.bigint "board_basis_id"
+    t.text "notes"
+    t.bigint "payment_type_id"
+    t.index ["board_basis_id"], name: "index_hotels_on_board_basis_id"
+    t.index ["payment_type_id"], name: "index_hotels_on_payment_type_id"
   end
 
   create_table "payment_types", force: :cascade do |t|
@@ -358,6 +363,8 @@ ActiveRecord::Schema.define(version: 20171009173002) do
   add_foreign_key "hotel_facilities", "hotels"
   add_foreign_key "hotel_rooms", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
+  add_foreign_key "hotels", "board_bases"
+  add_foreign_key "hotels", "payment_types"
   add_foreign_key "pickup_lists", "tour_coaches"
   add_foreign_key "pickup_points", "pickup_lists"
   add_foreign_key "role_permissions", "permissions"
