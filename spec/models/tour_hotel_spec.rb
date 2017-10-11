@@ -19,18 +19,6 @@
 require 'rails_helper'
 
 describe TourHotel do
-  describe ':after_create' do
-    it 'copies hotel rooms from Hotel to TourHotel' do
-      hotel = create :hotel
-      rooms = create_list :hotel_room, 3, hotel: hotel
-      tour_hotel = create :tour_hotel, hotel: hotel
-
-      hotel_room_objects = rooms.map(&:model_attributes)
-      tour_hotel_room_objects = tour_hotel.hotel_rooms.map(&:model_attributes)
-      expect(tour_hotel_room_objects).to match_array hotel_room_objects
-    end
-  end
-
   describe '#title' do
     it 'shows readable represenation' do
       hotel = build :hotel, title: 'Grand Plaza'

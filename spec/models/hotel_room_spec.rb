@@ -74,35 +74,4 @@ describe HotelRoom do
       expect(hotel_room.available?).to eq false
     end
   end
-
-  describe '#model_attributes' do
-    it 'returns only room related fields' do
-      room_type = create(:room_type)
-      room = create(:hotel_room, {
-        amount: 10,
-        adult: 20,
-        adult_supp: 30,
-        child: 40,
-        child_supp: 50,
-        senior: 60,
-        senior_supp: 70,
-        infant: 80,
-        infant_supp: 90,
-        room_type: room_type
-      })
-
-      expect(room.model_attributes).to eq({
-        'amount' => 10,
-        'adult' => 20,
-        'adult_supp' => 30,
-        'child' => 40,
-        'child_supp' => 50,
-        'senior' => 60,
-        'senior_supp' => 70,
-        'infant' => 80,
-        'infant_supp' => 90,
-        'room_type_id' => room_type.id
-      })
-    end
-  end
 end

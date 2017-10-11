@@ -25,8 +25,6 @@ class TourHotel < ApplicationRecord
 
   validates :hotel, :active_tour, presence: true
 
-  after_create :copy_default_hotel_rooms
-
   accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
 
   def title
@@ -65,13 +63,5 @@ class TourHotel < ApplicationRecord
 
   def nights
     (end_date - start_date).to_i
-  end
-
-  private
-
-  def copy_default_hotel_rooms
-    return unless hotel
-    rooms = hotel.hotel_rooms.map(&:model_attributes)
-    hotel_rooms.create rooms unless rooms.empty?
   end
 end
