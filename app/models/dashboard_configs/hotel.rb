@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: hotels
+#
+#  id               :integer          not null, primary key
+#  title            :string
+#  description      :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  address          :string
+#  phone_number     :string
+#  fax_number       :string
+#  email            :string
+#  website          :string
+#  contact_name     :string
+#  emergency_number :string
+#  rating           :decimal(, )
+#
+
 RailsAdmin.config do |config|
   config.model Hotel do
     list do
