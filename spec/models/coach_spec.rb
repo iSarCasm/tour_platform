@@ -14,6 +14,8 @@
 #  email         :string
 #  contact_name  :string
 #  mobile_number :string
+#  notes         :text
+#  seatplan_id   :integer
 #
 
 require 'rails_helper'
