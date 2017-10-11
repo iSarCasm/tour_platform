@@ -15,6 +15,7 @@ RailsAdmin.config do |config|
     edit do
       field :title
       field :description
+      field :tour_type
       field :active_tours do
         eager_load true
       end
@@ -24,6 +25,7 @@ RailsAdmin.config do |config|
       field :id
       field :title
       field :description
+      field :tour_type
       field :active_tours do
         eager_load true
       end
