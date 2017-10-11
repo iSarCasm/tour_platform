@@ -31,6 +31,7 @@ RailsAdmin.config do |config|
       field :arrival_date
       field :driver_name
       field :notes
+      field :rate
       field :seatplan
       field :coach_bookings_count do
         label 'Orders'
@@ -65,6 +66,7 @@ RailsAdmin.config do |config|
         end
       end
       field :pickup_list
+      field :rate
     end
 
     show do
@@ -98,9 +100,9 @@ RailsAdmin.config do |config|
         end
       end
       field :pickup_list
+      field :rate
       field :created_at
       field :updated_at
-      exclude_fields :tour_coach_amenities
     end
   end
 end
