@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011155213) do
+ActiveRecord::Schema.define(version: 20171011170449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(version: 20171011155213) do
     t.string "email"
     t.string "contact_name"
     t.string "mobile_number"
+    t.text "notes"
+    t.bigint "seatplan_id"
+    t.index ["seatplan_id"], name: "index_coaches_on_seatplan_id"
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -222,6 +225,8 @@ ActiveRecord::Schema.define(version: 20171011155213) do
     t.bigint "tour_coach_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "coach_id"
+    t.index ["coach_id"], name: "index_seat_prices_on_coach_id"
     t.index ["tour_coach_id"], name: "index_seat_prices_on_tour_coach_id"
   end
 
@@ -357,6 +362,7 @@ ActiveRecord::Schema.define(version: 20171011155213) do
   add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
+  add_foreign_key "coaches", "seatplans"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
   add_foreign_key "hotel_facilities", "facilities"
@@ -369,6 +375,7 @@ ActiveRecord::Schema.define(version: 20171011155213) do
   add_foreign_key "pickup_points", "pickup_lists"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
+  add_foreign_key "seat_prices", "coaches"
   add_foreign_key "seat_prices", "tour_coaches"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"

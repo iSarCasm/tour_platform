@@ -15,6 +15,9 @@
 #  contact_name     :string
 #  emergency_number :string
 #  rating           :decimal(, )
+#  board_basis_id   :integer
+#  notes            :text
+#  payment_type_id  :integer
 #
 
 RailsAdmin.config do |config|

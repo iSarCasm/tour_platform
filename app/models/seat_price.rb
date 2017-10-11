@@ -8,8 +8,10 @@
 #  tour_coach_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  coach_id      :integer
 #
 
 class SeatPrice < ApplicationRecord
-  belongs_to :tour_coach, inverse_of: :seat_prices
+  belongs_to :tour_coach, inverse_of: :seat_prices, optional: true
+  belongs_to :coach, inverse_of: :seat_prices, optional: true
 end

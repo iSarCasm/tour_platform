@@ -14,6 +14,8 @@
 #  email         :string
 #  contact_name  :string
 #  mobile_number :string
+#  notes         :text
+#  seatplan_id   :integer
 #
 
 RailsAdmin.config do |config|
@@ -30,6 +32,8 @@ RailsAdmin.config do |config|
       field :contact_name
       field :mobile_number
       field :tour_coaches_count
+      field :seatplan
+      field :notes
     end
 
     edit do
@@ -53,6 +57,25 @@ RailsAdmin.config do |config|
       field :email
       field :contact_name
       field :mobile_number
+      field :seatplan do
+        label 'Default Seatplan'
+      end
+      field :seat_prices do
+        label 'Default Seat Prices'
+        render do
+          bindings[:view].render(
+            partial: 'table_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              table_headers: ['char', 'price'],
+              style: 'width: auto;',
+              links_css: 'col-sm-offset-2'
+            }
+          )
+        end
+      end
+      field :notes
     end
 
     show do
@@ -76,6 +99,23 @@ RailsAdmin.config do |config|
       field :email
       field :contact_name
       field :mobile_number
+      field :seatplan do
+        label 'Default Seatplan'
+      end
+      field :seat_prices do
+        label 'Default Seat Prices'
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/table_show',
+            locals: {
+              objects: bindings[:object].seat_prices,
+              table_headers: ['char', 'price'],
+              methods: [:char, :price]
+            }
+          )
+        end
+      end
+      field :notes
     end
   end
 end

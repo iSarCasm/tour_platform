@@ -12,6 +12,7 @@
 
 class Seatplan < ApplicationRecord
   has_many :tour_coaches, inverse_of: :seatplan
+  has_many :coaches, inverse_of: :seatplan
 
   validates :title, :plan, presence: true
   validate :all_rows_equal_length
