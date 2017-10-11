@@ -28,8 +28,8 @@ class Hotel < ApplicationRecord
 
   # Defaults
   has_many :hotel_rooms, dependent: :destroy, inverse_of: :hotel
-  belongs_to :board_basis, inverse_of: :hotels
-  belongs_to :payment_type, inverse_of: :hotels
+  belongs_to :board_basis, inverse_of: :hotels, optional: true
+  belongs_to :payment_type, inverse_of: :hotels, optional: true
 
   accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
 
