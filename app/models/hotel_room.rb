@@ -16,15 +16,17 @@
 #  infant_supp   :decimal(, )      default(0.0)
 #  senior        :decimal(, )      default(0.0)
 #  senior_supp   :decimal(, )      default(0.0)
+#  hotel_id      :integer
 #
 
 class HotelRoom < ApplicationRecord
   has_many :hotel_bookings, dependent: :destroy, inverse_of: :hotel_room
 
   belongs_to :room_type, inverse_of: :hotel_rooms
-  belongs_to :tour_hotel, inverse_of: :hotel_rooms
+  belongs_to :tour_hotel, inverse_of: :hotel_rooms, optional: true
+  belongs_to :hotel, inverse_of: :hotel_rooms, optional: true
 
-  validates :tour_hotel, :room_type, :amount, presence: true
+  validates :room_type, :amount, presence: true
 
   scope :available, lambda {
     left_outer_joins(:hotel_bookings)

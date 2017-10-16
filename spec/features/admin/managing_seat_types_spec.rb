@@ -10,9 +10,9 @@ describe 'Managing Seat types', type: :feature do
 
     context 'with some Seat types' do
       before do
-        @seat_type = create :seat_type, name: 'Lux'
-        create :seat_type, name: 'Crap'
-        create :seat_type, name: 'WC'
+        @seat_type = create :seat_type, name: 'Lux', char: 'l'
+        create :seat_type, name: 'Crap', char: 'r'
+        create :seat_type, name: 'WC', char: 'w'
       end
 
       it 'can List all Seat types' do

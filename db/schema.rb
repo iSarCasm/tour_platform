@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170920135015) do
+ActiveRecord::Schema.define(version: 20171011180622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.string "email"
     t.string "contact_name"
     t.string "mobile_number"
+    t.text "notes"
+    t.bigint "seatplan_id"
+    t.index ["seatplan_id"], name: "index_coaches_on_seatplan_id"
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -124,6 +127,8 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.decimal "infant_supp", default: "0.0"
     t.decimal "senior", default: "0.0"
     t.decimal "senior_supp", default: "0.0"
+    t.bigint "hotel_id"
+    t.index ["hotel_id"], name: "index_hotel_rooms_on_hotel_id"
     t.index ["room_type_id"], name: "index_hotel_rooms_on_room_type_id"
     t.index ["tour_hotel_id"], name: "index_hotel_rooms_on_tour_hotel_id"
   end
@@ -141,6 +146,11 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.string "contact_name"
     t.string "emergency_number"
     t.decimal "rating"
+    t.bigint "board_basis_id"
+    t.text "notes"
+    t.bigint "payment_type_id"
+    t.index ["board_basis_id"], name: "index_hotels_on_board_basis_id"
+    t.index ["payment_type_id"], name: "index_hotels_on_payment_type_id"
   end
 
   create_table "payment_types", force: :cascade do |t|
@@ -215,6 +225,8 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.bigint "tour_coach_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "coach_id"
+    t.index ["coach_id"], name: "index_seat_prices_on_coach_id"
     t.index ["tour_coach_id"], name: "index_seat_prices_on_tour_coach_id"
   end
 
@@ -271,6 +283,7 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.string "driver_number"
     t.text "notes"
     t.bigint "seatplan_id"
+    t.decimal "rate"
     t.index ["active_tour_id"], name: "index_tour_coaches_on_active_tour_id"
     t.index ["coach_id"], name: "index_tour_coaches_on_coach_id"
     t.index ["seatplan_id"], name: "index_tour_coaches_on_seatplan_id"
@@ -294,13 +307,21 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.index ["payment_type_id"], name: "index_tour_hotels_on_payment_type_id"
   end
 
+  create_table "tour_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tours", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "tour_type_id"
     t.index ["slug"], name: "index_tours_on_slug", unique: true
+    t.index ["tour_type_id"], name: "index_tours_on_tour_type_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -324,20 +345,46 @@ ActiveRecord::Schema.define(version: 20170920135015) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+    t.index ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key"
+    t.index ["version_id"], name: "index_version_associations_on_version_id"
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.text "object_changes"
+    t.integer "transaction_id"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.index ["transaction_id"], name: "index_versions_on_transaction_id"
+  end
+
   add_foreign_key "active_tours", "tours"
   add_foreign_key "admin_alerts", "users"
   add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
+  add_foreign_key "coaches", "seatplans"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
   add_foreign_key "hotel_facilities", "facilities"
   add_foreign_key "hotel_facilities", "hotels"
+  add_foreign_key "hotel_rooms", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
+  add_foreign_key "hotels", "board_bases"
+  add_foreign_key "hotels", "payment_types"
   add_foreign_key "pickup_lists", "tour_coaches"
   add_foreign_key "pickup_points", "pickup_lists"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
+  add_foreign_key "seat_prices", "coaches"
   add_foreign_key "seat_prices", "tour_coaches"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
@@ -350,5 +397,6 @@ ActiveRecord::Schema.define(version: 20170920135015) do
   add_foreign_key "tour_hotels", "board_bases"
   add_foreign_key "tour_hotels", "hotels"
   add_foreign_key "tour_hotels", "payment_types"
+  add_foreign_key "tours", "tour_types"
   add_foreign_key "users", "roles"
 end

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: roles
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 RailsAdmin.config do |config|
   config.model Role do
     navigation_label 'Settings'

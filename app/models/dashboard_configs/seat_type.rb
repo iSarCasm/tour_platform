@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: seat_types
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  price      :decimal(, )
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  char       :string
+#  is_seat    :boolean
+#  color      :string
+#
+
 RailsAdmin.config do |config|
   config.model SeatType do
     navigation_label 'Settings'

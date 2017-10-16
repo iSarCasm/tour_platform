@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: pickup_points
+#
+#  id             :integer          not null, primary key
+#  pickup_list_id :integer
+#  address        :string
+#  longitude      :decimal(, )
+#  latitude       :decimal(, )
+#  time_to_hub    :string
+#  time_from_hub  :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 RailsAdmin.config do |config|
   config.model PickupPoint do
     navigation_label 'Settings'

@@ -10,6 +10,7 @@
 
 class PaymentType < ApplicationRecord
   has_many :tour_hotels, inverse_of: :payment_type
+  has_many :hotels, inverse_of: :payment_type
 
   validates :payment_type, presence: true
 

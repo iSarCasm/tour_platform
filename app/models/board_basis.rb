@@ -10,5 +10,6 @@
 
 class BoardBasis < ApplicationRecord
   has_many :tour_hotels, inverse_of: :board_basis
+  has_many :hotels, inverse_of: :board_basis
   validates :title, presence: true
 end

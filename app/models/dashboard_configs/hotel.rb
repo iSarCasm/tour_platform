@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: hotels
+#
+#  id               :integer          not null, primary key
+#  title            :string
+#  description      :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  address          :string
+#  phone_number     :string
+#  fax_number       :string
+#  email            :string
+#  website          :string
+#  contact_name     :string
+#  emergency_number :string
+#  rating           :decimal(, )
+#  board_basis_id   :integer
+#  notes            :text
+#  payment_type_id  :integer
+#
+
 RailsAdmin.config do |config|
   config.model Hotel do
     list do
@@ -15,6 +37,9 @@ RailsAdmin.config do |config|
       field :facilities do
         eager_load true
       end
+      field :board_basis
+      field :payment_type
+      field :notes
     end
 
     edit do
@@ -40,7 +65,31 @@ RailsAdmin.config do |config|
       field :emergency_number
       field :rating
       field :facilities
+      field :hotel_rooms do
+        label 'Default hotel rooms'
+        render do
+          bindings[:view].render(
+            partial: 'table_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              table_headers: [
+                'Amount', 'Room Type', 'Adult', 'Adult supp',
+                'Child', 'Child supp', 'Infant', 'Infant supp',
+                'Senior', 'Senior supp'
+              ]
+            }
+          )
+        end
+      end
+      field :board_basis do
+        label 'Default board basis'
+      end
+      field :payment_type do
+        label 'Default payment type'
+      end
       field :photos
+      field :notes
     end
 
     show do
@@ -65,7 +114,35 @@ RailsAdmin.config do |config|
       field :emergency_number
       field :rating
       field :facilities
+      field :hotel_rooms do
+        label 'Default hotel rooms'
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/table_show',
+            locals: {
+              objects: bindings[:object].hotel_rooms,
+              table_headers: [
+                'Amount', 'Room Type', 'Adult', 'Adult supp',
+                'Child', 'Child supp', 'Infant', 'Infant supp',
+                'Senior', 'Senior supp'
+              ],
+              methods: [
+                :amount, :room_type, :adult, :adult_supp,
+                :child, :child_supp, :infant, :infant_supp,
+                :senior, :senior_supp
+              ]
+            }
+          )
+        end
+      end
+      field :board_basis do
+        label 'Default board basis'
+      end
+      field :payment_type do
+        label 'Default payment type'
+      end
       field :photos
+      field :notes
     end
   end
 end

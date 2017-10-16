@@ -14,10 +14,18 @@
 #  email         :string
 #  contact_name  :string
 #  mobile_number :string
+#  notes         :text
+#  seatplan_id   :integer
 #
 
 class Coach < ApplicationRecord
   has_many :tour_coaches, dependent: :destroy, inverse_of: :coach
+
+  # Defaults
+  belongs_to :seatplan, inverse_of: :coaches, optional: true
+  has_many :seat_prices, dependent: :destroy, inverse_of: :coach
+
+  accepts_nested_attributes_for :seat_prices, allow_destroy: true
 
   validates :title, presence: true
 

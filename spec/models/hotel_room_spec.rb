@@ -16,6 +16,7 @@
 #  infant_supp   :decimal(, )      default(0.0)
 #  senior        :decimal(, )      default(0.0)
 #  senior_supp   :decimal(, )      default(0.0)
+#  hotel_id      :integer
 #
 
 require 'rails_helper'
