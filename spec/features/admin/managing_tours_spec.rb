@@ -40,6 +40,9 @@ describe 'Managing Tours', type: :feature do
         visit "/admin/tour/#{@tour.id}/edit"
         expect(page).to have_content 'Title'
         expect(page).to have_content 'Description'
+        expect(page).to have_content 'Tour type'
+        expect(page).to have_content 'Country'
+        expect(page).to have_content 'Categories'
 
         fill_in 'tour[title]', with: 'CRazY ToUr'
         page.find(:css, '.btn-primary').click
