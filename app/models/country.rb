@@ -9,5 +9,7 @@
 #
 
 class Country < ApplicationRecord
+  has_many :tours, inverse_of: :country
+
   validates :name, presence: true
 end
