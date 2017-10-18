@@ -47,6 +47,9 @@ describe 'Managing Coaches', type: :feature do
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Contact name'
         expect(page).to have_content 'Mobile number'
+        expect(page).to have_content 'Default Seatplan'
+        expect(page).to have_content 'Default Seat Prices'
+        expect(page).to have_content 'Notes'
 
         fill_in 'coach[title]', with: 'New Title of This COACH'
         page.find(:css, '.btn-primary').click
