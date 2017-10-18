@@ -40,10 +40,24 @@ describe 'Managing Users', type: :feature do
       it 'can Edit the User' do
         visit "/admin/user/#{@user.id}/edit"
 
+        expect(page).to have_content 'Title'
         expect(page).to have_content 'Name'
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Role'
         expect(page).to have_content 'Base role'
+        expect(page).to have_content 'Address'
+        expect(page).to have_content 'Postcode'
+        expect(page).to have_content 'Passport name'
+        expect(page).to have_content 'Passport no'
+        expect(page).to have_content 'Passport date of birth'
+        expect(page).to have_content 'Phone mobile'
+        expect(page).to have_content 'Phone landline'
+        expect(page).to have_content 'Phone evening'
+        expect(page).to have_content 'Marketing'
+        expect(page).to have_content 'Kin name'
+        expect(page).to have_content 'Kin phone'
+        expect(page).to have_content 'Travel club'
+        expect(page).to have_content 'Member no'
 
         fill_in 'user[name]', with: 'Jack Daniels'
         page.find(:css, '.btn-primary').click

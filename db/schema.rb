@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018161234) do
+ActiveRecord::Schema.define(version: 20171018163635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -374,6 +374,20 @@ ActiveRecord::Schema.define(version: 20171018161234) do
     t.inet "last_sign_in_ip"
     t.integer "base_role", default: 0
     t.bigint "role_id"
+    t.string "title"
+    t.string "address"
+    t.string "postcode"
+    t.string "passport_name"
+    t.string "passport_no"
+    t.date "passport_date_of_birth"
+    t.string "phone_mobile"
+    t.string "phone_landline"
+    t.string "phone_evening"
+    t.boolean "marketing"
+    t.string "kin_name"
+    t.string "kin_phone"
+    t.boolean "travel_club"
+    t.string "member_no"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"

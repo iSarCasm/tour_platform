@@ -18,6 +18,20 @@
 #  last_sign_in_ip        :inet
 #  base_role              :integer          default("customer")
 #  role_id                :integer
+#  title                  :string
+#  address                :string
+#  postcode               :string
+#  passport_name          :string
+#  passport_no            :string
+#  passport_date_of_birth :date
+#  phone_mobile           :string
+#  phone_landline         :string
+#  phone_evening          :string
+#  marketing              :boolean
+#  kin_name               :string
+#  kin_phone              :string
+#  travel_club            :boolean
+#  member_no              :string
 #
 
 RailsAdmin.config do |config|
@@ -27,7 +41,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      exclude_fields :tour_bookings
+      exclude_fields :tour_bookings, :admin_alerts
     end
   end
 end
