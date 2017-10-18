@@ -45,6 +45,12 @@ class CoachBooking < ApplicationRecord
     tour_coach.seatplan
   end
 
+  def total_cost
+    seats_array.reduce(0) do |sum, x|
+      sum + tour_coach.seat_price(x)
+    end
+  end
+
   def ensure_has_seats
     return unless seats
     if tour_coach.seats_left < seats_amount

@@ -78,4 +78,16 @@ describe CoachBooking do
       expect(booking.seat_objects).to include(seat_2)
     end
   end
+
+  describe '#total_cost' do
+    it 'returns sum cost' do
+      tb = create :tour_booking, adult: 1, senior: 1
+      seatplan = create :seatplan, plan: '@@@@'
+      tc = create :tour_coach, seatplan: seatplan
+      create :seat_price, tour_coach: tc, char: '@', price: 35
+      cb = create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1', '1_2'].to_json
+
+      expect(cb.total_cost).to eq(35 + 35)
+    end
+  end
 end

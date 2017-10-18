@@ -52,6 +52,15 @@ class HotelBooking < ApplicationRecord
     end
   end
 
+  def total_cost
+    hr = hotel_room
+    tb = tour_booking
+    (hr.adult + hr.adult_supp) * tb.adult +
+    (hr.child + hr.child_supp) * tb.child +
+    (hr.senior + hr.senior_supp) * tb.senior +
+    (hr.infant + hr.infant_supp) * tb.infant
+  end
+
   def ensure_has_rooms
     return unless hotel_room
     if hotel_room.amount_left < 1

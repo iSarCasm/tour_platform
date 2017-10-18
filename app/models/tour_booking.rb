@@ -49,4 +49,9 @@ class TourBooking < ApplicationRecord
   def active_tour_title
     active_tour.title
   end
+
+  def total_cost
+    hotel_bookings.reduce(0) { |sum, x| sum + x.total_cost } +
+    coach_bookings.reduce(0) { |sum, x| sum + x.total_cost }
+  end
 end

@@ -155,4 +155,16 @@ describe TourCoach do
       expect(tour_coach.pickup_points).to contain_exactly(a, b, c)
     end
   end
+
+  describe '#seat_price' do
+    it 'returns the price of a given seat' do
+      create :seat_type, char: '$', price: 20
+      seatplan = create :seatplan, plan: "@\n$"
+      tc = create :tour_coach, seatplan: seatplan
+      create :seat_price, tour_coach: tc, char: '@', price: 35
+
+      expect(tc.seat_price('1_1')).to eq(35)
+      expect(tc.seat_price('2_1')).to eq(20)
+    end
+  end
 end

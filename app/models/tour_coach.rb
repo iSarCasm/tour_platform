@@ -64,6 +64,11 @@ class TourCoach < ApplicationRecord
     seatplan.seat_types
   end
 
+  def seat_price(seat)
+    seat_type = seatplan.get_seat(*seat.split('_').map(&:to_i))
+    modify_seat_type_price(seat_type).price
+  end
+
   def json_seat_types
     seat_types.each.with_object({}) do |seat, h|
       seat = modify_seat_type_price(seat)
