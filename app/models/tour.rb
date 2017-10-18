@@ -9,6 +9,7 @@
 #  updated_at   :datetime         not null
 #  slug         :string
 #  tour_type_id :integer
+#  country_id   :integer
 #
 
 class Tour < ApplicationRecord
