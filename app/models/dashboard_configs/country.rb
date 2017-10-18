@@ -17,5 +17,9 @@ RailsAdmin.config do |config|
       field :id
       field :name
     end
+
+    edit do
+      field :name
+    end
   end
 end
