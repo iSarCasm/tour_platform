@@ -13,6 +13,7 @@
 #  driver_number  :string
 #  notes          :text
 #  seatplan_id    :integer
+#  rate           :decimal(, )
 #
 
 RailsAdmin.config do |config|

@@ -2,12 +2,13 @@
 #
 # Table name: tours
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  description :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  slug        :string
+#  id           :integer          not null, primary key
+#  title        :string
+#  description  :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  slug         :string
+#  tour_type_id :integer
 #
 
 class Tour < ApplicationRecord
