@@ -66,4 +66,24 @@ describe ActiveTour do
       expect(active_tour.available?).to eq true
     end
   end
+
+  describe '#days' do
+    it 'returns amount of days in a tour' do
+      active_tour = build(:active_tour,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      expect(active_tour.days).to eq 15
+    end
+  end
+
+  describe '#nights' do
+    it 'returns amount of nights in a tour' do
+      active_tour = build(:active_tour,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      expect(active_tour.nights).to eq 14
+    end
+  end
 end

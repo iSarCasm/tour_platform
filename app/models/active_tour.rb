@@ -46,4 +46,12 @@ class ActiveTour < ApplicationRecord
   def available?
     tour_hotels.all? { |h| h.available? } && tour_coaches.all? { |c| c.available? }
   end
+
+  def days
+    nights + 1
+  end
+
+  def nights
+    (end_date - start_date).to_i
+  end
 end

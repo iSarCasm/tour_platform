@@ -41,5 +41,17 @@ RailsAdmin.config do |config|
         eager_load true
       end
     end
+
+    show do
+      field :id
+      field :tour
+      field :start_date
+      field :end_date
+      field :days
+      field :nights
+      field :tour_bookings
+      field :tour_hotels
+      field :tour_coaches
+    end
   end
 end
