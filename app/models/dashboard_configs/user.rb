@@ -43,5 +43,38 @@ RailsAdmin.config do |config|
     edit do
       exclude_fields :tour_bookings, :admin_alerts
     end
+
+    show do
+      field :name
+      field :created_at
+      field :updated_at
+      field :email
+      field :encrypted_password
+      field :reset_password_token
+      field :reset_password_sent_at
+      field :remember_created_at
+      field :sign_in_count
+      field :current_sign_in_at
+      field :last_sign_in_at
+      field :current_sign_in_ip
+      field :last_sign_in_ip
+      field :base_role
+      field :role_id
+      field :title
+      field :address
+      field :postcode
+      field :passport_name
+      field :passport_no
+      field :passport_date_of_birth
+      field :phone_mobile
+      field :phone_landline
+      field :phone_evening
+      field :marketing
+      field :kin_name
+      field :kin_phone
+      field :travel_club
+      field :member_no
+      field :total_spent
+    end
   end
 end

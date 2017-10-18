@@ -46,4 +46,8 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   enum base_role: [:customer, :admin]
+
+  def total_spent
+    tour_bookings.reduce(0) { |sum, t| sum + t.total_cost }
+  end
 end

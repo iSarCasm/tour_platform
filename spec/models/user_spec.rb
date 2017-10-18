@@ -37,10 +37,29 @@
 require 'rails_helper'
 
 describe User do
+  def create_tour_booking_of_cost(cost, user)
+    tb = create :tour_booking, adult: 1, user: user
+    seatplan = create :seatplan, plan: '@'
+    tc = create :tour_coach, seatplan: seatplan
+    create :seat_price, tour_coach: tc, char: '@', price: cost/2
+    cb = create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1'].to_json
+    hr = create :hotel_room, adult: cost/2, adult_supp: 0
+    hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
+  end
+
   describe '#name' do
     it 'has a name' do
       user = build(:user)
       expect(user.name).not_to be_nil
+    end
+  end
+
+  describe '#total_spent' do
+    it 'returns all spendings of User' do
+      user = create :user
+      create_tour_booking_of_cost(100, user)
+      create_tour_booking_of_cost(50, user)
+      expect(user.total_spent).to eq 150
     end
   end
 end
