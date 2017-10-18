@@ -9,5 +9,8 @@
 #
 
 class Category < ApplicationRecord
+  has_many :tour_categories, dependent: :destroy
+  has_many :tours, through: :tour_categories
+
   validates :name, presence: true
 end

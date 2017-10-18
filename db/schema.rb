@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018132423) do
+ActiveRecord::Schema.define(version: 20171018132945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -275,6 +275,15 @@ ActiveRecord::Schema.define(version: 20171018132423) do
     t.index ["user_id"], name: "index_tour_bookings_on_user_id"
   end
 
+  create_table "tour_categories", force: :cascade do |t|
+    t.bigint "tour_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tour_categories_on_category_id"
+    t.index ["tour_id"], name: "index_tour_categories_on_tour_id"
+  end
+
   create_table "tour_coach_amenities", force: :cascade do |t|
     t.bigint "tour_coach_id"
     t.bigint "coach_amenity_id"
@@ -402,6 +411,8 @@ ActiveRecord::Schema.define(version: 20171018132423) do
   add_foreign_key "seat_prices", "tour_coaches"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
+  add_foreign_key "tour_categories", "categories"
+  add_foreign_key "tour_categories", "tours"
   add_foreign_key "tour_coach_amenities", "coach_amenities"
   add_foreign_key "tour_coach_amenities", "tour_coaches"
   add_foreign_key "tour_coaches", "active_tours"

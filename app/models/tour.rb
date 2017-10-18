@@ -16,6 +16,8 @@ class Tour < ApplicationRecord
   has_many :active_tours, dependent: :destroy, inverse_of: :tour
   belongs_to :tour_type, inverse_of: :tours, optional: true
   belongs_to :country, inverse_of: :tours, optional: true
+  has_many :tour_categories, dependent: :destroy
+  has_many :categories, through: :tour_categories
 
   accepts_nested_attributes_for :active_tours, allow_destroy: true
 

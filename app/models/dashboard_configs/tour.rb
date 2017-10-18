@@ -19,6 +19,7 @@ RailsAdmin.config do |config|
       field :description
       field :tour_type
       field :country
+      field :categories
       field :active_tours do
         eager_load true
       end
@@ -30,6 +31,7 @@ RailsAdmin.config do |config|
       field :description
       field :tour_type
       field :country
+      field :categories
       field :active_tours do
         eager_load true
       end
