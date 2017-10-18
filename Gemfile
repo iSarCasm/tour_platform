@@ -82,6 +82,8 @@ group :development do
   gem 'seed_dump'
   # Start Server in development
   gem 'foreman', require: false
+  # Generate DB relational image
+  gem 'rails-erd', require: false # Requires GraphViz in path
 end
 
 group :test do
