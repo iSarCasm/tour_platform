@@ -2,14 +2,18 @@
 #
 # Table name: tours
 #
-#  id           :integer          not null, primary key
-#  title        :string
-#  description  :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  slug         :string
-#  tour_type_id :integer
-#  country_id   :integer
+#  id              :integer          not null, primary key
+#  title           :string
+#  description     :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  slug            :string
+#  tour_type_id    :integer
+#  country_id      :integer
+#  excursions      :text
+#  itinerary       :text
+#  important_notes :text
+#  tour_memo       :text
 #
 
 RailsAdmin.config do |config|
@@ -20,6 +24,10 @@ RailsAdmin.config do |config|
       field :tour_type
       field :country
       field :categories
+      field :excursions
+      field :itinerary
+      field :important_notes
+      field :tour_memo
       field :active_tours do
         eager_load true
       end
@@ -32,6 +40,10 @@ RailsAdmin.config do |config|
       field :tour_type
       field :country
       field :categories
+      field :excursions
+      field :itinerary
+      field :important_notes
+      field :tour_memo
       field :active_tours do
         eager_load true
       end
