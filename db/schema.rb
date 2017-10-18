@@ -351,6 +351,7 @@ ActiveRecord::Schema.define(version: 20171018163635) do
     t.text "tour_memo"
     t.decimal "default_other_costs"
     t.boolean "default_self_drive"
+    t.boolean "default_allow_deposits"
     t.boolean "allow_external_agents"
     t.boolean "insurance_allowed"
     t.index ["country_id"], name: "index_tours_on_country_id"
