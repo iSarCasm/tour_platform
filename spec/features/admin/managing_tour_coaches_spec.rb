@@ -46,6 +46,7 @@ describe 'Managing Tour Coaches', type: :feature do
         expect(page).to have_content 'Driver number'
         expect(page).to have_content 'Notes'
         expect(page).to have_content 'Seatplan'
+        expect(page).to have_content 'Rate'
 
         fill_in 'tour_coach[driver_name]', with: 'New Driver'
         page.find(:css, '.btn-primary').click
