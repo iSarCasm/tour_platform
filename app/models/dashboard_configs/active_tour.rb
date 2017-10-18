@@ -2,13 +2,16 @@
 #
 # Table name: active_tours
 #
-#  id         :integer          not null, primary key
-#  tour_id    :integer
-#  start_date :date
-#  end_date   :date
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  slug       :string
+#  id             :integer          not null, primary key
+#  tour_id        :integer
+#  start_date     :date
+#  end_date       :date
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  slug           :string
+#  allow_deposits :boolean
+#  other_costs    :decimal(, )
+#  self_drive     :boolean
 #
 
 RailsAdmin.config do |config|
@@ -28,6 +31,9 @@ RailsAdmin.config do |config|
       field :tour_coaches do
         eager_load true
       end
+      field :allow_deposits
+      field :other_costs
+      field :self_drive
     end
 
     edit do
@@ -40,6 +46,9 @@ RailsAdmin.config do |config|
       field :tour_coaches do
         eager_load true
       end
+      field :allow_deposits
+      field :other_costs
+      field :self_drive
     end
 
     show do
@@ -52,6 +61,9 @@ RailsAdmin.config do |config|
       field :tour_bookings
       field :tour_hotels
       field :tour_coaches
+      field :allow_deposits
+      field :other_costs
+      field :self_drive
     end
   end
 end

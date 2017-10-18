@@ -39,6 +39,9 @@ describe 'Managing Active Tours', type: :feature do
         expect(page).to have_content 'Tour'
         expect(page).to have_content 'Start date'
         expect(page).to have_content 'End date'
+        expect(page).to have_content 'Allow deposits'
+        expect(page).to have_content 'Other costs'
+        expect(page).to have_content 'Self drive'
 
         fill_in 'active_tour[start_date]', with: 'June 03, 2016'
         page.find(:css, '.btn-primary').click
