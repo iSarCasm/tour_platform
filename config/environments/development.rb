@@ -65,6 +65,6 @@ Rails.application.configure do
     Bullet.bugsnag = false
     Bullet.airbrake = false
     Bullet.rollbar = true
-    Bullet.add_footer = true
+    Bullet.add_footer = false
   end
 end
