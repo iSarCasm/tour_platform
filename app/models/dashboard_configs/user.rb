@@ -75,6 +75,18 @@ RailsAdmin.config do |config|
       field :travel_club
       field :member_no
       field :total_spent
+      field :tour_bookings do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/table_show',
+            locals: {
+              objects: bindings[:object].tour_bookings,
+              table_headers: ['Tour', 'Start date', 'End date', 'Price'],
+              methods: [:tour_title, :start_date, :end_date, :total_cost]
+            }
+          )
+        end
+      end
     end
   end
 end
