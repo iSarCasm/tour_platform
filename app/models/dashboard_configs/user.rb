@@ -64,6 +64,11 @@ RailsAdmin.config do |config|
       field :travel_club
       field :member_no
       field :total_spent
+      field :last_travelled do
+        pretty_value do
+          value.active_tour_title
+        end
+      end
       field :tour_bookings do
         pretty_value do
           bindings[:view].render(

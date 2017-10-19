@@ -50,4 +50,10 @@ class User < ApplicationRecord
   def total_spent
     tour_bookings.reduce(0) { |sum, t| sum + t.total_cost }
   end
+
+  def last_travelled
+    tour_bookings.sort do |t1, t2|
+      t1.end_date <=> t2.end_date
+    end.last
+  end
 end

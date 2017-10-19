@@ -62,4 +62,16 @@ describe User do
       expect(user.total_spent).to eq 150
     end
   end
+
+
+  describe '#last_travelled' do
+    it 'returns the Users tour booking with latest end date' do
+      user = create :user
+      b1 = create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 7, 28)), user: user
+      b2 = create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 8, 19)), user: user
+      b3 = create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 3, 14)), user: user
+
+      expect(user.last_travelled).to eq b2
+    end
+  end
 end
