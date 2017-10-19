@@ -88,3 +88,24 @@ $(document).on('rails_admin.dom_ready', function(){
   // Remove main browser window's horizontal scrollbar.
   $('body').css('overflow-x', 'hidden');
 });
+
+
+// Defaults getter
+$(document).on('rails_admin.dom_ready', function() {
+  function populate_select_with_default(target, value) {
+    $('#'+target).first().empty();
+    option = '<option value="' + value.id + '" selected="selected">' + value.text + '</option>'
+    $('#tour_hotel_board_basis_id').first().append(option)
+    $('[data-input-for="' + target +'"]').first().find('input').first().val(value.text)
+  }
+
+  function populate_association_with_defaults() {
+
+  }
+
+  $.get("/admin/hotel/4.json", function(data, status){
+    console.log("Data:")
+    console.log(data)
+    populate_select_with_default('tour_hotel_board_basis_id', {id: 1, text: "topkek"})
+  });
+});
