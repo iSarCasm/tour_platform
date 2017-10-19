@@ -50,6 +50,14 @@ class TourBooking < ApplicationRecord
     active_tour.title
   end
 
+  def start_date
+    active_tour.start_date
+  end
+
+  def end_date
+    active_tour.end_date
+  end
+
   def total_cost
     hotel_bookings.reduce(0) { |sum, x| sum + x.total_cost } +
     coach_bookings.reduce(0) { |sum, x| sum + x.total_cost }

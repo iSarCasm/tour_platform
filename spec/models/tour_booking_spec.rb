@@ -91,4 +91,28 @@ describe TourBooking do
       expect(tb.total_cost).to eq(35*2 + 30 + 5 + 40 + 20)
     end
   end
+
+  describe '#start_date' do
+    it 'returns the start date of the tour' do
+      active_tour = build(:active_tour,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      tour_booking = build :tour_booking, active_tour: active_tour
+
+      expect(tour_booking.start_date).to eq Date.new(2017, 7, 14)
+    end
+  end
+
+  describe '#end_date' do
+    it 'returns the end date of the tour' do
+      active_tour = build(:active_tour,
+        start_date: Date.new(2017, 7, 14),
+        end_date: Date.new(2017, 7, 28)
+      )
+      tour_booking = build :tour_booking, active_tour: active_tour
+
+      expect(tour_booking.end_date).to eq Date.new(2017, 7, 28)
+    end
+  end
 end
