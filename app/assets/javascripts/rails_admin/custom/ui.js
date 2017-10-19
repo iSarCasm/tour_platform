@@ -104,8 +104,7 @@ $(document).on('rails_admin.dom_ready', function() {
   }
 
   $.get("/admin/hotel/4.json", function(data, status){
-    console.log("Data:")
     console.log(data)
-    populate_select_with_default('tour_hotel_board_basis_id', {id: 1, text: "topkek"})
+    populate_select_with_default('tour_hotel_board_basis_id', {id: data.board_basis_id, text: "topkek"})
   });
 });
