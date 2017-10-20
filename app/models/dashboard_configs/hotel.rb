@@ -22,6 +22,8 @@
 
 RailsAdmin.config do |config|
   config.model Hotel do
+    defaults [:board_basis, :payment_type]
+
     list do
       field :id
       field :title
