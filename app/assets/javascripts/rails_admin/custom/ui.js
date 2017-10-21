@@ -90,7 +90,7 @@ $(document).on('rails_admin.dom_ready', function(){
 
 
 // Defaults getter
-$(document).on('rails_admin.dom_ready', function() {
+$(document).ready(function() {
   jQuery.expr[':'].regex = function(elem, index, match) {
       var matchParams = match[3].split(','),
           validLabels = /^(data|css):/,
@@ -104,10 +104,13 @@ $(document).on('rails_admin.dom_ready', function() {
       return regex.test(jQuery(elem)[attr.method](attr.property));
   }
 
-  $('#tour_hotel_hotel_id').on('change', function(val) {
-    hotel = $(this).val();
-    if (hotel) {
-      get_defaults('hotel', hotel, 'tour_hotel')
+  $('[data-has-defaults]').on('change', function(val) {
+    defs = $(this).val();
+    s = $('[data-has-defaults]').first()[0].name.split('[')
+    to = s[0]
+    from = s[1].slice(0, -4) // _id]
+    if (defs) {
+      get_defaults(from, defs, to)
     }
   });
 
@@ -118,8 +121,6 @@ $(document).on('rails_admin.dom_ready', function() {
         data = value.data
         title = value.title
         type = define_type(data)
-        console.log(data)
-        console.log(type)
         if(type === 'object') {
           populate_select_with_default(current + '_' + name + '_id', {id: data.id, text: title})
         } else if(type === 'array') {

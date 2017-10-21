@@ -27,6 +27,12 @@ RailsAdmin.config do |config|
     edit do
       field :hotel do
         eager_load true
+        render do
+          bindings[:view].render(
+            partial: 'form_filtering_select_with_defaults',
+            locals: { field: self, form: bindings[:form] }
+          )
+        end
       end
       field :active_tour
       field :start_date
