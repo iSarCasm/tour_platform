@@ -16,7 +16,7 @@ class RoomType < ApplicationRecord
   validates :room_type, presence: true
   validates :pax, presence: true, numericality: { greater_than: 0 }
 
-  def name
+  def title
     room_type
   end
 

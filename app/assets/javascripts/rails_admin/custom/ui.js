@@ -113,22 +113,34 @@ $(document).on('rails_admin.dom_ready', function() {
 
   function get_defaults(model, id, current) {
     $.get("/admin/"+model+"/"+id+"/defaults.json", function(data, status){
-      console.log(data)
       $.each(data, function(key, value) {
         name = key
-        type = value.type
         data = value.data
         title = value.title
+        type = define_type(key, data)
         if(type === 'object') {
           populate_select_with_default(current + '_' + name + '_id', {id: data.id, text: title})
         } else if(type === 'array') {
           populate_association_with_defaults(name, data)
+        } else {
+
         }
       })
     });
   }
 
+  function define_type(name, val) {
+    if(Array.isArray(val)) {
+      return 'array';
+    } else if (typeof(val) === 'object') {
+      return 'object';
+    } else {
+      return 'string';
+    }
+  }
+
   function populate_select_with_default(target, value) {
+    console.log(target)
     $('#'+target).first().empty();
     option = '<option value="' + value.id + '" selected="selected">' + value.text + '</option>'
     $('#tour_hotel_board_basis_id').first().append(option)
@@ -143,12 +155,26 @@ $(document).on('rails_admin.dom_ready', function() {
       // add new field
       $('.add_nested_fields[data-association="' + name  +'"]').first().click()
       $.each(value, function(key, val) {
-        fill_string($(':regex(name, tour_hotel.+' + key + '])').last(), val)
+        type = define_type(key, val)
+        console.log(val)
+        elem = $(':regex(id, tour_hotel_'+name+'_attributes.+' + key + ')').last();
+        console.log(key)
+        console.log(elem)
+        if (elem[0]) {
+          console.log('TAKE ACTION '+type)
+          if (type === 'object') {
+            target = elem[0].id
+            console.log(target)
+            populate_select_with_default(target, {id: val.data.id, text: val.title})
+          } else if(type === 'string') {
+            populate_string(elem, val)
+          }
+        }
       });
     }
   }
 
-  function fill_string(elem, val) {
+  function populate_string(elem, val) {
     elem.val(val);
   }
 });
