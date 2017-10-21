@@ -117,21 +117,28 @@ $(document).on('rails_admin.dom_ready', function() {
         name = key
         data = value.data
         title = value.title
-        type = define_type(key, data)
+        type = define_type(data)
+        console.log(data)
+        console.log(type)
         if(type === 'object') {
           populate_select_with_default(current + '_' + name + '_id', {id: data.id, text: title})
         } else if(type === 'array') {
           populate_association_with_defaults(name, data)
-        } else {
+        } else if(type === 'string') {
           //populate_string(elem, val)
+        } else if(type === 'null') {
+          populate_select_with_default(current + '_' + name + '_id', {id: '', text: ''})
+          clear_association(name);
         }
       })
     });
   }
 
-  function define_type(name, val) {
+  function define_type( val) {
     if(Array.isArray(val)) {
       return 'array';
+    } else if(val === null) {
+      return 'null'
     } else if (typeof(val) === 'object') {
       return 'object';
     } else {
@@ -148,23 +155,17 @@ $(document).on('rails_admin.dom_ready', function() {
   }
 
   function populate_association_with_defaults(name, data) {
-    // clear pevious
-    $('.remove_nested_fields[data-association="' + name + '"').click()
+    clear_association(name);
     for(var i = 0; i < data.length; i++) {
       value = data[i]
       // add new field
       $('.add_nested_fields[data-association="' + name  +'"]').first().click()
       $.each(value, function(key, val) {
-        type = define_type(key, val)
-        console.log(val)
+        type = define_type(val)
         elem = $(':regex(id, tour_hotel_'+name+'_attributes.+' + key + ')').last();
-        console.log(key)
-        console.log(elem)
         if (elem[0]) {
-          console.log('TAKE ACTION '+type)
           if (type === 'object') {
             target = elem[0].id
-            console.log(target)
             populate_select_with_default(target, {id: val.data.id, text: val.title})
           } else if(type === 'string') {
             populate_string(elem, val)
@@ -172,6 +173,10 @@ $(document).on('rails_admin.dom_ready', function() {
         }
       });
     }
+  }
+
+  function clear_association(name) {
+    $('.remove_nested_fields[data-association="' + name + '"').click()
   }
 
   function populate_string(elem, val) {
