@@ -43,7 +43,14 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :coach
+      field :coach do
+        render do
+          bindings[:view].render(
+            partial: 'form_filtering_select_with_defaults',
+            locals: { field: self, form: bindings[:form] }
+          )
+        end
+      end
       field :active_tour
       field :departure_date
       field :arrival_date

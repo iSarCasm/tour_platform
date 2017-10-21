@@ -63,8 +63,6 @@ $(document).on('rails_admin.dom_ready', function(){
     // offsets.push(pos.left);
     widths.push($td.outerWidth(true));
   }
-  console.log(offsets)
-  console.log(widths)
   $trs.each(function(index, tr){
     for (i = 0; i < 3; i++) {
       tr.children[i].style.position = 'absolute';
@@ -104,7 +102,7 @@ $(document).ready(function() {
       return regex.test(jQuery(elem)[attr.method](attr.property));
   }
 
-  $('[data-has-defaults]').on('change', function(val) {
+  $(document).on('change', '[data-has-defaults]', function(val) {
     defs = $(this).val();
     s = $('[data-has-defaults]').first()[0].name.split('[')
     to = s[0]
@@ -116,6 +114,7 @@ $(document).ready(function() {
 
   function get_defaults(model, id, current) {
     $.get("/admin/"+model+"/"+id+"/defaults.json", function(data, status){
+      // console.log(data)
       $.each(data, function(key, value) {
         name = key
         data = value.data
@@ -124,7 +123,7 @@ $(document).ready(function() {
         if(type === 'object') {
           populate_select_with_default(current + '_' + name + '_id', {id: data.id, text: title})
         } else if(type === 'array') {
-          populate_association_with_defaults(name, data)
+          populate_association_with_defaults(current, name, data)
         } else if(type === 'string') {
           //populate_string(elem, val)
         } else if(type === 'null') {
@@ -148,14 +147,14 @@ $(document).ready(function() {
   }
 
   function populate_select_with_default(target, value) {
-    console.log(target)
+    // console.log(target)
     $('#'+target).first().empty();
     option = '<option value="' + value.id + '" selected="selected">' + value.text + '</option>'
     $('#tour_hotel_board_basis_id').first().append(option)
     $('[data-input-for="' + target +'"]').first().find('input').first().val(value.text)
   }
 
-  function populate_association_with_defaults(name, data) {
+  function populate_association_with_defaults(from, name, data) {
     clear_association(name);
     for(var i = 0; i < data.length; i++) {
       value = data[i]
@@ -163,7 +162,10 @@ $(document).ready(function() {
       $('.add_nested_fields[data-association="' + name  +'"]').first().click()
       $.each(value, function(key, val) {
         type = define_type(val)
-        elem = $(':regex(id, tour_hotel_'+name+'_attributes.+' + key + ')').last();
+        elem = $(':regex(id, '+from+'_'+name+'_attributes.+' + key + '$)').last();
+        // console.log(key)
+        // console.log('tour_hotel_'+name+'_attributes.+' + key)
+        // console.log(elem)
         if (elem[0]) {
           if (type === 'object') {
             target = elem[0].id

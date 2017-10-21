@@ -20,6 +20,8 @@
 
 RailsAdmin.config do |config|
   config.model Coach do
+    defaults [:seat_prices, :seatplan]
+
     list do
       field :id
       field :title
