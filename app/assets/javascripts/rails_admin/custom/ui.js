@@ -120,12 +120,14 @@ $(document).ready(function() {
         data = value.data
         title = value.title
         type = define_type(data)
+        console.log(type)
         if(type === 'object') {
           populate_select_with_default(current + '_' + name + '_id', {id: data.id, text: title})
         } else if(type === 'array') {
           populate_association_with_defaults(current, name, data)
         } else if(type === 'string') {
-          //populate_string(elem, val)
+          elem = $('#'+current+'_'+name).first()
+          populate_string(elem, data)
         } else if(type === 'null') {
           populate_select_with_default(current + '_' + name + '_id', {id: '', text: ''})
           clear_association(name);
@@ -183,6 +185,13 @@ $(document).ready(function() {
   }
 
   function populate_string(elem, val) {
-    elem.val(val);
+    console.log(val)
+    if (val === true) {
+      elem.prop('checked', true)
+    } else if(val === false) {
+      elem.prop('checked', false)
+    } else {
+      elem.val(val);
+    }
   }
 });

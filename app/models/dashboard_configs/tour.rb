@@ -14,24 +14,32 @@
 #  itinerary              :text
 #  important_notes        :text
 #  tour_memo              :text
-#  default_other_costs    :decimal(, )
-#  default_self_drive     :boolean
+#  other_costs    :decimal(, )
+#  self_drive     :boolean
 #  allow_external_agents  :boolean
 #  insurance_allowed      :boolean
-#  default_allow_deposits :boolean
+#  allow_deposits :boolean
 #
 
 RailsAdmin.config do |config|
   config.model Tour do
+    defaults [:allow_deposits, :other_costs, :self_drive]
+
     edit do
       field :title
       field :description
       field :tour_type
       field :country
       field :categories
-      field :default_allow_deposits
-      field :default_other_costs
-      field :default_self_drive
+      field :allow_deposits do
+        label 'Default allow deposits'
+      end
+      field :other_costs do
+        label 'Default other costs'
+      end
+      field :self_drive do
+        label 'Default self drive'
+      end
       field :allow_external_agents
       field :insurance_allowed
       field :excursions
@@ -50,9 +58,15 @@ RailsAdmin.config do |config|
       field :tour_type
       field :country
       field :categories
-      field :default_allow_deposits
-      field :default_other_costs
-      field :default_self_drive
+      field :allow_deposits do
+        label 'Default allow deposits'
+      end
+      field :other_costs do
+        label 'Default other costs'
+      end
+      field :self_drive do
+        label 'Default self drive'
+      end
       field :allow_external_agents
       field :insurance_allowed
       field :excursions
