@@ -22,7 +22,7 @@
 
 RailsAdmin.config do |config|
   config.model Hotel do
-    defaults [:board_basis, :payment_type]
+    defaults [:board_basis, :payment_type, :hotel_rooms]
 
     list do
       field :id

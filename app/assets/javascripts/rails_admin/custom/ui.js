@@ -8,7 +8,6 @@ $(document).ready(function() {
   // Table view ADD button hack
   var oldNestedFormEvents = window.nestedFormEvents.insertFields
   window.nestedFormEvents.insertFields = function (content, assoc, link) {
-    console.log(content);
     var insertable = $(link).parent().siblings('table').find('.js-insertable');
     if (insertable.length > 0) {
       insertable.first().append(content);
@@ -92,6 +91,43 @@ $(document).on('rails_admin.dom_ready', function(){
 
 // Defaults getter
 $(document).on('rails_admin.dom_ready', function() {
+  jQuery.expr[':'].regex = function(elem, index, match) {
+      var matchParams = match[3].split(','),
+          validLabels = /^(data|css):/,
+          attr = {
+              method: matchParams[0].match(validLabels) ?
+                          matchParams[0].split(':')[0] : 'attr',
+              property: matchParams.shift().replace(validLabels,'')
+          },
+          regexFlags = 'ig',
+          regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+      return regex.test(jQuery(elem)[attr.method](attr.property));
+  }
+
+  $('#tour_hotel_hotel_id').on('change', function(val) {
+    hotel = $(this).val();
+    if (hotel) {
+      get_defaults('hotel', hotel, 'tour_hotel')
+    }
+  });
+
+  function get_defaults(model, id, current) {
+    $.get("/admin/"+model+"/"+id+"/defaults.json", function(data, status){
+      console.log(data)
+      $.each(data, function(key, value) {
+        name = key
+        type = value.type
+        data = value.data
+        title = value.title
+        if(type === 'object') {
+          populate_select_with_default(current + '_' + name + '_id', {id: data.id, text: title})
+        } else if(type === 'array') {
+          populate_association_with_defaults(name, data)
+        }
+      })
+    });
+  }
+
   function populate_select_with_default(target, value) {
     $('#'+target).first().empty();
     option = '<option value="' + value.id + '" selected="selected">' + value.text + '</option>'
@@ -99,12 +135,20 @@ $(document).on('rails_admin.dom_ready', function() {
     $('[data-input-for="' + target +'"]').first().find('input').first().val(value.text)
   }
 
-  function populate_association_with_defaults() {
-
+  function populate_association_with_defaults(name, data) {
+    // clear pevious
+    $('.remove_nested_fields[data-association="' + name + '"').click()
+    for(var i = 0; i < data.length; i++) {
+      value = data[i]
+      // add new field
+      $('.add_nested_fields[data-association="' + name  +'"]').first().click()
+      $.each(value, function(key, val) {
+        fill_string($(':regex(name, tour_hotel.+' + key + '])').last(), val)
+      });
+    }
   }
 
-  $.get("/admin/hotel/4.json", function(data, status){
-    console.log(data)
-    populate_select_with_default('tour_hotel_board_basis_id', {id: data.board_basis_id, text: "topkek"})
-  });
+  function fill_string(elem, val) {
+    elem.val(val);
+  }
 });
