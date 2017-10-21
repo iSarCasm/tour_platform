@@ -123,7 +123,7 @@ $(document).on('rails_admin.dom_ready', function() {
         } else if(type === 'array') {
           populate_association_with_defaults(name, data)
         } else {
-
+          //populate_string(elem, val)
         }
       })
     });
