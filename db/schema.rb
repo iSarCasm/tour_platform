@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023190824) do
+ActiveRecord::Schema.define(version: 20171023191457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(version: 20171023190824) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ferry_dates", force: :cascade do |t|
+    t.bigint "ferry_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ferry_id"], name: "index_ferry_dates_on_ferry_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -434,6 +443,7 @@ ActiveRecord::Schema.define(version: 20171023190824) do
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
   add_foreign_key "coaches", "seatplans"
+  add_foreign_key "ferry_dates", "ferries"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
   add_foreign_key "hotel_facilities", "facilities"
