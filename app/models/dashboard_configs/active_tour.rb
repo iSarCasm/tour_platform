@@ -37,14 +37,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :tour do
-        render do
-          bindings[:view].render(
-            partial: 'form_filtering_select_with_defaults',
-            locals: { field: self, form: bindings[:form] }
-          )
-        end
-      end
+      field :tour, :filter_select_with_defaults
       field :start_date
       field :end_date
       field :tour_hotels do

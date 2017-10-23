@@ -34,7 +34,7 @@ describe 'Managing Active Tours', type: :feature do
         expect(page).to have_content 'January 01, 2017'
       end
 
-      it 'can Edit the tour' do
+      it 'can Edit the active tour' do
         visit "/admin/active_tour/#{@active_tour.id}/edit"
         expect(page).to have_content 'Tour'
         expect(page).to have_content 'Start date'
