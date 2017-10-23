@@ -36,6 +36,8 @@
 
 RailsAdmin.config do |config|
   config.model User do
+    weight 40
+
     list do
       exclude_fields :created_at, :updated_at
     end
