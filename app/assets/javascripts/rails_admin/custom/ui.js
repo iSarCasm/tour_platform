@@ -1,5 +1,7 @@
 //= require jquery-seat-plan
 
+//= require jquery-defaults
+
 //= require jquery.livestamp
 //= require jquery.timer
 //= require jquery.notificationcenter
@@ -8,7 +10,6 @@ $(document).ready(function() {
   // Table view ADD button hack
   var oldNestedFormEvents = window.nestedFormEvents.insertFields
   window.nestedFormEvents.insertFields = function (content, assoc, link) {
-    console.log(content);
     var insertable = $(link).parent().siblings('table').find('.js-insertable');
     if (insertable.length > 0) {
       insertable.first().append(content);
@@ -64,8 +65,6 @@ $(document).on('rails_admin.dom_ready', function(){
     // offsets.push(pos.left);
     widths.push($td.outerWidth(true));
   }
-  console.log(offsets)
-  console.log(widths)
   $trs.each(function(index, tr){
     for (i = 0; i < 3; i++) {
       tr.children[i].style.position = 'absolute';

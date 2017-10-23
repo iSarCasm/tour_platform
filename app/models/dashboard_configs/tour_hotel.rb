@@ -25,9 +25,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :hotel do
-        eager_load true
-      end
+      field :hotel, :filter_select_with_defaults
       field :active_tour
       field :start_date
       field :end_date

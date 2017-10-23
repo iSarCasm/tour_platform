@@ -15,5 +15,9 @@ RailsAdmin.config do |config|
   config.model SeatPrice do
     navigation_label 'Settings'
     weight 999
+
+    nested do
+      exclude_fields :coach, :tour_coach
+    end
   end
 end

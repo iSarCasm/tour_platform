@@ -6,6 +6,14 @@ GIT
       rails (~> 5.1.2)
 
 GIT
+  remote: https://github.com/iSarCasm/rails_admin_defaults
+  revision: a695b4ede5c181ec46ae90632ec3299c6271021e
+  specs:
+    rails_admin_defaults (0.0.1)
+      rails (~> 5.1.2)
+      rails_admin (~> 1.2)
+
+GIT
   remote: https://github.com/iSarCasm/rails_admin_table_field
   revision: 500986dc8a6aa126b2fcdcec9e025e0ff79d9c11
   specs:
@@ -504,6 +512,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin (~> 1.2)
   rails_admin_compact!
+  rails_admin_defaults!
   rails_admin_table_field!
   rails_best_practices
   rollbar

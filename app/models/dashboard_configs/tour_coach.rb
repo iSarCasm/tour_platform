@@ -43,7 +43,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :coach
+      field :coach, :filter_select_with_defaults
       field :active_tour
       field :departure_date
       field :arrival_date

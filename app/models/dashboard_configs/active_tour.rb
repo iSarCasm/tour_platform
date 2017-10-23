@@ -37,7 +37,7 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :tour
+      field :tour, :filter_select_with_defaults
       field :start_date
       field :end_date
       field :tour_hotels do
