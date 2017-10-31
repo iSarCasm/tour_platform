@@ -1,0 +1,76 @@
+- config_show_template fields
+
+.clearfix
+  - for_field :hotel_id do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+  - for_field :active_tour_id do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+.clearfix
+  - for_field :start_date do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+  - for_field :end_date do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+.clearfix
+  - for_field :board_basis_id do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+  - for_field :payment_type_id do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+.clearfix
+  - for_field :finalisation_date do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+  - for_field :hotel_theme do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value
+
+.clearfix
+  - for_field :hotel_rooms_attributes do |field, css, id, label, value|
+    %p
+      %strong= label
+      %br
+      = value
+
+.clearfix
+  - for_field :notes do |field, css, id, label, value|
+    %div{class: "col-md-3 #{css}", id: id}
+      %p
+        %strong= label
+        %br
+        = value

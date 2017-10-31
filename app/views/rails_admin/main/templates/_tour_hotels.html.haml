@@ -5,64 +5,54 @@
 .clearfix
   - for_field :hotel_id do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
   - for_field :active_tour_id do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
 .clearfix
   - for_field :start_date do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
   - for_field :end_date do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
 .clearfix
   - for_field :board_basis_id do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
   - for_field :payment_type_id do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
 .clearfix
   - for_field :finalisation_date do |field, css, id, label|
     %div{class: "col-md-4 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
   - for_field :hotel_theme do |field, css, id, label|
     %div{class: "col-md-5 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field
 
 .clearfix
   - for_field :hotel_rooms_attributes do |field, css, id, label|
-    %p
-      = label
+    %p= label
     = compact_render_field field
 
 .clearfix
   - for_field :notes do |field, css, id, label|
     %div{class: "col-md-3 #{css}", id: id}
-      %p
-        = label
+      %p= label
       = compact_render_field field

@@ -21,6 +21,6 @@ class RoomType < ApplicationRecord
   end
 
   def to_s
-    name
+    title
   end
 end

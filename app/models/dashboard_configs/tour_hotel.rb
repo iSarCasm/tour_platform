@@ -20,9 +20,7 @@ RailsAdmin.config do |config|
   config.model TourHotel do
     parent Hotel
 
-    update do
-      set_template 'tour_hotels'
-    end
+    update { set_template 'tour_hotels' }
 
     edit do
       field :hotel, :filter_select_with_defaults
@@ -53,6 +51,8 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'tour_hotels_show'
+
       field :hotel
       field :active_tour
       field :start_date
