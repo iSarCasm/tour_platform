@@ -85,7 +85,7 @@ describe TourBooking do
       create :seat_price, tour_coach: tc, char: '@', price: 35
       cb = create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1', '1_2'].to_json
 
-      hr = create :hotel_room, adult: 30, adult_supp: 5, senior: 40, senior_supp: 20
+      hr = create :hotel_room, adult_sell: 30, adult_supp: 5, senior_sell: 40, senior_supp: 20
       hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
 
       expect(tb.total_cost).to eq(35*2 + 30 + 5 + 40 + 20)

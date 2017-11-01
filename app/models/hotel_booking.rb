@@ -41,10 +41,10 @@ class HotelBooking < ApplicationRecord
         hotel_rooms.collect do |p|
           [ p.customer_title, p.id,
             {
-              'data-price-adult' => p.adult + p.adult_supp,
-              'data-price-child' => p.child + p.child_supp,
-              'data-price-infant' => p.infant + p.infant_supp,
-              'data-price-senior' => p.senior + p.senior_supp
+              'data-price-adult' => p.adult_sell + p.adult_supp,
+              'data-price-child' => p.child_sell,
+              'data-price-infant' => p.infant_sell,
+              'data-price-senior' => p.senior_sell + p.senior_supp
             }
           ]
         end
@@ -55,10 +55,10 @@ class HotelBooking < ApplicationRecord
   def total_cost
     hr = hotel_room
     tb = tour_booking
-    (hr.adult + hr.adult_supp) * tb.adult +
-    (hr.child + hr.child_supp) * tb.child +
-    (hr.senior + hr.senior_supp) * tb.senior +
-    (hr.infant + hr.infant_supp) * tb.infant
+    (hr.adult_sell + hr.adult_supp) * tb.adult +
+    (hr.senior_sell + hr.senior_supp) * tb.senior +
+    (hr.child_sell) * tb.child +
+    (hr.infant_sell) * tb.infant
   end
 
   def ensure_has_rooms

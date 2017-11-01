@@ -38,10 +38,10 @@
       - hotel.object.hotel_rooms.each do |room|
         %tr
           %th= room.room_type.room_type
-          %td= render 'active_tours/room_price', price: room.adult, supp_price: room.adult_supp
-          %td= render 'active_tours/room_price', price: room.child, supp_price: room.child_supp
-          %td= render 'active_tours/room_price', price: room.infant, supp_price: room.infant_supp
-          %td= render 'active_tours/room_price', price: room.senior, supp_price: room.senior_supp
+          %td= render 'active_tours/room_price', price: room.adult_sell, supp_price: room.adult_supp
+          %td= render 'active_tours/room_price', price: room.child_sell
+          %td= render 'active_tours/room_price', price: room.infant_sell
+          %td= render 'active_tours/room_price', price: room.senior_sell, supp_price: room.senior_supp
 
   .form-group
     = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control js-hotel-room'

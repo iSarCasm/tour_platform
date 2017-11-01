@@ -54,7 +54,7 @@ describe HotelBooking do
   describe '#total_cost' do
     it 'return sum cost' do
       tb = create :tour_booking, adult: 1, senior: 2
-      hr = create :hotel_room, adult: 30, adult_supp: 5, senior: 40, senior_supp: 20
+      hr = create :hotel_room, adult_sell: 30, adult_supp: 5, senior_sell: 40, senior_supp: 20
       hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
 
       expect(hb.total_cost).to eq(30 + 5 + 40*2 + 20*2)

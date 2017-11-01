@@ -71,22 +71,22 @@
         - if tour_booking.adult&.nonzero?
           = pluralize(tour_booking.adult, 'adult') + ' * '
           (
-          = render 'active_tours/room_price', price: hotel.hotel_room.adult, supp_price: hotel.hotel_room.adult_supp
+          = render 'active_tours/room_price', price: hotel.hotel_room.adult_sell, supp_price: hotel.hotel_room.adult_supp
           ),
         - if tour_booking.child&.nonzero?
           = pluralize(tour_booking.child, 'child') + ' * '
           (
-          = render 'active_tours/room_price', price: hotel.hotel_room.child, supp_price: hotel.hotel_room.child_supp
+          = render 'active_tours/room_price', price: hotel.hotel_room.child_sell
           ),
         - if tour_booking.infant&.nonzero?
           = pluralize(tour_booking.infant, 'infant') + ' * '
           (
-          = render 'active_tours/room_price', price: hotel.hotel_room.infant, supp_price: hotel.hotel_room.infant_supp
+          = render 'active_tours/room_price', price: hotel.hotel_room.infant_sell
           ),
         - if tour_booking.senior&.nonzero?
           = pluralize(tour_booking.senior, 'senior') + ' * '
           (
-          = render 'active_tours/room_price', price: hotel.hotel_room.senior, supp_price: hotel.hotel_room.senior_supp
+          = render 'active_tours/room_price', price: hotel.hotel_room.senior_sell, supp_price: hotel.hotel_room.senior_supp
           )
 
   = button_to "Decline this booking", tour_booking, method: :delete, class: 'btn btn-danger'

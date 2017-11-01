@@ -43,7 +43,7 @@ describe User do
     tc = create :tour_coach, seatplan: seatplan
     create :seat_price, tour_coach: tc, char: '@', price: cost/2
     cb = create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1'].to_json
-    hr = create :hotel_room, adult: cost/2, adult_supp: 0
+    hr = create :hotel_room, adult_sell: cost/2, adult_supp: 0
     hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
   end
 
