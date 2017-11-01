@@ -8,15 +8,17 @@
 #  updated_at    :datetime         not null
 #  amount        :integer
 #  room_type_id  :integer
-#  adult         :decimal(, )      default(0.0)
+#  adult_buy     :decimal(, )      default(0.0)
 #  adult_supp    :decimal(, )      default(0.0)
-#  child         :decimal(, )      default(0.0)
-#  child_supp    :decimal(, )      default(0.0)
-#  infant        :decimal(, )      default(0.0)
-#  infant_supp   :decimal(, )      default(0.0)
-#  senior        :decimal(, )      default(0.0)
+#  child_buy     :decimal(, )      default(0.0)
+#  infant_buy    :decimal(, )      default(0.0)
+#  senior_buy    :decimal(, )      default(0.0)
 #  senior_supp   :decimal(, )      default(0.0)
 #  hotel_id      :integer
+#  adult_sell    :decimal(, )      default(0.0)
+#  senior_sell   :decimal(, )      default(0.0)
+#  child_sell    :decimal(, )      default(0.0)
+#  infant_sell   :decimal(, )      default(0.0)
 #
 
 RailsAdmin.config do |config|
@@ -27,14 +29,16 @@ RailsAdmin.config do |config|
       field :room_type
       field :pax
       field :amount
-      field :adult
-      field :adult_supp
-      field :child
-      field :child_supp
-      field :infant
-      field :infant_supp
-      field :senior
+      field :adult_buy
+      field :adult_sell
+      field :senior_buy
+      field :senior_sell
       field :senior_supp
+      field :adult_supp
+      field :child_buy
+      field :child_sell
+      field :infant_buy
+      field :infant_sell
       field :hotel_bookings_count do
         label 'Orders'
       end
@@ -42,20 +46,33 @@ RailsAdmin.config do |config|
 
     edit do
       field :tour_hotel
-      field :room_type
       field :amount
-      field :adult
+      field :room_type
+      field :adult_buy
+      field :adult_sell
       field :adult_supp
-      field :child
-      field :child_supp
-      field :infant
-      field :infant_supp
-      field :senior
+      field :senior_buy
+      field :senior_sell
       field :senior_supp
+      field :child_buy
+      field :child_sell
+      field :infant_buy
+      field :infant_sell
     end
 
     nested do
-      exclude_fields :hotel, :tour_hotel
+      field :amount
+      field :room_type
+      field :adult_buy
+      field :adult_sell
+      field :adult_supp
+      field :senior_buy
+      field :senior_sell
+      field :senior_supp
+      field :child_buy
+      field :child_sell
+      field :infant_buy
+      field :infant_sell
     end
   end
 end

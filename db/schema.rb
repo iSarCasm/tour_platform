@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023191457) do
+ActiveRecord::Schema.define(version: 20171101183035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,15 +150,17 @@ ActiveRecord::Schema.define(version: 20171023191457) do
     t.datetime "updated_at", null: false
     t.integer "amount"
     t.bigint "room_type_id"
-    t.decimal "adult", default: "0.0"
+    t.decimal "adult_buy", default: "0.0"
     t.decimal "adult_supp", default: "0.0"
-    t.decimal "child", default: "0.0"
-    t.decimal "child_supp", default: "0.0"
-    t.decimal "infant", default: "0.0"
-    t.decimal "infant_supp", default: "0.0"
-    t.decimal "senior", default: "0.0"
+    t.decimal "child_buy", default: "0.0"
+    t.decimal "infant_buy", default: "0.0"
+    t.decimal "senior_buy", default: "0.0"
     t.decimal "senior_supp", default: "0.0"
     t.bigint "hotel_id"
+    t.decimal "adult_sell", default: "0.0"
+    t.decimal "senior_sell", default: "0.0"
+    t.decimal "child_sell", default: "0.0"
+    t.decimal "infant_sell", default: "0.0"
     t.index ["hotel_id"], name: "index_hotel_rooms_on_hotel_id"
     t.index ["room_type_id"], name: "index_hotel_rooms_on_room_type_id"
     t.index ["tour_hotel_id"], name: "index_hotel_rooms_on_tour_hotel_id"

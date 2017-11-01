@@ -8,15 +8,17 @@
 #  updated_at    :datetime         not null
 #  amount        :integer
 #  room_type_id  :integer
-#  adult         :decimal(, )      default(0.0)
+#  adult_buy     :decimal(, )      default(0.0)
 #  adult_supp    :decimal(, )      default(0.0)
-#  child         :decimal(, )      default(0.0)
-#  child_supp    :decimal(, )      default(0.0)
-#  infant        :decimal(, )      default(0.0)
-#  infant_supp   :decimal(, )      default(0.0)
-#  senior        :decimal(, )      default(0.0)
+#  child_buy     :decimal(, )      default(0.0)
+#  infant_buy    :decimal(, )      default(0.0)
+#  senior_buy    :decimal(, )      default(0.0)
 #  senior_supp   :decimal(, )      default(0.0)
 #  hotel_id      :integer
+#  adult_sell    :decimal(, )      default(0.0)
+#  senior_sell   :decimal(, )      default(0.0)
+#  child_sell    :decimal(, )      default(0.0)
+#  infant_sell   :decimal(, )      default(0.0)
 #
 
 class HotelRoom < ApplicationRecord
