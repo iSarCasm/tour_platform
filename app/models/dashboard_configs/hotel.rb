@@ -47,7 +47,9 @@ RailsAdmin.config do |config|
     update { set_template 'hotels' }
     edit do
       field :title
-      field :description
+      field :description do
+        html_attributes rows: 18, cols: 53
+      end
       field :address do
         render do
           bindings[:view].render(
@@ -94,7 +96,9 @@ RailsAdmin.config do |config|
         label 'Default payment type'
       end
       field :photos
-      field :notes
+      field :notes do
+        html_attributes rows: 10, cols: 100
+      end
     end
 
     show do
@@ -149,7 +153,9 @@ RailsAdmin.config do |config|
         label 'Default payment type'
       end
       field :photos
-      field :notes
+      field :notes do
+        html_attributes rows: 20, cols: 50
+      end
     end
   end
 end

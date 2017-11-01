@@ -77,9 +77,10 @@ RailsAdmin.config do |config|
                 'Infant Buy', 'Infant Sell'
               ],
               methods: [
-                :amount, :room_type, :adult, :adult_supp,
-                :child, :child_supp, :infant, :infant_supp,
-                :senior, :senior_supp
+                :amount, :room_type,
+                :adult_buy, :adult_sell, :adult_supp,
+                :senior_buy, :senior_sell, :senior_supp, :child_buy, :child_sell,
+                :infant_buy, :infant_sell
               ]
             }
           )
