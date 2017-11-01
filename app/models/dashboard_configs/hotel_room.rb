@@ -73,6 +73,7 @@ RailsAdmin.config do |config|
       field :child_sell
       field :infant_buy
       field :infant_sell
+      exclude_fields :hotel, :tour_hotel
     end
   end
 end

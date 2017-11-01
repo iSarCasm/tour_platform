@@ -44,6 +44,7 @@ RailsAdmin.config do |config|
       field :notes
     end
 
+    update { set_template 'hotels' }
     edit do
       field :title
       field :description
@@ -76,9 +77,11 @@ RailsAdmin.config do |config|
               field: self,
               form: bindings[:form],
               table_headers: [
-                'Amount', 'Room Type', 'Adult', 'Adult supp',
-                'Child', 'Child supp', 'Infant', 'Infant supp',
-                'Senior', 'Senior supp'
+                'Amount', 'Room Type',
+                'Adult Buy', 'Adult Sell', 'Adult supp',
+                'Senior Buy', 'Senior Sell', 'Senior supp',
+                'Child Buy', 'Child Sell',
+                'Infant Buy', 'Infant Sell'
               ]
             }
           )
@@ -124,9 +127,11 @@ RailsAdmin.config do |config|
             locals: {
               objects: bindings[:object].hotel_rooms,
               table_headers: [
-                'Amount', 'Room Type', 'Adult', 'Adult supp',
-                'Child', 'Child supp', 'Infant', 'Infant supp',
-                'Senior', 'Senior supp'
+                'Amount', 'Room Type',
+                'Adult Buy', 'Adult Sell', 'Adult supp',
+                'Senior Buy', 'Senior Sell', 'Senior supp',
+                'Child Buy', 'Child Sell',
+                'Infant Buy', 'Infant Sell'
               ],
               methods: [
                 :amount, :room_type, :adult, :adult_supp,
