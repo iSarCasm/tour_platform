@@ -95,7 +95,18 @@ RailsAdmin.config do |config|
       field :payment_type do
         label 'Default payment type'
       end
-      field :photos
+      field :photos do
+        render do
+          bindings[:view].render(
+            partial: 'list_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              table_headers: ['Photo']
+            }
+          )
+        end
+      end
       field :notes do
         html_attributes rows: 10, cols: 100
       end
@@ -138,9 +149,10 @@ RailsAdmin.config do |config|
                 'Infant Buy', 'Infant Sell'
               ],
               methods: [
-                :amount, :room_type, :adult, :adult_supp,
-                :child, :child_supp, :infant, :infant_supp,
-                :senior, :senior_supp
+                :amount, :room_type,
+                :adult_buy, :adult_sell, :adult_supp,
+                :senior_buy, :senior_sell, :senior_supp, :child_buy, :child_sell,
+                :infant_buy, :infant_sell
               ]
             }
           )
@@ -152,7 +164,17 @@ RailsAdmin.config do |config|
       field :payment_type do
         label 'Default payment type'
       end
-      field :photos
+      field :photos do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/list_show',
+            locals: {
+              objects: bindings[:object].photos,
+              methods: [:photo]
+            }
+          )
+        end
+      end
       field :notes do
         html_attributes rows: 20, cols: 50
       end

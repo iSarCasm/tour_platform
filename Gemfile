@@ -43,8 +43,8 @@ gem 'data_migrate'
 gem 'rails_admin_defaults', git: 'https://github.com/iSarCasm/rails_admin_defaults'
 gem 'rails_admin', '~> 1.2'
 gem 'rails_admin_table_field',  git: 'https://github.com/iSarCasm/rails_admin_table_field'
+gem 'rails_admin_list_field',   path: '/home/sarcasm/workspace/tour_eco/rails_admin_list_field'
 gem 'rails_admin_compact',      git: 'https://github.com/iSarCasm/rails_admin_compact'
-
 
 group :development, :test do
   # Debug

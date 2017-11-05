@@ -1,0 +1,33 @@
+.list-text-block {
+  display: inline-block;
+  background-color: azure;
+  border: 1px dashed black;
+  margin-bottom: 10px;
+  padding: 5px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 0px;
+
+  input[type='file'] {
+    max-width: 95px;
+  }
+
+  .remove_nested_fields {
+    top: 3px;
+    right: 3px;
+  }
+
+  .img-thumbnail {
+    max-width: 100px;
+  }
+}
+
+.list-view-ul {
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+.btn-list-view {
+  padding: 1px 4px;
+  font-size: 11px;
+}

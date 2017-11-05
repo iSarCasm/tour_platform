@@ -29,6 +29,12 @@ GIT
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
 
+PATH
+  remote: /home/sarcasm/workspace/tour_eco/rails_admin_list_field
+  specs:
+    rails_admin_list_field (0.0.1)
+      rails (~> 5.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -513,6 +519,7 @@ DEPENDENCIES
   rails_admin (~> 1.2)
   rails_admin_compact!
   rails_admin_defaults!
+  rails_admin_list_field!
   rails_admin_table_field!
   rails_best_practices
   rollbar
