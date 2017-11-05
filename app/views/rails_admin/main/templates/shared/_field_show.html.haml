@@ -1,0 +1,6 @@
+- for_field field do |field, css, id, label, value|
+  %div{class: "#{css}", id: id}
+    %p
+      %strong= label
+      %br
+      = value
