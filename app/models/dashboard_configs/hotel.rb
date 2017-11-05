@@ -114,7 +114,7 @@ RailsAdmin.config do |config|
 
     show do
       set_template 'hotels_show'
-      
+
       field :title
       field :description
       field :address do

@@ -2,45 +2,50 @@
 #
 # Table name: coaches
 #
-#  id            :integer          not null, primary key
-#  title         :string
-#  description   :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  address       :text
-#  phone         :string
-#  fax           :string
-#  website       :text
-#  email         :string
-#  contact_name  :string
-#  mobile_number :string
-#  notes         :text
-#  seatplan_id   :integer
+#  id               :integer          not null, primary key
+#  title            :string
+#  description      :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  address          :text
+#  phone_number     :string
+#  fax_number       :string
+#  website          :text
+#  email            :string
+#  contact_name     :string
+#  emergency_number :string
+#  notes            :text
+#  seatplan_id      :integer
+#  rating           :decimal(, )
 #
 
 RailsAdmin.config do |config|
   config.model Coach do
-    defaults [:seat_prices, :seatplan]
+    defaults [:seat_prices, :seatplan, :coach_amenities]
 
     list do
       field :id
       field :title
       field :description
       field :address
-      field :phone
-      field :fax
+      field :phone_number
+      field :fax_number
       field :website
       field :email
       field :contact_name
-      field :mobile_number
+      field :emergency_number
       field :tour_coaches_count
+      field :rating
       field :seatplan
       field :notes
     end
 
+    update { set_template 'coaches' }
     edit do
       field :title
-      field :description
+      field :description do
+        html_attributes rows: 18, cols: 53
+      end
       field :address do
         render do
           bindings[:view].render(
@@ -53,12 +58,28 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :phone
-      field :fax
+      field :phone_number
+      field :fax_number
       field :website
       field :email
       field :contact_name
-      field :mobile_number
+      field :emergency_number
+      field :rating
+      field :photos do
+        render do
+          bindings[:view].render(
+            partial: 'list_edit',
+            locals: {
+              field: self,
+              form: bindings[:form],
+              table_headers: ['Photo']
+            }
+          )
+        end
+      end
+      field :coach_amenities do
+        label 'Default Coach Amenities'
+      end
       field :seatplan do
         label 'Default Seatplan'
       end
@@ -81,6 +102,8 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'coaches_show'
+
       field :id
       field :title
       field :description
@@ -95,12 +118,16 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :phone
-      field :fax
+      field :phone_number
+      field :fax_number
       field :website
       field :email
       field :contact_name
-      field :mobile_number
+      field :emergency_number
+      field :rating
+      field :coach_amenities do
+        label 'Default Coach Amenities'
+      end
       field :seatplan  do
         label 'Default Seatplan'
         pretty_value do
@@ -119,6 +146,17 @@ RailsAdmin.config do |config|
               objects: bindings[:object].seat_prices,
               table_headers: ['char', 'price'],
               methods: [:char, :price]
+            }
+          )
+        end
+      end
+      field :photos do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/list_show',
+            locals: {
+              objects: bindings[:object].photos,
+              methods: [:photo]
             }
           )
         end

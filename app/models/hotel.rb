@@ -32,8 +32,6 @@ class Hotel < ApplicationRecord
   belongs_to :payment_type, inverse_of: :hotels, optional: true
 
   accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
-
-
   accepts_nested_attributes_for :photos, allow_destroy: true
 
   validates :title, presence: true

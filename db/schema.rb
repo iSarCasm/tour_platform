@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101183035) do
+ActiveRecord::Schema.define(version: 20171105175952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,20 +69,30 @@ ActiveRecord::Schema.define(version: 20171101183035) do
     t.index ["tour_coach_id"], name: "index_coach_bookings_on_tour_coach_id"
   end
 
+  create_table "coach_coach_amenities", force: :cascade do |t|
+    t.bigint "coach_id"
+    t.bigint "coach_amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coach_amenity_id"], name: "index_coach_coach_amenities_on_coach_amenity_id"
+    t.index ["coach_id"], name: "index_coach_coach_amenities_on_coach_id"
+  end
+
   create_table "coaches", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "address"
-    t.string "phone"
-    t.string "fax"
+    t.string "phone_number"
+    t.string "fax_number"
     t.text "website"
     t.string "email"
     t.string "contact_name"
-    t.string "mobile_number"
+    t.string "emergency_number"
     t.text "notes"
     t.bigint "seatplan_id"
+    t.decimal "rating"
     t.index ["seatplan_id"], name: "index_coaches_on_seatplan_id"
   end
 
@@ -444,6 +454,8 @@ ActiveRecord::Schema.define(version: 20171101183035) do
   add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
+  add_foreign_key "coach_coach_amenities", "coach_amenities"
+  add_foreign_key "coach_coach_amenities", "coaches"
   add_foreign_key "coaches", "seatplans"
   add_foreign_key "ferry_dates", "ferries"
   add_foreign_key "hotel_bookings", "hotel_rooms"

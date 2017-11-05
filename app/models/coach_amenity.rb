@@ -9,8 +9,10 @@
 #
 
 class CoachAmenity < ApplicationRecord
+  has_many :coach_coach_amenities, dependent: :destroy
   has_many :tour_coach_amenities, dependent: :destroy
   has_many :tour_coaches, through: :tour_coach_amenities
+  has_many :coaches, through: :coach_coach_amenities
 
   validates :name, presence: true
 end
