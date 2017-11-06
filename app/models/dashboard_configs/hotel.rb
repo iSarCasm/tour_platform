@@ -45,6 +45,7 @@ RailsAdmin.config do |config|
     end
 
     update { set_template 'hotels' }
+    create { set_template 'hotels' }
     edit do
       field :title
       field :description do

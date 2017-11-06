@@ -41,6 +41,7 @@ RailsAdmin.config do |config|
     end
 
     update { set_template 'coaches' }
+    create { set_template 'coaches' }
     edit do
       field :title
       field :description do

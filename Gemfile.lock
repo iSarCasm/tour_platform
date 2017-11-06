@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/iSarCasm/rails_admin_defaults
-  revision: d9af6eba205d58cc644f07a3c41ffaa8a55269ca
+  revision: 28e1ee590c7055fc62e14257984378f77b7fe544
   specs:
     rails_admin_defaults (0.0.2)
       rails (~> 5.1.2)
