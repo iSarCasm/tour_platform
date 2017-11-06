@@ -42,6 +42,8 @@ RailsAdmin.config do |config|
       end
     end
 
+    update { set_template 'tour_coaches' }
+    create { set_template 'tour_coaches' }
     edit do
       field :coach, :filter_select_with_defaults
       field :active_tour
@@ -49,7 +51,9 @@ RailsAdmin.config do |config|
       field :arrival_date
       field :driver_name
       field :driver_number
-      field :notes
+      field :notes do
+        html_attributes rows: 10, cols: 100
+      end
       field :coach_amenities
       field :seatplan
       field :seat_prices do
@@ -71,6 +75,8 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'tour_coaches_show'
+
       field :id
       field :coach
       field :active_tour

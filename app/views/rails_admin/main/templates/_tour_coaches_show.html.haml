@@ -1,0 +1,49 @@
+-# DO NOT REMOVE THAT LINE
+- config_show_template fields
+
+-# For field render you can use compact_render_field(field) or field.render
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :coach_id, css: ''
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :active_tour_id, css: ''
+
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :departure_date, css: ''
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :arrival_date, css: ''
+
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :driver_name, css: ''
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :driver_number, css: ''
+
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :rate
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :seat_prices_attributes
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :pickup_list_attributes
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :coach_amenity_ids
+
+.row
+  .col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :seatplan_id
+
+.row
+  .col-md-11.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :notes

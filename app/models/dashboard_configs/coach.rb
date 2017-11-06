@@ -99,7 +99,9 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :notes
+      field :notes do
+        html_attributes rows: 10, cols: 100
+      end
     end
 
     show do
