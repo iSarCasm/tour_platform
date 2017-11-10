@@ -39,6 +39,9 @@ gem 'mini_magick'
 # Data migrations
 gem 'data_migrate'
 
+# Reports
+gem 'thinreports'
+
 # Dashboard
 gem 'rails_admin_defaults', git: 'https://github.com/iSarCasm/rails_admin_defaults'
 gem 'rails_admin', '~> 1.2'

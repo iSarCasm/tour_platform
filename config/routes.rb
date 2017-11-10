@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#home'
 
+  get '/report1', to: 'reports#interim_report'
+
   resources :tours, only: [:show] do
     member do
       get 'booking'
