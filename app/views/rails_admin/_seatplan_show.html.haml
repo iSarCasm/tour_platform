@@ -2,11 +2,11 @@
   var firstSeatLabel = 1;
 
   function plan() {
-    return "#{escape_javascript seatplan.plan}"
+    return "#{escape_javascript seatplan&.plan}"
   }
 
   function seatTypes() {
-    return JSON.parse('#{raw seatplan.seat_types_json.to_json}')
+    return JSON.parse('#{raw seatplan&.seat_types_json.to_json}')
   }
 
   function fetchedSeatplan() {
