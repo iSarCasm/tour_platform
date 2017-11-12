@@ -34,6 +34,10 @@ class TourBooking < ApplicationRecord
     coach_bookings.first
   end
 
+  def ref
+    id
+  end
+
   def username
     user.name
   end

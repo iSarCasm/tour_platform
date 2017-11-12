@@ -61,6 +61,18 @@ class HotelBooking < ApplicationRecord
     (hr.infant_sell) * tb.infant
   end
 
+  def status
+    'G'
+  end
+
+  def type
+    ''
+  end
+
+  def requests
+    ''
+  end
+
   def ensure_has_rooms
     return unless hotel_room
     if hotel_room.amount_left < 1
