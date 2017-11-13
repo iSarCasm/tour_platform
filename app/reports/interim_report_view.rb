@@ -23,6 +23,7 @@ class InterimReportView
     grouped_bookings = []
     bookings.each do |b|
       if last_room_type != b.hotel_room.room_type
+        last_room_type = b.hotel_room.room_type
         grouped_bookings << {type: b.hotel_room.room_type, bookings: []}
       end
       grouped_bookings.last[:bookings] << b
