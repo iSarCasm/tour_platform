@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  root to: 'static_pages#home'
+
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
-  root to: 'static_pages#home'
+  get 'tour_hotel/:id/interim_report', to: 'tour_hotel#interim_report', as: 'tour_hotel_interim_report'
 
   get '/report1', to: 'reports#interim_report'
 

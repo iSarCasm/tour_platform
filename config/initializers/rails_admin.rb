@@ -1,3 +1,5 @@
+require Rails.root.join('lib', 'rails_admin', 'get_report.rb')
+
 RailsAdmin.config do |config|
   # Horizontaly scrolling table
   config.total_columns_width = 9999999 #
@@ -39,6 +41,7 @@ RailsAdmin.config do |config|
     delete
     show_in_app
     defaults
+    get_report
 
     ## With an audit adapter, you can add:
     # history_index

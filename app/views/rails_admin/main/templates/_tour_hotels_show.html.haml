@@ -2,6 +2,13 @@
 - config_show_template fields
 
 .clearfix
+  = link_to get_report_path(:tour_hotel, @object), class: 'btn btn-info', target: 'blank'do
+    Show Interim Report
+    %i.icon-print
+  %br
+  %br
+
+.clearfix
   - for_field :hotel_id do |field, css, id, label, value|
     %div{class: "col-md-3 #{css}", id: id}
       %p

@@ -56,3 +56,8 @@
     %div{class: "col-md-3 #{css}", id: id}
       %p= label
       = compact_render_field field
+
+.clearfix
+  = link_to get_report_path(:tour_hotel, @object), class: 'btn btn-info', target: 'blank'do
+    Show Interim Report
+    %i.icon-print

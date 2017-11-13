@@ -1,0 +1,6 @@
+en:
+  admin:
+    actions:
+      get_report:
+        menu: 'Get Report'
+        breadcrumb: 'Get Report'
