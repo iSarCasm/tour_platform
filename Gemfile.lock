@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/iSarCasm/rails_admin_compact
-  revision: 50a5b2ae4ce45a5448167ad43ee3b3c4836c2f4c
+  revision: acf573985717408a7f81d366d14295529823f83d
   specs:
     rails_admin_compact (0.1.0)
       rails (~> 5.1.2)

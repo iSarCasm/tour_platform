@@ -25,6 +25,9 @@ RailsAdmin.config do |config|
   config.model Tour do
     defaults [:allow_deposits, :other_costs, :self_drive]
 
+    create { set_template 'tour' }
+    update { set_template 'tour' }
+
     edit do
       field :title
       field :description
@@ -53,6 +56,33 @@ RailsAdmin.config do |config|
 
     list do
       field :id
+      field :title
+      field :description
+      field :tour_type
+      field :country
+      field :categories
+      field :allow_deposits do
+        label 'Default allow deposits'
+      end
+      field :other_costs do
+        label 'Default other costs'
+      end
+      field :self_drive do
+        label 'Default self drive'
+      end
+      field :allow_external_agents
+      field :insurance_allowed
+      field :excursions
+      field :itinerary
+      field :important_notes
+      field :tour_memo
+      field :active_tours do
+        eager_load true
+      end
+    end
+
+    show do
+      set_template 'tour_show'
       field :title
       field :description
       field :tour_type
