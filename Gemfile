@@ -41,6 +41,8 @@ gem 'data_migrate'
 
 # Reports
 gem 'thinreports'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Dashboard
 gem 'rails_admin_defaults', git: 'https://github.com/iSarCasm/rails_admin_defaults'

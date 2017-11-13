@@ -18,10 +18,13 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            send_data InterimReport.new(tour_hotel: @object).generate,
-              filename: 'report.pdf',
-              type: 'application/pdf',
-              disposition: 'inline'
+            # send_data InterimReport.new(tour_hotel: @object).generate,
+            #   filename: 'report.pdf',
+            #   type: 'application/pdf',
+            #   disposition: 'inline'
+            render pdf: 'interim_rooming_list',
+                  file: "#{Rails.root}/app/reports/files/interim_rooming_list.pdf.html",
+                  locals: InterimReportView.for(tour_hotel: @object)
           end
         end
       end

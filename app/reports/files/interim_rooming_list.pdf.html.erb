@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <style>
+  thead { display: table-header-group }
+  tfoot { display: table-row-group }
+  tr { page-break-inside: avoid }
+  </style>
+  <title>Interim Rooming List</title>
+</head>
+<body>
+  <p>
+    <small>
+      <em>Leisuretime, South Gate House, Wood Street, Cardiff, CF10 1EW</em>
+    </small>
+  </p>
+  <div class="text-center">
+    <h2 class="mb-0"><em><%= hotel_title %> - Interim Rooming List</em></h1>
+    <p class="mb-1" style="color:red;"><small>Including Provisional Passengers</small></p>
+    <p>
+      <strong><em>
+        Arriving <%= arrival_date %> for <%= nights %> nights <%= board_basis %> - departing <%= departure_date %>
+      </em></strong>
+    </p>
+  </div>
+  <p>Tour : <%= tour_ref %></p>
+
+  <% grouped_bookings.each do |g| %>
+    <p>
+      <strong><u>Room : <%= g[:type] %></u></strong>
+    </p>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Status</th>
+          <th scope="col">Passenger name</th>
+          <th scope="col">Booking ref</th>
+          <th scope="col">Type</th>
+          <th scope="col">Requests</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% g[:bookings].each do |b| %>
+          <div class="alwaysbreak"></div>
+          <tr>
+            <td scope="col"><%= b.status %></td>
+            <td><%= b.tour_booking.username %></td>
+            <td><%= b.tour_booking.ref %></td>
+            <td><%= b.type %></td>
+            <td><%= b.requests %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</body>
+</html>
