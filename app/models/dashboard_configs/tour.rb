@@ -23,7 +23,7 @@
 
 RailsAdmin.config do |config|
   config.model Tour do
-    defaults [:allow_deposits, :other_costs, :self_drive]
+    defaults [:allow_deposits, :other_costs, :self_drive, :allow_external_agents, :insurance_allowed]
 
     create { set_template 'tour' }
     update { set_template 'tour' }
@@ -45,8 +45,12 @@ RailsAdmin.config do |config|
       field :self_drive do
         label 'Default self drive'
       end
-      field :allow_external_agents
-      field :insurance_allowed
+      field :allow_external_agents do
+        label 'Default allow external agents'
+      end
+      field :insurance_allowed do
+        label 'Default insurance allowed'
+      end
       field :excursions
       field :itinerary
       field :important_notes
@@ -72,8 +76,12 @@ RailsAdmin.config do |config|
       field :self_drive do
         label 'Default self drive'
       end
-      field :allow_external_agents
-      field :insurance_allowed
+      field :allow_external_agents do
+        label 'Default allow external agents'
+      end
+      field :insurance_allowed do
+        label 'Default insurance allowed'
+      end
       field :excursions
       field :itinerary
       field :important_notes

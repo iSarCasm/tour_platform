@@ -46,9 +46,11 @@ RailsAdmin.config do |config|
       field :tour_coaches do
         eager_load true
       end
+      field :allow_external_agents
+      field :insurance_allowed
       field :allow_deposits
-      field :other_costs
       field :self_drive
+      field :other_costs
     end
 
     show do
@@ -61,9 +63,11 @@ RailsAdmin.config do |config|
       field :tour_bookings
       field :tour_hotels
       field :tour_coaches
+      field :allow_external_agents
+      field :insurance_allowed
       field :allow_deposits
-      field :other_costs
       field :self_drive
+      field :other_costs
     end
   end
 end
