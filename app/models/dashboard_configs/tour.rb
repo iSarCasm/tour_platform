@@ -30,7 +30,9 @@ RailsAdmin.config do |config|
 
     edit do
       field :title
-      field :description
+      field :description do
+        html_attributes rows: 18, cols: 53
+      end
       field :tour_type
       field :country
       field :categories
