@@ -1,0 +1,40 @@
+-# DO NOT REMOVE THAT LINE
+- config_show_template fields
+
+-# For field render you can use compact_render_field(field) or field.render
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :tour_id
+
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :start_date
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :end_date
+
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :allow_external_agents
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :allow_deposits
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :other_costs
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :insurance_allowed
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :self_drive
+
+.row
+  .col-md-11.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :tour_hotels_attributes, id_prefix: 'active_tour_'
+
+.row
+  .col-md-11.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+    field: :tour_coaches_attributes, id_prefix: 'active_tour_'

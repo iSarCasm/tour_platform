@@ -17,6 +17,10 @@
 RailsAdmin.config do |config|
   config.model ActiveTour do
     parent Tour
+
+    create { set_template 'active_tour' }
+    update { set_template 'active_tour' }
+
     list do
       field :id
       field :tour
@@ -54,6 +58,7 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'active_tour_show'
       field :id
       field :tour
       field :start_date

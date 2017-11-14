@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/iSarCasm/rails_admin_compact
-  revision: acf573985717408a7f81d366d14295529823f83d
+  revision: fa9f38abc6a11b81844d565666535a1ea7500cf5
   specs:
-    rails_admin_compact (0.1.0)
+    rails_admin_compact (0.1.6)
       rails (~> 5.1.2)
 
 GIT
@@ -527,7 +527,7 @@ DEPENDENCIES
   rails-erd
   rails_12factor
   rails_admin (~> 1.2)
-  rails_admin_compact!
+  rails_admin_compact (= 0.1.6)!
   rails_admin_defaults!
   rails_admin_list_field!
   rails_admin_table_field!

@@ -47,9 +47,9 @@ gem 'wkhtmltopdf-binary'
 # Dashboard
 gem 'rails_admin_defaults', git: 'https://github.com/iSarCasm/rails_admin_defaults'
 gem 'rails_admin', '~> 1.2'
-gem 'rails_admin_table_field',  git: 'https://github.com/iSarCasm/rails_admin_table_field'
-gem 'rails_admin_list_field',   git: 'https://github.com/iSarCasm/rails_admin_list_field'
-gem 'rails_admin_compact',      git: 'https://github.com/iSarCasm/rails_admin_compact'
+gem 'rails_admin_table_field', git: 'https://github.com/iSarCasm/rails_admin_table_field'
+gem 'rails_admin_list_field', git: 'https://github.com/iSarCasm/rails_admin_list_field'
+gem 'rails_admin_compact', '0.1.6', git: 'https://github.com/iSarCasm/rails_admin_compact'
 
 group :development, :test do
   # Debug
