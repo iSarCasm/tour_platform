@@ -21,13 +21,6 @@ GIT
       rails (~> 5.1.2)
 
 GIT
-  remote: https://github.com/iSarCasm/rails_admin_table_field
-  revision: 500986dc8a6aa126b2fcdcec9e025e0ff79d9c11
-  specs:
-    rails_admin_table_field (0.1.1)
-      rails (~> 5.1.2)
-
-GIT
   remote: https://github.com/rails/webpacker.git
   revision: 72b71a2727f8efc4c56f1a73cfd83f0fb821004f
   specs:
@@ -35,6 +28,12 @@ GIT
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
+
+PATH
+  remote: /home/sarcasm/workspace/tour_eco/rails_admin_table_field
+  specs:
+    rails_admin_table_field (0.1.2)
+      rails (~> 5.1.2)
 
 GEM
   remote: https://rubygems.org/
