@@ -15,6 +15,11 @@ describe 'Managing Coaches', type: :feature do
         create :coach, title: 'Train coach wtf?'
       end
 
+      it 'can Add new one' do
+        visit '/admin/coach/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all coaches' do
         visit '/admin/coach'
         expect(page).to have_content 'Sample coach 1'

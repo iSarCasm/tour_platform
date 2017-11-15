@@ -15,6 +15,11 @@ describe 'Managing Room Types', type: :feature do
         create :room_type, room_type: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/room_type/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Room Types' do
         visit '/admin/room_type'
 

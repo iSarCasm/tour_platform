@@ -15,6 +15,11 @@ describe 'Managing Payment Types', type: :feature do
         create :payment_type, payment_type: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/payment_type/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Payment Types' do
         visit '/admin/payment_type'
 

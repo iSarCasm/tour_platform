@@ -15,6 +15,11 @@ describe 'Managing Hotel Bookings', type: :feature do
         create :hotel_booking
       end
 
+      it 'can Add new one' do
+        visit '/admin/hotel_booking/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Hotel Bookings' do
         visit '/admin/hotel_booking'
         expect(page).to have_content '3 hotel bookings'

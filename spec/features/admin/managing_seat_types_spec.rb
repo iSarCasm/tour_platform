@@ -15,6 +15,11 @@ describe 'Managing Seat types', type: :feature do
         create :seat_type, name: 'WC', char: 'w'
       end
 
+      it 'can Add new one' do
+        visit '/admin/seat_type/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Seat types' do
         visit '/admin/seat_type'
 

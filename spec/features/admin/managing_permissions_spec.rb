@@ -15,6 +15,11 @@ describe 'Managing Permissions', type: :feature do
         create :permission, action: :export
       end
 
+      it 'can Add new one' do
+        visit '/admin/permission/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Permissions' do
         visit '/admin/permission'
 

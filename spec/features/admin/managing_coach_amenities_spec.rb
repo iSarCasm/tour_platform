@@ -15,6 +15,11 @@ describe 'Managing Coach Amenities', type: :feature do
         create :coach_amenity, name: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/coach_amenity/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Coach Amenities' do
         visit '/admin/coach_amenity'
 

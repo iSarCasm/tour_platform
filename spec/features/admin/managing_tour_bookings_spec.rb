@@ -15,6 +15,11 @@ describe 'Managing Tour Bookings', type: :feature do
         create :tour_booking
       end
 
+      it 'can Add new one' do
+        visit '/admin/tour_booking/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Tour Bookings' do
         visit '/admin/tour_booking'
         expect(page).to have_content '3 tour bookings'

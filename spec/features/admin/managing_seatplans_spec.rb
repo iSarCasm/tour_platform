@@ -15,6 +15,11 @@ describe 'Managing Seatplans', type: :feature do
         create :seatplan, title: 'OK-133'
       end
 
+      it 'can Add new one' do
+        visit '/admin/seatplan/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Seatplans' do
         visit '/admin/seatplan'
 

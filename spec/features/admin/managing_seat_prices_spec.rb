@@ -15,6 +15,11 @@ describe 'Managing Seat prices', type: :feature do
         create :seat_price, price: 111
       end
 
+      it 'can Add new one' do
+        visit '/admin/seat_price/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Seat prices' do
         visit '/admin/seat_price'
 

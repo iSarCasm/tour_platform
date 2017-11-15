@@ -15,6 +15,11 @@ describe 'Managing Users', type: :feature do
         create :user, name: 'V. Putin'
       end
 
+      it 'can Add new one' do
+        visit '/admin/user/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Users' do
         visit '/admin/user'
         expect(page).to have_content 'D. Trump'

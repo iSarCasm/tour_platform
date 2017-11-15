@@ -15,6 +15,11 @@ describe 'Managing Pickup points', type: :feature do
         create :pickup_point, address: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/pickup_point/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Pickup points' do
         visit '/admin/pickup_point'
 

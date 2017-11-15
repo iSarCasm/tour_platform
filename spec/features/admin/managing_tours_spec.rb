@@ -15,6 +15,11 @@ describe 'Managing Tours', type: :feature do
         create :tour, title: 'Tour three'
       end
 
+      it 'can Add new one' do
+        visit '/admin/tour/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all tours' do
         visit '/admin/tour'
         expect(page).to have_content 'Tour one'

@@ -15,6 +15,11 @@ describe 'Managing Hotels', type: :feature do
         create :hotel, title: 'America'
       end
 
+      it 'can Add new one' do
+        visit '/admin/hotel/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all hotels' do
         visit '/admin/hotel'
         expect(page).to have_content 'Grand Plaza'

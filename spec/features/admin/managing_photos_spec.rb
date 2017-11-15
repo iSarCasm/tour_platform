@@ -15,6 +15,11 @@ describe 'Managing Photos', type: :feature do
         create :hotel_photo
       end
 
+      it 'can Add new one' do
+        visit '/admin/photo/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Photos' do
         visit '/admin/photo'
         expect(page).to have_content '3 photos'

@@ -15,6 +15,11 @@ describe 'Managing Facilities', type: :feature do
         create :facility, facility: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/facility/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Facilities' do
         visit '/admin/facility'
 

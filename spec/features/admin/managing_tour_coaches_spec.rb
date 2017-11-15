@@ -15,6 +15,11 @@ describe 'Managing Tour Coaches', type: :feature do
         create :tour_coach, driver_name: 'Donald Trump'
       end
 
+      it 'can Add new one' do
+        visit '/admin/tour_coach/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all coaches' do
         visit '/admin/tour_coach'
         expect(page).to have_content 'Jake Paul'

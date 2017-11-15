@@ -15,6 +15,11 @@ describe 'Managing Pickup lists', type: :feature do
         create :pickup_list
       end
 
+      it 'can Add new one' do
+        visit '/admin/pickup_list/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Pickup lists' do
         visit '/admin/pickup_list'
         expect(page).to have_content '3 pickup lists'

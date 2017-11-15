@@ -15,6 +15,11 @@ describe 'Managing Roles', type: :feature do
         create :role, name: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/role/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Roles' do
         visit '/admin/role'
 

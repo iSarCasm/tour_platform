@@ -15,6 +15,11 @@ describe 'Managing Coach Bookings', type: :feature do
         create :coach_booking
       end
 
+      it 'can Add new one' do
+        visit '/admin/coach_booking/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Coach Bookings' do
         visit '/admin/coach_booking'
         expect(page).to have_content '3 coach bookings'

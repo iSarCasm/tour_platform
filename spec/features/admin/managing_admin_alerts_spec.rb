@@ -15,6 +15,11 @@ describe 'Managing Admin Alerts', type: :feature do
         create :admin_alert, title: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/admin_alert/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Admin Alerts' do
         visit '/admin/admin_alert'
 

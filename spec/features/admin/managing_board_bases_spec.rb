@@ -15,6 +15,11 @@ describe 'Managing Board Bases', type: :feature do
         create :board_basis, title: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/board_basis/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Board Bases' do
         visit '/admin/board_basis'
 

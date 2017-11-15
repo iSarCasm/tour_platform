@@ -15,6 +15,11 @@ describe 'Managing Tour Types', type: :feature do
         create :tour_type, name: 'another one'
       end
 
+      it 'can Add new one' do
+        visit '/admin/tour_type/new'
+        expect(page).to have_content 'Save'
+      end
+
       it 'can List all Tour Types' do
         visit '/admin/tour_type'
 
