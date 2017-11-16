@@ -56,9 +56,9 @@ class HotelBooking < ApplicationRecord
     hr = hotel_room
     tb = tour_booking
     (hr.adult_sell + hr.adult_supp) * tb.adult +
-    (hr.senior_sell + hr.senior_supp) * tb.senior +
-    (hr.child_sell) * tb.child +
-    (hr.infant_sell) * tb.infant
+      (hr.senior_sell + hr.senior_supp) * tb.senior +
+      hr.child_sell * tb.child +
+      hr.infant_sell * tb.infant
   end
 
   def status

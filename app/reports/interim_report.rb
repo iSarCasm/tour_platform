@@ -4,7 +4,7 @@ class InterimReport
   def initialize(tour_hotel:)
     @report = Thinreports::Report.new layout: File.join(Rails.root, 'app', 'reports', 'files', 'interim_rooming_list.tlf')
     fill_report_header(tour_hotel)
-    bookings = HotelBooking.joins(:hotel_room).where(hotel_rooms: {tour_hotel: tour_hotel}).order('hotel_rooms.room_type_id')
+    bookings = HotelBooking.joins(:hotel_room).where(hotel_rooms: { tour_hotel: tour_hotel }).order('hotel_rooms.room_type_id')
     fill_report_body(bookings)
   end
 
@@ -42,7 +42,7 @@ class InterimReport
 
   def fill_report_with_not_found(report)
     report.list.add_row do |row|
-      row.item(:room_total).value("No bookings found for this hotel.")
+      row.item(:room_total).value('No bookings found for this hotel.')
     end
   end
 
