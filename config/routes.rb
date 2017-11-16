@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'tour_hotel/:id/interim_report', to: 'tour_hotel#interim_report', as: 'tour_hotel_interim_report'
 
-  get '/report1', to: 'reports#interim_report'
-
   resources :tours, only: [:show] do
     member do
       get 'booking'
