@@ -3,9 +3,8 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
-    %title TourPlatform
+    %title TourPlatform Admin V2
     = csrf_meta_tags
-    = Gon::Base.render_data # Gets variables for JS from controller
 
     %link{:href => "https://fonts.googleapis.com/css?family=Roboto", :rel => "stylesheet"}/
 
@@ -15,15 +14,5 @@
 
     = stylesheet_pack_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag    'application', 'data-turbolinks-track': 'reload'
-
-    - if content_for? :javascript_body
-      = yield :javascript_body
-
-    - if content_for? :dynamic_css
-      %style
-        = yield :dynamic_css
   %body
-    = render 'shared/navbar'
-    = render 'shared/notice_block'
-    = render 'shared/alert_block'
     = yield

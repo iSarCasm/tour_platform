@@ -3,6 +3,12 @@ Rails.application.routes.draw do
 
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  namespace :v2admin, path: '/v2/admin' do
+    get '/', to: 'dashboards#index'
+  end
+
+
   get 'tour_hotel/:id/interim_report', to: 'tour_hotel#interim_report', as: 'tour_hotel_interim_report'
 
   get '/report1', to: 'reports#interim_report'
