@@ -52,8 +52,6 @@ class User < ApplicationRecord
   end
 
   def last_travelled
-    tour_bookings.sort do |t1, t2|
-      t1.end_date <=> t2.end_date
-    end.last
+    tour_bookings.sort_by(&:end_date).last
   end
 end
