@@ -22,9 +22,9 @@ module RailsAdmin
             #   filename: 'report.pdf',
             #   type: 'application/pdf',
             #   disposition: 'inline'
-            render pdf: 'interim_rooming_list',
-                  file: "#{Rails.root}/app/reports/files/interim_rooming_list.pdf.html",
-                  locals: InterimReportView.for(tour_hotel: @object)
+            render  pdf: 'interim_rooming_list',
+                    file: "#{Rails.root}/app/reports/files/interim_rooming_list.pdf.html",
+                    locals: InterimReportView.for(tour_hotel: @object)
           end
         end
       end

@@ -57,7 +57,7 @@ describe HotelBooking do
       hr = create :hotel_room, adult_sell: 30, adult_supp: 5, senior_sell: 40, senior_supp: 20
       hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
 
-      expect(hb.total_cost).to eq(30 + 5 + 40*2 + 20*2)
+      expect(hb.total_cost).to eq(30 + 5 + 40 * 2 + 20 * 2)
     end
   end
 end

@@ -42,9 +42,9 @@ describe User do
     seatplan = create :seatplan, plan: '@'
     tc = create :tour_coach, seatplan: seatplan
     create :seat_price, tour_coach: tc, char: '@', price: cost/2
-    cb = create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1'].to_json
+    create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1'].to_json
     hr = create :hotel_room, adult_sell: cost/2, adult_supp: 0
-    hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
+    create :hotel_booking, hotel_room: hr, tour_booking: tb
   end
 
   describe '#name' do
@@ -67,9 +67,9 @@ describe User do
   describe '#last_travelled' do
     it 'returns the Users tour booking with latest end date' do
       user = create :user
-      b1 = create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 7, 28)), user: user
+      create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 7, 28)), user: user
       b2 = create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 8, 19)), user: user
-      b3 = create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 3, 14)), user: user
+      create :tour_booking, active_tour: create(:active_tour, end_date: Date.new(2017, 3, 14)), user: user
 
       expect(user.last_travelled).to eq b2
     end
