@@ -2,16 +2,18 @@
 #
 # Table name: active_tours
 #
-#  id             :integer          not null, primary key
-#  tour_id        :integer
-#  start_date     :date
-#  end_date       :date
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  slug           :string
-#  allow_deposits :boolean
-#  other_costs    :decimal(, )
-#  self_drive     :boolean
+#  id                    :integer          not null, primary key
+#  tour_id               :integer
+#  start_date            :date
+#  end_date              :date
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  slug                  :string
+#  allow_deposits        :boolean
+#  other_costs           :decimal(, )
+#  self_drive            :boolean
+#  allow_external_agents :boolean
+#  insurance_allowed     :boolean
 #
 
 RailsAdmin.config do |config|
