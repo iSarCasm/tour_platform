@@ -77,11 +77,6 @@ describe TourHotel do
     end
   end
 
-  describe '#photos' do
-    xit 'returns associated hotels photos' do
-    end
-  end
-
   describe '#days' do
     it 'returns amount of days in a tour' do
       tour_hotel = build(:tour_hotel,
