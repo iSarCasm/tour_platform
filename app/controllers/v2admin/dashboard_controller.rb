@@ -1,5 +1,5 @@
 module V2admin
-  class DashboardsController < ApplicationController
+  class DashboardController < ApplicationController
     layout 'admin'
 
     def index

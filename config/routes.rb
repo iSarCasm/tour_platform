@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   namespace :v2admin, path: '/v2/admin' do
-    get '/', to: 'dashboards#index'
+    resources :dashboard, only: [:index], path: '/'
   end
 
 
