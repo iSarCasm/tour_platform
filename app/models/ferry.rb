@@ -19,5 +19,9 @@
 #
 
 class Ferry < ApplicationRecord
+  has_many :photos, as: :photoable, class_name: 'Photo'
+
+  accepts_nested_attributes_for :photos, allow_destroy: true
+
   validates :title, presence: true
 end
