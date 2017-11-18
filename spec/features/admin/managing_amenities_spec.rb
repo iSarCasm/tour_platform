@@ -8,7 +8,7 @@ describe 'Managing Amenities', type: :feature do
       sign_in create(:superadmin)
     end
 
-    context 'with some Coach Amenities' do
+    context 'with some Amenities' do
       before do
         @amenity = create :amenity, name: 'Crazy one'
         create :amenity, name: 'Some basis'
