@@ -21,6 +21,7 @@
 RailsAdmin.config do |config|
   config.model Ferry do
     weight 30
+    defaults [:amenities]
 
     list do
       field :id

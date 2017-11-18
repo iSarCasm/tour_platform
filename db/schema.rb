@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118002419) do
+ActiveRecord::Schema.define(version: 20171118012509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,15 @@ ActiveRecord::Schema.define(version: 20171118002419) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ferry_id"], name: "index_ferry_dates_on_ferry_id"
+  end
+
+  create_table "ferry_dates_amenities", force: :cascade do |t|
+    t.bigint "ferry_date_id"
+    t.bigint "amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_ferry_dates_amenities_on_amenity_id"
+    t.index ["ferry_date_id"], name: "index_ferry_dates_amenities_on_ferry_date_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -480,6 +489,8 @@ ActiveRecord::Schema.define(version: 20171118002419) do
   add_foreign_key "ferry_amenities", "amenities"
   add_foreign_key "ferry_amenities", "ferries"
   add_foreign_key "ferry_dates", "ferries"
+  add_foreign_key "ferry_dates_amenities", "amenities"
+  add_foreign_key "ferry_dates_amenities", "ferry_dates"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
   add_foreign_key "hotel_facilities", "facilities"

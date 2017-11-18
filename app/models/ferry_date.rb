@@ -11,5 +11,8 @@
 #
 
 class FerryDate < ApplicationRecord
+  has_many :ferry_dates_amenities, dependent: :destroy
+  has_many :amenities, through: :ferry_dates_amenities
+
   belongs_to :ferry
 end
