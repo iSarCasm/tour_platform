@@ -52,6 +52,7 @@ describe 'Managing Ticket Operators', type: :feature do
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Buyer name'
         expect(page).to have_content 'Buyer number'
+        expect(page).to have_content 'Photos'
 
         fill_in 'ticket_operator[title]', with: 'New Title of This Ticket OPERATOR'
         page.find(:css, '.btn-primary').click
