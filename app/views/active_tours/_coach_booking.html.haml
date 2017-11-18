@@ -4,7 +4,7 @@
     %strong Coach:
     = tour_coach.coach_title
   %ul
-    - tour_coach.coach_amenities.each do |feature|
+    - tour_coach.amenities.each do |feature|
       %li= feature.name
 
   %h4 Choose Your pickup point:

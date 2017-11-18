@@ -25,8 +25,8 @@ class Coach < ApplicationRecord
   # Defaults
   belongs_to :seatplan, inverse_of: :coaches, optional: true
   has_many :seat_prices, dependent: :destroy, inverse_of: :coach
-  has_many :coach_coach_amenities, dependent: :destroy
-  has_many :coach_amenities, through: :coach_coach_amenities
+  has_many :coach_amenities, dependent: :destroy
+  has_many :amenities, through: :coach_amenities
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true

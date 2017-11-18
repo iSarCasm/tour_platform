@@ -9,7 +9,7 @@
 #  updated_at       :datetime         not null
 #
 
-class TourCoachAmenity < ApplicationRecord
+class TourAmenity < ApplicationRecord
   belongs_to :tour_coach
-  belongs_to :coach_amenity
+  belongs_to :amenity
 end

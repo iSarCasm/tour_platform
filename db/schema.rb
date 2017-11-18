@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117234105) do
+ActiveRecord::Schema.define(version: 20171118002419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 20171117234105) do
     t.index ["user_id"], name: "index_admin_alerts_on_user_id"
   end
 
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "board_bases", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -54,9 +60,12 @@ ActiveRecord::Schema.define(version: 20171117234105) do
   end
 
   create_table "coach_amenities", force: :cascade do |t|
-    t.string "name"
+    t.bigint "coach_id"
+    t.bigint "amenity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_coach_amenities_on_amenity_id"
+    t.index ["coach_id"], name: "index_coach_amenities_on_coach_id"
   end
 
   create_table "coach_bookings", force: :cascade do |t|
@@ -69,15 +78,6 @@ ActiveRecord::Schema.define(version: 20171117234105) do
     t.index ["pickup_point_id"], name: "index_coach_bookings_on_pickup_point_id"
     t.index ["tour_booking_id"], name: "index_coach_bookings_on_tour_booking_id"
     t.index ["tour_coach_id"], name: "index_coach_bookings_on_tour_coach_id"
-  end
-
-  create_table "coach_coach_amenities", force: :cascade do |t|
-    t.bigint "coach_id"
-    t.bigint "coach_amenity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coach_amenity_id"], name: "index_coach_coach_amenities_on_coach_amenity_id"
-    t.index ["coach_id"], name: "index_coach_coach_amenities_on_coach_id"
   end
 
   create_table "coaches", force: :cascade do |t|
@@ -124,6 +124,15 @@ ActiveRecord::Schema.define(version: 20171117234105) do
     t.string "email"
     t.decimal "rating"
     t.text "notes"
+  end
+
+  create_table "ferry_amenities", force: :cascade do |t|
+    t.bigint "ferry_id"
+    t.bigint "amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_ferry_amenities_on_amenity_id"
+    t.index ["ferry_id"], name: "index_ferry_amenities_on_ferry_id"
   end
 
   create_table "ferry_dates", force: :cascade do |t|
@@ -310,6 +319,15 @@ ActiveRecord::Schema.define(version: 20171117234105) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tour_amenities", force: :cascade do |t|
+    t.bigint "tour_coach_id"
+    t.bigint "amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_tour_amenities_on_amenity_id"
+    t.index ["tour_coach_id"], name: "index_tour_amenities_on_tour_coach_id"
+  end
+
   create_table "tour_bookings", force: :cascade do |t|
     t.bigint "active_tour_id"
     t.bigint "user_id"
@@ -330,15 +348,6 @@ ActiveRecord::Schema.define(version: 20171117234105) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_tour_categories_on_category_id"
     t.index ["tour_id"], name: "index_tour_categories_on_tour_id"
-  end
-
-  create_table "tour_coach_amenities", force: :cascade do |t|
-    t.bigint "tour_coach_id"
-    t.bigint "coach_amenity_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coach_amenity_id"], name: "index_tour_coach_amenities_on_coach_amenity_id"
-    t.index ["tour_coach_id"], name: "index_tour_coach_amenities_on_tour_coach_id"
   end
 
   create_table "tour_coaches", force: :cascade do |t|
@@ -462,12 +471,14 @@ ActiveRecord::Schema.define(version: 20171117234105) do
 
   add_foreign_key "active_tours", "tours"
   add_foreign_key "admin_alerts", "users"
+  add_foreign_key "coach_amenities", "amenities"
+  add_foreign_key "coach_amenities", "coaches"
   add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
-  add_foreign_key "coach_coach_amenities", "coach_amenities"
-  add_foreign_key "coach_coach_amenities", "coaches"
   add_foreign_key "coaches", "seatplans"
+  add_foreign_key "ferry_amenities", "amenities"
+  add_foreign_key "ferry_amenities", "ferries"
   add_foreign_key "ferry_dates", "ferries"
   add_foreign_key "hotel_bookings", "hotel_rooms"
   add_foreign_key "hotel_bookings", "tour_bookings"
@@ -483,12 +494,12 @@ ActiveRecord::Schema.define(version: 20171117234105) do
   add_foreign_key "role_permissions", "roles"
   add_foreign_key "seat_prices", "coaches"
   add_foreign_key "seat_prices", "tour_coaches"
+  add_foreign_key "tour_amenities", "amenities"
+  add_foreign_key "tour_amenities", "tour_coaches"
   add_foreign_key "tour_bookings", "active_tours"
   add_foreign_key "tour_bookings", "users"
   add_foreign_key "tour_categories", "categories"
   add_foreign_key "tour_categories", "tours"
-  add_foreign_key "tour_coach_amenities", "coach_amenities"
-  add_foreign_key "tour_coach_amenities", "tour_coaches"
   add_foreign_key "tour_coaches", "active_tours"
   add_foreign_key "tour_coaches", "coaches"
   add_foreign_key "tour_coaches", "seatplans"

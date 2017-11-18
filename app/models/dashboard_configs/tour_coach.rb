@@ -54,7 +54,7 @@ RailsAdmin.config do |config|
       field :notes do
         html_attributes rows: 10, cols: 100
       end
-      field :coach_amenities
+      field :amenities
       field :seatplan
       field :seat_prices do
         render do
@@ -85,7 +85,7 @@ RailsAdmin.config do |config|
       field :driver_name
       field :driver_number
       field :notes
-      field :coach_amenities
+      field :amenities
       field :seatplan do
         pretty_value do
           bindings[:view].render(
