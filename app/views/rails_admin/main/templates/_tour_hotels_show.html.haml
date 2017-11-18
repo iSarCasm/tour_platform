@@ -9,76 +9,44 @@
   %br
 
 .clearfix
-  - for_field :hotel_id do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :hotel_id
 
-  - for_field :active_tour_id do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :active_tour_id
 
 .clearfix
-  - for_field :start_date do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :start_date
 
-  - for_field :end_date do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :end_date
 
 .clearfix
-  - for_field :board_basis_id do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :board_basis_id
 
-  - for_field :payment_type_id do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :payment_type_id
 
 .clearfix
-  - for_field :finalisation_date do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
-
-  - for_field :hotel_theme do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :finalisation_date
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :hotel_theme
 
 .clearfix
-  - for_field :hotel_rooms_attributes do |field, css, id, label, value|
-    %p
-      %strong= label
-      %br
-      = field.pretty_value
+  = render 'rails_admin/main/templates/shared/field_show',
+    field: :hotel_rooms_attributes
 
 .clearfix
-  - for_field :notes do |field, css, id, label, value|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p
-        %strong= label
-        %br
-        = value
+  = render 'rails_admin/main/templates/shared/field_show',
+    field: :notes
