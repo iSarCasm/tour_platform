@@ -64,6 +64,9 @@ RailsAdmin.config do |config|
       field :contact_name
       field :emergency_number
       field :rating
+      field :amenities do
+        label 'Default Amenities'
+      end
       field :photos do
         render do
           bindings[:view].render(
@@ -105,6 +108,9 @@ RailsAdmin.config do |config|
       field :contact_name
       field :emergency_number
       field :rating
+      field :amenities do
+        label 'Default Amenities'
+      end
       field :photos do
         pretty_value do
           bindings[:view].render(

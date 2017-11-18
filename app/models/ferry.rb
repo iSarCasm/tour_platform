@@ -19,6 +19,8 @@
 #
 
 class Ferry < ApplicationRecord
+  has_many :ferry_amenities, dependent: :destroy
+  has_many :amenities, through: :ferry_amenities
   has_many :photos, as: :photoable, class_name: 'Photo'
 
   accepts_nested_attributes_for :photos, allow_destroy: true
