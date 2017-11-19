@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :amenity do
     name 'Amenity'
   end

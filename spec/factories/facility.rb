@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :facility do
     facility 'Facility'
   end

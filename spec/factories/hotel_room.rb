@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :hotel_room do
     amount      { Faker::Number.between(1, 400) }
     adult_buy   100

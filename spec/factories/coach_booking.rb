@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :coach_booking do
     tour_coach
     tour_booking

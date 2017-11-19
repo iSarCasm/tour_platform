@@ -100,7 +100,7 @@ group :test do
   gem 'selenium-webdriver', '<= 2.53'
   gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'faker'
   gem 'simplecov', require: false
   gem "codeclimate-test-reporter", "~> 1.0.0"

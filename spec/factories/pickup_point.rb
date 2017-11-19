@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :pickup_point do
     address   { Faker::Address.street_address }
     latitude  { Faker::Address.latitude }
