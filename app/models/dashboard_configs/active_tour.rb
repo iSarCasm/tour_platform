@@ -20,9 +20,6 @@ RailsAdmin.config do |config|
   config.model ActiveTour do
     parent Tour
 
-    create { set_template 'active_tour' }
-    update { set_template 'active_tour' }
-
     list do
       field :id
       field :tour
@@ -42,6 +39,9 @@ RailsAdmin.config do |config|
       field :self_drive
     end
 
+    create { set_template 'active_tour' }
+    update { set_template 'active_tour' }
+
     edit do
       field :tour, :filter_select_with_defaults
       field :start_date
@@ -52,6 +52,7 @@ RailsAdmin.config do |config|
       field :tour_coaches do
         eager_load true
       end
+      field :ferry_dates
       field :allow_external_agents
       field :insurance_allowed
       field :allow_deposits
@@ -70,6 +71,7 @@ RailsAdmin.config do |config|
       field :tour_bookings
       field :tour_hotels
       field :tour_coaches
+      field :ferry_dates
       field :allow_external_agents
       field :insurance_allowed
       field :allow_deposits

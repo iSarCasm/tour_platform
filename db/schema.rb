@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171118151225) do
+ActiveRecord::Schema.define(version: 20171119184309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,11 @@ ActiveRecord::Schema.define(version: 20171118151225) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "active_tour_id"
+    t.decimal "rate"
+    t.integer "max_passengers"
+    t.text "notes"
+    t.index ["active_tour_id"], name: "index_ferry_dates_on_active_tour_id"
     t.index ["ferry_id"], name: "index_ferry_dates_on_ferry_id"
   end
 
@@ -497,6 +502,7 @@ ActiveRecord::Schema.define(version: 20171118151225) do
   add_foreign_key "coaches", "seatplans"
   add_foreign_key "ferry_amenities", "amenities"
   add_foreign_key "ferry_amenities", "ferries"
+  add_foreign_key "ferry_dates", "active_tours"
   add_foreign_key "ferry_dates", "ferries"
   add_foreign_key "ferry_dates_amenities", "amenities"
   add_foreign_key "ferry_dates_amenities", "ferry_dates"
