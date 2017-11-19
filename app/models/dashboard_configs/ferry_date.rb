@@ -28,6 +28,9 @@ RailsAdmin.config do |config|
       field :notes
     end
 
+    create { set_template 'ferry_date' }
+    update { set_template 'ferry_date' }
+
     edit do
       field :ferry
       field :active_tour
@@ -39,6 +42,7 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'ferry_date_show'
       field :ferry
       field :active_tour
       field :start_date
