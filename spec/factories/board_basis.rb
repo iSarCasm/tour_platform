@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :board_basis do
     title 'All Inclusive'
   end

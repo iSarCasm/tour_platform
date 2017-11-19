@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.4.2'
 #ruby-gemset=tour_platform
 
 git_source(:github) do |repo_name|
@@ -100,7 +100,7 @@ group :test do
   gem 'selenium-webdriver', '<= 2.53'
   gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'faker'
   gem 'simplecov', require: false
   gem "codeclimate-test-reporter", "~> 1.0.0"

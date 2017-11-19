@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Managing Coach Amenities', type: :feature do
+describe 'Managing Amenities', type: :feature do
   include Devise::Test::IntegrationHelpers
 
   context 'when logged in as Admin' do
@@ -8,52 +8,52 @@ describe 'Managing Coach Amenities', type: :feature do
       sign_in create(:superadmin)
     end
 
-    context 'with some Coach Amenities' do
+    context 'with some Amenities' do
       before do
-        @coach_amenity = create :coach_amenity, name: 'Crazy one'
-        create :coach_amenity, name: 'Some basis'
-        create :coach_amenity, name: 'another one'
+        @amenity = create :amenity, name: 'Crazy one'
+        create :amenity, name: 'Some basis'
+        create :amenity, name: 'another one'
       end
 
       it 'can Add new one' do
-        visit '/admin/coach_amenity/new'
+        visit '/admin/amenity/new'
         expect(page).to have_content 'Save'
       end
 
-      it 'can List all Coach Amenities' do
-        visit '/admin/coach_amenity'
+      it 'can List all Amenities' do
+        visit '/admin/amenity'
 
         expect(page).to have_content 'Crazy one'
         expect(page).to have_content 'Some basis'
         expect(page).to have_content 'another one'
-        expect(page).to have_content '3 coach amenities'
+        expect(page).to have_content '3 amenities'
       end
 
-      it 'can Delete an Coach amenity' do
-        visit "/admin/coach_amenity/#{@coach_amenity.id}/delete"
+      it 'can Delete an amenity' do
+        visit "/admin/amenity/#{@amenity.id}/delete"
         page.find(:css, '.btn-danger').click
-        visit '/admin/coach_amenity'
+        visit '/admin/amenity'
 
         expect(page).not_to have_content 'Crazy one'
         expect(page).to have_content 'Some basis'
         expect(page).to have_content 'another one'
-        expect(page).to have_content '2 coach amenities'
+        expect(page).to have_content '2 amenities'
       end
 
-      it 'can View the Coach amenity' do
-        visit "/admin/coach_amenity/#{@coach_amenity.id}"
+      it 'can View the amenity' do
+        visit "/admin/amenity/#{@amenity.id}"
         expect(page).to have_content 'Name'
         expect(page).to have_content 'Crazy one'
       end
 
-      it 'can Edit the Coach amenity' do
-        visit "/admin/coach_amenity/#{@coach_amenity.id}/edit"
+      it 'can Edit the amenity' do
+        visit "/admin/amenity/#{@amenity.id}/edit"
         expect(page).to have_content 'Name'
 
-        fill_in 'coach_amenity[name]', with: 'Wut face'
+        fill_in 'amenity[name]', with: 'Wut face'
         page.find(:css, '.btn-primary').click
 
-        visit '/admin/coach_amenity'
+        visit '/admin/amenity'
         expect(page).not_to have_content 'Crazy one'
         expect(page).to have_content 'Wut face'
       end

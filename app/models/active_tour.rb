@@ -2,26 +2,30 @@
 #
 # Table name: active_tours
 #
-#  id             :integer          not null, primary key
-#  tour_id        :integer
-#  start_date     :date
-#  end_date       :date
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  slug           :string
-#  allow_deposits :boolean
-#  other_costs    :decimal(, )
-#  self_drive     :boolean
+#  id                    :integer          not null, primary key
+#  tour_id               :integer
+#  start_date            :date
+#  end_date              :date
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  slug                  :string
+#  allow_deposits        :boolean
+#  other_costs           :decimal(, )
+#  self_drive            :boolean
+#  allow_external_agents :boolean
+#  insurance_allowed     :boolean
 #
 
 class ActiveTour < ApplicationRecord
   has_many :tour_bookings, dependent: :destroy, inverse_of: :active_tour
   has_many :tour_hotels, dependent: :destroy, inverse_of: :active_tour
   has_many :tour_coaches, dependent: :destroy, inverse_of: :active_tour
+  has_many :ferry_dates, dependent: :destroy, inverse_of: :active_tour
   belongs_to :tour, inverse_of: :active_tours
 
   accepts_nested_attributes_for :tour_hotels, allow_destroy: true
   accepts_nested_attributes_for :tour_coaches, allow_destroy: true
+  accepts_nested_attributes_for :ferry_dates, allow_destroy: true
 
   validates :tour, :start_date, :end_date, presence: true
 

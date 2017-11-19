@@ -21,7 +21,7 @@
 
 RailsAdmin.config do |config|
   config.model Coach do
-    defaults [:seat_prices, :seatplan, :coach_amenities]
+    defaults [:seat_prices, :seatplan, :amenities]
 
     list do
       field :id
@@ -78,8 +78,8 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :coach_amenities do
-        label 'Default Coach Amenities'
+      field :amenities do
+        label 'Default Amenities'
       end
       field :seatplan do
         label 'Default Seatplan'
@@ -128,8 +128,8 @@ RailsAdmin.config do |config|
       field :contact_name
       field :emergency_number
       field :rating
-      field :coach_amenities do
-        label 'Default Coach Amenities'
+      field :amenities do
+        label 'Default Amenities'
       end
       field :seatplan  do
         label 'Default Seatplan'

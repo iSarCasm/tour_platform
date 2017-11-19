@@ -2,60 +2,46 @@
 - config_template(fields, options)
 
 -# For field render you can use compact_render_field(field) or field.render
-.clearfix
-  - for_field :hotel_id do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :hotel_id
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :active_tour_id
 
-  - for_field :active_tour_id do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :start_date
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :end_date
 
-.clearfix
-  - for_field :start_date do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :board_basis_id
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :payment_type_id
 
-  - for_field :end_date do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
+.row
+  .col-md-4.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :finalisation_date
+  .col-md-4
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :hotel_theme
 
-.clearfix
-  - for_field :board_basis_id do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
-
-  - for_field :payment_type_id do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
-
-.clearfix
-  - for_field :finalisation_date do |field, css, id, label|
-    %div{class: "col-md-4 #{css}", id: id}
-      %p= label
-      = compact_render_field field
-
-  - for_field :hotel_theme do |field, css, id, label|
-    %div{class: "col-md-5 #{css}", id: id}
-      %p= label
-      = compact_render_field field
+.row
+  .col-md-12
+    = render 'rails_admin/main/templates/shared/compact_field',
+      field: :hotel_rooms_attributes
 
 .clearfix
-  - for_field :hotel_rooms_attributes do |field, css, id, label|
-    %p= label
-    = compact_render_field field
-
-.clearfix
-  - for_field :notes do |field, css, id, label|
-    %div{class: "col-md-3 #{css}", id: id}
-      %p= label
-      = compact_render_field field
+  = render 'rails_admin/main/templates/shared/compact_field',
+    field: :notes
 
 .clearfix
   - if @object.persisted?

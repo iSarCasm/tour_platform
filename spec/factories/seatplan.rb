@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :seatplan do
     title       "Seat Plan Title"
     description "Seat Plan Description"

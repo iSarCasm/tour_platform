@@ -21,8 +21,8 @@ class TourCoach < ApplicationRecord
   belongs_to :coach, inverse_of: :tour_coaches
   belongs_to :active_tour, inverse_of: :tour_coaches
   belongs_to :seatplan, inverse_of: :tour_coaches
-  has_many :tour_coach_amenities, dependent: :destroy
-  has_many :coach_amenities, through: :tour_coach_amenities
+  has_many :tour_amenities, dependent: :destroy
+  has_many :amenities, through: :tour_amenities
   has_many :seat_prices, inverse_of: :tour_coach
 
   has_one :pickup_list, inverse_of: :tour_coach, dependent: :destroy

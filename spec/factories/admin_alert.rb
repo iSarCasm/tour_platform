@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :admin_alert do
     title 'Alert Title'
     content 'Alert content'

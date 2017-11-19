@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :seat_price do
     char 'p'
     price 10
