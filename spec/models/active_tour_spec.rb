@@ -42,7 +42,7 @@ describe ActiveTour do
 
   describe '#date_period_fancy' do
     it 'returns pretty date period of tour' do
-      active_tour = build(:active_tour,
+      active_tour = build_stubbed(:active_tour,
         start_date: Date.new(2017, 7, 14),
         end_date: Date.new(2017, 7, 28)
       )
@@ -74,7 +74,7 @@ describe ActiveTour do
 
   describe '#days' do
     it 'returns amount of days in a tour' do
-      active_tour = build(:active_tour,
+      active_tour = build_stubbed(:active_tour,
         start_date: Date.new(2017, 7, 14),
         end_date: Date.new(2017, 7, 28)
       )
@@ -84,7 +84,7 @@ describe ActiveTour do
 
   describe '#nights' do
     it 'returns amount of nights in a tour' do
-      active_tour = build(:active_tour,
+      active_tour = build_stubbed(:active_tour,
         start_date: Date.new(2017, 7, 14),
         end_date: Date.new(2017, 7, 28)
       )

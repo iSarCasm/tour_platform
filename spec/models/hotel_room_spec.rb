@@ -25,12 +25,15 @@ require 'rails_helper'
 
 describe HotelRoom do
   describe 'scope .available' do
-    it 'returns rooms with amont_left > 0' do
-      r = create :hotel_room, amount: 10
-      expect(HotelRoom.available.length).to eq 1
-      r.update(amount: 0)
+    describe 'returns rooms with amont_left > 0' do
+      it do
+        create :hotel_room, amount: 10
+        expect(HotelRoom.available.length).to eq 1
+      end
 
-      expect(HotelRoom.available.length).to eq 0
+      it do
+        expect(HotelRoom.available.length).to eq 0
+      end
     end
   end
 
@@ -50,7 +53,7 @@ describe HotelRoom do
 
   describe '#amount_left' do
     it 'returns number of rooms left for this type' do
-      hotel_room = create :hotel_room, amount: 10
+      hotel_room = build :hotel_room, amount: 10
       create_list :hotel_booking, 7, hotel_room: hotel_room
 
       expect(hotel_room.amount_left).to eq 3
@@ -59,7 +62,7 @@ describe HotelRoom do
 
   describe '#hotel_bookings_count' do
     it 'returns amount of associated hotel_bookings' do
-      hotel_room = create :hotel_room
+      hotel_room = build :hotel_room
       create_list :hotel_booking, 3, hotel_room: hotel_room
 
       expect(hotel_room.hotel_bookings_count).to eq 3
@@ -68,7 +71,7 @@ describe HotelRoom do
 
   describe '#available?' do
     it 'says if this rooms are still available for booking' do
-      hotel_room = create :hotel_room, amount: 10
+      hotel_room = build :hotel_room, amount: 10
       create_list :hotel_booking, 7, hotel_room: hotel_room
       expect(hotel_room.available?).to eq true
 

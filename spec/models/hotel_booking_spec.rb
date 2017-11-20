@@ -14,7 +14,7 @@ require 'rails_helper'
 describe HotelBooking do
   describe 'create valiadtions' do
     it 'ensure has enough rooms' do
-      hotel_room = create :hotel_room, amount: 0
+      hotel_room = build :hotel_room, amount: 0
       booking = build :hotel_booking, hotel_room: hotel_room
       expect(booking.save).to eq false
     end
@@ -44,18 +44,18 @@ describe HotelBooking do
 
   describe '#tour_hotel' do
     it 'returns TourHotel of given HotelBooking' do
-      th = create :tour_hotel
-      hr = create :hotel_room, tour_hotel: th
-      hb = create :hotel_booking, hotel_room: hr
+      th = build :tour_hotel
+      hr = build :hotel_room, tour_hotel: th
+      hb = build :hotel_booking, hotel_room: hr
       expect(hb.tour_hotel).to eq th
     end
   end
 
   describe '#total_cost' do
     it 'return sum cost' do
-      tb = create :tour_booking, adult: 1, senior: 2
-      hr = create :hotel_room, adult_sell: 30, adult_supp: 5, senior_sell: 40, senior_supp: 20
-      hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
+      tb = build :tour_booking, adult: 1, senior: 2
+      hr = build :hotel_room, adult_sell: 30, adult_supp: 5, senior_sell: 40, senior_supp: 20
+      hb = build :hotel_booking, hotel_room: hr, tour_booking: tb
 
       expect(hb.total_cost).to eq(30 + 5 + 40 * 2 + 20 * 2)
     end
