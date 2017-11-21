@@ -14,6 +14,7 @@
 #  notes          :text
 #  seatplan_id    :integer
 #  rate           :decimal(, )
+#  vehicle_reg    :string
 #
 
 require 'rails_helper'

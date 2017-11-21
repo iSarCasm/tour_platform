@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119184309) do
+ActiveRecord::Schema.define(version: 20171121140107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -385,6 +385,7 @@ ActiveRecord::Schema.define(version: 20171119184309) do
     t.text "notes"
     t.bigint "seatplan_id"
     t.decimal "rate"
+    t.string "vehicle_reg"
     t.index ["active_tour_id"], name: "index_tour_coaches_on_active_tour_id"
     t.index ["coach_id"], name: "index_tour_coaches_on_coach_id"
     t.index ["seatplan_id"], name: "index_tour_coaches_on_seatplan_id"

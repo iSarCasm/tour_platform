@@ -14,6 +14,7 @@
 #  notes          :text
 #  seatplan_id    :integer
 #  rate           :decimal(, )
+#  vehicle_reg    :string
 #
 
 RailsAdmin.config do |config|
@@ -51,6 +52,7 @@ RailsAdmin.config do |config|
       field :arrival_date
       field :driver_name
       field :driver_number
+      field :vehicle_reg
       field :notes do
         html_attributes rows: 10, cols: 100
       end
@@ -84,6 +86,7 @@ RailsAdmin.config do |config|
       field :arrival_date
       field :driver_name
       field :driver_number
+      field :vehicle_reg
       field :notes
       field :amenities
       field :seatplan do
