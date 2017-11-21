@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121140107) do
+ActiveRecord::Schema.define(version: 20171121153105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,13 @@ ActiveRecord::Schema.define(version: 20171121140107) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "excursions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -340,6 +347,15 @@ ActiveRecord::Schema.define(version: 20171121140107) do
     t.string "buyer_number"
     t.string "email"
     t.decimal "rating"
+    t.integer "stock"
+    t.decimal "adult_buy"
+    t.decimal "adult_sell"
+    t.decimal "senior_buy"
+    t.decimal "senior_sell"
+    t.decimal "child_buy"
+    t.decimal "child_sell"
+    t.decimal "infant_buy"
+    t.decimal "infant_sell"
   end
 
   create_table "tour_amenities", force: :cascade do |t|
@@ -389,6 +405,26 @@ ActiveRecord::Schema.define(version: 20171121140107) do
     t.index ["active_tour_id"], name: "index_tour_coaches_on_active_tour_id"
     t.index ["coach_id"], name: "index_tour_coaches_on_coach_id"
     t.index ["seatplan_id"], name: "index_tour_coaches_on_seatplan_id"
+  end
+
+  create_table "tour_excursions", force: :cascade do |t|
+    t.bigint "ticket_operator_id"
+    t.bigint "active_tour_id"
+    t.datetime "ticket_date"
+    t.text "notes"
+    t.integer "stock"
+    t.decimal "adult_buy"
+    t.decimal "adult_sell"
+    t.decimal "senior_buy"
+    t.decimal "senior_sell"
+    t.decimal "child_buy"
+    t.decimal "child_sell"
+    t.decimal "infant_buy"
+    t.decimal "infant_sell"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["active_tour_id"], name: "index_tour_excursions_on_active_tour_id"
+    t.index ["ticket_operator_id"], name: "index_tour_excursions_on_ticket_operator_id"
   end
 
   create_table "tour_hotels", force: :cascade do |t|
@@ -530,6 +566,8 @@ ActiveRecord::Schema.define(version: 20171121140107) do
   add_foreign_key "tour_coaches", "active_tours"
   add_foreign_key "tour_coaches", "coaches"
   add_foreign_key "tour_coaches", "seatplans"
+  add_foreign_key "tour_excursions", "active_tours"
+  add_foreign_key "tour_excursions", "ticket_operators"
   add_foreign_key "tour_hotels", "active_tours"
   add_foreign_key "tour_hotels", "board_bases"
   add_foreign_key "tour_hotels", "hotels"

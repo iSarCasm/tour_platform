@@ -53,6 +53,15 @@ describe 'Managing Ticket Operators', type: :feature do
         expect(page).to have_content 'Buyer name'
         expect(page).to have_content 'Buyer number'
         expect(page).to have_content 'Photos'
+        expect(page).to have_content 'Stock'
+        expect(page).to have_content 'Adult Buy'
+        expect(page).to have_content 'Adult Sell'
+        expect(page).to have_content 'Senior Buy'
+        expect(page).to have_content 'Senior Sell'
+        expect(page).to have_content 'Infant Buy'
+        expect(page).to have_content 'Infant Sell'
+        expect(page).to have_content 'Child Buy'
+        expect(page).to have_content 'Child Sell'
 
         fill_in 'ticket_operator[title]', with: 'New Title of This Ticket OPERATOR'
         page.find(:css, '.btn-primary').click

@@ -43,3 +43,28 @@
   .col-md-4
     = render 'rails_admin/main/templates/shared/compact_field',
       field: :rating
+
+.row
+  .col-md-10.col-md-offset-1
+    %table.table.table-bordered.table-hover.table-small-text
+      %thead
+        %th Stock
+        %th Adult Buy
+        %th Adult Sell
+        %th Senior Buy
+        %th Senior Sell
+        %th Infant Buy
+        %th Infant Sell
+        %th Child Buy
+        %th Child Sell
+      %tbody
+        %tr
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :stock
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :adult_buy
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :adult_sell
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :senior_buy
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :senior_sell
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :infant_buy
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :infant_sell
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :child_buy
+          %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :child_sell

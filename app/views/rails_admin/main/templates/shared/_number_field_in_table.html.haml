@@ -1,0 +1,2 @@
+- for_field field do |f, f_css, id, label|
+  = f.instance_variable_get(:@bindings)[:form].number_field f.method_name, f.html_attributes.reverse_merge({ value: f.form_value, class: 'form-control', required: f.required, style: 'width: 100%;'})
