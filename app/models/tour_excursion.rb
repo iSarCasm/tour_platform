@@ -23,6 +23,6 @@
 
 class TourExcursion < ApplicationRecord
   belongs_to :ticket_operator
-  belongs_to :active_tour
+  belongs_to :active_tour, inverse_of: :tour_excursions
   belongs_to :excursion
 end
