@@ -30,6 +30,18 @@ RailsAdmin.config do |config|
   config.model TicketOperator do
     weight 50
 
+    defaults [
+      :stock,
+      :adult_buy,
+      :adult_sell,
+      :senior_buy,
+      :senior_sell,
+      :infant_buy,
+      :infant_sell,
+      :child_buy,
+      :child_sell
+    ]
+
     create { set_template 'ticket_operator' }
     update { set_template 'ticket_operator' }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121153105) do
+ActiveRecord::Schema.define(version: 20171121201833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -423,7 +423,9 @@ ActiveRecord::Schema.define(version: 20171121153105) do
     t.decimal "infant_sell"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "excursion_id"
     t.index ["active_tour_id"], name: "index_tour_excursions_on_active_tour_id"
+    t.index ["excursion_id"], name: "index_tour_excursions_on_excursion_id"
     t.index ["ticket_operator_id"], name: "index_tour_excursions_on_ticket_operator_id"
   end
 
@@ -567,6 +569,7 @@ ActiveRecord::Schema.define(version: 20171121153105) do
   add_foreign_key "tour_coaches", "coaches"
   add_foreign_key "tour_coaches", "seatplans"
   add_foreign_key "tour_excursions", "active_tours"
+  add_foreign_key "tour_excursions", "excursions"
   add_foreign_key "tour_excursions", "ticket_operators"
   add_foreign_key "tour_hotels", "active_tours"
   add_foreign_key "tour_hotels", "board_bases"

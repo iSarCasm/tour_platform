@@ -45,7 +45,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
 # Dashboard
-gem 'rails_admin_defaults', git: 'https://github.com/iSarCasm/rails_admin_defaults'
+gem 'rails_admin_defaults', '0.1.1', git: 'https://github.com/iSarCasm/rails_admin_defaults'
 gem 'rails_admin', '~> 1.2'
 gem 'rails_admin_table_field', git: 'https://github.com/iSarCasm/rails_admin_table_field'
 gem 'rails_admin_list_field', git: 'https://github.com/iSarCasm/rails_admin_list_field'

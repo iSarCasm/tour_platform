@@ -9,6 +9,8 @@
 #  updated_at  :datetime         not null
 #
 
-class Excursion < ApplicationRecord
-  has_many :tour_excursions
+RailsAdmin.config do |config|
+  config.model Excursion do
+    weight 50
+  end
 end

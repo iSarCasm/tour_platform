@@ -1,0 +1,48 @@
+-# DO NOT REMOVE THAT LINE
+- config_show_template fields
+
+-# For field render you can use compact_render_field(field) or field.render
+.row
+  .col-md-10.col-md-offset-1
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :excursion_id
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :ticket_operator_id
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :active_tour_id
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :ticket_date
+
+.row
+  .col-md-10.col-md-offset-1
+    %table.table.table-bordered.table-hover.table-small-text
+      %thead
+        %th Stock
+        %th Adult Buy
+        %th Adult Sell
+        %th Senior Buy
+        %th Senior Sell
+        %th Infant Buy
+        %th Infant Sell
+        %th Child Buy
+        %th Child Sell
+      %tbody
+        %tr
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :stock
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :adult_buy
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :adult_sell
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :senior_buy
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :senior_sell
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :infant_buy
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :infant_sell
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :child_buy
+          %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :child_sell
+
+.row
+  .col-md-10.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :notes

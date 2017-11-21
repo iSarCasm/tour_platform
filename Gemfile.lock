@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/iSarCasm/rails_admin_defaults
-  revision: 28e1ee590c7055fc62e14257984378f77b7fe544
+  revision: b0b58b903436395a012cc1b425560a9892df7ccb
   specs:
-    rails_admin_defaults (0.0.2)
+    rails_admin_defaults (0.1.1)
       rails (~> 5.1.2)
       rails_admin (~> 1.2)
 
@@ -534,7 +534,7 @@ DEPENDENCIES
   rails_12factor
   rails_admin (~> 1.2)
   rails_admin_compact (= 0.1.8)!
-  rails_admin_defaults!
+  rails_admin_defaults (= 0.1.1)!
   rails_admin_list_field!
   rails_admin_table_field!
   rails_best_practices

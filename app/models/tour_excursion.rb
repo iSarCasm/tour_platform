@@ -18,9 +18,11 @@
 #  infant_sell        :decimal(, )
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  excursion_id       :integer
 #
 
 class TourExcursion < ApplicationRecord
   belongs_to :ticket_operator
   belongs_to :active_tour
+  belongs_to :excursion
 end
