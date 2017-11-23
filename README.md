@@ -4,7 +4,7 @@
 [![Issue Count](https://codeclimate.com/github/iSarCasm/tour_platform/badges/issue_count.svg)](https://codeclimate.com/github/iSarCasm/tour_platform)
 
 
-# Installation
+# Installation!
 Install gem dependencies
 ```
 bundle install
