@@ -93,5 +93,9 @@ body.rails_admin .width100 input {
 }
 
 .compact .form-control {
-  max-width: 95%;
+  max-width: 100%;
+}
+
+.compact.compact-2x .form-control {
+  max-width: 90%;
 }
