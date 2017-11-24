@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124113659) do
+ActiveRecord::Schema.define(version: 20171124153008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,15 @@ ActiveRecord::Schema.define(version: 20171124113659) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "excursion_tours", force: :cascade do |t|
+    t.bigint "excursion_id"
+    t.bigint "tour_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["excursion_id"], name: "index_excursion_tours_on_excursion_id"
+    t.index ["tour_id"], name: "index_excursion_tours_on_tour_id"
   end
 
   create_table "excursions", force: :cascade do |t|
@@ -461,7 +470,6 @@ ActiveRecord::Schema.define(version: 20171124113659) do
     t.string "slug"
     t.bigint "tour_type_id"
     t.bigint "country_id"
-    t.text "excursions"
     t.text "itinerary"
     t.text "important_notes"
     t.text "tour_memo"
@@ -539,6 +547,8 @@ ActiveRecord::Schema.define(version: 20171124113659) do
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
   add_foreign_key "coaches", "seatplans"
+  add_foreign_key "excursion_tours", "excursions"
+  add_foreign_key "excursion_tours", "tours"
   add_foreign_key "ferry_amenities", "amenities"
   add_foreign_key "ferry_amenities", "ferries"
   add_foreign_key "ferry_dates", "active_tours"

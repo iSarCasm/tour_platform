@@ -49,7 +49,7 @@ gem 'rails_admin_defaults', '0.1.1', git: 'https://github.com/iSarCasm/rails_adm
 gem 'rails_admin', '~> 1.2'
 gem 'rails_admin_table_field', git: 'https://github.com/iSarCasm/rails_admin_table_field'
 gem 'rails_admin_list_field', git: 'https://github.com/iSarCasm/rails_admin_list_field'
-gem 'rails_admin_compact', '0.1.8', git: 'https://github.com/iSarCasm/rails_admin_compact'
+gem 'rails_admin_compact', '0.1.9', git: 'https://github.com/iSarCasm/rails_admin_compact'
 
 group :development, :test do
   # Debug

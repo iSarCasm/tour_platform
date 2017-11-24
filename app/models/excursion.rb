@@ -10,5 +10,7 @@
 #
 
 class Excursion < ApplicationRecord
-  has_many :tour_excursions
+  has_many :excursion_tours, dependent: :destroy
+  has_many :tours, through: :excursion_tours
+  has_many :tour_excursions, dependent: :destroy
 end
