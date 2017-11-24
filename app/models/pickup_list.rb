@@ -15,7 +15,7 @@ class PickupList < ApplicationRecord
   accepts_nested_attributes_for :pickup_points, allow_destroy: true
 
   def title
-    "Pickup list: #{tour_coach.title}"
+    "PL #{tour_coach.title}"
   rescue
     'New Pickup List'
   end

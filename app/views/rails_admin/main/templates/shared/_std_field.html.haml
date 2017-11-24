@@ -1,0 +1,4 @@
+- for_field field do |f, f_css, id, label|
+  %div{class: "#{css rescue ''} #{f_css}", id: "#{id_prefix rescue ''}#{id}"}
+    %p= label
+    = f.render

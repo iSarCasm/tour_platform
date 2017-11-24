@@ -3,32 +3,36 @@
 
 -# For field render you can use compact_render_field(field) or field.render
 .row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :coach_id
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :active_tour_id
+  .col-md-10.col-md-offset-1
+    .row
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :coach_id
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :active_tour_id
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :departure_date
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :arrival_date
 
 .row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :departure_date
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :arrival_date
-
-.row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :driver_name
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :vehicle_reg
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :driver_number
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :rate
+  .col-md-10.col-md-offset-1
+    .row
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :driver_name
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :vehicle_reg
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :driver_number
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :rate
 
 .row
   .col-md-4.col-md-offset-1
