@@ -9,7 +9,7 @@
 #
 
 class PickupList < ApplicationRecord
-  belongs_to :tour_coach, inverse_of: :pickup_list
+  has_one :tour_coach, inverse_of: :pickup_list
   has_many :pickup_points, inverse_of: :pickup_list, dependent: :destroy
 
   accepts_nested_attributes_for :pickup_points, allow_destroy: true

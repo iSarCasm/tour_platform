@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121201833) do
+ActiveRecord::Schema.define(version: 20171124113659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,10 +261,8 @@ ActiveRecord::Schema.define(version: 20171121201833) do
   end
 
   create_table "pickup_lists", force: :cascade do |t|
-    t.bigint "tour_coach_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tour_coach_id"], name: "index_pickup_lists_on_tour_coach_id"
   end
 
   create_table "pickup_points", force: :cascade do |t|
@@ -402,8 +400,10 @@ ActiveRecord::Schema.define(version: 20171121201833) do
     t.bigint "seatplan_id"
     t.decimal "rate"
     t.string "vehicle_reg"
+    t.bigint "pickup_list_id"
     t.index ["active_tour_id"], name: "index_tour_coaches_on_active_tour_id"
     t.index ["coach_id"], name: "index_tour_coaches_on_coach_id"
+    t.index ["pickup_list_id"], name: "index_tour_coaches_on_pickup_list_id"
     t.index ["seatplan_id"], name: "index_tour_coaches_on_seatplan_id"
   end
 
@@ -553,7 +553,6 @@ ActiveRecord::Schema.define(version: 20171121201833) do
   add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "hotels", "board_bases"
   add_foreign_key "hotels", "payment_types"
-  add_foreign_key "pickup_lists", "tour_coaches"
   add_foreign_key "pickup_points", "pickup_lists"
   add_foreign_key "role_permissions", "permissions"
   add_foreign_key "role_permissions", "roles"
