@@ -15,6 +15,7 @@
 #  seatplan_id    :integer
 #  rate           :decimal(, )
 #  vehicle_reg    :string
+#  pickup_list_id :integer
 #
 
 class TourCoach < ApplicationRecord

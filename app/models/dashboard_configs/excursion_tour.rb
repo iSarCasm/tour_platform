@@ -9,7 +9,8 @@
 #  updated_at   :datetime         not null
 #
 
-class ExcursionTour < ApplicationRecord
-  belongs_to :excursion
-  belongs_to :tour
+RailsAdmin.config do |config|
+  config.model ExcursionTour do
+    hide
+  end
 end
