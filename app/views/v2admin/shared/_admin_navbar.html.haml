@@ -1,0 +1,22 @@
+%nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+  %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  %a.navbar-brand{:href => v2admin_dashboard_index_path} TourPlatform
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.active
+        %a.nav-link{:href => v2admin_dashboard_index_path}
+          Dashboard
+          %span.sr-only (current)
+      %li.nav-item
+        %a.nav-link{:href => root_path} Website
+    %form.form-inline.my-2.my-lg-0
+      %ul.navbar-nav.mr-auto
+        %li.nav-item
+          %a.nav-link#js-alerts-toggle{href: 'javascript:void()'}
+            %span.fa.fa-bell.fa-lg
+            %span#notif-counter.badge.badge-red.badge-shifted 0
+        %li.nav-item
+          %a.nav-link{:href => edit_user_registration_path}= current_user.name
+      %input.form-control.mr-sm-2{:placeholder => "Search", :type => "text"}/
+      %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
