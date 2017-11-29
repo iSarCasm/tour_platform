@@ -14,6 +14,8 @@
 #  notes          :text
 #  seatplan_id    :integer
 #  rate           :decimal(, )
+#  vehicle_reg    :string
+#  pickup_list_id :integer
 #
 
 require 'rails_helper'
@@ -57,14 +59,14 @@ describe TourCoach do
     it 'returns if has any seats for booking' do
       tour_coach = create :tour_coach
       create :pickup_list, tour_coach: tour_coach
-      allow(tour_coach).to receive(:seats).and_return(40)
-      bookings = create_list :coach_booking, 15, tour_coach: tour_coach
+      allow(tour_coach).to receive(:seats).and_return(4)
+      bookings = create_list :coach_booking, 1, tour_coach: tour_coach
       bookings.each { |b| allow(b).to receive(:seats_amount).and_return(1) }
       tour_coach.reload
 
       expect(tour_coach.available?).to eq true
 
-      bookings = create_list :coach_booking, 25, tour_coach: tour_coach
+      bookings = create_list :coach_booking, 3, tour_coach: tour_coach
       bookings.each { |b| allow(b).to receive(:seats_amount).and_return(1) }
       tour_coach.reload
 

@@ -15,11 +15,32 @@
 #  buyer_number :string
 #  email        :string
 #  rating       :decimal(, )
+#  stock        :integer
+#  adult_buy    :decimal(, )
+#  adult_sell   :decimal(, )
+#  senior_buy   :decimal(, )
+#  senior_sell  :decimal(, )
+#  child_buy    :decimal(, )
+#  child_sell   :decimal(, )
+#  infant_buy   :decimal(, )
+#  infant_sell  :decimal(, )
 #
 
 RailsAdmin.config do |config|
   config.model TicketOperator do
     weight 50
+
+    defaults [
+      :stock,
+      :adult_buy,
+      :adult_sell,
+      :senior_buy,
+      :senior_sell,
+      :infant_buy,
+      :infant_sell,
+      :child_buy,
+      :child_sell
+    ]
 
     create { set_template 'ticket_operator' }
     update { set_template 'ticket_operator' }
@@ -38,10 +59,10 @@ RailsAdmin.config do |config|
     end
 
     edit do
-      field :title do
+      field :title
+      field :description do
         html_attributes rows: 18, cols: 53
       end
-      field :description
       field :address do
         render do
           bindings[:view].render(
@@ -73,6 +94,15 @@ RailsAdmin.config do |config|
           )
         end
       end
+      field :stock
+      field :adult_buy
+      field :adult_sell
+      field :senior_buy
+      field :senior_sell
+      field :infant_buy
+      field :infant_sell
+      field :child_buy
+      field :child_sell
     end
 
     show do
@@ -108,6 +138,15 @@ RailsAdmin.config do |config|
           )
         end
       end
+      field :stock
+      field :adult_buy
+      field :adult_sell
+      field :senior_buy
+      field :senior_sell
+      field :infant_buy
+      field :infant_sell
+      field :child_buy
+      field :child_sell
     end
   end
 end

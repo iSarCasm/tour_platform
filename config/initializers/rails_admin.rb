@@ -42,15 +42,16 @@ RailsAdmin.config do |config|
     show_in_app
     defaults
     get_report
+    import
+  end
 
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+  config.configure_with(:import) do |config|
+    config.logging = true
+  end
+
+  config.model 'ActiveTour' do
+    import do
+      include_all_fields
+    end
   end
 end
-
-# RailsAdmin.config Tour do
-#   field :players do
-#     eager_load true
-#   end
-# end

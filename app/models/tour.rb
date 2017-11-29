@@ -10,7 +10,6 @@
 #  slug                  :string
 #  tour_type_id          :integer
 #  country_id            :integer
-#  excursions            :text
 #  itinerary             :text
 #  important_notes       :text
 #  tour_memo             :text
@@ -27,6 +26,8 @@ class Tour < ApplicationRecord
   belongs_to :country, inverse_of: :tours, optional: true
   has_many :tour_categories, dependent: :destroy
   has_many :categories, through: :tour_categories
+  has_many :excursion_tours, dependent: :destroy
+  has_many :excursions, through: :excursion_tours
 
   accepts_nested_attributes_for :active_tours, allow_destroy: true
 

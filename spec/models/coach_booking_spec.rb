@@ -16,7 +16,7 @@ require 'rails_helper'
 describe CoachBooking do
   describe 'create validations' do
     it 'validates available seats' do
-      tour_coach = create :tour_coach
+      tour_coach = build :tour_coach
       allow(tour_coach).to receive(:seats_left).and_return(1) # coach has only 1 seat
       booking = build :coach_booking, tour_coach: tour_coach
       allow(booking).to receive(:seats_amount).and_return(2)  # we try to book 2 seats
@@ -81,11 +81,11 @@ describe CoachBooking do
 
   describe '#total_cost' do
     it 'returns sum cost' do
-      tb = create :tour_booking, adult: 1, senior: 1
-      seatplan = create :seatplan, plan: '@@@@'
-      tc = create :tour_coach, seatplan: seatplan
+      tb = build :tour_booking, adult: 1, senior: 1
+      seatplan = build :seatplan, plan: '@@@@'
+      tc = build :tour_coach, seatplan: seatplan
       create :seat_price, tour_coach: tc, char: '@', price: 35
-      cb = create :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1', '1_2'].to_json
+      cb = build :coach_booking, tour_coach: tc, tour_booking: tb, seats: ['1_1', '1_2'].to_json
 
       expect(cb.total_cost).to eq(35 + 35)
     end

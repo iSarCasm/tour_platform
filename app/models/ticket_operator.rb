@@ -15,12 +15,20 @@
 #  buyer_number :string
 #  email        :string
 #  rating       :decimal(, )
+#  stock        :integer
+#  adult_buy    :decimal(, )
+#  adult_sell   :decimal(, )
+#  senior_buy   :decimal(, )
+#  senior_sell  :decimal(, )
+#  child_buy    :decimal(, )
+#  child_sell   :decimal(, )
+#  infant_buy   :decimal(, )
+#  infant_sell  :decimal(, )
 #
 
 class TicketOperator < ApplicationRecord
   has_many :photos, as: :photoable, class_name: 'Photo'
   accepts_nested_attributes_for :photos, allow_destroy: true
-
 
   validates :title, presence: true
 end

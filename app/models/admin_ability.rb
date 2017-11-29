@@ -17,6 +17,7 @@ class AdminAbility
     can :access, :rails_admin
     can :dashboard
     can :dashboard, :all # wtf
+    can :import, :all
   end
 
   def role_ability

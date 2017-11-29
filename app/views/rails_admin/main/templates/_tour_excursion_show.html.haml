@@ -3,45 +3,19 @@
 
 -# For field render you can use compact_render_field(field) or field.render
 .row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :title
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :description
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :address
-
-.row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :rating
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :photos_attributes
-  .col-md-5
-    .row
-      .col-md-6
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :website
-      .col-md-6
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :phone_number
-
-    .row
-      .col-md-6
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :buyer_name
-      .col-md-6
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :fax_number
-
-    .row
-      .col-md-6
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :buyer_number
-      .col-md-6
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :email
+  .col-md-10.col-md-offset-1
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :excursion_id
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :ticket_operator_id
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :active_tour_id
+    .col-md-3
+      = render 'rails_admin/main/templates/shared/field_show',
+        field: :ticket_date
 
 .row
   .col-md-10.col-md-offset-1
@@ -67,3 +41,8 @@
           %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :infant_sell
           %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :child_buy
           %td= render 'rails_admin/main/templates/shared/field_show_no_label', field: :child_sell
+
+.row
+  .col-md-10.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :notes

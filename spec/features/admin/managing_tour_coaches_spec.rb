@@ -49,6 +49,7 @@ describe 'Managing Tour Coaches', type: :feature do
         expect(page).to have_content 'Arrival date'
         expect(page).to have_content 'Driver name'
         expect(page).to have_content 'Driver number'
+        expect(page).to have_content 'Vehicle reg'
         expect(page).to have_content 'Notes'
         expect(page).to have_content 'Seatplan'
         expect(page).to have_content 'Rate'

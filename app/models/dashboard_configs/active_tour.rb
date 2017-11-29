@@ -58,6 +58,7 @@ RailsAdmin.config do |config|
       field :allow_deposits
       field :self_drive
       field :other_costs
+      field :tour_excursions
     end
 
     show do
@@ -77,6 +78,7 @@ RailsAdmin.config do |config|
       field :allow_deposits
       field :self_drive
       field :other_costs
+      field :tour_excursions
     end
   end
 end

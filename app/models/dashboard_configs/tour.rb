@@ -10,7 +10,6 @@
 #  slug                  :string
 #  tour_type_id          :integer
 #  country_id            :integer
-#  excursions            :text
 #  itinerary             :text
 #  important_notes       :text
 #  tour_memo             :text

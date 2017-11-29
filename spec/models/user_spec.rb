@@ -47,13 +47,6 @@ describe User do
     create :hotel_booking, hotel_room: hr, tour_booking: tb
   end
 
-  describe '#name' do
-    it 'has a name' do
-      user = build(:user)
-      expect(user.name).not_to be_nil
-    end
-  end
-
   describe '#total_spent' do
     it 'returns all spendings of User' do
       user = create :user

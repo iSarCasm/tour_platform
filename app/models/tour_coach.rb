@@ -14,6 +14,8 @@
 #  notes          :text
 #  seatplan_id    :integer
 #  rate           :decimal(, )
+#  vehicle_reg    :string
+#  pickup_list_id :integer
 #
 
 class TourCoach < ApplicationRecord
@@ -25,10 +27,10 @@ class TourCoach < ApplicationRecord
   has_many :amenities, through: :tour_amenities
   has_many :seat_prices, inverse_of: :tour_coach
 
-  has_one :pickup_list, inverse_of: :tour_coach, dependent: :destroy
+  belongs_to :pickup_list, inverse_of: :tour_coach, optional: true
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
-  accepts_nested_attributes_for :pickup_list, allow_destroy: true
+  accepts_nested_attributes_for :pickup_list
 
   validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
 

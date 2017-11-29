@@ -3,39 +3,45 @@
 
 -# For field render you can use compact_render_field(field) or field.render
 .row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :coach_id
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :active_tour_id
+  .col-md-10.col-md-offset-1
+    .row
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :coach_id
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :active_tour_id
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :departure_date
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :arrival_date
+
+.row
+  .col-md-10.col-md-offset-1
+    .row
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :driver_name, css: 'compact-2x'
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :vehicle_reg, css: 'compact-2x'
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :driver_number, css: 'compact-2x'
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/compact_field',
+          field: :rate, css: 'compact-2x'
 
 .row
   .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :departure_date
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :arrival_date
-
-.row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :driver_name
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :driver_number
-
-.row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :rate
     = render 'rails_admin/main/templates/shared/compact_field',
       field: :seatplan_id
     = render 'rails_admin/main/templates/shared/compact_field',
       field: :seat_prices_attributes
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :pickup_list_attributes
+    = render 'rails_admin/main/templates/shared/std_field',
+      field: :pickup_list_attributes, id_prefix: 'tour_coach_'
   .col-md-4
     = render 'rails_admin/main/templates/shared/compact_field',
       field: :amenity_ids

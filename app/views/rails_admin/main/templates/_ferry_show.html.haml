@@ -13,39 +13,35 @@
       field: :address
 
 .row
-  .col-md-4.col-md-offset-1
+  .col-md-3.col-md-offset-1
     = render 'rails_admin/main/templates/shared/field_show',
-      field: :website
-  .col-md-4
+      field: :website, css: 'compact-2x'
+  .col-md-3
     = render 'rails_admin/main/templates/shared/field_show',
-      field: :phone_number
+      field: :phone_number, css: 'compact-2x'
+  .col-md-3
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :email, css: 'compact-2x'
 
 .row
-  .col-md-4.col-md-offset-1
+  .col-md-3.col-md-offset-1
     = render 'rails_admin/main/templates/shared/field_show',
-      field: :contact_name
-  .col-md-4
+      field: :contact_name, css: 'compact-2x'
+  .col-md-3
     = render 'rails_admin/main/templates/shared/field_show',
-      field: :fax_number
-
-.row
-  .col-md-4.col-md-offset-1
+      field: :fax_number, css: 'compact-2x'
+  .col-md-3
     = render 'rails_admin/main/templates/shared/field_show',
-      field: :emergency_number
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :email
+      field: :emergency_number, css: 'compact-2x'
 
 .row
   .col-md-4.col-md-offset-1
     = render 'rails_admin/main/templates/shared/field_show',
       field: :amenity_ids
-
-.row
-  .col-md-4.col-md-offset-1
+  .col-md-4
     = render 'rails_admin/main/templates/shared/field_show',
       field: :photos_attributes
-  .col-md-4
+  .col-md-2
     = render 'rails_admin/main/templates/shared/field_show',
       field: :rating
 
