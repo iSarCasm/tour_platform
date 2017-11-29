@@ -1,18 +1,7 @@
-import 'stylesheets/jquery-seat-plan'
-import '../sass/admin/admin_application'
-
-import 'jquery'
-import 'moment/src/moment'
-import 'javascript/jquery.livestamp'
-import 'javascript/jquery.timer'
-import 'javascript/jquery.notificationcenter'
-
-import 'jquery-ujs'
-
 $(document).ready(function() {
   $.get("/admin/admin_alert.json", function(data, status){
-    var alerts = data;
-    var notifs = []
+    alerts = filterAlerts(data);
+    notifs = []
 
     // console.log(alerts);
 
@@ -25,7 +14,7 @@ $(document).ready(function() {
             title: alert.title
           },
           id: alert.id,
-          time: 100,
+          time: moment(alert.created_at).valueOf() / 1000,
           callback: function(notif) {
             setTimeout(function() {
               updateNotifCounter();
@@ -75,6 +64,19 @@ function getAlerts() {
     addAlertsToAlertSystem(alerts);
     updateNotifCounter();
   });
+}
+
+function filterAlerts(alerts) {
+  var new_alerts = [];
+  for(var i = 0; i < alerts.length; i++) {
+    if (alerts[i].user_id == currentUserID() && !alerts[i].read)
+      new_alerts.push(alerts[i]);
+  }
+  return new_alerts;
+}
+
+function currentUserID() {
+  return 0;
 }
 
 function addAlertsToAlertSystem(alerts) {
