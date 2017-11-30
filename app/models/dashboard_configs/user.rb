@@ -23,7 +23,7 @@
 #  postcode                          :string
 #  passport_name                     :string
 #  passport_no                       :string
-#  passport_date_of_birth            :date
+#  date_of_birth                     :date
 #  phone_mobile                      :string
 #  phone_landline                    :string
 #  phone_evening                     :string
@@ -52,11 +52,15 @@ RailsAdmin.config do |config|
       exclude_fields :created_at, :updated_at
     end
 
+    create { set_template 'users' }
+    update { set_template 'users' }
+
     edit do
       field :title
       field :gender
       field :first_name
       field :last_name
+      field :date_of_birth
       field :address
       field :postcode
       field :email
@@ -65,7 +69,6 @@ RailsAdmin.config do |config|
       field :phone_evening
       field :passport_no
       field :passport_name
-      field :passport_date_of_birth
       field :passport_expiry
       field :marketing_email
       field :marketing_sms
@@ -81,8 +84,12 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'users_show'
+      field :title
       field :first_name
       field :last_name
+      field :gender
+      field :date_of_birth
       field :email
       field :base_role
       field :role_id
@@ -91,18 +98,26 @@ RailsAdmin.config do |config|
       field :postcode
       field :passport_name
       field :passport_no
-      field :passport_date_of_birth
+      field :passport_expiry
+      field :marketing_email
+      field :marketing_sms
+      field :marketing_phone
+      field :marketing_postal
       field :phone_mobile
       field :phone_landline
       field :phone_evening
+      field :may_expand_more_with_full_contact
+      field :client_unsuitable_for_travel
       field :kin_name
       field :kin_phone
       field :travel_club
+      field :notes
       field :member_no
       field :total_spent
+      field :created_at
       field :last_travelled do
         pretty_value do
-          value.active_tour_title
+          value&.active_tour_title
         end
       end
       field :tour_bookings do

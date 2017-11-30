@@ -23,7 +23,7 @@
 #  postcode                          :string
 #  passport_name                     :string
 #  passport_no                       :string
-#  passport_date_of_birth            :date
+#  date_of_birth                     :date
 #  phone_mobile                      :string
 #  phone_landline                    :string
 #  phone_evening                     :string
