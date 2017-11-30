@@ -10,9 +10,9 @@ describe 'Managing Users', type: :feature do
 
     context 'with some Users' do
       before do
-        @user = create :user, name: 'D. Trump'
-        create :user, name: 'B. Obama'
-        create :user, name: 'V. Putin'
+        @user = create :user, first_name: 'D. Trump'
+        create :user, first_name: 'B. Obama'
+        create :user, first_name: 'V. Putin'
       end
 
       it 'can Add new one' do
@@ -38,7 +38,7 @@ describe 'Managing Users', type: :feature do
 
       it 'can View the User' do
         visit "/admin/user/#{@user.id}"
-        expect(page).to have_content 'Name'
+        expect(page).to have_content 'First name'
         expect(page).to have_content 'D. Trump'
       end
 
@@ -46,15 +46,16 @@ describe 'Managing Users', type: :feature do
         visit "/admin/user/#{@user.id}/edit"
 
         expect(page).to have_content 'Title'
-        expect(page).to have_content 'Name'
+        expect(page).to have_content 'First name'
+        expect(page).to have_content 'Last name'
+        expect(page).to have_content 'Gender'
         expect(page).to have_content 'Email'
-        expect(page).to have_content 'Role'
-        expect(page).to have_content 'Base role'
         expect(page).to have_content 'Address'
         expect(page).to have_content 'Postcode'
         expect(page).to have_content 'Passport name'
         expect(page).to have_content 'Passport no'
         expect(page).to have_content 'Passport date of birth'
+        expect(page).to have_content 'Passport expiry'
         expect(page).to have_content 'Phone mobile'
         expect(page).to have_content 'Phone landline'
         expect(page).to have_content 'Phone evening'
@@ -63,8 +64,9 @@ describe 'Managing Users', type: :feature do
         expect(page).to have_content 'Kin phone'
         expect(page).to have_content 'Travel club'
         expect(page).to have_content 'Member no'
+        expect(page).to have_content 'Notes'
 
-        fill_in 'user[name]', with: 'Jack Daniels'
+        fill_in 'user[first_name]', with: 'Jack Daniels'
         page.find(:css, '.btn-primary').click
 
         visit '/admin/user'
