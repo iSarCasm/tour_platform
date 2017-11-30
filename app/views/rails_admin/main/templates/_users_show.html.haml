@@ -77,6 +77,15 @@
               field: :passport_no
             = render 'rails_admin/main/templates/shared/field_show',
               field: :passport_expiry
+
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title Admin information
+          .panel-body
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :base_role
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :role_id
       .col-md-3.panel-padding
         .panel.panel-default
           .panel-heading
