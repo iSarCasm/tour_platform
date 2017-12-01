@@ -53,6 +53,7 @@ class User < ApplicationRecord
   has_many :admin_alerts, dependent: :destroy, inverse_of: :user
   belongs_to :role, inverse_of: :users, optional: true
   belongs_to :gender, inverse_of: :users, optional: true
+  has_many :notes, as: :noteable, inverse_of: :user
 
   validates :name, presence: true
 

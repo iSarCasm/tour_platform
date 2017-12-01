@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130143025) do
+ActiveRecord::Schema.define(version: 20171201175517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,17 @@ ActiveRecord::Schema.define(version: 20171130143025) do
     t.bigint "payment_type_id"
     t.index ["board_basis_id"], name: "index_hotels_on_board_basis_id"
     t.index ["payment_type_id"], name: "index_hotels_on_payment_type_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "noteable_id"
+    t.string "noteable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "message"
+    t.bigint "user_id"
+    t.index ["noteable_type", "noteable_id"], name: "index_notes_on_noteable_type_and_noteable_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "payment_types", force: :cascade do |t|
@@ -526,7 +537,6 @@ ActiveRecord::Schema.define(version: 20171130143025) do
     t.boolean "marketing_postal"
     t.date "passport_expiry"
     t.bigint "gender_id"
-    t.text "notes"
     t.boolean "may_expand_more_with_full_contact"
     t.boolean "client_unsuitable_for_travel"
     t.index ["email"], name: "index_users_on_email", unique: true
