@@ -49,7 +49,7 @@ RailsAdmin.config do |config|
     weight 40
 
     list do
-      exclude_fields :created_at, :updated_at
+      exclude_fields :created_at, :updated_at, :may_expand_more_with_full_contact
     end
 
     create { set_template 'users' }
