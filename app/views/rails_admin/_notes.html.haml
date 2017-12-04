@@ -13,7 +13,7 @@
       removeAllNotes();
       if(notes.length > 0) {
         hideNoNotes();
-        for(var i = 0; i < notes.length; i++) {
+        for(var i = notes.length-1; i >= 0; i--) {
           note = notes[i];
           addNote(note['user_name'], note['message'], note['created_at'], note['id'])
         }
