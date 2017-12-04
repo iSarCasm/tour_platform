@@ -15,7 +15,7 @@
         hideNoNotes();
         for(var i = notes.length-1; i >= 0; i--) {
           note = notes[i];
-          addNote(note['user_name'], note['message'], note['created_at'], note['id'])
+          addNote(note['user_name'], note['message'], note['created_at'], note['id'], note['destroyable'])
         }
       } else {
         showNoNotes();
@@ -23,7 +23,7 @@
     });
   }
 
-  function addNote(user, message, created_at, note_id) {
+  function addNote(user, message, created_at, note_id, destroyable) {
     var body = document.getElementById("notes-body");
 
     var node = document.createElement("li");
@@ -32,7 +32,8 @@
     var text = document.createElement("p");
     var time = document.createElement("small");
     node.appendChild(username);
-    node.appendChild(delete_link);
+    if(destroyable)
+      node.appendChild(delete_link);
     node.appendChild(text);
     node.appendChild(time);
     text.textContent = message;

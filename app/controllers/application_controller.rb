@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
     ability = AdminAbility.new current_user
     ability.authorize! *args
   end
+
+  def can_admin?(*args)
+    ability = AdminAbility.new current_user
+    ability.can? *args
+  end
+  helper_method :can_admin?
 end

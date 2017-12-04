@@ -3,4 +3,5 @@ json.notes @notes do |note|
   json.user_name note.user_name
   json.message note.message
   json.created_at note.created_at
+  json.destroyable can_admin? :destroy, note
 end

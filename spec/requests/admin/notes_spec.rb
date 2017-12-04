@@ -22,13 +22,15 @@ RSpec.describe '/admin/notes' do
             'id' => note_1.id,
             'user_name' => 'John Male',
             'message' => 'Hello, nice work!',
-            'created_at' => '2008-09-01T09:00:00.000Z'
+            'created_at' => '2008-09-01T09:00:00.000Z',
+            'destroyable' => true
           },
           {
             'id' => note_2.id,
             'user_name' => 'Ferry Brain',
             'message' => 'Thanks!',
-            'created_at' => '2008-09-01T09:00:00.000Z'
+            'created_at' => '2008-09-01T09:00:00.000Z',
+            'destroyable' => true
           }
         ]
     end
