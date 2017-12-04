@@ -16,7 +16,6 @@
 #  emergency_number :string
 #  rating           :decimal(, )
 #  board_basis_id   :integer
-#  notes            :text
 #  payment_type_id  :integer
 #
 
@@ -25,6 +24,7 @@ class Hotel < ApplicationRecord
   has_many :hotel_facilities, dependent: :destroy
   has_many :facilities, through: :hotel_facilities
   has_many :photos, as: :photoable, class_name: 'Photo'
+  has_many :notes, as: :noteable, inverse_of: :user
 
   # Defaults
   has_many :hotel_rooms, dependent: :destroy, inverse_of: :hotel
@@ -33,6 +33,7 @@ class Hotel < ApplicationRecord
 
   accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true
+  accepts_nested_attributes_for :notes
 
   validates :title, presence: true
 end

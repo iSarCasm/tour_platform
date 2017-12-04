@@ -39,7 +39,6 @@
 #  marketing_postal                  :boolean
 #  passport_expiry                   :date
 #  gender_id                         :integer
-#  notes                             :text
 #  may_expand_more_with_full_contact :boolean
 #  client_unsuitable_for_travel      :boolean
 #
@@ -80,7 +79,17 @@ RailsAdmin.config do |config|
       field :client_unsuitable_for_travel
       field :travel_club
       field :member_no
-      field :notes
+      field :notes do
+        render do
+          bindings[:view].render(
+            partial: 'notes_edit',
+            locals: {
+              field: self,
+              form: bindings[:form]
+            }
+          )
+        end
+      end
     end
 
     show do

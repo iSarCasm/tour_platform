@@ -39,7 +39,6 @@
 #  marketing_postal                  :boolean
 #  passport_expiry                   :date
 #  gender_id                         :integer
-#  notes                             :text
 #  may_expand_more_with_full_contact :boolean
 #  client_unsuitable_for_travel      :boolean
 #

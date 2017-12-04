@@ -39,7 +39,6 @@
 #  marketing_postal                  :boolean
 #  passport_expiry                   :date
 #  gender_id                         :integer
-#  notes                             :text
 #  may_expand_more_with_full_contact :boolean
 #  client_unsuitable_for_travel      :boolean
 #
@@ -53,7 +52,7 @@ class User < ApplicationRecord
   has_many :admin_alerts, dependent: :destroy, inverse_of: :user
   belongs_to :role, inverse_of: :users, optional: true
   belongs_to :gender, inverse_of: :users, optional: true
-  has_many :notes, as: :noteable, inverse_of: :user
+  has_many :notes, inverse_of: :user
 
   accepts_nested_attributes_for :notes
 

@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   include DeviseSignOutRedirect
   include GuestUser
   include RedirectBack
+
+  def authorize_admin!(*args)
+    ability = AdminAbility.new current_user
+    ability.authorize! *args
+  end
 end

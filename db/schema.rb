@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201175517) do
+ActiveRecord::Schema.define(version: 20171203155010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,7 +246,6 @@ ActiveRecord::Schema.define(version: 20171201175517) do
     t.string "emergency_number"
     t.decimal "rating"
     t.bigint "board_basis_id"
-    t.text "notes"
     t.bigint "payment_type_id"
     t.index ["board_basis_id"], name: "index_hotels_on_board_basis_id"
     t.index ["payment_type_id"], name: "index_hotels_on_payment_type_id"

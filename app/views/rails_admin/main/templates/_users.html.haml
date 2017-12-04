@@ -98,5 +98,9 @@
 
 .row
   .col-md-10.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :notes_attributes, id_prefix: 'user_'
+    - for_field :notes_attributes do |f, f_css, id, label|
+      %div{class: "compact #{f_css}", id: "user_#{id}"}
+        %p= label
+        = f.render
+    -# = render 'rails_admin/main/templates/shared/compact_field',
+    -#   field: :notes_attributes, id_prefix: 'user_'

@@ -9,6 +9,7 @@ class AdminAbility
     admin_ability
     role_ability
     grant_access_to_presonal_alerts
+    grant_access_to_presonal_notes
   end
 
   private
@@ -39,6 +40,12 @@ class AdminAbility
   def grant_access_to_presonal_alerts
     unless can? :manage, AdminAlert
       can :manage, AdminAlert, user_id: user.id
+    end
+  end
+
+  def grant_access_to_presonal_notes
+    unless can? :manage, Note
+      can :manage, Note, user_id: user.id
     end
   end
 end
