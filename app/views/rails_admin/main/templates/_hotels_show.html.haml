@@ -65,6 +65,5 @@
     = field.pretty_value
 
 .row
-  .col-md-11.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :notes_attributes
+  .col-md-6
+    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
