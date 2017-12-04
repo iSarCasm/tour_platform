@@ -4,34 +4,33 @@ RSpec.describe '/admin/notes' do
   include Devise::Test::IntegrationHelpers
 
   describe 'GET' do
-    it 'returns all notes for specified noteable object' do
-      Timecop.freeze Time.local(2008, 9, 1, 12, 0, 0) do
-        sign_in create(:superadmin)
-        hotel = create :hotel
-        other_hotel = create :hotel
-        john = create(:user, first_name: 'John', last_name: 'Male')
-        ferry = create(:user, first_name: 'Ferry', last_name: 'Brain')
-        note_1 = create :note, user: john, message: 'Hello, nice work!', object: hotel
-        note_2 = create :note, user: ferry, message: 'Thanks!', object: hotel
-        create :note, user: ferry, message: 'Wow amazing!', object: other_hotel
+    it 'returns all notes for specified noteable object in time order' do
+      Timecop.freeze Time.local(2008, 9, 1, 12, 0, 0)
+      sign_in create(:superadmin)
+      hotel = create :hotel
+      other_hotel = create :hotel
+      john = create(:user, first_name: 'John', last_name: 'Male')
+      ferry = create(:user, first_name: 'Ferry', last_name: 'Brain')
+      note_1 = create :note, user: john, message: 'Hello, nice work!', object: hotel
+      note_2 = create :note, user: ferry, message: 'Thanks!', object: hotel
+      create :note, user: ferry, message: 'Wow amazing!', object: other_hotel
 
-        get '/ext/admin/notes.json', params: { type: 'hotel', id: hotel.id }
+      get '/ext/admin/notes.json', params: { type: 'hotel', id: hotel.id }
 
-        expect(json_body['notes']).to match_array [
-            {
-              'id' => note_1.id,
-              'user_name' => 'John Male',
-              'message' => 'Hello, nice work!',
-              'created_at' => '2008-09-01T09:00:00.000Z'
-            },
-            {
-              'id' => note_2.id,
-              'user_name' => 'Ferry Brain',
-              'message' => 'Thanks!',
-              'created_at' => '2008-09-01T09:00:00.000Z'
-            }
-          ]
-      end
+      expect(json_body['notes']).to match_array [
+          {
+            'id' => note_1.id,
+            'user_name' => 'John Male',
+            'message' => 'Hello, nice work!',
+            'created_at' => '2008-09-01T09:00:00.000Z'
+          },
+          {
+            'id' => note_2.id,
+            'user_name' => 'Ferry Brain',
+            'message' => 'Thanks!',
+            'created_at' => '2008-09-01T09:00:00.000Z'
+          }
+        ]
     end
 
     it 'doesnt allow guests' do
