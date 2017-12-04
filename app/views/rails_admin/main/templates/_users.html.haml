@@ -97,10 +97,5 @@
               field: :client_unsuitable_for_travel
 
 .row
-  .col-md-10.col-md-offset-1
-    - for_field :notes_attributes do |f, f_css, id, label|
-      %div{class: "compact #{f_css}", id: "user_#{id}"}
-        %p= label
-        = f.render
-    -# = render 'rails_admin/main/templates/shared/compact_field',
-    -#   field: :notes_attributes, id_prefix: 'user_'
+  .col-md-5.col-md-offset-1
+    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id

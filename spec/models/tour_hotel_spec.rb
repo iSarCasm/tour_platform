@@ -13,7 +13,6 @@
 #  payment_type_id   :integer
 #  finalisation_date :datetime
 #  hotel_theme       :string
-#  notes             :text
 #
 
 require 'rails_helper'

@@ -10,9 +10,9 @@ describe 'Managing Ferry Dates', type: :feature do
 
     context 'with some ferry dates' do
       before do
-        @ferry = create :ferry_date, notes: 'Ferry note one'
-        create :ferry_date, notes: 'Ferry note two'
-        create :ferry_date, notes: 'Ferry note three'
+        @ferry = create :ferry_date, rate: '44444'
+        create :ferry_date, rate: '55555'
+        create :ferry_date, rate: '66666'
       end
 
       it 'can Add new one' do
@@ -22,23 +22,23 @@ describe 'Managing Ferry Dates', type: :feature do
 
       it 'can List all ferry dates' do
         visit '/admin/ferry_date'
-        expect(page).to have_content 'Ferry note one'
-        expect(page).to have_content 'Ferry note two'
-        expect(page).to have_content 'Ferry note three'
+        expect(page).to have_content '44444'
+        expect(page).to have_content '55555'
+        expect(page).to have_content '66666'
       end
 
       it 'can Delete a ferry date' do
         visit "/admin/ferry_date/#{@ferry.id}/delete"
         page.find(:css, '.btn-danger').click
         visit '/admin/ferry_date'
-        expect(page).not_to have_content 'Ferry note one'
+        expect(page).not_to have_content '44444'
       end
 
       it 'can View the ferry date' do
         visit "/admin/ferry_date/#{@ferry.id}"
 
         expect(page).to have_content 'Notes'
-        expect(page).to have_content 'Ferry note one'
+        expect(page).to have_content '44444'
       end
 
       it 'can Edit the ferry date' do
@@ -51,12 +51,12 @@ describe 'Managing Ferry Dates', type: :feature do
         expect(page).to have_content 'Max passengers'
         expect(page).to have_content 'Notes'
 
-        fill_in 'ferry_date[notes]', with: 'New NOTES'
+        fill_in 'ferry_date[rate]', with: '131313'
         page.find(:css, '.btn-primary').click
 
         visit '/admin/ferry_date'
-        expect(page).not_to have_content 'Ferry note one'
-        expect(page).to have_content 'New NOTES'
+        expect(page).not_to have_content '44444'
+        expect(page).to have_content '131313'
       end
     end
   end

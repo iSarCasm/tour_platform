@@ -1,11 +1,4 @@
 :javascript
-  console.log('Hello')
-
-  $('#notes-submit').on('click', function(event) {
-    event.preventDefault();
-    createNote();
-  })
-
   function InitNotes() {
     $.get("/ext/admin/notes.json?type=#{type}&id=#{id}", function(data, status){
       var notes = data['notes'];
@@ -13,7 +6,7 @@
       removeAllNotes();
       if(notes.length > 0) {
         hideNoNotes();
-        for(var i = notes.length-1; i >= 0; i--) {
+        for(var i = 0; i < notes.length; i++) {
           note = notes[i];
           addNote(note['user_name'], note['message'], note['created_at'], note['id'], note['destroyable'])
         }
@@ -97,22 +90,6 @@
       .col-md-12
         %span#no-notes-text No notes yet.
         %ul#notes-body.text-left{style: 'list-style: none; padding-left: 0px;'}
-          %li.well.well-sm
-            %strong John Doe
-            %a.glyphicon.glyphicon-remove{style: 'float:right; color: #7c000c;'}
-            %p{style: 'margin-bottom: 0px;'} Some message f you want to create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
-            %small{style: 'font-size: 11px;'} 13:00:24 24 Jan
-          %li.well.well-sm
-            %strong John Doe
-            %p{style: 'margin-bottom: 0px;'} Some message f you want to create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
-            %small{style: 'font-size: 11px;'} 13:00:24 24 Jan
-          %li.well.well-sm
-            %strong John Doe
-            %p{style: 'margin-bottom: 0px;'} Some message f you want to create a new paragraph, with text, remember to create the text as a Text node which you append to the paragraph, then append the paragraph to the document.
-            %small{style: 'font-size: 11px;'} 13:00:24 24 Jan
-
-
-
         %div.form-vertical.text-left#note-send-form
           %textarea.form-control#note-message{rows: 3, style: 'width:100%; margin-top: 10px; margin-bottom: 10px;'}
           %a.btn.btn-default#notes-submit{onclick: 'createNote();'} Leave a note

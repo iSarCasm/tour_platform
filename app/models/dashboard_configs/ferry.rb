@@ -15,7 +15,6 @@
 #  emergency_number :string
 #  email            :string
 #  rating           :decimal(, )
-#  notes            :text
 #
 
 RailsAdmin.config do |config|
@@ -35,7 +34,6 @@ RailsAdmin.config do |config|
       field :contact_name
       field :emergency_number
       field :rating
-      field :notes
     end
 
     create { set_template 'ferry' }
@@ -80,9 +78,6 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :notes do
-        html_attributes rows: 10, cols: 100
-      end
     end
 
     show do
@@ -123,7 +118,6 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :notes
     end
   end
 end

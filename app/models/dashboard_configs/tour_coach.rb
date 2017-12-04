@@ -11,7 +11,6 @@
 #  updated_at     :datetime         not null
 #  driver_name    :string
 #  driver_number  :string
-#  notes          :text
 #  seatplan_id    :integer
 #  rate           :decimal(, )
 #  vehicle_reg    :string

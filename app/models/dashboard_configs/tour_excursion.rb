@@ -6,7 +6,6 @@
 #  ticket_operator_id :integer
 #  active_tour_id     :integer
 #  ticket_date        :datetime
-#  notes              :text
 #  stock              :integer
 #  adult_buy          :decimal(, )
 #  adult_sell         :decimal(, )

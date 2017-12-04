@@ -54,8 +54,6 @@ class User < ApplicationRecord
   belongs_to :gender, inverse_of: :users, optional: true
   has_many :notes, inverse_of: :user
 
-  accepts_nested_attributes_for :notes
-
   validates :name, presence: true
 
   enum base_role: [:customer, :admin]

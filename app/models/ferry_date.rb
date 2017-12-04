@@ -11,12 +11,12 @@
 #  active_tour_id :integer
 #  rate           :decimal(, )
 #  max_passengers :integer
-#  notes          :text
 #
 
 class FerryDate < ApplicationRecord
   has_many :ferry_dates_amenities, dependent: :destroy
   has_many :amenities, through: :ferry_dates_amenities
+  has_many :notes, as: :noteable
 
   belongs_to :ferry
   belongs_to :active_tour, inverse_of: :ferry_dates

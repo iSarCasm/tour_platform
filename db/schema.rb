@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203155010) do
+ActiveRecord::Schema.define(version: 20171204200946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20171203155010) do
     t.string "email"
     t.string "contact_name"
     t.string "emergency_number"
-    t.text "notes"
     t.bigint "seatplan_id"
     t.decimal "rating"
     t.index ["seatplan_id"], name: "index_coaches_on_seatplan_id"
@@ -139,7 +138,6 @@ ActiveRecord::Schema.define(version: 20171203155010) do
     t.string "emergency_number"
     t.string "email"
     t.decimal "rating"
-    t.text "notes"
   end
 
   create_table "ferry_amenities", force: :cascade do |t|
@@ -160,7 +158,6 @@ ActiveRecord::Schema.define(version: 20171203155010) do
     t.bigint "active_tour_id"
     t.decimal "rate"
     t.integer "max_passengers"
-    t.text "notes"
     t.index ["active_tour_id"], name: "index_ferry_dates_on_active_tour_id"
     t.index ["ferry_id"], name: "index_ferry_dates_on_ferry_id"
   end
@@ -421,7 +418,6 @@ ActiveRecord::Schema.define(version: 20171203155010) do
     t.datetime "updated_at", null: false
     t.string "driver_name"
     t.string "driver_number"
-    t.text "notes"
     t.bigint "seatplan_id"
     t.decimal "rate"
     t.string "vehicle_reg"
@@ -436,7 +432,6 @@ ActiveRecord::Schema.define(version: 20171203155010) do
     t.bigint "ticket_operator_id"
     t.bigint "active_tour_id"
     t.datetime "ticket_date"
-    t.text "notes"
     t.integer "stock"
     t.decimal "adult_buy"
     t.decimal "adult_sell"
@@ -465,7 +460,6 @@ ActiveRecord::Schema.define(version: 20171203155010) do
     t.bigint "payment_type_id"
     t.datetime "finalisation_date"
     t.string "hotel_theme"
-    t.text "notes"
     t.index ["active_tour_id"], name: "index_tour_hotels_on_active_tour_id"
     t.index ["board_basis_id"], name: "index_tour_hotels_on_board_basis_id"
     t.index ["hotel_id"], name: "index_tour_hotels_on_hotel_id"

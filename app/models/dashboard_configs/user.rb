@@ -79,17 +79,6 @@ RailsAdmin.config do |config|
       field :client_unsuitable_for_travel
       field :travel_club
       field :member_no
-      field :notes do
-        render do
-          bindings[:view].render(
-            partial: 'notes_edit',
-            locals: {
-              field: self,
-              form: bindings[:form]
-            }
-          )
-        end
-      end
     end
 
     show do
@@ -120,7 +109,6 @@ RailsAdmin.config do |config|
       field :kin_name
       field :kin_phone
       field :travel_club
-      field :notes
       field :member_no
       field :total_spent
       field :created_at
