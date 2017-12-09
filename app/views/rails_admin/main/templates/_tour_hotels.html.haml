@@ -38,8 +38,10 @@
   .col-md-10.col-md-offset-1
     = render 'rails_admin/main/templates/shared/compact_field',
       field: :hotel_rooms_attributes
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :notes
+
+.row
+  .col-md-5.col-md-offset-1
+    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
 
 .clearfix
   - if @object.persisted?

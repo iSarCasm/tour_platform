@@ -64,6 +64,5 @@
     = compact_render_field field
 
 .row
-  .col-md-11.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :notes
+  .col-md-5.col-md-offset-1
+    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id

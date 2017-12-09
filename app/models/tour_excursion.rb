@@ -6,7 +6,6 @@
 #  ticket_operator_id :integer
 #  active_tour_id     :integer
 #  ticket_date        :datetime
-#  notes              :text
 #  stock              :integer
 #  adult_buy          :decimal(, )
 #  adult_sell         :decimal(, )
@@ -25,4 +24,5 @@ class TourExcursion < ApplicationRecord
   belongs_to :ticket_operator
   belongs_to :active_tour, inverse_of: :tour_excursions
   belongs_to :excursion
+  has_many :notes, as: :noteable
 end

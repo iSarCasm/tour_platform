@@ -46,6 +46,5 @@
       field: :hotel_rooms_attributes
 
 .row
-  .col-md-10.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :notes
+  .col-md-5.col-md-offset-1
+    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id

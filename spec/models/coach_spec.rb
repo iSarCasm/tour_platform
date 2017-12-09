@@ -14,7 +14,6 @@
 #  email            :string
 #  contact_name     :string
 #  emergency_number :string
-#  notes            :text
 #  seatplan_id      :integer
 #  rating           :decimal(, )
 #

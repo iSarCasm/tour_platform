@@ -14,7 +14,6 @@
 #  email            :string
 #  contact_name     :string
 #  emergency_number :string
-#  notes            :text
 #  seatplan_id      :integer
 #  rating           :decimal(, )
 #
@@ -37,7 +36,6 @@ RailsAdmin.config do |config|
       field :tour_coaches_count
       field :rating
       field :seatplan
-      field :notes
     end
 
     update { set_template 'coaches' }
@@ -98,9 +96,6 @@ RailsAdmin.config do |config|
             }
           )
         end
-      end
-      field :notes do
-        html_attributes rows: 10, cols: 100
       end
     end
 
@@ -164,7 +159,6 @@ RailsAdmin.config do |config|
           )
         end
       end
-      field :notes
     end
   end
 end

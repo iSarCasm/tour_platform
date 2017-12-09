@@ -11,7 +11,6 @@
 #  active_tour_id :integer
 #  rate           :decimal(, )
 #  max_passengers :integer
-#  notes          :text
 #
 
 RailsAdmin.config do |config|

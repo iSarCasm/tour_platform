@@ -11,7 +11,6 @@
 #  updated_at     :datetime         not null
 #  driver_name    :string
 #  driver_number  :string
-#  notes          :text
 #  seatplan_id    :integer
 #  rate           :decimal(, )
 #  vehicle_reg    :string
@@ -26,6 +25,7 @@ class TourCoach < ApplicationRecord
   has_many :tour_amenities, dependent: :destroy
   has_many :amenities, through: :tour_amenities
   has_many :seat_prices, inverse_of: :tour_coach
+  has_many :notes, as: :noteable
 
   belongs_to :pickup_list, inverse_of: :tour_coach, optional: true
 

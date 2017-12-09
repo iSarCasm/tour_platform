@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124153008) do
+ActiveRecord::Schema.define(version: 20171204200946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.string "email"
     t.string "contact_name"
     t.string "emergency_number"
-    t.text "notes"
     t.bigint "seatplan_id"
     t.decimal "rating"
     t.index ["seatplan_id"], name: "index_coaches_on_seatplan_id"
@@ -139,7 +138,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.string "emergency_number"
     t.string "email"
     t.decimal "rating"
-    t.text "notes"
   end
 
   create_table "ferry_amenities", force: :cascade do |t|
@@ -160,7 +158,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.bigint "active_tour_id"
     t.decimal "rate"
     t.integer "max_passengers"
-    t.text "notes"
     t.index ["active_tour_id"], name: "index_ferry_dates_on_active_tour_id"
     t.index ["ferry_id"], name: "index_ferry_dates_on_ferry_id"
   end
@@ -184,6 +181,12 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hotel_bookings", force: :cascade do |t|
@@ -240,10 +243,20 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.string "emergency_number"
     t.decimal "rating"
     t.bigint "board_basis_id"
-    t.text "notes"
     t.bigint "payment_type_id"
     t.index ["board_basis_id"], name: "index_hotels_on_board_basis_id"
     t.index ["payment_type_id"], name: "index_hotels_on_payment_type_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "noteable_id"
+    t.string "noteable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "message"
+    t.bigint "user_id"
+    t.index ["noteable_type", "noteable_id"], name: "index_notes_on_noteable_type_and_noteable_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "payment_types", force: :cascade do |t|
@@ -405,7 +418,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.datetime "updated_at", null: false
     t.string "driver_name"
     t.string "driver_number"
-    t.text "notes"
     t.bigint "seatplan_id"
     t.decimal "rate"
     t.string "vehicle_reg"
@@ -420,7 +432,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.bigint "ticket_operator_id"
     t.bigint "active_tour_id"
     t.datetime "ticket_date"
-    t.text "notes"
     t.integer "stock"
     t.decimal "adult_buy"
     t.decimal "adult_sell"
@@ -449,7 +460,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.bigint "payment_type_id"
     t.datetime "finalisation_date"
     t.string "hotel_theme"
-    t.text "notes"
     t.index ["active_tour_id"], name: "index_tour_hotels_on_active_tour_id"
     t.index ["board_basis_id"], name: "index_tour_hotels_on_board_basis_id"
     t.index ["hotel_id"], name: "index_tour_hotels_on_hotel_id"
@@ -504,16 +514,26 @@ ActiveRecord::Schema.define(version: 20171124153008) do
     t.string "postcode"
     t.string "passport_name"
     t.string "passport_no"
-    t.date "passport_date_of_birth"
+    t.date "date_of_birth"
     t.string "phone_mobile"
     t.string "phone_landline"
     t.string "phone_evening"
-    t.boolean "marketing"
     t.string "kin_name"
     t.string "kin_phone"
     t.boolean "travel_club"
     t.string "member_no"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "marketing_email"
+    t.boolean "marketing_sms"
+    t.boolean "marketing_phone"
+    t.boolean "marketing_postal"
+    t.date "passport_expiry"
+    t.bigint "gender_id"
+    t.boolean "may_expand_more_with_full_contact"
+    t.boolean "client_unsuitable_for_travel"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["gender_id"], name: "index_users_on_gender_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
   end
@@ -586,5 +606,6 @@ ActiveRecord::Schema.define(version: 20171124153008) do
   add_foreign_key "tour_hotels", "payment_types"
   add_foreign_key "tours", "countries"
   add_foreign_key "tours", "tour_types"
+  add_foreign_key "users", "genders"
   add_foreign_key "users", "roles"
 end

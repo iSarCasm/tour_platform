@@ -87,6 +87,10 @@ body.rails_admin .width100 input {
   margin-top: 35px;
 }
 
+.no-margin-top .margin-top-3 {
+  margin-top: 0px;
+}
+
 .form-horizontal .compact .form-group {
   margin-left: auto;
   margin-right: auto;
@@ -98,4 +102,12 @@ body.rails_admin .width100 input {
 
 .compact.compact-2x .form-control {
   max-width: 90%;
+}
+
+.panel-padding {
+  padding-left: 0px;
+  padding-right: 7.5px;
+  .panel-body {
+    padding-left: 22.5px;
+  }
 }

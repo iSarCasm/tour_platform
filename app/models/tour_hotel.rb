@@ -13,7 +13,6 @@
 #  payment_type_id   :integer
 #  finalisation_date :datetime
 #  hotel_theme       :string
-#  notes             :text
 #
 
 class TourHotel < ApplicationRecord
@@ -22,6 +21,7 @@ class TourHotel < ApplicationRecord
   belongs_to :active_tour, inverse_of: :tour_hotels
   belongs_to :board_basis, inverse_of: :tour_hotels, optional: true
   belongs_to :payment_type, inverse_of: :tour_hotels, optional: true
+  has_many :notes, as: :noteable
 
   validates :hotel, :active_tour, presence: true
 

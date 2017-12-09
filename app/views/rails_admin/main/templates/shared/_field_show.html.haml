@@ -1,5 +1,5 @@
-- for_field field do |field, css, id, label, value|
-  %div{class: "#{css}", id: id}
+- for_field field do |field, f_css, id, label, value|
+  %div{class: "#{css rescue ''} #{f_css}", id: id}
     %p
       %strong= label
       %br

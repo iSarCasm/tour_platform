@@ -18,4 +18,8 @@ class PickupPoint < ApplicationRecord
   has_many :coach_bookings, inverse_of: :pickup_point
 
   validates :address, :latitude, :longitude, presence: true
+
+  def title
+    "PP #{address}"
+  end
 end

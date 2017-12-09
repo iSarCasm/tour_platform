@@ -1,0 +1,95 @@
+:javascript
+  function InitNotes() {
+    $.get("/ext/admin/notes.json?type=#{type}&id=#{id}", function(data, status){
+      var notes = data['notes'];
+      console.log(notes)
+      removeAllNotes();
+      if(notes.length > 0) {
+        hideNoNotes();
+        for(var i = 0; i < notes.length; i++) {
+          note = notes[i];
+          addNote(note['user_name'], note['message'], note['created_at'], note['id'], note['destroyable'])
+        }
+      } else {
+        showNoNotes();
+      }
+    });
+  }
+
+  function addNote(user, message, created_at, note_id, destroyable) {
+    var body = document.getElementById("notes-body");
+
+    var node = document.createElement("li");
+    var username = document.createElement("strong");
+    var delete_link = document.createElement("a");
+    var text = document.createElement("p");
+    var time = document.createElement("small");
+    node.appendChild(username);
+    if(destroyable)
+      node.appendChild(delete_link);
+    node.appendChild(text);
+    node.appendChild(time);
+    text.textContent = message;
+    username.textContent = user;
+    time.textContent = moment(created_at).format("LLL");
+
+    node.className = "well well-sm";
+    delete_link.className = "glyphicon glyphicon-remove";
+    text.style.cssText = "margin-bottom: 0px; font-size: 14px;";
+    time.style.cssText = "font-size: 11px;";
+    delete_link.style.cssText = "float:right; color: #7c000c; cursor: pointer;";
+    delete_link.onclick = function() {
+      deleteNote(note_id);
+    }
+
+    body.appendChild(node)
+  }
+
+  function removeAllNotes() {
+    $('#notes-body').html('');
+  }
+
+  function hideNoNotes() {
+    $('#no-notes-text').hide();
+  }
+
+  function showNoNotes() {
+    $('#no-notes-text').show();
+  }
+
+  function deleteNote(note_id) {
+    $.ajax({
+      type: 'DELETE',
+      url: "/ext/admin/notes/" + note_id + ".json",
+      success: function(data) {
+        InitNotes();
+      }
+    })
+  }
+
+  function createNote() {
+    message = document.getElementById("note-message").value;
+    document.getElementById("note-message").value = "";
+    $.ajax({
+      type: 'POST',
+      url: "/ext/admin/notes.json",
+      data: {note: {message: message, noteable_type: '#{type}', noteable_id: '#{id}'}},
+      success: function(data) {
+        InitNotes();
+      }
+    })
+  }
+
+  InitNotes();
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Notes
+  .panel-body.text-center
+    .row
+      .col-md-12
+        %span#no-notes-text No notes yet.
+        %ul#notes-body.text-left{style: 'list-style: none; padding-left: 0px;'}
+        %div.form-vertical.text-left#note-send-form
+          %textarea.form-control#note-message{rows: 3, style: 'width:100%; margin-top: 10px; margin-bottom: 10px;'}
+          %a.btn.btn-default#notes-submit{onclick: 'createNote();'} Leave a note
