@@ -5,7 +5,7 @@ describe 'Managing User Profile', type: :feature do
 
   context 'when logged in' do
     before do
-      @user = create :user, email: 'user@g.co', name: 'Jack'
+      @user = create :user
       @booking = create :tour_booking, user: @user
       sign_in @user
     end
@@ -21,12 +21,6 @@ describe 'Managing User Profile', type: :feature do
       expect(page).to have_content 'Edit User'
 
       expect(page).to have_content 'Cancel my account'
-    end
-  end
-
-  context 'when a guest' do
-    it 'shows all required info' do
-
     end
   end
 end

@@ -18,7 +18,7 @@ require 'rails_helper'
 describe TourBooking do
   describe '#title' do
     it 'shows readable represenation' do
-      user = build :user, name: 'Jason'
+      user = build :user, first_name: 'Jason', last_name: 'Paul'
       tour = build :tour, title: 'New tour'
       active_tour = build(:active_tour,
         tour: tour,
@@ -27,16 +27,16 @@ describe TourBooking do
       )
       tour_booking = build :tour_booking, active_tour: active_tour, user: user
 
-      expect(tour_booking.title).to eq 'Jason -> New tour [14 Jul 2017 - 28 Jul 2017]'
+      expect(tour_booking.title).to eq 'Jason Paul -> New tour [14 Jul 2017 - 28 Jul 2017]'
     end
   end
 
   describe '#username' do
     it 'returns User name' do
-      user = build :user, name: 'Jason'
+      user = build_stubbed :user, first_name: 'Jason', last_name: 'Paul'
       tour_booking = build :tour_booking, user: user
 
-      expect(tour_booking.username).to eq 'Jason'
+      expect(tour_booking.username).to eq 'Jason Paul'
     end
   end
 

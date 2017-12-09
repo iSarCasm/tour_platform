@@ -60,6 +60,10 @@ class User < ApplicationRecord
 
   enum base_role: [:customer, :admin]
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   def total_spent
     tour_bookings.reduce(0) { |sum, t| sum + t.total_cost }
   end

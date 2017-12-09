@@ -27,7 +27,7 @@ describe CoachBooking do
 
   describe '#title' do
     it 'shows readable represenation' do
-      user = build :user, name: 'Jason'
+      user = build :user, first_name: 'Jason', last_name: 'Paul'
       tour_booking = build :tour_booking, user: user
 
       coach = build :coach, title: 'Reliable Transport'
@@ -38,7 +38,7 @@ describe CoachBooking do
       )
       coach_booking = build :coach_booking, tour_booking: tour_booking, tour_coach: tour_coach
 
-      expect(coach_booking.title).to eq 'Jason -> Reliable Transport [14 Jul 2017 - 28 Jul 2017]'
+      expect(coach_booking.title).to eq 'Jason Paul -> Reliable Transport [14 Jul 2017 - 28 Jul 2017]'
     end
   end
 

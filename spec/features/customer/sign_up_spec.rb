@@ -6,7 +6,8 @@ describe 'Sign up', type: :feature do
 
     expect(page).to have_content 'Sign Up'
 
-    fill_in 'Name', with: 'Jack Daniels'
+    fill_in 'First name', with: 'Jack'
+    fill_in 'Last name', with: 'Daniels'
     fill_in 'Email', with: 'jackdaniels@gmail.com'
     fill_in 'Password', with: 'secure_password'
     fill_in 'Password confirmation', with: 'secure_password'
@@ -25,7 +26,8 @@ describe 'Sign up', type: :feature do
 
       expect(page).to have_content 'Sign Up'
 
-      fill_in 'Name', with: 'Jack Daniels'
+      fill_in 'First name', with: 'Jack'
+      fill_in 'Last name', with: 'Daniels'
       fill_in 'Email', with: 'jackdaniels@gmail.com'
       fill_in 'Password', with: 'secure_password'
       fill_in 'Password confirmation', with: 'secure_password'

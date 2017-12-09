@@ -56,6 +56,14 @@ describe User do
     create :hotel_booking, hotel_room: hr, tour_booking: tb
   end
 
+  describe '#name' do
+    it 'concatenated #first_name and #last_name' do
+      user = create :user, first_name: 'Jake', last_name: 'Paul'
+
+      expect(user.name).to eq 'Jake Paul'
+    end
+  end
+
   describe '#total_spent' do
     it 'returns all spendings of User' do
       user = create :user
@@ -64,7 +72,6 @@ describe User do
       expect(user.total_spent).to eq 150
     end
   end
-
 
   describe '#last_travelled' do
     it 'returns the Users tour booking with latest end date' do
