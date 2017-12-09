@@ -47,14 +47,16 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
   has_many :tour_bookings, dependent: :destroy, inverse_of: :user
   has_many :admin_alerts, dependent: :destroy, inverse_of: :user
   belongs_to :role, inverse_of: :users, optional: true
   belongs_to :gender, inverse_of: :users, optional: true
   has_many :notes, inverse_of: :user
 
-  validates :name, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
   enum base_role: [:customer, :admin]
 
