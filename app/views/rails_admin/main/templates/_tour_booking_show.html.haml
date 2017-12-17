@@ -1,0 +1,30 @@
+-# DO NOT REMOVE THAT LINE
+- config_show_template fields
+
+-# For field render you can use compact_render_field(field) or field.render
+.row
+  .col-md-3.col-md-offset-1
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :active_tour_id
+  .col-md-3
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :user_id, label: 'Booked by'
+  .col-md-3
+    = render 'rails_admin/main/templates/shared/field_show',
+      field: :created_at, label: 'Booked on'
+
+.row
+  .col-md-12.col-md-offset-1
+    .row
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :adult, css: 'compact-2x'
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :senior, css: 'compact-2x'
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :infant, css: 'compact-2x'
+      .col-md-3
+        = render 'rails_admin/main/templates/shared/field_show',
+          field: :child, css: 'compact-2x'

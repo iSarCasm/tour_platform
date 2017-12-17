@@ -16,7 +16,36 @@
 RailsAdmin.config do |config|
   config.model TourBooking do
     list do
-      exclude_fields :created_at, :updated_at
+      field :active_tour
+      field :user
+      field :created_at
+      field :adult
+      field :child
+      field :infant
+      field :senior
+    end
+
+    show do
+      set_template 'tour_booking_show'
+      field :active_tour
+      field :user
+      field :created_at
+      field :adult
+      field :child
+      field :infant
+      field :senior
+    end
+
+    create { set_template 'tour_booking' }
+    update { set_template 'tour_booking' }
+
+    edit do
+      field :active_tour
+      field :user
+      field :adult
+      field :child
+      field :infant
+      field :senior
     end
   end
 end
