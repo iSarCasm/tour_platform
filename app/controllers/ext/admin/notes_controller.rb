@@ -3,15 +3,15 @@ module Ext
     class NotesController < ApplicationController
       def index
         authorize_admin! :access, :rails_admin
-        authorize_admin! :read, params[:type].capitalize.constantize
+        authorize_admin! :read, params[:type].constantize
         @notes = Note
                   .where('noteable_id = ?', params[:id])
-                  .where('noteable_type = ?', params[:type].capitalize)
+                  .where('noteable_type = ?', params[:type])
       end
 
       def create
         authorize_admin! :access, :rails_admin
-        authorize_admin! :read, note_params[:noteable_type].capitalize.constantize
+        authorize_admin! :read, note_params[:noteable_type].constantize
         current_user.notes.create(note_params)
         render plain: 'Success!'
       end

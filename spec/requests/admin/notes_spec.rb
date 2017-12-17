@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/admin/notes' do
+RSpec.describe 'ext/admin/notes' do
   include Devise::Test::IntegrationHelpers
 
   describe 'GET' do
@@ -15,7 +15,7 @@ RSpec.describe '/admin/notes' do
       note_2 = create :note, user: ferry, message: 'Thanks!', object: hotel
       create :note, user: ferry, message: 'Wow amazing!', object: other_hotel
 
-      get '/ext/admin/notes.json', params: { type: 'hotel', id: hotel.id }
+      get '/ext/admin/notes.json', params: { type: 'Hotel', id: hotel.id }
 
       expect(json_body['notes']).to match_array [
           {
