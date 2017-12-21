@@ -2,15 +2,21 @@
 #
 # Table name: tour_bookings
 #
-#  id             :integer          not null, primary key
-#  active_tour_id :integer
-#  user_id        :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  adult          :integer
-#  child          :integer
-#  infant         :integer
-#  senior         :integer
+#  id               :integer          not null, primary key
+#  active_tour_id   :integer
+#  user_id          :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  adult            :integer
+#  child            :integer
+#  infant           :integer
+#  senior           :integer
+#  agent_commission :decimal(, )      default(0.0)
+#  cost_commission  :decimal(, )      default(0.0)
+#  vat_rate         :decimal(, )      default(0.0)
+#  deposit          :decimal(, )      default(0.0)
+#  paid             :decimal(, )      default(0.0)
+#  agent_paid       :boolean          default(FALSE)
 #
 
 require 'rails_helper'
@@ -89,6 +95,15 @@ describe TourBooking do
       hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
 
       expect(tb.total_cost).to eq(35*2 + 30 + 5 + 40 + 20)
+    end
+  end
+
+  describe '#remaining' do
+    it 'returns how much if left to pay' do
+      allow_any_instance_of(TourBooking).to receive(:total_cost).and_return(250)
+      tb = build_stubbed(:tour_booking, paid: 30)
+
+      expect(tb.remaining).to eq 220
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209173326) do
+ActiveRecord::Schema.define(version: 20171221162138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -396,6 +396,12 @@ ActiveRecord::Schema.define(version: 20171209173326) do
     t.integer "child"
     t.integer "infant"
     t.integer "senior"
+    t.decimal "agent_commission", default: "0.0"
+    t.decimal "cost_commission", default: "0.0"
+    t.decimal "vat_rate", default: "0.0"
+    t.decimal "deposit", default: "0.0"
+    t.decimal "paid", default: "0.0"
+    t.boolean "agent_paid", default: false
     t.index ["active_tour_id"], name: "index_tour_bookings_on_active_tour_id"
     t.index ["user_id"], name: "index_tour_bookings_on_user_id"
   end
