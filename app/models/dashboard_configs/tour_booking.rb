@@ -16,9 +16,14 @@
 RailsAdmin.config do |config|
   config.model TourBooking do
     list do
+      field :id
       field :active_tour
-      field :user
-      field :created_at
+      field :user do
+        label 'Booked by'
+      end
+      field :created_at do
+        label 'Booked on'
+      end
       field :adult
       field :child
       field :infant
