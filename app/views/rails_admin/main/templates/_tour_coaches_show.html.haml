@@ -2,6 +2,13 @@
 - config_show_template fields
 
 -# For field render you can use compact_render_field(field) or field.render
+.clearfix
+  = link_to get_report_path(:tour_coach, @object), class: 'btn btn-info', target: 'blank' do
+    Pickup Report
+    %i.icon-print
+  %br
+  %br
+
 .row
   .col-md-10.col-md-offset-1
     .row
