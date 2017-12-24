@@ -63,6 +63,14 @@ describe User do
     end
   end
 
+  describe '#full_name' do
+    it 'returns name with title' do
+      user = create :user, first_name: 'Jake', last_name: 'Paul', title: 'Mr'
+
+      expect(user.full_name).to eq 'Mr Jake Paul'
+    end
+  end
+
   describe '#total_spent' do
     it 'returns all spendings of User' do
       user = create :user

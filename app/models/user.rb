@@ -63,6 +63,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def full_name
+    "#{title} #{name}"
+  end
+
   def total_spent
     tour_bookings.reduce(0) { |sum, t| sum + t.total_cost }
   end

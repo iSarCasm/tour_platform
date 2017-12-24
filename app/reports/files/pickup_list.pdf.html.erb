@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <%= wicked_pdf_stylesheet_link_tag "bootstrap4.min.css" -%>
+  <style>
+    thead { display: table-header-group }
+    tfoot { display: table-row-group }
+    tr { page-break-inside: avoid }
+    table { font-size: 12px; }
+  </style>
+  <title>Pickup List</title>
+</head>
+<body>
+  <p>
+    <small>
+      <em>Leisuretime, South Gate House, Wood Street, Cardiff, CF10 1EW</em>
+    </small>
+  </p>
+  <div class="text-center">
+    <h2 class="mb-0"><em>Outward Pickup List</em></h1>
+    <p>
+      <strong><em>
+        Tour: <%= tour_id %> <%= tour_name %> - Departing on <%= departure_date %>
+      </em></strong>
+    </p>
+  </div>
+  <p>
+    <em><u>TOUR COACH</u></em>
+  </p>
+  <% pickup_points.each do |point| %>
+    <h5>
+      <%= point.time %> <%= point.address %>
+    </h5>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Seat No</th>
+          <th scope="col">Passenger name</th>
+          <th scope="col">Contact No</th>
+          <th scope="col">Booking ref</th>
+          <th scope="col">Pax Type</th>
+          <th scope="col">Pickup Requests and Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% point.passengers.each do |passenger| %>
+          <div class="alwaysbreak"></div>
+          <tr>
+            <td><%= passenger.seat %></td>
+            <td><%= passenger.name %></td>
+            <td><%= passenger.number %></td>
+            <td><%= passenger.booking_ref %></td>
+            <td><%= passenger.pax_type %></td>
+            <td><%= passenger.requests_and_options %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <u><%= point.passengers.count %> Passengers</u>
+  <% end %>
+</body>
+</html>

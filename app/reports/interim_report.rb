@@ -1,8 +1,4 @@
-class InterimReport
-  def initialize(object)
-    @object = object
-  end
-
+class InterimReport < Report
   def name
     'interim_rooming_list'
   end
