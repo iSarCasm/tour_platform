@@ -5,13 +5,14 @@ RSpec.describe 'ext/admin/notes' do
 
   describe 'GET' do
     it 'returns all notes for specified noteable object in time order' do
-      Timecop.freeze Time.local(2008, 9, 1, 12, 0, 0)
       sign_in create(:superadmin)
       hotel = create :hotel
       other_hotel = create :hotel
       john = create(:user, first_name: 'John', last_name: 'Male')
       ferry = create(:user, first_name: 'Ferry', last_name: 'Brain')
+      Timecop.freeze Time.local(2008, 9, 1, 12, 0, 0)
       note_1 = create :note, user: john, message: 'Hello, nice work!', object: hotel
+      Timecop.freeze Time.local(2008, 9, 1, 12, 0, 1)
       note_2 = create :note, user: ferry, message: 'Thanks!', object: hotel
       create :note, user: ferry, message: 'Wow amazing!', object: other_hotel
 
@@ -29,7 +30,7 @@ RSpec.describe 'ext/admin/notes' do
             'id' => note_2.id,
             'user_name' => 'Ferry Brain',
             'message' => 'Thanks!',
-            'created_at' => '2008-09-01T09:00:00.000Z',
+            'created_at' => '2008-09-01T09:00:01.000Z',
             'destroyable' => true
           }
         ]
