@@ -1,6 +1,6 @@
 :javascript
   function InitNotes() {
-    $.get("/ext/admin/notes.json?type=#{type}&id=#{id}", function(data, status){
+    $.get("/ext/admin/notes.json?noteable_type=#{type}&id=#{id}", function(data, status){
       var notes = data['notes'];
       console.log(notes)
       removeAllNotes();

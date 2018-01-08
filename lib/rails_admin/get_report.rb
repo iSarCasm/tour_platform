@@ -18,6 +18,7 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
+            raise ArgumentError, 'Malicious code' unless params[:report] =~ /Report::/
             report_class = params[:report].constantize
             report = report_class.new(@object)
             if report.inline?

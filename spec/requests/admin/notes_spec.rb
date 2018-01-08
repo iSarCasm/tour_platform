@@ -16,7 +16,7 @@ RSpec.describe 'ext/admin/notes' do
       note_2 = create :note, user: ferry, message: 'Thanks!', object: hotel
       create :note, user: ferry, message: 'Wow amazing!', object: other_hotel
 
-      get '/ext/admin/notes.json', params: { type: 'Hotel', id: hotel.id }
+      get '/ext/admin/notes.json', params: { noteable_type: 'Hotel', id: hotel.id }
 
       expect(json_body['notes']).to match_array [
           {
@@ -48,6 +48,14 @@ RSpec.describe 'ext/admin/notes' do
       get '/ext/admin/notes.json'
 
       expect(response.status).to eq 302
+    end
+
+    it 'allows only permitted noteable_types' do
+      sign_in create(:superadmin)
+
+      expect do
+        get '/ext/admin/notes.json', params: { noteable_type: 'Logger', id: 1 }
+      end.to raise_error ArgumentError
     end
   end
 
@@ -81,6 +89,20 @@ RSpec.describe 'ext/admin/notes' do
 
       expect(response.status).to eq 302
       expect(Note.count).to eq 0
+    end
+
+    it 'allows only permitted noteable_types' do
+      sign_in create(:superadmin)
+
+      expect do
+        post '/ext/admin/notes.json', params: {
+          note: {
+              message: 'Hello everyone',
+              noteable_type: 'Logger',
+              noteable_id: 1
+            }
+          }
+      end.to raise_error ArgumentError
     end
   end
 
