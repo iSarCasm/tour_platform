@@ -1,5 +1,5 @@
 class PickupListXls < XlsView
-  def self.render(book)
+  def render(book)
     sheet = book.create_worksheet name: 'Pickup List'
     sheet[0, 0] = 'Leisuretime, South Gate House, Wood Street, Cardiff, CF10 1EW'
     sheet[1, 0] = 'Outward Pickup List'

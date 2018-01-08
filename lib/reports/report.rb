@@ -1,4 +1,6 @@
 class Report
+  attr_reader :object
+
   def self.[](format)
     format = format.to_s
     name = "#{self.to_s}::#{format.capitalize}"

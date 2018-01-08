@@ -1,10 +1,10 @@
 class PickupReport < Report
   def name
-    'pickup_list'
+    "pickup_list_#{object.title}"
   end
 
   def locals
-    PickupReportView.for(tour_coach: @object)
+    PickupReportView.for(tour_coach: object)
   end
 
   class Pdf < PickupReport
