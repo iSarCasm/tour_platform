@@ -58,6 +58,13 @@ describe 'Managing Tour Hotels', type: :feature do
         expect(page).not_to have_content 'Christmas'
         expect(page).to have_content 'Halloween'
       end
+
+      describe 'can get Interim Report' do
+        it 'in pdf format' do
+          visit get_report_path(:tour_hotel, @tour_hotel, report: InterimReport[:pdf])
+          expect(page.status_code).to eq 200
+        end
+      end
     end
   end
 end

@@ -9,6 +9,7 @@ require_relative 'support/api_helpers'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include RailsAdmin::Engine.routes.url_helpers
   config.include ApiHelpers, type: :request
 
   config.use_transactional_fixtures = true

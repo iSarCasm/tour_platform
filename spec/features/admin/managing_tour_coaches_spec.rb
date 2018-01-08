@@ -61,6 +61,18 @@ describe 'Managing Tour Coaches', type: :feature do
         expect(page).not_to have_content 'Jake Paul'
         expect(page).to have_content 'New Driver'
       end
+
+      describe 'can get Pickup Report' do
+        it 'in pdf format' do
+          visit get_report_path(:tour_coach, @tour_coach, report: PickupReport[:pdf])
+          expect(page.status_code).to eq 200
+        end
+
+        it 'in xls format' do
+          visit get_report_path(:tour_coach, @tour_coach, report: PickupReport[:xls])
+          expect(page.status_code).to eq 200
+        end
+      end
     end
   end
 end

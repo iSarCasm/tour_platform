@@ -27,7 +27,7 @@ class PickupReportView
     Passenger   = Struct.new(:seat, :name, :number, :booking_ref, :pax_type, :requests_and_options)
 
     def pickup_points(tour_coach)
-      pickup_points = tour_coach.pickup_list.pickup_points
+      pickup_points = tour_coach.pickup_list&.pickup_points || []
       pickup_points.each.with_object([]) do |point, points|
         bookings = TourBooking.joins(:coach_bookings)
                               .where(coach_bookings: {pickup_point: point})
