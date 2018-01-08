@@ -1,3 +1,6 @@
+require_dependency 'pdf_report'
+require_dependency 'xls_report'
+
 class Report
   attr_reader :object
 
@@ -10,11 +13,22 @@ class Report
     const_get(name)
   end
 
+  def self.responds_to_format(format)
+    format_class = Class.new(self) do
+      format_module_name = format.to_s.capitalize + 'Report'
+      unless const_defined?(format_module_name)
+        raise ArgumentError, "#{format_module_name} not found. #{format} format of reports is not supported."
+      end
+      include const_get(format_module_name)
+    end
+    self.const_set(format.to_s.capitalize, format_class)
+  end
+
   def initialize(object)
     @object = object
   end
 
   def inline?
-    true
+    raise StandardError, "#inline? not defined for #{self.class.to_s}"
   end
 end

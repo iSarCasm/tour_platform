@@ -1,4 +1,4 @@
-class PickupListXls < XlsView
+class PickupReportXls < XlsView
   def render(book)
     sheet = book.create_worksheet name: 'Pickup List'
     sheet[0, 0] = 'Leisuretime, South Gate House, Wood Street, Cardiff, CF10 1EW'

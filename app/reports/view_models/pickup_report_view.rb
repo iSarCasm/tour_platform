@@ -23,6 +23,9 @@ class PickupReportView
       tour_coach.departure_date.strftime '%A %d %B %Y'
     end
 
+    PickupPoint = Struct.new(:time, :address, :passengers)
+    Passenger   = Struct.new(:seat, :name, :number, :booking_ref, :pax_type, :requests_and_options)
+
     def pickup_points(tour_coach)
       pickup_points = tour_coach.pickup_list.pickup_points
       pickup_points.each.with_object([]) do |point, points|
@@ -36,10 +39,6 @@ class PickupReportView
           end
         )
       end
-
     end
-
-    PickupPoint = Struct.new(:time, :address, :passengers)
-    Passenger = Struct.new(:seat, :name, :number, :booking_ref, :pax_type, :requests_and_options)
   end
 end

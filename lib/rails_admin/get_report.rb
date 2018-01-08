@@ -22,7 +22,7 @@ module RailsAdmin
             report = report_class.new(@object)
             if report.inline?
               render  pdf: report.name,
-                      file: "#{Rails.root}/app/reports/views/#{report.filename}",
+                      file: report.layout,
                       locals: report.locals
             else
               send_data report.data, filename: report.filename
