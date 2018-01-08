@@ -40,7 +40,7 @@ gem 'mini_magick'
 gem 'data_migrate'
 
 # Reports
-gem 'thinreports'
+gem 'spreadsheet'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 

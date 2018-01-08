@@ -18,7 +18,6 @@
 RailsAdmin.config do |config|
   config.model TourHotel do
     parent Hotel
-    report InterimReport
 
     update { set_template 'tour_hotels' }
     create { set_template 'tour_hotels' }

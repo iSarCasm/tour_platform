@@ -3,8 +3,12 @@
 
 -# For field render you can use compact_render_field(field) or field.render
 .clearfix
-  = link_to get_report_path(:tour_coach, @object), class: 'btn btn-info', target: 'blank' do
+  = link_to get_report_path(:tour_coach, @object, report: PickupReport[:pdf]), class: 'btn btn-info', target: 'blank' do
     Pickup Report
+    %i.icon-print
+  %span{style: 'width: 20px;'}
+  = link_to get_report_path(:tour_coach, @object, report: PickupReport[:xls]), class: 'btn btn-info' do
+    Pickup Report (.xls)
     %i.icon-print
   %br
   %br

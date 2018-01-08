@@ -18,10 +18,15 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            report = model_config.report.new(@object)
-            render  pdf: report.name,
-                    file: "#{Rails.root}/app/reports/files/#{report.name}.pdf.html",
-                    locals: report.locals
+            report_class = params[:report].constantize
+            report = report_class.new(@object)
+            if report.inline?
+              render  pdf: report.name,
+                      file: "#{Rails.root}/app/reports/views/#{report.filename}",
+                      locals: report.locals
+            else
+              send_data report.data, filename: report.filename
+            end
           end
         end
       end

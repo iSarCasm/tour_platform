@@ -20,7 +20,6 @@
 RailsAdmin.config do |config|
   config.model TourCoach do
     parent Coach
-    report PickupReport
 
     list do
       field :id

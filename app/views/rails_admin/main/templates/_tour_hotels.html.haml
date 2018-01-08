@@ -42,7 +42,7 @@
 - if @object.persisted?
   .row
     .col-md-10.col-md-offset-1.no-padding
-      = link_to get_report_path(:tour_hotel, @object), class: 'btn btn-info', target: 'blank'do
+      = link_to get_report_path(:tour_hotel, @object, report: InterimReport[:pdf]), class: 'btn btn-info', target: 'blank'do
         Show Interim Report
         %i.icon-print
   %br

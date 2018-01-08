@@ -6,4 +6,8 @@ class InterimReport < Report
   def locals
     InterimReportView.for(tour_hotel: @object)
   end
+
+  class Pdf < InterimReport
+    include PdfReport
+  end
 end
