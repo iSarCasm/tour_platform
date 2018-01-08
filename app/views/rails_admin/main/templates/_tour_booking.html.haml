@@ -45,8 +45,8 @@
         %h3.panel-title Payment details
       .panel-body
         .col-md-3
-          = render 'rails_admin/main/templates/shared/compact_field',
-            field: :total_cost, css: 'compact-2x'
+          = render 'rails_admin/main/templates/shared/read_only_field',
+            field: :total_cost
           = render 'rails_admin/main/templates/shared/compact_field',
             field: :agent_commission, css: 'compact-2x'
           = render 'rails_admin/main/templates/shared/compact_field',
@@ -58,7 +58,7 @@
             field: :deposit, css: 'compact-2x'
           = render 'rails_admin/main/templates/shared/compact_field',
             field: :paid, css: 'compact-2x'
-          = render 'rails_admin/main/templates/shared/compact_field',
-            field: :remaining, css: 'compact-2x'
+          = render 'rails_admin/main/templates/shared/read_only_field',
+            field: :remaining
           = render 'rails_admin/main/templates/shared/compact_field',
             field: :agent_paid, css: 'compact-2x'
