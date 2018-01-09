@@ -27,7 +27,7 @@
   </div>
   <p>Tour : <%= tour_ref %></p>
 
-  <% grouped_bookings.each do |g| %>
+  <% bookings_grouped_by_room_type.each do |g| %>
     <p>
       <strong><u>Room : <%= g[:type] %></u></strong>
     </p>
