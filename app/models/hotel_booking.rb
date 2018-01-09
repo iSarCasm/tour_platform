@@ -13,6 +13,11 @@ class HotelBooking < ApplicationRecord
   belongs_to :hotel_room, inverse_of: :hotel_bookings
   belongs_to :tour_booking, inverse_of: :hotel_bookings
 
+  has_many :hotel_option_hotel_bookings
+  has_many :hotel_options, through: :hotel_option_hotel_bookings, inverse_of: :hotel_booking
+  has_many :dining_option_hotel_bookings
+  has_many :dining_options, through: :dining_option_hotel_bookings, inverse_of: :hotel_booking
+
   validates :hotel_room, :tour_booking, presence: true
 
   validate :ensure_has_rooms, on: :create

@@ -15,7 +15,29 @@ RailsAdmin.config do |config|
   config.model CoachBooking do
     parent TourBooking
     list do
-      exclude_fields :created_at, :updated_at
+      field :tour_coach
+      field :tour_booking
+      field :seats
+      field :pickup_point
+      field :coach_options
+    end
+
+    edit do
+      field :tour_coach
+      field :tour_booking
+      field :seats
+      field :pickup_point
+      field :coach_options
+    end
+
+    show do
+      field :tour_coach
+      field :tour_booking
+      field :seats
+      field :pickup_point
+      field :coach_options
+      field :created_at
+      field :updated_at
     end
   end
 end
