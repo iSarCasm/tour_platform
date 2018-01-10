@@ -24,7 +24,31 @@ class PickupReportView
     end
 
     PickupPoint = Struct.new(:time, :address, :passengers)
-    Passenger   = Struct.new(:seat, :name, :number, :booking_ref, :pax_type, :requests_and_options)
+    Passenger = Struct.new(:tour_booking) do
+      def seat
+        tour_booking.coach_booking.seat_objects.map(&:number)
+      end
+
+      def name
+        tour_booking.user.full_name
+      end
+
+      def number
+        tour_booking.user.phone_mobile
+      end
+
+      def booking_ref
+        tour_booking.id
+      end
+
+      def pax_type
+        'TODO'
+      end
+
+      def requests_and_options
+        tour_booking.coach_booking.coach_options.pluck(:title).join(', ')
+      end
+    end
 
     def pickup_points(tour_coach)
       pickup_points = tour_coach.pickup_list&.pickup_points || []
@@ -34,9 +58,7 @@ class PickupReportView
         points << PickupPoint.new(
           tour_coach.departure_date.strftime('%H:%M'),
           point.address,
-          bookings.map do |booking|
-            Passenger.new(booking.coach_booking.seat_objects.map(&:number), booking.user.full_name, booking.user.phone_mobile, booking.id, 'missing', 'missing')
-          end
+          bookings.map { |booking| Passenger.new(booking) }
         )
       end
     end
