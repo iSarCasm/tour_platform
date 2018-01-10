@@ -27,9 +27,9 @@
   </div>
   <p>Tour : <%= tour_ref %></p>
 
-  <% bookings_grouped_by_room_type.each do |g| %>
+  <% bookings_grouped_by_room_type.each do |bookings_group| %>
     <p>
-      <strong><u>Room : <%= g[:type] %></u></strong>
+      <strong><u>Room : <%= bookings_group[:type] %></u></strong>
     </p>
     <table class="table table-sm">
       <thead>
@@ -42,14 +42,14 @@
         </tr>
       </thead>
       <tbody>
-        <% g[:bookings].each do |b| %>
+        <% bookings_group[:bookings].each do |booking| %>
           <div class="alwaysbreak"></div>
           <tr>
-            <td scope="col"><%= b.status %></td>
-            <td><%= b.tour_booking.username %></td>
-            <td><%= b.tour_booking.ref %></td>
-            <td><%= b.type %></td>
-            <td><%= b.requests %></td>
+            <td scope="col"><%= booking.status %></td>
+            <td><%= booking.username %></td>
+            <td><%= booking.ref %></td>
+            <td><%= booking.type %></td>
+            <td><%= booking.requests %></td>
           </tr>
         <% end %>
       </tbody>

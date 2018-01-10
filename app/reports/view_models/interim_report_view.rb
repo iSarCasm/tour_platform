@@ -1,4 +1,39 @@
 class InterimReportView
+  InterimReportBooking = Struct.new(:hotel_booking) do
+    def status
+      hotel_booking.status
+    end
+
+    def username
+      hotel_booking.tour_booking.username
+    end
+
+    def ref
+      hotel_booking.tour_booking.ref
+    end
+
+    def type
+      hotel_booking.type
+    end
+
+    def requests
+      requests = ''
+      requests << "#{hotel_options.pluck(:title).join(', ')}." if hotel_options.size > 0
+      requests << " #{dining_options.pluck(:title).join(', ')}." if dining_options.size > 0
+      requests
+    end
+
+    private
+
+    def dining_options
+      hotel_booking.dining_options
+    end
+
+    def hotel_options
+      hotel_booking.hotel_options
+    end
+  end
+
   class << self
     def for(tour_hotel:)
       {
@@ -29,7 +64,7 @@ class InterimReportView
           last_room_type = b.hotel_room.room_type
           bookings_grouped_by_room_type << { type: b.hotel_room.room_type, bookings: [] }
         end
-        bookings_grouped_by_room_type.last[:bookings] << b
+        bookings_grouped_by_room_type.last[:bookings] << InterimReportBooking.new(b)
       end
       bookings_grouped_by_room_type
     end

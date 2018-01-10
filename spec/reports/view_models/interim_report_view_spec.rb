@@ -17,38 +17,26 @@ describe InterimReportView do
       end
 
       context 'tour hotel with bunch of bookings' do
-        before do
-          tour_hotel = create :tour_hotel
-          @room_type_1 = create :room_type, room_type: 'Single'
-          @room_type_2 = create :room_type, room_type: 'Double'
-          hotel_room_1 = create(
-            :hotel_room,
-            tour_hotel: tour_hotel,
-            room_type: @room_type_1
-          )
-          hotel_room_2 = create(
-            :hotel_room,
-            tour_hotel: tour_hotel,
-            room_type: @room_type_2
-          )
-          @hotel_booking_1 = create :hotel_booking, hotel_room: hotel_room_1
-          @hotel_booking_2 = create :hotel_booking, hotel_room: hotel_room_1
-          @hotel_booking_3 = create :hotel_booking, hotel_room: hotel_room_2
-          @hotel_booking_4 = create :hotel_booking, hotel_room: hotel_room_2
-          @hotel_booking_5 = create :hotel_booking, hotel_room: hotel_room_2
-          @report_view = report(tour_hotel)
-        end
-
         it 'is an array of groups' do
-          expect(@report_view[:bookings_grouped_by_room_type]).to eq [
-            {
-              type: @room_type_1,
-              bookings: [@hotel_booking_1, @hotel_booking_2]
-            }, {
-              type: @room_type_2,
-              bookings: [@hotel_booking_3, @hotel_booking_4, @hotel_booking_5]
-            }
-          ]
+          tour_hotel = create :tour_hotel
+          room_type_1 = create :room_type, room_type: 'Single'
+          room_type_2 = create :room_type, room_type: 'Double'
+          hotel_room_1 = create :hotel_room, tour_hotel: tour_hotel, room_type: room_type_1
+          hotel_room_2 = create :hotel_room, tour_hotel: tour_hotel, room_type: room_type_2
+          hotel_booking_1 = create :hotel_booking, hotel_room: hotel_room_1
+          hotel_booking_2 = create :hotel_booking, hotel_room: hotel_room_1
+          hotel_booking_3 = create :hotel_booking, hotel_room: hotel_room_2
+          hotel_booking_4 = create :hotel_booking, hotel_room: hotel_room_2
+          hotel_booking_5 = create :hotel_booking, hotel_room: hotel_room_2
+          report_view = report(tour_hotel)
+
+          expect(report_view[:bookings_grouped_by_room_type][0][:type]).to eq room_type_1
+          expect(report_view[:bookings_grouped_by_room_type][0][:bookings][0].hotel_booking).to eq hotel_booking_1
+          expect(report_view[:bookings_grouped_by_room_type][0][:bookings][1].hotel_booking).to eq hotel_booking_2
+          expect(report_view[:bookings_grouped_by_room_type][1][:type]).to eq room_type_2
+          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][0].hotel_booking).to eq hotel_booking_3
+          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][1].hotel_booking).to eq hotel_booking_4
+          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][2].hotel_booking).to eq hotel_booking_5
         end
       end
     end

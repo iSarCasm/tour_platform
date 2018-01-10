@@ -67,15 +67,11 @@ class HotelBooking < ApplicationRecord
   end
 
   def status
-    'G'
+    'TODO'
   end
 
   def type
-    ''
-  end
-
-  def requests
-    ''
+    'TODO'
   end
 
   def ensure_has_rooms
