@@ -15,7 +15,7 @@ require 'rails_helper'
 describe Seatplan do
   before :each do
     @a = create :seat_type, char: 'a', is_seat: true
-    @plan = build :seatplan, plan: "aa_aa\naa_aa"
+    @plan = build :seatplan, plan: "aa_aa\r\naa_aa"
   end
 
   context 'validations' do

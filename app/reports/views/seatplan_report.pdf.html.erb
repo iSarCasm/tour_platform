@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <%= wicked_pdf_stylesheet_link_tag "bootstrap4.min.css" -%>
+  <style>
+    thead { display: table-header-group }
+    tfoot { display: table-row-group }
+    tr { page-break-inside: avoid }
+    table {
+      width: 100%;
+    }
+    td {
+      position: relative;
+      width: <%= 700.fdiv cols %>px;
+      height: 60px;
+      padding: 5px;
+      border: 1px solid black;
+    }
+    td.empty {
+      border: 0;
+    }
+    .seat_row {
+      font-weight: bold;
+      text-align: center;
+    }
+    .seat_number {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      margin: 0px;
+      padding: 0px;
+      text-align: right;
+      color: rgb(255, 0, 255);
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .nonseat {
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 18px;
+    }
+    .username {
+      font-size: 14px;
+      padding: 0px;
+      margin: 0px;
+      text-align: center;
+    }
+    .address {
+      font-size: 9px;
+      padding: 0px;
+      margin: 0px;
+      text-align: center;
+    }
+  </style>
+  <title>Seating Plan</title>
+</head>
+<body>
+  <p>
+    <small>
+      <em>Leisuretime, South Gate House, Wood Street, Cardiff, CF10 1EW</em>
+    </small>
+  </p>
+  <div class="text-center">
+    <h2 class="mb-0"><em>Seating Plan</em></h1>
+    <p class="mb-1" style="color:red;"><small>Including Provisional Bookings</small></p>
+    <p>
+      <strong><em>
+        Tour: <%= tour_id %> <%= tour_name %> - Departing on <%= departure_date %>
+      </em></strong>
+    </p>
+  </div>
+  <table>
+    <tbody>
+      <% number = 0 %>
+      <% rows.times do |row| %>
+        <tr>
+          <% cols.times do |col| %>
+            <% seat = get_seat.call(row + 1, col + 1) %>
+            <% seat_type = get_seat_type.call(seat) %>
+            <td class="<%= seat_type.to_s %>">
+              <% if seat_type == :empty && cols/2 == col %>
+                <p class="seat_row">
+                  Row <%= row + 1 %>
+                </p>
+              <% elsif seat_type == :nonseat %>
+                <p class="nonseat">
+                  <%= seat.name %>
+                </p>
+              <% elsif seat_type == :seat %>
+                <% number += 1 %>
+                <p class="seat_number">
+                  <%= number %>
+                </p>
+                <p class="username">
+                  <%= users[number] %>
+                </p>
+                <p class="address">
+                  <%= pickup_points[number] %>
+                </p>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="leftcol">
+        <p>
+          Passenger Summary
+        </p>
+      </div>
+      <div class="rightcol">
+        <p>
+          Action Checklist
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

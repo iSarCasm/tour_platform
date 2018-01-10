@@ -24,7 +24,8 @@ module RailsAdmin
             if report.inline?
               render  pdf: report.name,
                       file: report.layout,
-                      locals: report.locals
+                      locals: report.locals,
+                      show_as_html: params.key?('debug')
             else
               send_data report.data, filename: report.filename
             end

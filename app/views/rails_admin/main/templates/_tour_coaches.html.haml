@@ -56,6 +56,10 @@
       = link_to get_report_path(:tour_coach, @object, report: PickupReport[:xls]), class: 'btn btn-info', target: 'blank' do
         Pickup Report (.xls)
         %i.icon-print
+      %span{style: 'width: 20px;'}
+      = link_to get_report_path(:tour_coach, @object, report: SeatplanReport[:pdf]), class: 'btn btn-info', target: 'blank' do
+        Seating Plan Report
+        %i.icon-print
   %br
 
 .row
