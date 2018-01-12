@@ -11,7 +11,10 @@ class SeatplanReportView
         get_seat: get_seat(tour_coach),
         get_seat_type: get_seat_type(tour_coach),
         users: users(tour_coach),
-        pickup_points: pickup_points(tour_coach)
+        pickup_points: pickup_points(tour_coach),
+        adults: adults(tour_coach),
+        children: children(tour_coach),
+        total: total(tour_coach),
       }
     end
 
@@ -74,11 +77,25 @@ class SeatplanReportView
     end
 
     def seats(tour_coach)
-      tour_coach.coach_bookings.each.with_object([]) do |booking, seats|
+      tour_coach.coach_bookings.includes({tour_booking: [:user]}, :pickup_point).each.with_object([]) do |booking, seats|
         booking.seat_objects.each do |seat|
           seats[seat.number] = booking
         end
       end
+    end
+
+    def total(tour_coach)
+      adults(tour_coach) + children(tour_coach)
+    end
+
+    def adults(tour_coach)
+      TourBooking.joins(:coach_bookings).where(coach_bookings: { tour_coach: tour_coach }).sum(:adult) +
+        TourBooking.joins(:coach_bookings).where(coach_bookings: { tour_coach: tour_coach }).sum(:senior)
+    end
+
+    def children(tour_coach)
+      TourBooking.joins(:coach_bookings).where(coach_bookings: { tour_coach: tour_coach }).sum(:infant) +
+        TourBooking.joins(:coach_bookings).where(coach_bookings: { tour_coach: tour_coach }).sum(:child)
     end
   end
 end

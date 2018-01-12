@@ -25,7 +25,9 @@ module RailsAdmin
               render  pdf: report.name,
                       file: report.layout,
                       locals: report.locals,
-                      show_as_html: params.key?('debug')
+                      show_as_html: params.key?('debug'),
+                      disposition: params.key?('attachment') && 'attachment' || 'inline',
+                      footer: { right: 'Page [page]/[topage]' }
             else
               send_data report.data, filename: report.filename
             end
