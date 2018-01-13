@@ -19,24 +19,24 @@ describe InterimReportView do
       context 'tour hotel with bunch of bookings' do
         it 'is an array of groups' do
           tour_hotel = create :tour_hotel
-          room_type_1 = create :room_type, room_type: 'Single'
-          room_type_2 = create :room_type, room_type: 'Double'
-          hotel_room_1 = create :hotel_room, tour_hotel: tour_hotel, room_type: room_type_1
-          hotel_room_2 = create :hotel_room, tour_hotel: tour_hotel, room_type: room_type_2
-          hotel_booking_1 = create :hotel_booking, hotel_room: hotel_room_1
-          hotel_booking_2 = create :hotel_booking, hotel_room: hotel_room_1
-          hotel_booking_3 = create :hotel_booking, hotel_room: hotel_room_2
-          hotel_booking_4 = create :hotel_booking, hotel_room: hotel_room_2
-          hotel_booking_5 = create :hotel_booking, hotel_room: hotel_room_2
+          room_type1 = create :room_type, room_type: 'Single'
+          room_type2 = create :room_type, room_type: 'Double'
+          hotel_room1 = create :hotel_room, tour_hotel: tour_hotel, room_type: room_type1
+          hotel_room2 = create :hotel_room, tour_hotel: tour_hotel, room_type: room_type2
+          hotel_booking1 = create :hotel_booking, hotel_room: hotel_room1
+          hotel_booking2 = create :hotel_booking, hotel_room: hotel_room1
+          hotel_booking3 = create :hotel_booking, hotel_room: hotel_room2
+          hotel_booking4 = create :hotel_booking, hotel_room: hotel_room2
+          hotel_booking5 = create :hotel_booking, hotel_room: hotel_room2
           report_view = report(tour_hotel)
 
-          expect(report_view[:bookings_grouped_by_room_type][0][:type]).to eq room_type_1
-          expect(report_view[:bookings_grouped_by_room_type][0][:bookings][0].hotel_booking).to eq hotel_booking_1
-          expect(report_view[:bookings_grouped_by_room_type][0][:bookings][1].hotel_booking).to eq hotel_booking_2
-          expect(report_view[:bookings_grouped_by_room_type][1][:type]).to eq room_type_2
-          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][0].hotel_booking).to eq hotel_booking_3
-          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][1].hotel_booking).to eq hotel_booking_4
-          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][2].hotel_booking).to eq hotel_booking_5
+          expect(report_view[:bookings_grouped_by_room_type][0][:type]).to eq room_type1
+          expect(report_view[:bookings_grouped_by_room_type][0][:bookings][0].hotel_booking).to eq hotel_booking1
+          expect(report_view[:bookings_grouped_by_room_type][0][:bookings][1].hotel_booking).to eq hotel_booking2
+          expect(report_view[:bookings_grouped_by_room_type][1][:type]).to eq room_type2
+          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][0].hotel_booking).to eq hotel_booking3
+          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][1].hotel_booking).to eq hotel_booking4
+          expect(report_view[:bookings_grouped_by_room_type][1][:bookings][2].hotel_booking).to eq hotel_booking5
         end
       end
     end

@@ -4,9 +4,9 @@ module XlsReport
   end
 
   def write_content(book)
-    xls_view_name = self.class.to_s.gsub('::','') # Report::Xls => ReportXls
+    xls_view_name = self.class.to_s.gsub('::', '') # Report::Xls => ReportXls
     unless self.class.const_defined?(xls_view_name)
-      raise ArgumentError, "Could not find #{xls_view_name} for #{self.class.to_s}"
+      raise ArgumentError, "Could not find #{xls_view_name} for #{self.class}"
     end
     xls_view = self.class.const_get(xls_view_name)
     xls_view.new(locals).render(book)

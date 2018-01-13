@@ -9,7 +9,7 @@ class SeatplanReportView
         cols: cols(tour_coach),
         plan: plan(tour_coach),
         get_seat: get_seat(tour_coach),
-        get_seat_type: get_seat_type(tour_coach),
+        get_seat_type: get_seat_type,
         users: users(tour_coach),
         pickup_points: pickup_points(tour_coach),
         adults: adults(tour_coach),
@@ -48,7 +48,7 @@ class SeatplanReportView
       -> (row, col) { tour_coach.seatplan.get_seat(row, col) }
     end
 
-    def get_seat_type(tour_coach)
+    def get_seat_type
       Proc.new do |seat|
         if seat.char == '_'
           :empty
@@ -77,7 +77,8 @@ class SeatplanReportView
     end
 
     def seats(tour_coach)
-      tour_coach.coach_bookings.includes({ tour_booking: [:user] }, :pickup_point).each.with_object([]) do |booking, seats|
+      coach_bookings = tour_coach.coach_bookings.includes({ tour_booking: [:user] }, :pickup_point)
+      coach_bookings.each.with_object([]) do |booking, seats|
         booking.seat_objects.each do |seat|
           seats[seat.number] = booking
         end

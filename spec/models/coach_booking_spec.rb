@@ -66,16 +66,16 @@ describe CoachBooking do
       t_coach = build :tour_coach, seatplan: splan
       booking = build :coach_booking, tour_coach: t_coach, seats: ['1_2', '2_4']
 
-      seat_1 = Seat.new
-      seat_1.number = 2
-      seat_1.seat_type = a
-      seat_1.price = a.price
-      seat_2 = Seat.new
-      seat_2.number = 7
-      seat_2.seat_type = b
-      seat_2.price = b.price
-      expect(booking.seat_objects).to include(seat_1)
-      expect(booking.seat_objects).to include(seat_2)
+      seat1 = Seat.new
+      seat1.number = 2
+      seat1.seat_type = a
+      seat1.price = a.price
+      seat2 = Seat.new
+      seat2.number = 7
+      seat2.seat_type = b
+      seat2.price = b.price
+      expect(booking.seat_objects).to include(seat1)
+      expect(booking.seat_objects).to include(seat2)
     end
   end
 
