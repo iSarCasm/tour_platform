@@ -18,8 +18,8 @@ class InterimReportView
 
     def requests
       requests = ''
-      requests << "#{hotel_options.pluck(:title).join(', ')}." if hotel_options.size > 0
-      requests << " #{dining_options.pluck(:title).join(', ')}." if dining_options.size > 0
+      requests << "#{hotel_options.pluck(:title).join(', ')}." if !hotel_options.empty?
+      requests << " #{dining_options.pluck(:title).join(', ')}." if !dining_options.empty?
       requests
     end
 

@@ -5,11 +5,11 @@ class XlsView
     @locals = locals
   end
 
-  def method_missing(method, *args)
+  def method_missing(method, *_args)
     locals[method]
   end
 
-  def render(book)
-    raise StandardError, "Method #render not defined for #{self.class.to_s}"
+  def render(_book)
+    raise StandardError, "Method #render not defined for #{self.class}"
   end
 end

@@ -54,7 +54,7 @@ class PickupReportView
       pickup_points = tour_coach.pickup_list&.pickup_points || []
       pickup_points.each.with_object([]) do |point, points|
         bookings = TourBooking.joins(:coach_bookings)
-                              .where(coach_bookings: {pickup_point: point})
+                              .where(coach_bookings: { pickup_point: point })
         points << PickupPoint.new(
           tour_coach.departure_date.strftime('%H:%M'),
           point.address,

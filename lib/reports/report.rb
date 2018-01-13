@@ -21,7 +21,7 @@ class Report
       end
       include const_get(format_module_name)
     end
-    self.const_set(format.to_s.capitalize, format_class)
+    const_set(format.to_s.capitalize, format_class)
   end
 
   def initialize(object)

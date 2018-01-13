@@ -3,7 +3,7 @@ module Ext
     class NotesController < ApplicationController
       NOTEABLE_MODELS = [
         :Coach, :TourCoach, :Hotel, :TourHotel, :Ferry, :FerryDate, :User, :TourExcursion
-      ]
+      ].freeze
 
       def index
         authorize_admin! :access, :rails_admin

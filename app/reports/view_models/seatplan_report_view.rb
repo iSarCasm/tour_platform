@@ -77,7 +77,7 @@ class SeatplanReportView
     end
 
     def seats(tour_coach)
-      tour_coach.coach_bookings.includes({tour_booking: [:user]}, :pickup_point).each.with_object([]) do |booking, seats|
+      tour_coach.coach_bookings.includes({ tour_booking: [:user] }, :pickup_point).each.with_object([]) do |booking, seats|
         booking.seat_objects.each do |seat|
           seats[seat.number] = booking
         end
