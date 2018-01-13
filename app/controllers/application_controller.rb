@@ -7,5 +7,5 @@ class ApplicationController < ActionController::Base
   include DeviseSignOutRedirect
   include GuestUser
   include RedirectBack
-  include AdminCanCan  
+  include AdminCanCan
 end

@@ -8,9 +8,8 @@ module Ext
       def index
         authorize_admin! :access, :rails_admin
         authorize_admin! :read, noteable_type
-        @notes = Note
-                  .where('noteable_id = ?', params[:id])
-                  .where('noteable_type = ?', params[:noteable_type])
+        @notes = Note.where('noteable_id = ?', params[:id])
+                    .where('noteable_type = ?', params[:noteable_type])
       end
 
       def create

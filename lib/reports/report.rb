@@ -6,9 +6,9 @@ class Report
 
   def self.[](format)
     format = format.to_s
-    name = "#{self.to_s}::#{format.capitalize}"
+    name = "#{self}::#{format.capitalize}"
     unless const_defined?(name)
-      raise ArgumentError, "#{name} not found. Unknown format #{format} for report #{self.to_s}"
+      raise ArgumentError, "#{name} not found. Unknown format #{format} for report #{self}"
     end
     const_get(name)
   end
@@ -29,6 +29,6 @@ class Report
   end
 
   def inline?
-    raise StandardError, "#inline? not defined for #{self.class.to_s}"
+    raise StandardError, "#inline? not defined for #{self.class}"
   end
 end

@@ -26,3 +26,6 @@ Style/NumericPredicate:
 
 Style/Proc:
   Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
