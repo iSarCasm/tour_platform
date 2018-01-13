@@ -19,8 +19,8 @@ td.empty {
   position: absolute;
   top: 5px;
   right: 5px;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   text-align: right;
   color: rgb(255, 0, 255);
   font-size: 12px;
@@ -34,14 +34,14 @@ td.empty {
 }
 .username {
   font-size: 14px;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   text-align: center;
 }
 .address {
   font-size: 9px;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   text-align: center;
 }
 
