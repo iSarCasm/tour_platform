@@ -49,22 +49,18 @@ td.empty {
 
 .leftcol {
   float: left;
-  display: inline-block;
   width: 35%;
 }
 .rightcol {
   float: right;
-  display: inline-block;
   width: 65%;
 }
 .leftcol-50 {
   float: left;
-  display: inline-block;
   width: 50%;
 }
 .rightcol-50 {
   float: right;
-  display: inline-block;
   width: 50%;
 }
 .footer_header {
