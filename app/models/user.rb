@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                                :integer          not null, primary key
-#  name                              :string
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  email                             :string           default(""), not null
@@ -59,6 +58,14 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
   enum base_role: [:customer, :admin]
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def full_name
+    "#{title} #{name}"
+  end
 
   def total_spent
     tour_bookings.reduce(0) { |sum, t| sum + t.total_cost }

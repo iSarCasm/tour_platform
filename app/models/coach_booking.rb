@@ -16,6 +16,9 @@ class CoachBooking < ApplicationRecord
   belongs_to :tour_booking, inverse_of: :coach_bookings
   belongs_to :pickup_point, inverse_of: :coach_bookings
 
+  has_many :coach_option_coach_booking
+  has_many :coach_options, through: :coach_option_coach_booking, inverse_of: :coach_booking
+
   validates :tour_coach, :tour_booking, :seats, presence: true
 
   validate :ensure_has_seats, on: :create

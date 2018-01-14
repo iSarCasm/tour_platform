@@ -1,35 +1,36 @@
 require 'rails_helper'
 
-RSpec.describe '/admin/notes' do
+RSpec.describe 'ext/admin/notes' do
   include Devise::Test::IntegrationHelpers
 
   describe 'GET' do
     it 'returns all notes for specified noteable object in time order' do
-      Timecop.freeze Time.local(2008, 9, 1, 12, 0, 0)
       sign_in create(:superadmin)
       hotel = create :hotel
       other_hotel = create :hotel
       john = create(:user, first_name: 'John', last_name: 'Male')
       ferry = create(:user, first_name: 'Ferry', last_name: 'Brain')
+      Timecop.freeze Time.zone.parse("2014-10-19 1:00:00")
       note_1 = create :note, user: john, message: 'Hello, nice work!', object: hotel
+      Timecop.freeze Time.zone.parse("2014-10-19 1:00:01")
       note_2 = create :note, user: ferry, message: 'Thanks!', object: hotel
       create :note, user: ferry, message: 'Wow amazing!', object: other_hotel
 
-      get '/ext/admin/notes.json', params: { type: 'hotel', id: hotel.id }
+      get '/ext/admin/notes.json', params: { noteable_type: 'Hotel', id: hotel.id }
 
       expect(json_body['notes']).to match_array [
           {
             'id' => note_1.id,
             'user_name' => 'John Male',
             'message' => 'Hello, nice work!',
-            'created_at' => '2008-09-01T09:00:00.000Z',
+            'created_at' => '2014-10-19T01:00:00.000Z',
             'destroyable' => true
           },
           {
             'id' => note_2.id,
             'user_name' => 'Ferry Brain',
             'message' => 'Thanks!',
-            'created_at' => '2008-09-01T09:00:00.000Z',
+            'created_at' => '2014-10-19T01:00:01.000Z',
             'destroyable' => true
           }
         ]
@@ -47,6 +48,14 @@ RSpec.describe '/admin/notes' do
       get '/ext/admin/notes.json'
 
       expect(response.status).to eq 302
+    end
+
+    it 'allows only permitted noteable_types' do
+      sign_in create(:superadmin)
+
+      expect do
+        get '/ext/admin/notes.json', params: { noteable_type: 'Logger', id: 1 }
+      end.to raise_error ArgumentError
     end
   end
 
@@ -80,6 +89,20 @@ RSpec.describe '/admin/notes' do
 
       expect(response.status).to eq 302
       expect(Note.count).to eq 0
+    end
+
+    it 'allows only permitted noteable_types' do
+      sign_in create(:superadmin)
+
+      expect do
+        post '/ext/admin/notes.json', params: {
+          note: {
+              message: 'Hello everyone',
+              noteable_type: 'Logger',
+              noteable_id: 1
+            }
+          }
+      end.to raise_error ArgumentError
     end
   end
 

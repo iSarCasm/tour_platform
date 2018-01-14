@@ -1,6 +1,6 @@
-- for_field field do |field, f_css, id, label, value|
+- for_field field do |field, f_css, id, f_label, value|
   %div{class: "#{css rescue ''} #{f_css}", id: id}
     %p
-      %strong= label
+      %strong= label rescue f_label
       %br
       = value

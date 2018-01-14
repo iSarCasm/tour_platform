@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204200946) do
+ActiveRecord::Schema.define(version: 20180109184415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,21 @@ ActiveRecord::Schema.define(version: 20171204200946) do
     t.index ["tour_coach_id"], name: "index_coach_bookings_on_tour_coach_id"
   end
 
+  create_table "coach_option_coach_bookings", force: :cascade do |t|
+    t.bigint "coach_booking_id"
+    t.bigint "coach_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coach_booking_id"], name: "index_coach_option_coach_bookings_on_coach_booking_id"
+    t.index ["coach_option_id"], name: "index_coach_option_coach_bookings_on_coach_option_id"
+  end
+
+  create_table "coach_options", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "coaches", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -99,6 +114,21 @@ ActiveRecord::Schema.define(version: 20171204200946) do
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dining_option_hotel_bookings", force: :cascade do |t|
+    t.bigint "hotel_booking_id"
+    t.bigint "dining_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dining_option_id"], name: "index_dining_option_hotel_bookings_on_dining_option_id"
+    t.index ["hotel_booking_id"], name: "index_dining_option_hotel_bookings_on_hotel_booking_id"
+  end
+
+  create_table "dining_options", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -205,6 +235,21 @@ ActiveRecord::Schema.define(version: 20171204200946) do
     t.datetime "updated_at", null: false
     t.index ["facility_id"], name: "index_hotel_facilities_on_facility_id"
     t.index ["hotel_id"], name: "index_hotel_facilities_on_hotel_id"
+  end
+
+  create_table "hotel_option_hotel_bookings", force: :cascade do |t|
+    t.bigint "hotel_booking_id"
+    t.bigint "hotel_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hotel_booking_id"], name: "index_hotel_option_hotel_bookings_on_hotel_booking_id"
+    t.index ["hotel_option_id"], name: "index_hotel_option_hotel_bookings_on_hotel_option_id"
+  end
+
+  create_table "hotel_options", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hotel_rooms", force: :cascade do |t|
@@ -396,6 +441,12 @@ ActiveRecord::Schema.define(version: 20171204200946) do
     t.integer "child"
     t.integer "infant"
     t.integer "senior"
+    t.decimal "agent_commission", default: "0.0"
+    t.decimal "cost_commission", default: "0.0"
+    t.decimal "vat_rate", default: "0.0"
+    t.decimal "deposit", default: "0.0"
+    t.decimal "paid", default: "0.0"
+    t.boolean "agent_paid", default: false
     t.index ["active_tour_id"], name: "index_tour_bookings_on_active_tour_id"
     t.index ["user_id"], name: "index_tour_bookings_on_user_id"
   end
@@ -494,7 +545,6 @@ ActiveRecord::Schema.define(version: 20171204200946) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -566,7 +616,11 @@ ActiveRecord::Schema.define(version: 20171204200946) do
   add_foreign_key "coach_bookings", "pickup_points"
   add_foreign_key "coach_bookings", "tour_bookings"
   add_foreign_key "coach_bookings", "tour_coaches"
+  add_foreign_key "coach_option_coach_bookings", "coach_bookings"
+  add_foreign_key "coach_option_coach_bookings", "coach_options"
   add_foreign_key "coaches", "seatplans"
+  add_foreign_key "dining_option_hotel_bookings", "dining_options"
+  add_foreign_key "dining_option_hotel_bookings", "hotel_bookings"
   add_foreign_key "excursion_tours", "excursions"
   add_foreign_key "excursion_tours", "tours"
   add_foreign_key "ferry_amenities", "amenities"
@@ -579,6 +633,8 @@ ActiveRecord::Schema.define(version: 20171204200946) do
   add_foreign_key "hotel_bookings", "tour_bookings"
   add_foreign_key "hotel_facilities", "facilities"
   add_foreign_key "hotel_facilities", "hotels"
+  add_foreign_key "hotel_option_hotel_bookings", "hotel_bookings"
+  add_foreign_key "hotel_option_hotel_bookings", "hotel_options"
   add_foreign_key "hotel_rooms", "hotels"
   add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "hotels", "board_bases"

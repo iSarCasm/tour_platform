@@ -37,7 +37,7 @@ class Seatplan < ApplicationRecord
   end
 
   def total_rows
-    plan.split('').reduce(1) do |sum, c|
+    plan.gsub(/\r\n/, "\r").split('').reduce(1) do |sum, c|
       ["\n", "\r"].include?(c) ? sum + 1 : sum
     end
   end

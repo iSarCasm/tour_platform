@@ -13,7 +13,28 @@ RailsAdmin.config do |config|
   config.model HotelBooking do
     parent TourBooking
     list do
-      exclude_fields :created_at, :updated_at
+      field :tour_booking
+      field :hotel_room
+      field :hotel_options
+      field :dining_options
+      field :created_at
+      field :updated_at
+    end
+
+    show do
+      field :tour_booking
+      field :hotel_room
+      field :hotel_options
+      field :dining_options
+      field :created_at
+      field :updated_at
+    end
+
+    edit do
+      field :tour_booking
+      field :hotel_room
+      field :hotel_options
+      field :dining_options
     end
   end
 end

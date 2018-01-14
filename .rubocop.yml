@@ -23,3 +23,9 @@ Style/FrozenStringLiteralComment:
 
 Style/NumericPredicate:
   Enabled: false
+
+Style/Proc:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false

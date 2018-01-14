@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id                                :integer          not null, primary key
-#  name                              :string
 #  created_at                        :datetime         not null
 #  updated_at                        :datetime         not null
 #  email                             :string           default(""), not null
@@ -56,6 +55,22 @@ describe User do
     create :hotel_booking, hotel_room: hr, tour_booking: tb
   end
 
+  describe '#name' do
+    it 'concatenated #first_name and #last_name' do
+      user = create :user, first_name: 'Jake', last_name: 'Paul'
+
+      expect(user.name).to eq 'Jake Paul'
+    end
+  end
+
+  describe '#full_name' do
+    it 'returns name with title' do
+      user = create :user, first_name: 'Jake', last_name: 'Paul', title: 'Mr'
+
+      expect(user.full_name).to eq 'Mr Jake Paul'
+    end
+  end
+
   describe '#total_spent' do
     it 'returns all spendings of User' do
       user = create :user
@@ -64,7 +79,6 @@ describe User do
       expect(user.total_spent).to eq 150
     end
   end
-
 
   describe '#last_travelled' do
     it 'returns the Users tour booking with latest end date' do

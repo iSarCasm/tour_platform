@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <%= wicked_pdf_stylesheet_link_tag "bootstrap4.min.css" -%>
   <style>
-  thead { display: table-header-group }
-  tfoot { display: table-row-group }
-  tr { page-break-inside: avoid }
+    thead { display: table-header-group }
+    tfoot { display: table-row-group }
+    tr { page-break-inside: avoid }
   </style>
   <title>Interim Rooming List</title>
 </head>
@@ -27,9 +27,9 @@
   </div>
   <p>Tour : <%= tour_ref %></p>
 
-  <% grouped_bookings.each do |g| %>
+  <% bookings_grouped_by_room_type.each do |bookings_group| %>
     <p>
-      <strong><u>Room : <%= g[:type] %></u></strong>
+      <strong><u>Room : <%= bookings_group[:type] %></u></strong>
     </p>
     <table class="table table-sm">
       <thead>
@@ -42,14 +42,14 @@
         </tr>
       </thead>
       <tbody>
-        <% g[:bookings].each do |b| %>
+        <% bookings_group[:bookings].each do |booking| %>
           <div class="alwaysbreak"></div>
           <tr>
-            <td scope="col"><%= b.status %></td>
-            <td><%= b.tour_booking.username %></td>
-            <td><%= b.tour_booking.ref %></td>
-            <td><%= b.type %></td>
-            <td><%= b.requests %></td>
+            <td scope="col"><%= booking.status %></td>
+            <td><%= booking.username %></td>
+            <td><%= booking.ref %></td>
+            <td><%= booking.type %></td>
+            <td><%= booking.requests %></td>
           </tr>
         <% end %>
       </tbody>

@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index], path: '/'
   end
 
-  get 'tour_hotel/:id/interim_report', to: 'tour_hotel#interim_report', as: 'tour_hotel_interim_report'
-
   resources :tours, only: [:show] do
     member do
       get 'booking'

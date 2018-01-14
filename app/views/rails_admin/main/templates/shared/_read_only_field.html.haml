@@ -1,0 +1,4 @@
+%div#compact.form-group
+  %p
+    %label= field.to_s.split('_').join(' ').capitalize
+  = @object.send(field)

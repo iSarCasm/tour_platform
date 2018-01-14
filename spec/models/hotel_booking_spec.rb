@@ -22,7 +22,7 @@ describe HotelBooking do
 
   describe '#title' do
     it 'shows readable represenation' do
-      user = build :user, name: 'Jason'
+      user = build :user, first_name: 'Jason', last_name: 'Paul'
       tour_booking = build :tour_booking, user: user
 
       hotel = build :hotel, title: 'Big Pen'
@@ -38,7 +38,7 @@ describe HotelBooking do
       )
       hotel_booking = build :hotel_booking, hotel_room: hotel_room, tour_booking: tour_booking
 
-      expect(hotel_booking.title).to eq 'Jason -> Big Pen: Single [14 Jul 2017 - 28 Jul 2017]'
+      expect(hotel_booking.title).to eq 'Jason Paul -> Big Pen: Single [14 Jul 2017 - 28 Jul 2017]'
     end
   end
 

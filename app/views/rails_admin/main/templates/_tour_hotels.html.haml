@@ -39,12 +39,14 @@
     = render 'rails_admin/main/templates/shared/compact_field',
       field: :hotel_rooms_attributes
 
+- if @object.persisted?
+  .row
+    .col-md-10.col-md-offset-1.no-padding
+      = link_to get_report_path(:tour_hotel, @object, report: InterimReport[:pdf]), class: 'btn btn-info', target: 'blank'do
+        Show Interim Report
+        %i.icon-print
+  %br
+
 .row
   .col-md-5.col-md-offset-1
     = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
-
-.clearfix
-  - if @object.persisted?
-    = link_to get_report_path(:tour_hotel, @object), class: 'btn btn-info', target: 'blank'do
-      Show Interim Report
-      %i.icon-print

@@ -2,7 +2,7 @@
 - config_show_template fields
 
 .clearfix
-  = link_to get_report_path(:tour_hotel, @object), class: 'btn btn-info', target: 'blank' do
+  = link_to get_report_path(:tour_hotel, @object, report: InterimReport[:pdf]), class: 'btn btn-info', target: 'blank' do
     Show Interim Report
     %i.icon-print
   %br

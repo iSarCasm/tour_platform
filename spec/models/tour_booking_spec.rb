@@ -2,15 +2,21 @@
 #
 # Table name: tour_bookings
 #
-#  id             :integer          not null, primary key
-#  active_tour_id :integer
-#  user_id        :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  adult          :integer
-#  child          :integer
-#  infant         :integer
-#  senior         :integer
+#  id               :integer          not null, primary key
+#  active_tour_id   :integer
+#  user_id          :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  adult            :integer
+#  child            :integer
+#  infant           :integer
+#  senior           :integer
+#  agent_commission :decimal(, )      default(0.0)
+#  cost_commission  :decimal(, )      default(0.0)
+#  vat_rate         :decimal(, )      default(0.0)
+#  deposit          :decimal(, )      default(0.0)
+#  paid             :decimal(, )      default(0.0)
+#  agent_paid       :boolean          default(FALSE)
 #
 
 require 'rails_helper'
@@ -18,7 +24,7 @@ require 'rails_helper'
 describe TourBooking do
   describe '#title' do
     it 'shows readable represenation' do
-      user = build :user, name: 'Jason'
+      user = build :user, first_name: 'Jason', last_name: 'Paul'
       tour = build :tour, title: 'New tour'
       active_tour = build(:active_tour,
         tour: tour,
@@ -27,16 +33,16 @@ describe TourBooking do
       )
       tour_booking = build :tour_booking, active_tour: active_tour, user: user
 
-      expect(tour_booking.title).to eq 'Jason -> New tour [14 Jul 2017 - 28 Jul 2017]'
+      expect(tour_booking.title).to eq 'Jason Paul -> New tour [14 Jul 2017 - 28 Jul 2017]'
     end
   end
 
   describe '#username' do
     it 'returns User name' do
-      user = build :user, name: 'Jason'
+      user = build_stubbed :user, first_name: 'Jason', last_name: 'Paul'
       tour_booking = build :tour_booking, user: user
 
-      expect(tour_booking.username).to eq 'Jason'
+      expect(tour_booking.username).to eq 'Jason Paul'
     end
   end
 
@@ -89,6 +95,15 @@ describe TourBooking do
       hb = create :hotel_booking, hotel_room: hr, tour_booking: tb
 
       expect(tb.total_cost).to eq(35*2 + 30 + 5 + 40 + 20)
+    end
+  end
+
+  describe '#remaining' do
+    it 'returns how much if left to pay' do
+      allow_any_instance_of(TourBooking).to receive(:total_cost).and_return(250)
+      tb = build_stubbed(:tour_booking, paid: 30)
+
+      expect(tb.remaining).to eq 220
     end
   end
 

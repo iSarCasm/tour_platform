@@ -18,13 +18,19 @@ module RailsAdmin
 
         register_instance_option :controller do
           Proc.new do
-            # send_data InterimReport.new(tour_hotel: @object).generate,
-            #   filename: 'report.pdf',
-            #   type: 'application/pdf',
-            #   disposition: 'inline'
-            render  pdf: 'interim_rooming_list',
-                    file: "#{Rails.root}/app/reports/files/interim_rooming_list.pdf.html",
-                    locals: InterimReportView.for(tour_hotel: @object)
+            raise ArgumentError, 'Malicious code' unless params[:report] =~ /Report::/
+            report_class = params[:report].constantize
+            report = report_class.new(@object)
+            if report.inline?
+              render  pdf: report.name,
+                      file: report.layout,
+                      locals: report.locals,
+                      show_as_html: params.key?('debug'),
+                      disposition: params.key?('attachment') && 'attachment' || 'inline',
+                      footer: { right: 'Page [page]/[topage]' }
+            else
+              send_data report.data, filename: report.filename
+            end
           end
         end
       end

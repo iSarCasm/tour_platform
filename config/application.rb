@@ -29,5 +29,7 @@ module TourPlatform
     config.generators.system_tests = nil
 
     config.eager_load_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib', 'reports')
+    config.eager_load_paths << Rails.root.join('lib', 'reports', 'formats')
   end
 end

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .plan td {
+      position: relative;
+      width: <%= 700.fdiv cols %>px;
+      height: 60px;
+      padding: 5px;
+      border: 1px solid black;
+    }
+  </style>
+  <%= stylesheet_link_tag wicked_pdf_asset_base64('seatplan_report') %>
+  <%= wicked_pdf_stylesheet_link_tag "bootstrap4.min.css" -%>
+  <title>Seating Plan</title>
+</head>
+<body>
+  <p class="mt-0">
+    <small>
+      <em>Leisuretime, South Gate House, Wood Street, Cardiff, CF10 1EW</em>
+    </small>
+  </p>
+  <div class="text-center">
+    <h2 class="mb-0"><em>Seating Plan</em></h1>
+    <p class="mb-1" style="color:red;"><small>Including Provisional Bookings</small></p>
+    <p>
+      <strong><em>
+        Tour: <%= tour_id %> <%= tour_name %> - Departing on <%= departure_date %>
+      </em></strong>
+    </p>
+  </div>
+
+  <div class="plan">
+    <table>
+      <tbody>
+        <% number = 0 %>
+        <% rows.times do |row| %>
+          <tr>
+            <% cols.times do |col| %>
+              <% seat = get_seat.call(row + 1, col + 1) %>
+              <% seat_type = get_seat_type.call(seat) %>
+              <td class="<%= seat_type.to_s %>">
+                <% if seat_type == :empty && cols/2 == col %>
+                  <p class="seat_row">
+                    Row <%= row + 1 %>
+                  </p>
+                <% elsif seat_type == :nonseat %>
+                  <p>
+                    <%= seat.name %>
+                  </p>
+                <% elsif seat_type == :seat %>
+                  <% number += 1 %>
+                  <p class="seat_number">
+                    <%= number %>
+                  </p>
+                  <p class="username">
+                    <%= users[number] %>
+                  </p>
+                  <p class="address">
+                    <%= pickup_points[number] %>
+                  </p>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row mt-4 footer">
+    <div class="leftcol">
+      <p class="footer_header">
+        Passenger Summary
+      </p>
+      <table>
+        <tr>
+          <td>Adults:</td>
+          <td><%= adults %></td>
+        </tr>
+        <tr>
+          <td>OAP/Concessions:</td>
+          <td>TODO</td>
+        </tr>
+        <tr>
+          <td>Children:</td>
+          <td><%= children %></td>
+        </tr>
+        <tr>
+          <td>Special:</td>
+          <td>TODO</td>
+        </tr>
+        <tr class="totals-row">
+          <td>Total:</td>
+          <td><%= total %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="rightcol">
+      <p class="footer_header">
+        Action Checklist
+      </p>
+      <div class="leftcol-50">
+        <p>
+          Rooming List Sent <span class="placeholder"><span>
+        </p>
+        <p>
+          Rooming List Sent By <span class="placeholder"><span>
+        </p>
+      </div>
+      <div class="rightcol-50">
+        <p>
+          Tickets Sent <span class="placeholder"><span>
+        </p>
+        <p>
+          Tickets Sent By <span class="placeholder"><span>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

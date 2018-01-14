@@ -6,5 +6,6 @@ FactoryBot.define do
     child 0
     infant 0
     senior 0
+    paid 0
   end
 end
