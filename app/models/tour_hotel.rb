@@ -41,6 +41,12 @@ class TourHotel < ApplicationRecord
     hotel.photos
   end
 
+  def hotel_rooms_bookings
+    HotelBooking.left_outer_joins(:hotel_room)
+                .select("hotel_bookings.*, hotel_rooms.tour_hotel_id as tour_hotel_id")
+                .where("tour_hotel_id = ?", id)
+  end
+
   def hotel_rooms_count
     hotel_rooms.count
   end

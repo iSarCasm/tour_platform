@@ -31,6 +31,18 @@ describe TourHotel do
     end
   end
 
+  describe '#hotel_rooms_bookings' do
+    it 'returns all hotel bookings for all rooms of TourHotel' do
+      tour_hotel = create :tour_hotel
+      room1 = create :hotel_room, tour_hotel: tour_hotel
+      room2 = create :hotel_room, tour_hotel: tour_hotel
+      bookings1 = create_list :hotel_booking, 3, hotel_room: room1
+      bookings2 = create_list :hotel_booking, 2, hotel_room: room2
+
+      expect(tour_hotel.hotel_rooms_bookings.to_a).to match_array bookings1 + bookings2
+    end
+  end
+
   describe '#booking_period_fancy' do
     it 'retuns pretty booking period' do
       tour_hotel = build(:tour_hotel,

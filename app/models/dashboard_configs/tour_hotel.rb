@@ -85,6 +85,7 @@ RailsAdmin.config do |config|
           )
         end
       end
+      field :hotel_rooms_bookings
       field :notes
     end
 

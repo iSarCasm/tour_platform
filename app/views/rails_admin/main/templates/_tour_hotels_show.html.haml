@@ -1,10 +1,11 @@
 -# DO NOT REMOVE THAT LINE
 - config_show_template fields
 
-.clearfix
-  = link_to get_report_path(:tour_hotel, @object, report: InterimReport[:pdf]), class: 'btn btn-info', target: 'blank' do
-    Show Interim Report
-    %i.icon-print
+.row
+  .col-md-10.col-md-offset-1.no-padding
+    = link_to get_report_path(:tour_hotel, @object, report: InterimReport[:pdf]), class: 'btn btn-info', target: 'blank' do
+      Show Interim Report
+      %i.icon-print
   %br
   %br
 
@@ -52,3 +53,18 @@
 .row
   .col-md-5.col-md-offset-1.no-padding
     = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
+  .col-md-5{style: 'padding-right: 0;'}
+    .col-md-12.panel-padding
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title Statistics
+        .panel-body
+          - for_field :hotel_rooms_bookings do |field, f_css, id, f_label, value|
+            %div{class: "#{f_css}", id: id}
+              %p
+                %strong Bookings
+                %br
+                %div{style: 'max-height: 250px; overflow-y: auto;'}
+                  %ol
+                    - value.is_a?(Array) && value.each do |booking|
+                      %li= link_to booking.title, rails_admin.show_path(model_name: booking.class, id: booking.id)
