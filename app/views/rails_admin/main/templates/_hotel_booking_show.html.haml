@@ -1,0 +1,48 @@
+-# DO NOT REMOVE THAT LINE
+- config_show_template fields
+
+-# For field render you can use compact_render_field(field) or field.render
+.row
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Main
+      .panel-body
+        .row
+          .col-md-5
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :hotel_room_id
+          .col-md-5
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :tour_booking_id
+          .col-md-2
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :id
+
+.row
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Order details
+      .panel-body
+        .row
+          .col-md-6
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :dining_option_ids, css: 'compact-2x'
+          .col-md-6
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :hotel_option_ids, css: 'compact-2x'
+
+.row
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Timestamps
+      .panel-body
+        .row
+          .col-md-3
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :updated_at, css: 'compact-2x'
+          .col-md-3
+            = render 'rails_admin/main/templates/shared/field_show',
+              field: :created_at, css: 'compact-2x'

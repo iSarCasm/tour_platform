@@ -28,6 +28,14 @@ class HotelBooking < ApplicationRecord
     'New Hotel Booking'
   end
 
+  def hotel_room_title
+    hotel_room.title
+  end
+
+  def tour_booking_title
+    tour_booking.title
+  end
+
   def tour_hotel
     hotel_room.tour_hotel
   end

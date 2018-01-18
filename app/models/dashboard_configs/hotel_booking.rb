@@ -13,6 +13,7 @@ RailsAdmin.config do |config|
   config.model HotelBooking do
     parent TourBooking
     list do
+      field :id
       field :tour_booking
       field :hotel_room
       field :hotel_options
@@ -22,6 +23,8 @@ RailsAdmin.config do |config|
     end
 
     show do
+      set_template 'hotel_booking_show'
+      field :id
       field :tour_booking
       field :hotel_room
       field :hotel_options
@@ -29,6 +32,9 @@ RailsAdmin.config do |config|
       field :created_at
       field :updated_at
     end
+
+    create { set_template 'hotel_booking' }
+    update { set_template 'hotel_booking' }
 
     edit do
       field :tour_booking
