@@ -30,7 +30,6 @@ class TourCoach < ApplicationRecord
   has_many :notes, as: :noteable
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
-  accepts_nested_attributes_for :pickup_list
 
   validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
 

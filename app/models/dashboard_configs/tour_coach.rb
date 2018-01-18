@@ -111,6 +111,7 @@ RailsAdmin.config do |config|
       end
       field :pickup_list
       field :rate
+      field :coach_bookings
       field :created_at
       field :updated_at
     end
