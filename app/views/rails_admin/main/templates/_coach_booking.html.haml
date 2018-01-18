@@ -8,12 +8,20 @@
       .panel-heading
         %h3.panel-title Main
       .panel-body
-        .col-md-6
-          = render 'rails_admin/main/templates/shared/read_only_field',
-            field: :tour_coach_title
-        .col-md-6
-          = render 'rails_admin/main/templates/shared/read_only_field',
-            field: :tour_booking_title
+        - if @object.persisted?
+          .col-md-6
+            = render 'rails_admin/main/templates/shared/read_only_field',
+              field: :tour_coach_title
+          .col-md-6
+            = render 'rails_admin/main/templates/shared/read_only_field',
+              field: :tour_booking_title
+        - else
+          .col-md-6
+            = render 'rails_admin/main/templates/shared/compact_field',
+              field: :tour_coach_id
+          .col-md-6
+            = render 'rails_admin/main/templates/shared/compact_field',
+              field: :tour_booking_id
 
 .row
   .col-md-10.col-md-offset-1.panel-padding
