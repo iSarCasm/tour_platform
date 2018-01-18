@@ -1,0 +1,32 @@
+-# DO NOT REMOVE THAT LINE
+- config_template(fields, options)
+
+-# For field render you can use compact_render_field(field) or field.render
+.row
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Main
+      .panel-body
+        .col-md-6
+          = render 'rails_admin/main/templates/shared/read_only_field',
+            field: :tour_coach_title
+        .col-md-6
+          = render 'rails_admin/main/templates/shared/read_only_field',
+            field: :tour_booking_title
+
+.row
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Order details
+      .panel-body
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :seats
+        .col-md-4
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :pickup_point_id
+        .col-md-5
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :coach_option_ids

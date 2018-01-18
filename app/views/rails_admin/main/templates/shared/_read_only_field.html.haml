@@ -1,4 +1,4 @@
 %div#compact.form-group
-  %p
+  %p{style: 'margin-bottom:0;'}
     %label= field.to_s.split('_').join(' ').capitalize
   = @object.send(field)

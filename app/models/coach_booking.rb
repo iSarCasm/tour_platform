@@ -30,6 +30,14 @@ class CoachBooking < ApplicationRecord
     'New Coach Booking'
   end
 
+  def tour_coach_title
+    tour_coach.title
+  end
+
+  def tour_booking_title
+    tour_booking.title
+  end
+
   def seat_objects
     seats_array.map do |row_col|
       Seat.new(seatplan: seatplan, row_col: row_col, tour_coach: tour_coach)

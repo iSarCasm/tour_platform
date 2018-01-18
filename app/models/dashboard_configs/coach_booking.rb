@@ -15,6 +15,7 @@ RailsAdmin.config do |config|
   config.model CoachBooking do
     parent TourBooking
     list do
+      field :id
       field :tour_coach
       field :tour_booking
       field :seats
@@ -22,15 +23,22 @@ RailsAdmin.config do |config|
       field :coach_options
     end
 
+    create { set_template 'coach_booking' }
+    update { set_template 'coach_booking' }
+
     edit do
       field :tour_coach
       field :tour_booking
-      field :seats
+      field :seats do
+        html_attributes rows: 18, cols: 30
+      end
       field :pickup_point
       field :coach_options
     end
 
     show do
+      set_template 'coach_booking_show'
+      field :id
       field :tour_coach
       field :tour_booking
       field :seats
