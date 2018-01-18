@@ -51,9 +51,9 @@
             field: :hotel_rooms_attributes
 
 .row
-  .col-md-5.col-md-offset-1.no-padding
+  .col-md-4.col-md-offset-1.no-padding
     = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
-  .col-md-5{style: 'padding-right: 0;'}
+  .col-md-6{style: 'padding-right: 0;'}
     .col-md-12.panel-padding
       .panel.panel-default
         .panel-heading
@@ -66,5 +66,5 @@
                 %br
                 %div{style: 'max-height: 250px; overflow-y: auto;'}
                   %ol
-                    - value.is_a?(Array) && value.each do |booking|
+                    - !value.is_a?(String) && value.each do |booking|
                       %li= link_to booking.title, rails_admin.show_path(model_name: booking.class, id: booking.id)
