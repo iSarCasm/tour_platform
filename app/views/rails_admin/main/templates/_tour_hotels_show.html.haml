@@ -9,42 +9,46 @@
   %br
 
 .row
-  .col-md-10.col-md-offset-1
-    .row
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :hotel_id
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :active_tour_id
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :start_date
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :end_date
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Main
+      .panel-body
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :hotel_id
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :active_tour_id
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :start_date
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :end_date
 
 .row
-  .col-md-10.col-md-offset-1
-    .row
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :hotel_theme
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :board_basis_id
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :payment_type_id
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/field_show',
-          field: :finalisation_date
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Details
+      .panel-body
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :hotel_theme
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :board_basis_id
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :payment_type_id
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :finalisation_date
+        .col-md-12
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :hotel_rooms_attributes
 
 .row
-  .col-md-10.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/field_show',
-      field: :hotel_rooms_attributes
-
-.row
-  .col-md-5.col-md-offset-1
+  .col-md-5.col-md-offset-1.no-padding
     = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
