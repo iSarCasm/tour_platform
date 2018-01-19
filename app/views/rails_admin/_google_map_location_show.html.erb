@@ -1,9 +1,9 @@
 <%= value %>
 
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key %>&libraries=places&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=<%= google_api_key rescue Rails.application.secrets.google_api_key %>&libraries=places&callback=initMap">
 </script>
-<div class="ra-google-map-container" id="google_map" style="width:100%; min-height:350px"></div>
+<div class="ra-google-map-container" id="google_map" style="width: <%= w rescue '100%'%>; min-height:<%= h rescue '350px'%>"></div>
 
 <script type="text/javascript">
   var map = {};
@@ -18,7 +18,7 @@
     };
     map = new google.maps.Map(document.getElementById("google_map"), myOptions);
     var marker = new google.maps.Marker({
-      draggable: true,
+      draggable: false,
       position: new google.maps.LatLng(lat, lng),
       map: map
     });

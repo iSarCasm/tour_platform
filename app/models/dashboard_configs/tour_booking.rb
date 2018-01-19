@@ -53,6 +53,10 @@ RailsAdmin.config do |config|
       field :paid
       field :remaining
       field :agent_paid
+      field :coach_booking
+      field :hotel_bookings
+      field :created_at
+      field :updated_at
     end
 
     create { set_template 'tour_booking' }

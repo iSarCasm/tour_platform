@@ -39,6 +39,7 @@
             = render 'rails_admin/main/templates/shared/field_show',
               field: :child, css: 'compact-2x'
 
+
 .row
   .col-md-10.col-md-offset-1.panel-padding
     .panel.panel-default
@@ -64,3 +65,71 @@
               field: :remaining, css: 'compact-2x'
             = render 'rails_admin/main/templates/shared/field_show',
               field: :agent_paid, css: 'compact-2x'
+
+
+.row
+  .col-md-5.col-md-offset-1.panel-padding{style: 'padding-right: 7.5px;'}
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Hotel details
+      .panel-body
+        - @object.hotel_bookings.each do |hotel_booking|
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+              = hotel_booking.tour_hotel.title
+              = link_to rails_admin.show_path(model_name: hotel_booking.class, id: hotel_booking.id) do
+                %span.glyphicon.glyphicon-link
+            .panel-body
+              .row
+                .col-md-12
+                  = render 'rails_admin/main/templates/shared/virtual_field',
+                    label: 'Hotel room', value: hotel_booking.hotel_room.title
+                - if hotel_booking.hotel_options.count > 0
+                  .col-md-12
+                    = render 'rails_admin/main/templates/shared/virtual_field',
+                      label: 'Hotel options', value: hotel_booking.hotel_options.map(&:title).to_a.join(', ')
+                - if hotel_booking.dining_options.count > 0
+                  .col-md-12
+                    = render 'rails_admin/main/templates/shared/virtual_field',
+                      label: 'Dining options', value: hotel_booking.dining_options.map(&:title).to_a.join(', ')
+
+  - if @object.coach_booking
+    .col-md-5.panel-padding{style: 'padding-left: 7.5px;'}
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Coach details
+            = link_to rails_admin.show_path(model_name: @object.coach_booking.class, id: @object.coach_booking.id) do
+              %span.glyphicon.glyphicon-link
+        .panel-body
+          .row
+            .col-md-12
+              = render 'rails_admin/main/templates/shared/virtual_field',
+                label: 'Seats', value: @object.coach_booking.seats
+            .col-md-12
+              %p
+                %strong Pickup Point
+                %br
+                = render 'rails_admin/google_map_location_show',
+                  label: 'Pickup point',
+                  value: link_to(@object.coach_booking.pickup_point.address, rails_admin.show_path(model_name: @object.coach_booking.pickup_point.class, id: @object.coach_booking.pickup_point.id)),
+                  object: @object.coach_booking.pickup_point,
+                  w: '250px', h: '250px'
+            - if @object.coach_booking.coach_options.count > 0
+              .col-md-12
+                = render 'rails_admin/main/templates/shared/virtual_field',
+                  label: 'Coach options', value: @object.coach_booking.coach_options.map(&:title).to_a.join(',')
+
+.row
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Timestamps
+      .panel-body
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :updated_at
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/field_show',
+            field: :created_at
