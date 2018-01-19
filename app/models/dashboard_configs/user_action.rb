@@ -11,7 +11,8 @@
 #  updated_at       :datetime         not null
 #
 
-class UserAction < ApplicationRecord
-  belongs_to :user, inverse_of: :user_actions
-  belongs_to :subjectable, polymorphic: true
+RailsAdmin.config do |config|
+  config.model UserAction do
+    hide
+  end
 end

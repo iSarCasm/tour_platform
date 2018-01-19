@@ -52,6 +52,7 @@ class User < ApplicationRecord
   belongs_to :role, inverse_of: :users, optional: true
   belongs_to :gender, inverse_of: :users, optional: true
   has_many :notes, inverse_of: :user
+  has_many :user_actions, dependent: :destroy, inverse_of: :user
 
   validates :first_name, presence: true
   validates :last_name, presence: true

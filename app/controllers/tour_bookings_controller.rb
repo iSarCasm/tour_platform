@@ -6,6 +6,7 @@ class TourBookingsController < ApplicationController
   def create
     @tour_booking = current_user.tour_bookings.new(tour_booking_params)
     if @tour_booking.save
+      current_user.user_actions.create(action: 'Booked a new tour', subjectable: @tour_booking)
       flash[:notice] = 'Successfuly ordered a tour!'
       redirect_to @tour_booking
     else
@@ -25,6 +26,7 @@ class TourBookingsController < ApplicationController
 
   def destroy
     @tour_booking.destroy
+    current_user.user_actions.create(action: 'Canceled a tour')
     redirect_to root_url
   end
 

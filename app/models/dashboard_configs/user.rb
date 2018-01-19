@@ -111,6 +111,18 @@ RailsAdmin.config do |config|
       field :member_no
       field :total_spent
       field :created_at
+      field :user_actions do
+        pretty_value do
+          bindings[:view].render(
+            partial: 'rails_admin/table_show',
+            locals: {
+              objects: bindings[:object].user_actions,
+              table_headers: ['Action', 'Subject', 'Date'],
+              methods: [:action, :subjectable_id, :created_at]
+            }
+          )
+        end
+      end
       field :last_travelled do
         pretty_value do
           value&.active_tour_title
