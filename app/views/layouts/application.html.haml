@@ -9,6 +9,14 @@
 
     %link{:href => "https://fonts.googleapis.com/css?family=Roboto", :rel => "stylesheet"}/
 
+    -# Ga Tracking
+    %script{async: true, src: "https://www.googletagmanager.com/gtag/js?id=UA-112749520-1"}
+    :javascript
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-112749520-1');
+
     %script{async: true,
             defer: true,
             src: "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.secrets.google_api_key}&libraries=places"}
