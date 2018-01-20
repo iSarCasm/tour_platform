@@ -13,5 +13,5 @@
 
 class UserAction < ApplicationRecord
   belongs_to :user, inverse_of: :user_actions
-  belongs_to :subjectable, polymorphic: true
+  belongs_to :subjectable, polymorphic: true, optional: true
 end
