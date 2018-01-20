@@ -70,7 +70,7 @@ $(document).ready(function() {
         //update the counter
         $counter.text(sc.find('selected').length-1);
         //and total
-        $total.text(recalculateTotal(sc)-parseInt(this.data().price, 10));
+        $total.text("$" + (recalculateTotal(sc)-parseFloat(this.data().price, 10)).toFixed(2));
 
         //remove the item from our cart
         $('#cart-item-'+this.settings.id).remove();
