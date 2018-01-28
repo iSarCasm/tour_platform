@@ -1,5 +1,6 @@
 require 'colorize'
 require_relative 'seeds/permission_seed'
+require_relative 'seeds/settings_seed'
 
 begin
   puts 'Creating Roles...'
@@ -29,7 +30,7 @@ begin
   admin_2.role = admin
   admin_2.save!(validate: false)
 
-  users = User.create [
+  users = User.create! [
     { first_name: 'Jack', last_name: 'Peterson', email: 'jack014@gmail.com', password: '12341234' },
     { first_name: 'Lisa', last_name: 'Peterson', email: 'lisalol@mail.ru', password: '12341234' },
     { first_name: 'Anna', last_name: 'Peterson', email: 'annathebest@gmail.com', password: '12341234' },
@@ -44,7 +45,7 @@ end
 
 begin
   puts 'Creating Board bases...'
-  board_bases = BoardBasis.create [
+  board_bases = BoardBasis.create! [
     {title: 'All Inclusive'},
     {title: 'Full Board'},
     {title: 'Full Board Plus'},
@@ -62,7 +63,7 @@ end
 
 begin
   puts 'Creating Payment types...'
-  payments = PaymentType.create [
+  payments = PaymentType.create! [
     {payment_type: 'Credit invoice'},
     {payment_type: 'Pre-Pay'},
   ]
@@ -75,7 +76,7 @@ end
 
 begin
   puts 'Creating Room types...'
-  room_types = RoomType.create [
+  room_types = RoomType.create! [
     { room_type: 'Single', pax: 1, description: 'Single bed' },
     { room_type: 'Double', pax: 2, description: 'Double bed'},
     { room_type: 'Twin', pax: 2, description: 'Twin Room' },
@@ -90,7 +91,7 @@ end
 
 begin
   puts 'Creating Facilities...'
-  facilities = Facility.create [
+  facilities = Facility.create! [
     {facility: 'Wi-Fi'},
     {facility: 'Lift'},
     {facility: 'Balcony Rooms'}
@@ -104,7 +105,7 @@ end
 
 begin
   puts 'Create Coaches...'
-  coaches = Coach.create [
+  coaches = Coach.create! [
     {
       title: 'The Aerocoope',
       description: 'The Aerocoope is headquartered in Lisbon Airport, was established in April 1975 by people from the former Pan Am, with the aim of providing support services to air companies. Initially (between 1975 and 1991), this meant airline cabin crew transportation from airport to hotel and vice versa, which still exists.
@@ -125,7 +126,7 @@ end
 
 begin
   puts 'Create Hotels...'
-  hotels = Hotel.create [
+  hotels = Hotel.create! [
     {
       title: 'Sunningdale Park',
       description: 'Set in 65 acres of gardens and woodland, Sunningdale Park offers boutique-style bedrooms, each with a flat-screen LCD TV and a work desk. All rooms have a modern bathroom and tea/coffee making facilities. Free on-site parking and free WiFi is available.'
@@ -149,7 +150,7 @@ end
 
 begin
   puts 'Creating Tours...'
-  tours = Tour.create [
+  tours = Tour.create! [
     {
       title: 'Morocco Grand Tour',
       description: "<strong>Day 1: Meet you in the Casablanca airport and drive to Rabat (Riad Kalaa)</strong>
@@ -244,7 +245,7 @@ end
 
 begin
   puts 'Creating Active tours...'
-  active_tours = ActiveTour.create [
+  active_tours = ActiveTour.create! [
     { tour: tours[0], start_date: Time.now, end_date: Time.now + 15.days },
     { tour: tours[1], start_date: Time.now, end_date: Time.now + 9.days },
     { tour: tours[0], start_date: 17.days.from_now, end_date: 17.days.from_now + 15.days },
@@ -259,7 +260,7 @@ end
 
 begin
   puts 'Creating Tour coaches...'
-  tour_coaches = TourCoach.create [
+  tour_coaches = TourCoach.create! [
     { coach: coaches[0], active_tour: active_tours[0], departure_date: Time.now, arrival_date: Time.now + 15.days },
     { coach: coaches[1], active_tour: active_tours[1], departure_date: Time.now, arrival_date: Time.now + 9.days },
     { coach: coaches[2], active_tour: active_tours[2], departure_date: 17.days.from_now, arrival_date: 17.days.from_now + 15.days},
@@ -274,7 +275,7 @@ end
 
 begin
   puts 'Creating Tour hotels...'
-  tour_hotels = TourHotel.create [
+  tour_hotels = TourHotel.create! [
     { hotel: hotels[0], active_tour: active_tours[0], board_basis: board_bases[0], start_date: Time.now, end_date: Time.now + 15.days },
 
     { hotel: hotels[0], active_tour: active_tours[2], board_basis: board_bases[0], start_date: 17.days.from_now, end_date: 17.days.from_now + 15.days },
@@ -296,51 +297,51 @@ end
 
 begin
   puts 'Creating Hotel rooms...'
-  tour_hotels[0].hotel_rooms.create [
+  tour_hotels[0].hotel_rooms.create! [
     { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[1], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
     { room_type: room_types[2], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
     { room_type: room_types[3], amount: 5 },
   ]
 
-  tour_hotels[1].hotel_rooms.create [
+  tour_hotels[1].hotel_rooms.create! [
     { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[1], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
     { room_type: room_types[2], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
     { room_type: room_types[3], amount: 5, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
   ]
 
-  tour_hotels[2].hotel_rooms.create [
+  tour_hotels[2].hotel_rooms.create! [
     { room_type: room_types[0], amount: 55, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
     { room_type: room_types[1], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[3], amount: 25, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
-  tour_hotels[3].hotel_rooms.create [
+  tour_hotels[3].hotel_rooms.create! [
     { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[1], amount: 30, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
     { room_type: room_types[3], amount: 20, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
-  tour_hotels[4].hotel_rooms.create [
+  tour_hotels[4].hotel_rooms.create! [
     { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[1], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[3], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 }
   ]
 
-  tour_hotels[5].hotel_rooms.create [
+  tour_hotels[5].hotel_rooms.create! [
     { room_type: room_types[0], amount: 55, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
     { room_type: room_types[1], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[3], amount: 25, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
-  tour_hotels[6].hotel_rooms.create [
+  tour_hotels[6].hotel_rooms.create! [
     { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[1], amount: 30, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
     { room_type: room_types[3], amount: 20, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
-  tour_hotels[7].hotel_rooms.create [
+  tour_hotels[7].hotel_rooms.create! [
     { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
     { room_type: room_types[1], amount: 10, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
     { room_type: room_types[2], amount: 10, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
