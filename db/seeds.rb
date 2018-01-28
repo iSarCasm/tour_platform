@@ -1,3 +1,4 @@
+require 'colorize'
 require_relative 'seeds/permission_seed'
 
 begin
@@ -10,10 +11,10 @@ begin
     admin.permissions << Permission.find_by(subject_class: Permission.subject_classes[klass.to_s], action: Permission.actions['manage'])
   end
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Roles: #{Role.count}"
+  puts "Roles: #{Role.count}".colorize(:green)
 end
 
 begin
@@ -35,10 +36,10 @@ begin
     { name: 'Felix', email: 'felix@pewdiepie.com', password: '12341234' }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Users: #{User.count}"
+  puts "Users: #{User.count}".colorize(:green)
 end
 
 begin
@@ -53,10 +54,10 @@ begin
     {title: 'Room Only'}
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Board Bases: #{BoardBasis.count}"
+  puts "Board Bases: #{BoardBasis.count}".colorize(:green)
 end
 
 begin
@@ -66,10 +67,10 @@ begin
     {payment_type: 'Pre-Pay'},
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Payment types: #{PaymentType.count}"
+  puts "Payment types: #{PaymentType.count}".colorize(:green)
 end
 
 begin
@@ -81,10 +82,10 @@ begin
     { room_type: 'Triple', pax: 3, description: 'Triple Room' }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Room types: #{RoomType.count}"
+  puts "Room types: #{RoomType.count}".colorize(:green)
 end
 
 begin
@@ -95,10 +96,10 @@ begin
     {facility: 'Balcony Rooms'}
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Facilities: #{Facility.count}"
+  puts "Facilities: #{Facility.count}".colorize(:green)
 end
 
 
@@ -117,10 +118,10 @@ begin
     }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Coaches: #{Coach.count}"
+  puts "Coaches: #{Coach.count}".colorize(:green)
 end
 
 
@@ -142,10 +143,10 @@ begin
     }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Hotels: #{Hotel.count}"
+  puts "Hotels: #{Hotel.count}".colorize(:green)
 end
 
 begin
@@ -237,10 +238,10 @@ begin
     }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Tours: #{Tour.count}"
+  puts "Tours: #{Tour.count}".colorize(:green)
 end
 
 begin
@@ -252,10 +253,10 @@ begin
     { tour: tours[1], start_date: 23.days.from_now, end_date: 23.days.from_now + 9.days }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Tours: #{Tour.count}"
+  puts "Active tours: #{Tour.count}".colorize(:green)
 end
 
 begin
@@ -267,10 +268,10 @@ begin
     { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days, seats: 60 }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Tour coaches: #{TourCoach.count}"
+  puts "Tour coaches: #{TourCoach.count}".colorize(:green)
 end
 
 
@@ -290,10 +291,10 @@ begin
     { hotel: hotels[3], active_tour: active_tours[3], board_basis: board_bases[0], start_date: 23.days.from_now + 6.days, end_date: 23.days.from_now + 8.days }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Tour hotels: #{TourHotel.count}"
+  puts "Tour hotels: #{TourHotel.count}".colorize(:green)
 end
 
 begin
@@ -348,10 +349,10 @@ begin
     { room_type: room_types[2], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
   ]
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Hotel rooms: #{HotelRoom.count}"
+  puts "Hotel rooms: #{HotelRoom.count}".colorize(:green)
 end
 
 begin
@@ -380,8 +381,8 @@ begin
   b5.hotel_bookings.create(hotel_room: tour_hotels[6].hotel_rooms[2])
   b5.hotel_bookings.create(hotel_room: tour_hotels[7].hotel_rooms[2])
 rescue StandardError => exception
-  puts exception
-  puts exception.backtrace
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
-  puts "Bookings: #{TourBooking.count}"
+  puts "Bookings: #{TourBooking.count}".colorize(:green)
 end

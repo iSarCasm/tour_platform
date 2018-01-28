@@ -52,6 +52,9 @@ gem 'rails_admin_list_field', git: 'https://github.com/iSarCasm/rails_admin_list
 gem 'rails_admin_compact', '0.1.9', git: 'https://github.com/iSarCasm/rails_admin_compact'
 gem "rails_admin_import", "~> 2.1"
 
+# Logs
+gem 'colorize'
+
 group :development, :test do
   # Debug
   gem 'pry-byebug'
