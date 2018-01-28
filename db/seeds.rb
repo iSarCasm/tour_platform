@@ -19,12 +19,12 @@ end
 
 begin
   puts 'Creating Users...'
-  admin_1 = User.new(email: 'superadmin@etours.com', name: 'admin', password: 'admin')
+  admin_1 = User.new(email: 'superadmin@etours.com', first_name: 'admin', last_name: 'paul', password: 'admin')
   admin_1.base_role = :admin
   admin_1.role = superadmin
   admin_1.save!(validate: false)
 
-  admin_2 = User.new(email: 'admin@etours.com', name: 'admin', password: 'admin')
+  admin_2 = User.new(email: 'admin@etours.com', first_name: 'admin', last_name: 'paul', password: 'admin')
   admin_2.base_role = :admin
   admin_2.role = admin
   admin_2.save!(validate: false)
@@ -353,36 +353,4 @@ rescue StandardError => exception
   puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
 ensure
   puts "Hotel rooms: #{HotelRoom.count}".colorize(:green)
-end
-
-begin
-  puts 'Creating Bookings...'
-  b1 = users[0].tour_bookings.create(active_tour: active_tours[0])
-  b1.coach_bookings.create(tour_coach: tour_coaches[0], seats: 1)
-  b1.hotel_bookings.create(hotel_room: tour_hotels[0].hotel_rooms[0])
-
-  b2 = users[1].tour_bookings.create(active_tour: active_tours[0])
-  b2.coach_bookings.create(tour_coach: tour_coaches[0], seats: 2)
-  b2.hotel_bookings.create(hotel_room: tour_hotels[0].hotel_rooms[2])
-
-  b3 = users[2].tour_bookings.create(active_tour: active_tours[2])
-  b1.coach_bookings.create(tour_coach: tour_coaches[2], seats: 4)
-  b1.hotel_bookings.create(hotel_room: tour_hotels[1].hotel_rooms[0])
-
-  b4 = users[2].tour_bookings.create(active_tour: active_tours[1])
-  b4.coach_bookings.create(tour_coach: tour_coaches[1], seats: 1)
-  b4.hotel_bookings.create(hotel_room: tour_hotels[2].hotel_rooms[0])
-  b4.hotel_bookings.create(hotel_room: tour_hotels[3].hotel_rooms[0])
-  b4.hotel_bookings.create(hotel_room: tour_hotels[4].hotel_rooms[0])
-
-  b5 = users[3].tour_bookings.create(active_tour: active_tours[3])
-  b5.coach_bookings.create(tour_coach: tour_coaches[1], seats: 4)
-  b5.hotel_bookings.create(hotel_room: tour_hotels[5].hotel_rooms[2])
-  b5.hotel_bookings.create(hotel_room: tour_hotels[6].hotel_rooms[2])
-  b5.hotel_bookings.create(hotel_room: tour_hotels[7].hotel_rooms[2])
-rescue StandardError => exception
-  puts exception.to_s.colorize(:red)
-  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
-ensure
-  puts "Bookings: #{TourBooking.count}".colorize(:green)
 end
