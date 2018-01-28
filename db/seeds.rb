@@ -30,10 +30,10 @@ begin
   admin_2.save!(validate: false)
 
   users = User.create [
-    { name: 'Jack', email: 'jack014@gmail.com', password: '12341234' },
-    { name: 'Lisa', email: 'lisalol@mail.ru', password: '12341234' },
-    { name: 'Anna', email: 'annathebest@gmail.com', password: '12341234' },
-    { name: 'Felix', email: 'felix@pewdiepie.com', password: '12341234' }
+    { first_name: 'Jack', last_name: 'Peterson', email: 'jack014@gmail.com', password: '12341234' },
+    { first_name: 'Lisa', last_name: 'Peterson', email: 'lisalol@mail.ru', password: '12341234' },
+    { first_name: 'Anna', last_name: 'Peterson', email: 'annathebest@gmail.com', password: '12341234' },
+    { first_name: 'Felix', last_name: 'Peterson', email: 'felix@pewdiepie.com', password: '12341234' }
   ]
 rescue StandardError => exception
   puts exception.to_s.colorize(:red)
@@ -262,10 +262,10 @@ end
 begin
   puts 'Creating Tour coaches...'
   tour_coaches = TourCoach.create [
-    { coach: coaches[0], active_tour: active_tours[0], departure_date: Time.now, arrival_date: Time.now + 15.days, seats: 20 },
-    { coach: coaches[1], active_tour: active_tours[1], departure_date: Time.now, arrival_date: Time.now + 9.days, seats: 40 },
-    { coach: coaches[2], active_tour: active_tours[2], departure_date: 17.days.from_now, arrival_date: 17.days.from_now + 15.days, seats: 30 },
-    { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days, seats: 60 }
+    { coach: coaches[0], active_tour: active_tours[0], departure_date: Time.now, arrival_date: Time.now + 15.days },
+    { coach: coaches[1], active_tour: active_tours[1], departure_date: Time.now, arrival_date: Time.now + 9.days },
+    { coach: coaches[2], active_tour: active_tours[2], departure_date: 17.days.from_now, arrival_date: 17.days.from_now + 15.days},
+    { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days }
   ]
 rescue StandardError => exception
   puts exception.to_s.colorize(:red)
@@ -300,53 +300,53 @@ end
 begin
   puts 'Creating Hotel rooms...'
   tour_hotels[0].hotel_rooms.create [
-    { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[1], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
-    { room_type: room_types[2], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
+    { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[1], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
+    { room_type: room_types[2], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
     { room_type: room_types[3], amount: 5 },
   ]
 
   tour_hotels[1].hotel_rooms.create [
-    { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[1], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
-    { room_type: room_types[2], amount: 15, adult: 130, child: 120, infant: 110, senior: 110 },
-    { room_type: room_types[3], amount: 5, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
+    { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[1], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
+    { room_type: room_types[2], amount: 15, adult_buy: 130, adult_sell: 130, child_buy: 120, child_sell: 120, infant_buy: 110, infant_sell: 110, senior_buy: 110, senior_sell: 110 },
+    { room_type: room_types[3], amount: 5, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
   ]
 
   tour_hotels[2].hotel_rooms.create [
-    { room_type: room_types[0], amount: 55, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
-    { room_type: room_types[1], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[3], amount: 25, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
+    { room_type: room_types[0], amount: 55, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
+    { room_type: room_types[1], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[3], amount: 25, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
   tour_hotels[3].hotel_rooms.create [
-    { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[1], amount: 30, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
-    { room_type: room_types[3], amount: 20, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
+    { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[1], amount: 30, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
+    { room_type: room_types[3], amount: 20, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
   tour_hotels[4].hotel_rooms.create [
-    { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[1], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[3], amount: 10, adult: 200, child: 170, adult_supp: 10 }
+    { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[1], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[3], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 }
   ]
 
   tour_hotels[5].hotel_rooms.create [
-    { room_type: room_types[0], amount: 55, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
-    { room_type: room_types[1], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[3], amount: 25, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
+    { room_type: room_types[0], amount: 55, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
+    { room_type: room_types[1], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[3], amount: 25, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
   tour_hotels[6].hotel_rooms.create [
-    { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[1], amount: 30, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
-    { room_type: room_types[3], amount: 20, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
+    { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[1], amount: 30, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
+    { room_type: room_types[3], amount: 20, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 
   tour_hotels[7].hotel_rooms.create [
-    { room_type: room_types[0], amount: 10, adult: 200, child: 170, adult_supp: 10 },
-    { room_type: room_types[1], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 },
-    { room_type: room_types[2], amount: 10, adult: 100, child: 70, adult_supp: 5, child_supp: 5 }
+    { room_type: room_types[0], amount: 10, adult_buy: 200, adult_sell: 200, child_buy: 170, child_sell: 170, adult_supp: 10 },
+    { room_type: room_types[1], amount: 10, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 },
+    { room_type: room_types[2], amount: 10, adult_buy: 100, adult_sell: 100, child_buy: 70, child_sell: 70, adult_supp: 5 }
   ]
 rescue StandardError => exception
   puts exception.to_s.colorize(:red)
