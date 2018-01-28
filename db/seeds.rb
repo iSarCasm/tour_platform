@@ -102,7 +102,6 @@ ensure
   puts "Facilities: #{Facility.count}".colorize(:green)
 end
 
-
 begin
   puts 'Create Coaches...'
   coaches = Coach.create [
@@ -123,7 +122,6 @@ rescue StandardError => exception
 ensure
   puts "Coaches: #{Coach.count}".colorize(:green)
 end
-
 
 begin
   puts 'Create Hotels...'
@@ -273,7 +271,6 @@ rescue StandardError => exception
 ensure
   puts "Tour coaches: #{TourCoach.count}".colorize(:green)
 end
-
 
 begin
   puts 'Creating Tour hotels...'
