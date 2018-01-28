@@ -3,6 +3,7 @@
 [![Test Coverage](https://codeclimate.com/github/iSarCasm/tour_platform/badges/coverage.svg)](https://codeclimate.com/github/iSarCasm/todo_backend/tour_platform)
 [![Issue Count](https://codeclimate.com/github/iSarCasm/tour_platform/badges/issue_count.svg)](https://codeclimate.com/github/iSarCasm/tour_platform)
 
+# Travel CRM [WIP]
 
 # Installation!
 Install gem dependencies
