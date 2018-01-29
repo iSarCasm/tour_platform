@@ -1,3 +1,4 @@
+require 'faker'
 require 'colorize'
 require_relative 'seeds/permission_seed'
 require_relative 'seeds/settings_seed'
@@ -192,12 +193,129 @@ ensure
 end
 
 begin
+  puts 'Creating Seat Types...'
+  seat_types = SeatType.create! [
+    { name: 'Simple', price: 15, char: 'a', is_seat: true, color: '68b379' },
+    { name: 'Business', price: 20, char: 'b', is_seat: true, color: 'a19eff' },
+    { name: 'Last row', price: 10, char: 'c', is_seat: true, color: '9999ff' },
+    { name: 'Lux', price: 30, char: 'l', is_seat: true, color: '00aaaa' },
+    { name: 'WC', price: 0, char: 'w', is_seat: false, color: '949494' },
+    { name: 'Empty', price: 0, char: '_', is_seat: false }
+  ]
+rescue StandardError => exception
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
+ensure
+  puts "Seat Types: #{Seatplan.count}".colorize(:green)
+end
+
+begin
+  puts 'Creating Seatplans...'
+  seatplans = Seatplan.create! [
+    {
+      title: 'ABC',
+      description: 'Seatplan with seats of type A, B and C',
+      plan: "aa_aa\naa_aa\naa_aa\nbb_bb\nbb_ww\nbb_ww\nbb_bb\nbb_bb\nccccc"
+    },
+    {
+      title: 'LBC',
+      description: 'Seatplan with seats of type A, B and C',
+      plan: "ll_ll\nll_ll\nll_ll\nbb_bb\nbb_bb\nbb_ww\nbb_ww\nbb_bb\nbb_bb\nccccc"
+    }
+  ]
+rescue StandardError => exception
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
+ensure
+  puts "Seatplans: #{Seatplan.count}".colorize(:green)
+end
+
+begin
+  puts 'Creating Pickup Lists...'
+  pickup_lists = PickupList.create!([Hash.new, Hash.new])
+rescue StandardError => exception
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
+ensure
+  puts "Pickup Lists: #{PickupList.count}".colorize(:green)
+end
+
+begin
+  puts 'Creating Pickup Points...'
+  pickup_points = PickupPoint.create! [
+    {
+      address: Faker::Address.street_address,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude,
+      pickup_list: pickup_lists[0]
+    },
+    {
+      address: Faker::Address.street_address,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude,
+      pickup_list: pickup_lists[0]
+    },
+    {
+      address: Faker::Address.street_address,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude,
+      pickup_list: pickup_lists[0]
+    },
+    {
+      address: Faker::Address.street_address,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude,
+      pickup_list: pickup_lists[1]
+    },
+    {
+      address: Faker::Address.street_address,
+      latitude: Faker::Address.latitude,
+      longitude: Faker::Address.longitude,
+      pickup_list: pickup_lists[1]
+    },
+  ]
+rescue StandardError => exception
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
+ensure
+  puts "Pickup Points: #{PickupPoint.count}".colorize(:green)
+end
+
+begin
   puts 'Creating Tour coaches...'
   tour_coaches = TourCoach.create! [
-    { coach: coaches[0], active_tour: active_tours[0], departure_date: Time.now, arrival_date: Time.now + 15.days },
-    { coach: coaches[1], active_tour: active_tours[1], departure_date: Time.now, arrival_date: Time.now + 9.days },
-    { coach: coaches[2], active_tour: active_tours[2], departure_date: 17.days.from_now, arrival_date: 17.days.from_now + 15.days},
-    { coach: coaches[0], active_tour: active_tours[3], departure_date: 23.days.from_now, arrival_date: 23.days.from_now + 9.days }
+    {
+      coach: coaches[0],
+      active_tour: active_tours[0],
+      departure_date: Time.now,
+      arrival_date: Time.now + 15.days,
+      seatplan: seatplans[0],
+      pickup_list: pickup_lists[1]
+    },
+    {
+      coach: coaches[1],
+      active_tour: active_tours[1],
+      departure_date: Time.now,
+      arrival_date: Time.now + 9.days,
+      seatplan: seatplans[0],
+      pickup_list: pickup_lists[1]
+    },
+    {
+      coach: coaches[2],
+      active_tour: active_tours[2],
+      departure_date: 17.days.from_now,
+      arrival_date: 17.days.from_now + 15.days,
+      seatplan: seatplans[1],
+      pickup_list: pickup_lists[0]
+    },
+    {
+      coach: coaches[0],
+      active_tour: active_tours[3],
+      departure_date: 23.days.from_now,
+      arrival_date: 23.days.from_now + 9.days,
+      seatplan: seatplans[1],
+      pickup_list: pickup_lists[0]
+    }
   ]
 rescue StandardError => exception
   puts exception.to_s.colorize(:red)
