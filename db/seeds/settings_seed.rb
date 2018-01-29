@@ -115,3 +115,17 @@ rescue StandardError => exception
 ensure
   puts "Amenities: #{Amenity.count}".colorize(:green)
 end
+
+begin
+  puts 'Creating Tour Types...'
+  tour_types = TourType.create! [
+    { name: 'VIP' },
+    { name: 'Seasonal' },
+    { name: 'Nearby' }
+  ]
+rescue StandardError => exception
+  puts exception.to_s.colorize(:red)
+  puts exception.backtrace.find { |x| x =~ /seeds.rb/ }.to_s.colorize(:red)
+ensure
+  puts "Tour Types: #{TourType.count}".colorize(:green)
+end
