@@ -156,75 +156,8 @@ begin
       description: "<strong>Day 1: Meet you in the Casablanca airport and drive to Rabat (Riad Kalaa)</strong>
   <br>
   Upon arrival, we will greet you at the airport and drive to Casablanca and then to Rabat.  In Casablanca, you will visit the Hassan II Mosque, the largest outside of Mecca and experience the coastal `Cornish` seaside.  Afterwards, we will leave for Rabat, the capital of Morocco, where we will spend the night in a riad located in the middle of the medina of Rabat.
-  <br><br>
-  <strong>Day 2: Casablanca-Rabat_Chefchaouen (www.darechchchaouen.ma)-includes dinner and breakfast</strong>
-  <br>
-  After breakfast, we will visit the Hassan Tower in Rabat and then drive to Chefchaouen via the city of Knitra and the Rif Mountains, crossing via Wazzan and other Rif villages.  We will be in Chefchaouen by the early afternoon.
-  <br><br>
-  <strong>Day 3: Chefchaouen</strong>
-  <br>
-  An easy day in Chefchaoun to explore one of the most beautiful cities in Morocco, one of the stunning villages at the feet of the Rif mountains.  The
-  <br>
-  Chefchaouen medina had a Spanish-style square surrounded by many funky arts and crafts stores, roof-top restaurants and cafes where you will spend your night in a nice place to enjoy the breeze and the beauty of nature.
-  <br><br>
-  <strong>Day 4: Chefchaouen - Volubilis - Meknes - Fes</strong>
-  <br>
-  After your  breakfast in the riad, our exciting  journey will start towards Volubilis, crossing  via Wazan and other Rif villages. In Volubilis, we will visit the Roman ruins and learn about the archeological site and its Morrocan history.  After visiting the ruins, we will make our way to Meknes, a city with a 17th century heritage. We will stop here for lunch and hang out at the historical huge walls of the medina, Bab el Mansour and enjoy a visit to Moulay Ismail s shrine .
-  <br>
-  After the visit to Meknes  we will drive directly to Fes city, where you will spend the night.
-  <br><br>
-  <strong>Day 5: Fes Sightseeing</strong>
-  <br>
-  After breakfast in your riad, you will start exploring the oldest city in Morocco, walking in its alleys and small streets. Our visit starts by visiting the Royal Palace gate, the Jewish headquarters, the first Mellah ever built in Morocco, built during the 16th century. We will ensure that you visit all sites with a cultural and historical interest including the famous Al Qaraouine University, the oldest in the region, the Tanneries, the Attarine museum and Mulay Idriss mausoleum. After lunch, you will visit the tiles cooperative and then experience a wonderful panoramic view over the whole medina of Fes.
-  <br><br>
-  <strong>Day 6: Free morning in Fes and drive to Midelt in teh afternoon. ( Midelt is half way from Fes to Merzouga )</strong>
-  <br>
-  At mid-day, you will leave Fes travelling towards Ifran, a beautiful mountain village, referred to as `the Switzerland of Morocco` and then on to Midelt. During this journey you’ll experience glimpses of the Middle Atlas and Higher Atlas mountains. Stopping at Azrou, a Berber village in the middle of the famous cedar forest - the largest in Morocco – where you may well sight Barbary apes. After some time within the forest, your journey continues to Midelt along the magnificent hills and the Atlas mountains. In Midelt you will be accommodated in a luxurious hotel, Hotel Taddarte, dinner included
-  <br><br>
-  <strong>Day 7: Midelt - Ziz Valley - Erfoud - Merzouga. Camel ride and night in a camp.</strong>
-  <br>
-  After breakfast in your hotel, you will travel to Merzouga via Errachidia and Erfoud. You will be travelling through the fascinating Tiz Ntalghamt pass and the Ziz Gorge, taking in views of the High Atlas plateau. You’ll notice how the scenery changes to reveal hints of the desert as you approach the city of Errachidia, where you will have lunch and enjoy the Berber hospitality.  Afterwards, you will travel along the luxuriant Ziz Valley, stopping for panoramic views along the way to Erfoud and Rissani.  You will arrive at Merzouga in the afternoon. You’ll be welcomed with a glass of mint tea before you start your camel ride  to spend an overnight at the desert camp with Berber music and sand boarding.
-  <br><br>
-  <strong>Day 8: Merzouga - Ramlia village</strong>
-  <br>
-  The camel man will wake you up early in the morning to watch what well may be the best sunrise of your life. Afterwards, you’ll peacefully camel-trek back to your hotel, appreciating the unique beauty of the spectacular Erg Chebbi dunes – changing with the light as the day progresses. After breakfast and a shower, you’ll leave for Ramlia village, a remote village in the middle of desert. There you will meet the local people and experience the real rural Morocco, a very small oasis. You will have the chance to see the projects of Friends Of Nomads.
-  <br><br>
-  <strong>Day 9: Ramlia Village - Toudgha Gorges - Dades valley</strong>
-  <br>
-  After breakfast in the Aghbalou Ramlia guest house, we will drive off-road in the beautiful black desert crossing Berber oases of palm trees, mud houses, till we get to Alnif village, a place known for its fossil industry where we will have a stop for a drink, then continue our journey via the high Atlas mountains to see the stunning gorges of Todgha where springs of water runs between the rocks and enjoy the views of natural beauty. After the visit to the gorges, the trip continues through the magic mountains of the Dades Valley where we will end our day spending the night in a nice hotel located on the top of the mountain to enjoy an over view of the valley and the mountains.
-  <br><br>
-  <strong>Day 10: Dades valley -  Ouarzazette - Ait Ben Haddou kasbah - Marrakech</strong>
-  <br>
-  After breakfast in the hotel, you will travel through the Dades Valley towards Kalaa M'gouna and Ouarzazat. The route through Dades Valley is called, “the way of the thousand kasbahs” – providing numerous opportunities to take some of your best photographic shots of the trip in both the valley, famous for its roses and the cinema city of Ouarzazate.  We will  pass by Ait Ben Haddou Kasbah. the largest Kasbah in Morocco, built by T-hami El Glaoui, one of the last Berber chieftains.  During the beginning of the XXth Century, it used to be one of his stops during his long travels from the Sahara to Marrakech, now it is a UNESCO heritage site. After that, we will begin to cross the high Atlas mountains with many panoramic views and attractive Berber villages all along the way till marrakech
-  <br><br>
-  <strong>Day 11: Marrakech - Essaouira</strong>
-  <br>
-  The hustle and bustle of Marrakech quickly slips away as you travel to and enter into the peace and beauty that is Essaouira. This ancient citadel on the West Atlantic coast of Africa literally means “wall” in the Berber language, and you’ll soon discover why. Travelers from all over the world come here to experience the very special weather, and explore its diverse and unique history.
-  <br>
-  As we leave Marrakech, we drive through lush valleys filled with orange groves, ancient olive trees and working farms on the drive to the coast. After a short while, we arrive in Chichaoua, where we can take a short break for a coffee or snack at Cafe Afoulki.
-  <br>
-  Once you have had the chance to refuel a bit, we will continue on, soon coming upon our first signs of the Argan trees. These special trees are valued for their nutritive, cosmetic and numerous medicinal properties. The tree, a relic species from the Tertiary age, is extremely well adapted to drought and other environmentally difficult conditions of southwestern Morocco, and because they are now endangered, they are under the protection of UNESCO.
-  <br>
-  After all of your morning travels, you arrive in Essouira, where you have the chance to wander the ancient streets and can imagine what life existed here in the past. The streets have a genuinely Portuguese feel, after they renamed the city in the 16th century and used it as a port city of their own. Here you can dine on fish straight out of the sea at any number of local restaurants, and can even have a camel ride on the beach, if you want!
-  <br><br>
-  <strong>Day 12: Essaouira - Marrakech</strong>
-  <br>
-  After breakfast in your riad, depart back to  Marrakech. On our way - since this is the land of Argan culture - this is an opportunity to visit the women's co-operative of Argan oil where they extract the oil that is famous for its culinary, cosmetic and medicinal properties.  After several stops to take photographs, you will continue your travel to Marrakech and check-in to your riad.
-  <br>
-  After dinner you will enjoy walking within the famous square of Jemaa Elfna, entertained by magicians, story tellers, musicians and snake charmers. Overnight in a riad in the Medina.
-  <br><br>
-  <strong>Day 13: Marrakech Sightseeing</strong>
-  <br>
-  After breakfast in the riad , you can start exploring Marrakech  `the red city of Morocco`.  We will ensure that you see the most important sites of historical and cultural interest, including the Majorelle Gardens, the Koutoubia Tower, the Saadian tombs, the Bahia Palace. After lunch at a restaurant near the square, you will walk through the souks and view hundreds of handicrafts. In the afternoon, you will have some free time to wander by yourself through the other parts of the city .
-  <br><br>
-  <strong>Day 14: Free day in Marrakech</strong>
-  <br>
-  Today you will be on your own and if you would like to have a cooking class, Roughtours Team will help to arrange it for you.
-  <br><br>
-  <strong>Day 15: Transfer to the airport</strong>
-  <br>
-  We will drive you to the airport and provide assistance."
-    }, {
+  <br><br>"
+  }, {
       title: 'Iceland Discovery',
       description: 'Highlights
   <ul>
