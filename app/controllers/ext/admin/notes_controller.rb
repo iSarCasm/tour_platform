@@ -5,6 +5,10 @@ module Ext
         :Coach, :TourCoach, :Hotel, :TourHotel, :Ferry, :FerryDate, :User, :TourExcursion
       ].freeze
 
+      rescue_from StandardError do |e|
+        render json: { error: e.to_s }, status: 422
+      end
+
       def index
         authorize_admin! :access, :rails_admin
         authorize_admin! :read, noteable_type

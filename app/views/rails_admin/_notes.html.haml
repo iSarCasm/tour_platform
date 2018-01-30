@@ -57,6 +57,16 @@
     $('#no-notes-text').show();
   }
 
+  function setErrorMessage(msg) {
+    $('#notes-error-msg').show();
+    $('#notes-error-msg > span').text('Error occured. ' + msg);
+  }
+
+  function clearErrorMessage(msg) {
+    $('#notes-error-msg').hide();
+    $('#notes-error-msg > span').text('');
+  }
+
   function deleteNote(note_id) {
     $.ajax({
       type: 'DELETE',
@@ -76,6 +86,10 @@
       data: {note: {message: message, noteable_type: '#{type}', noteable_id: '#{id}'}},
       success: function(data) {
         InitNotes();
+        clearErrorMessage();
+      },
+      error: function(data) {
+        setErrorMessage(data.responseJSON.error);
       }
     })
   }
@@ -89,6 +103,8 @@
     .row
       .col-md-12
         %span#no-notes-text No notes yet.
+        %div#notes-error-msg.alert.alert-danger.alert-sm{style: 'display: none'}
+          %span
         %ul#notes-body.text-left{style: 'list-style: none; padding-left: 0px;'}
         %div.form-vertical.text-left#note-send-form
           %textarea.form-control#note-message{rows: 3, style: 'width:100%; margin-top: 10px; margin-bottom: 10px;'}
