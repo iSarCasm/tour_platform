@@ -52,7 +52,6 @@ RailsAdmin.config do |config|
       end
       field :excursions
       field :itinerary
-      field :important_notes
       field :tour_memo
       field :active_tours do
         eager_load true
@@ -83,7 +82,6 @@ RailsAdmin.config do |config|
       end
       field :excursions
       field :itinerary
-      field :important_notes
       field :tour_memo
       field :active_tours do
         eager_load true
@@ -110,7 +108,6 @@ RailsAdmin.config do |config|
       field :insurance_allowed
       field :excursions
       field :itinerary
-      field :important_notes
       field :tour_memo
       field :active_tours do
         eager_load true

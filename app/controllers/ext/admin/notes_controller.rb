@@ -2,7 +2,7 @@ module Ext
   module Admin
     class NotesController < ApplicationController
       NOTEABLE_MODELS = [
-        :Coach, :TourCoach, :Hotel, :TourHotel, :Ferry, :FerryDate, :User, :TourExcursion
+        :Tour, :Coach, :TourCoach, :Hotel, :TourHotel, :Ferry, :FerryDate, :User, :TourExcursion
       ].freeze
 
       rescue_from StandardError do |e|

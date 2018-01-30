@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119142439) do
+ActiveRecord::Schema.define(version: 20180130183722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -532,7 +532,6 @@ ActiveRecord::Schema.define(version: 20180119142439) do
     t.bigint "tour_type_id"
     t.bigint "country_id"
     t.text "itinerary"
-    t.text "important_notes"
     t.text "tour_memo"
     t.decimal "other_costs"
     t.boolean "self_drive"
