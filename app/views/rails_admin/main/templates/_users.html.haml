@@ -96,6 +96,7 @@
             = render 'rails_admin/main/templates/shared/compact_field',
               field: :client_unsuitable_for_travel
 
-.row
-  .col-md-5.col-md-offset-1.no-padding
-    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
+- if @object.persisted?
+  .row
+    .col-md-5.col-md-offset-1.no-padding
+      = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id

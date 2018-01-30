@@ -42,6 +42,7 @@
           %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :child_buy
           %td= render 'rails_admin/main/templates/shared/number_field_in_table', field: :child_sell
 
-.row
-  .col-md-5.col-md-offset-1
-    = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
+- if @object.persisted?
+  .row
+    .col-md-5.col-md-offset-1
+      = render 'rails_admin/notes', type: @object.class.to_s, id: @object.id
