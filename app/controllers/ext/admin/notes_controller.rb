@@ -19,7 +19,7 @@ module Ext
       def create
         authorize_admin! :access, :rails_admin
         authorize_admin! :read, note_noteable_type
-        current_user.notes.create(note_params)
+        current_user.notes.create!(note_params)
         render plain: 'Success!'
       end
 
