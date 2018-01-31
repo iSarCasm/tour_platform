@@ -18,12 +18,10 @@
 class TourHotel < ApplicationRecord
   has_many :hotel_rooms, dependent: :destroy, inverse_of: :tour_hotel
   belongs_to :hotel, inverse_of: :tour_hotels
-  belongs_to :active_tour, inverse_of: :tour_hotels
+  belongs_to :active_tour, inverse_of: :tour_hotels, optional: true
   belongs_to :board_basis, inverse_of: :tour_hotels, optional: true
   belongs_to :payment_type, inverse_of: :tour_hotels, optional: true
   has_many :notes, as: :noteable
-
-  validates :hotel, :active_tour, presence: true
 
   accepts_nested_attributes_for :hotel_rooms, allow_destroy: true
 

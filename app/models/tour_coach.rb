@@ -19,7 +19,7 @@
 
 class TourCoach < ApplicationRecord
   belongs_to :coach, inverse_of: :tour_coaches
-  belongs_to :active_tour, inverse_of: :tour_coaches
+  belongs_to :active_tour, inverse_of: :tour_coaches, optional: true
   belongs_to :seatplan, inverse_of: :tour_coaches
   belongs_to :pickup_list, inverse_of: :tour_coach, optional: true
 
@@ -31,7 +31,7 @@ class TourCoach < ApplicationRecord
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
 
-  validates :coach, :active_tour, :departure_date, :arrival_date, :seatplan, presence: true
+  validates :departure_date, :arrival_date, :seatplan, presence: true
 
   def title
     "#{coach.title} " \
@@ -50,7 +50,7 @@ class TourCoach < ApplicationRecord
   end
 
   def seats
-    seatplan&.total_seats || 0 # TODO: remove later (only appeared with invalid models)
+    seatplan&.total_seats
   end
 
   def seats_left
@@ -58,7 +58,7 @@ class TourCoach < ApplicationRecord
   end
 
   def available?
-    seats_left > 0 && !pickup_list.nil? # TODO: remove later (only appeared with invalid models)
+    seats_left > 0 && !pickup_list.nil?
   end
 
   def seat_types

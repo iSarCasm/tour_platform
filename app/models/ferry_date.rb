@@ -19,5 +19,5 @@ class FerryDate < ApplicationRecord
   has_many :notes, as: :noteable
 
   belongs_to :ferry
-  belongs_to :active_tour, inverse_of: :ferry_dates
+  belongs_to :active_tour, inverse_of: :ferry_dates, optional: true
 end
