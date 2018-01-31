@@ -53,9 +53,9 @@ RSpec.describe 'ext/admin/notes' do
     it 'allows only permitted noteable_types' do
       sign_in create(:superadmin)
 
-      expect do
-        get '/ext/admin/notes.json', params: { noteable_type: 'Logger', id: 1 }
-      end.to raise_error ArgumentError
+      get '/ext/admin/notes.json', params: { noteable_type: 'Logger', id: 1 }
+
+      expect(response.status).to eq 422
     end
   end
 
@@ -94,15 +94,15 @@ RSpec.describe 'ext/admin/notes' do
     it 'allows only permitted noteable_types' do
       sign_in create(:superadmin)
 
-      expect do
-        post '/ext/admin/notes.json', params: {
-          note: {
-              message: 'Hello everyone',
-              noteable_type: 'Logger',
-              noteable_id: 1
-            }
-          }
-      end.to raise_error ArgumentError
+      post '/ext/admin/notes.json', params: {
+        note: {
+          message: 'Hello everyone',
+          noteable_type: 'Logger',
+          noteable_id: 1
+        }
+      }
+
+      expect(response.status).to eq 422
     end
   end
 

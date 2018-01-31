@@ -5,7 +5,7 @@ module Ext
         :Tour, :Coach, :TourCoach, :Hotel, :TourHotel, :Ferry, :FerryDate, :User, :TourExcursion
       ].freeze
 
-      rescue_from StandardError do |e|
+      rescue_from ArgumentError do |e|
         render json: { error: e.to_s }, status: 422
       end
 
