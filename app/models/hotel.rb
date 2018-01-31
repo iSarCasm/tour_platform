@@ -23,7 +23,7 @@ class Hotel < ApplicationRecord
   has_many :tour_hotels, dependent: :destroy, inverse_of: :hotel
   has_many :hotel_facilities, dependent: :destroy
   has_many :facilities, through: :hotel_facilities
-  has_many :photos, as: :photoable, class_name: 'Photo'
+  has_many :photos, as: :photoable, class_name: 'Photo', inverse_of: :photoable
   has_many :notes, as: :noteable
 
   # Defaults

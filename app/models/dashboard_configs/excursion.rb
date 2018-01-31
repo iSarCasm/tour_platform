@@ -12,5 +12,10 @@
 RailsAdmin.config do |config|
   config.model Excursion do
     weight 50
+
+    edit do
+      field :title
+      field :description
+    end
   end
 end

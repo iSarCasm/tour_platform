@@ -27,7 +27,7 @@
 #
 
 class TicketOperator < ApplicationRecord
-  has_many :photos, as: :photoable, class_name: 'Photo'
+  has_many :photos, as: :photoable, class_name: 'Photo', inverse_of: :photoable
   accepts_nested_attributes_for :photos, allow_destroy: true
 
   validates :title, presence: true

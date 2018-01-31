@@ -20,7 +20,7 @@
 
 class Coach < ApplicationRecord
   has_many :tour_coaches, dependent: :destroy, inverse_of: :coach
-  has_many :photos, as: :photoable, class_name: 'Photo'
+  has_many :photos, as: :photoable, class_name: 'Photo', inverse_of: :photoable
   has_many :notes, as: :noteable
   # Defaults
   belongs_to :seatplan, inverse_of: :coaches, optional: true

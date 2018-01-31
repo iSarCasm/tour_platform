@@ -11,7 +11,7 @@
 #
 
 class Photo < ApplicationRecord
-  belongs_to :photoable, polymorphic: true
+  belongs_to :photoable, polymorphic: true, inverse_of: :photos
 
   mount_uploader :photo, PhotosUploader
 
