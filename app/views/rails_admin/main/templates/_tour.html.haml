@@ -3,46 +3,49 @@
 
 -# For field render you can use compact_render_field(field) or field.render
 .row
-  .col-md-10.col-md-offset-1
-    .row
-      .col-md-4
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :title
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :description
-      .col-md-3
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :tour_type_id
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :country_id
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :allow_external_agents
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :insurance_allowed
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :allow_deposits
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :self_drive
-      .col-md-5
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :category_ids
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :other_costs
-        = render 'rails_admin/main/templates/shared/compact_field',
-          field: :itinerary
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Main
+      .panel-body
+        .col-md-4
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :title
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :description
+        .col-md-3
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :tour_type_id
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :country_id
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :allow_external_agents
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :insurance_allowed
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :allow_deposits
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :self_drive
+        .col-md-5
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :category_ids
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :other_costs
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :itinerary
 
 .row
-  .col-md-4.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :excursion_ids
-  .col-md-4
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :tour_memo
-
-.row
-  .col-md-11.col-md-offset-1
-    = render 'rails_admin/main/templates/shared/compact_field',
-      field: :active_tours_attributes, id_prefix: 'tour_'
+  .col-md-10.col-md-offset-1.panel-padding
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Details
+      .panel-body
+        .col-md-5
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :excursion_ids
+        .col-md-5
+          = render 'rails_admin/main/templates/shared/compact_field',
+            field: :tour_memo
 
 - if @object.persisted?
   .row

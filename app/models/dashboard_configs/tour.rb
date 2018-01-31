@@ -53,9 +53,6 @@ RailsAdmin.config do |config|
       field :excursions
       field :itinerary
       field :tour_memo
-      field :active_tours do
-        eager_load true
-      end
     end
 
     list do
