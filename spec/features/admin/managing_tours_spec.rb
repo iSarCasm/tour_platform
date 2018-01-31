@@ -55,7 +55,6 @@ describe 'Managing Tours', type: :feature do
         expect(page).to have_content 'Default insurance allowed'
         expect(page).to have_content 'Excursions'
         expect(page).to have_content 'Itinerary'
-        expect(page).to have_content 'Important notes'
         expect(page).to have_content 'Tour memo'
 
         fill_in 'tour[title]', with: 'CRazY ToUr'
