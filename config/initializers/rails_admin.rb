@@ -1,6 +1,7 @@
 require Rails.root.join('lib', 'rails_admin', 'get_report.rb')
 
 RailsAdmin.config do |config|
+  config.browser_validations = false
   # Horizontaly scrolling table
   config.total_columns_width = 9999999 #
 
