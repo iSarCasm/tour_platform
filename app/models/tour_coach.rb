@@ -31,7 +31,7 @@ class TourCoach < ApplicationRecord
 
   accepts_nested_attributes_for :seat_prices, allow_destroy: true
 
-  validates :departure_date, :arrival_date, :seatplan, presence: true
+  validates :departure_date, :arrival_date, presence: true
 
   def title
     "#{coach.title} " \
