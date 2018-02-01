@@ -11,7 +11,6 @@
 #  tour_type_id          :integer
 #  country_id            :integer
 #  itinerary             :text
-#  important_notes       :text
 #  tour_memo             :text
 #  other_costs           :decimal(, )
 #  self_drive            :boolean
