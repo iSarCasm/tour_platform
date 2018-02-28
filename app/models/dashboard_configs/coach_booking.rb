@@ -8,7 +8,6 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  seats           :json
-#  pickup_point_id :integer
 #
 
 RailsAdmin.config do |config|
