@@ -1,0 +1,55 @@
+- content_for :javascript_body do
+  = javascript_pack_tag 'booking_page_prices'
+  = javascript_pack_tag 'booking_page_seatplan'
+  = javascript_pack_tag 'pickup_point_select'
+- content_for :dynamic_css do
+  = render 'seatplan_custom_styles.css.erb'
+= flash[:error]
+.container
+  .row.pt-5
+    .col-md-8.push-md-2
+      .card
+        %img.card-img-top.img-fluid{src: image_path('tour_preview_1.jpg'), alt: 'Tour Preview'}
+        .card-block
+          %h4.card-title Booking your tour
+          %p.card-text
+          %i.fa.fa-plane
+          %strong Tour:
+          = @tour.title
+          %br
+          %i.fa.fa-calendar-o
+          %strong Dates:
+          = @active_tour.date_period_fancy
+          
+          = form_for @booking, url: {controller: 'tour_bookings', action: 'create'} do |f|
+            .row.mb-1
+              .col-md-6
+                = f.label :adult, 'Adults:'
+                = f.text_field :adult, type: :number, class: 'form-control js-adult', min: 0, value: '2'
+              .col-md-6
+                = f.label :adult, 'Child:'
+                = f.text_field :child, type: :number, class: 'form-control js-child', min: 0, value: '0'
+            .row.mb-4
+              .col-md-6
+                = f.label :adult, 'Infant:'
+                = f.text_field :infant, type: :number, class: 'form-control js-infant', min: 0, value: '0'
+              .col-md-6
+                = f.label :adult, 'Senior:'
+                = f.text_field :senior, type: :number, class: 'form-control js-senior', min: 0, value: '0'
+            = f.hidden_field :active_tour_id, value: @active_tour.id
+
+            %p
+              %strong
+                %h3
+                  %i.fa.fa-bed
+                  Hotel booking
+              %ul.hotel-list
+                = f.fields_for :hotel_bookings do |hotel|
+                  = render 'active_tours/hotel_booking', hotel: hotel
+
+            %p
+              %strong
+                %i.fa.fa-money
+                Total price:
+              %span#js-total-price $0.00
+            = f.submit 'Order Now', class: 'btn btn-primary'

@@ -1,6 +1,6 @@
 .row.mb-2
   - if active_tour.available?
-    %a.card{href: active_tour_path(active_tour), style: 'width: 100%'}
+    = link_to new_tour_booking_path(active_tour_slug: active_tour.slug), class: 'card', style: 'width: 100%' do
       .card-block
         %p.mb-0
           = active_tour.tour_title

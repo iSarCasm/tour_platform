@@ -3,6 +3,27 @@ class TourBookingsController < ApplicationController
 
   before_action :make_seats_array, only: [:create]
 
+  def new
+    step = params[:step] || 1
+
+    @booking = TourBooking.new
+    @active_tour = ActiveTour.find_by(slug: params[:active_tour_slug])
+    @tour = @active_tour.tour
+    @tour_coach = @active_tour.tour_coaches.first
+    @booking.coach_bookings.build
+
+    @active_tour.tour_hotels.includes(hotel: :photos).each do |hotel|
+      hotel_booking = @booking.hotel_bookings.build(tour_booking: @booking)
+      hotel_booking.configure_for_form(hotel)
+    end
+
+    gon.seatplan = @tour_coach.seatplan.plan
+    gon.seat_types = @tour_coach.json_seat_types
+    gon.reserved_seats = @tour_coach.coach_bookings.pluck(:seats).flatten
+
+    render 'tour_bookings/steps/step1'
+  end
+
   def create
     @tour_booking = current_user.tour_bookings.new(tour_booking_params)
     if @tour_booking.save

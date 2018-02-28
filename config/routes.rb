@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :active_tours, only: [:show]
+  resources :tour_bookings, except: [:new, :edit, :update]
 
-  resources :tour_bookings, only: [:create, :show, :index, :destroy]
+  get ':active_tour_slug', to: 'tour_bookings#new', as: 'new_tour_booking'
 end
