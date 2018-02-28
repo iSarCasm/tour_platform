@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228172710) do
+ActiveRecord::Schema.define(version: 20180228173106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -312,6 +312,8 @@ ActiveRecord::Schema.define(version: 20180228172710) do
     t.bigint "pickup_point_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "hotel_booking_id"
+    t.index ["hotel_booking_id"], name: "index_passengers_on_hotel_booking_id"
     t.index ["pickup_point_id"], name: "index_passengers_on_pickup_point_id"
   end
 
@@ -639,6 +641,7 @@ ActiveRecord::Schema.define(version: 20180228172710) do
   add_foreign_key "hotel_rooms", "tour_hotels"
   add_foreign_key "hotels", "board_bases"
   add_foreign_key "hotels", "payment_types"
+  add_foreign_key "passengers", "hotel_bookings"
   add_foreign_key "passengers", "pickup_points"
   add_foreign_key "pickup_points", "pickup_lists"
   add_foreign_key "role_permissions", "permissions"
