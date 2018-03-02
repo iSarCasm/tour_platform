@@ -34,6 +34,7 @@
         %th Child
         %th Infant
         %th Senior
+        %th Booked
     %tbody
       - hotel.object.hotel_rooms.each do |room|
         %tr
@@ -42,9 +43,9 @@
           %td= render 'active_tours/room_price', price: room.child_sell
           %td= render 'active_tours/room_price', price: room.infant_sell
           %td= render 'active_tours/room_price', price: room.senior_sell, supp_price: room.senior_supp
+          %td
+            = number_field_tag "hotel_booking[#{room.id}]", 0, min: 0, max: 4, class: 'form-control', style: 'width:auto;'
 
-  .form-group
-    = hotel.select :hotel_room_id, hotel.object.rooms, {}, class: 'form-control js-hotel-room'
   %p
     %strong
       %i.fa.fa-money

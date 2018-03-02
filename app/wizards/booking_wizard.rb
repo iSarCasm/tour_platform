@@ -1,0 +1,2 @@
+module BookingWizard
+end

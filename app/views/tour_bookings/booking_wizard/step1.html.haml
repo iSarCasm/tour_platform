@@ -15,13 +15,13 @@
           %p.card-text
           %i.fa.fa-plane
           %strong Tour:
-          = @tour.title
+          = @wizard.tour.title
           %br
           %i.fa.fa-calendar-o
           %strong Dates:
-          = @active_tour.date_period_fancy
+          = @wizard.active_tour.date_period_fancy
           
-          = form_for @booking, url: {controller: 'tour_bookings', action: 'create'} do |f|
+          = form_for @wizard.booking, url: {controller: 'tour_bookings', action: 'create'} do |f|
             .row.mb-1
               .col-md-6
                 = f.label :adult, 'Adults:'
@@ -36,7 +36,7 @@
               .col-md-6
                 = f.label :adult, 'Senior:'
                 = f.text_field :senior, type: :number, class: 'form-control js-senior', min: 0, value: '0'
-            = f.hidden_field :active_tour_id, value: @active_tour.id
+            = f.hidden_field :active_tour_id, value: @wizard.active_tour.id
 
             %p
               %strong
